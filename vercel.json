@@ -1,5 +1,8 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+  "version": 2,
+  "routes": [
+    { "src": "^/$", "dest": "/index.html" },
+    { "src": "^/chat$", "dest": "/chat.html" },
+    { "src": "^/privacy$", "dest": "/privacy.html" }
   ]
 }
