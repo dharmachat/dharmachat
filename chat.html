@@ -16,14 +16,20 @@
   .login-om{font-size:72px;color:var(--gold-lt);font-family:'EB Garamond',serif;line-height:1;margin-bottom:20px;animation:glow-text 3s ease-in-out infinite}
   @keyframes glow-text{0%,100%{text-shadow:0 0 30px rgba(240,192,64,0.3)}50%{text-shadow:0 0 60px rgba(240,192,64,0.7)}}
   .login-title{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--gold-lt);margin-bottom:8px}
-  .login-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.6}
+  .login-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:24px;line-height:1.6}
   .free-badge{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:4px 14px;font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:28px}
-  .name-label{font-family:'Cinzel',serif;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:.08em;margin-bottom:10px;display:block;text-align:left}
-  .name-input{width:100%;padding:14px 18px;background:rgba(255,255,255,0.08);border:1px solid rgba(212,160,23,0.3);border-radius:12px;font-size:15px;color:white;font-family:'Noto Sans',sans-serif;outline:none;margin-bottom:16px;transition:border-color .2s}
+  .google-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:15px 24px;background:white;border:none;border-radius:50px;font-size:15px;font-weight:500;color:#333;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,0.3);font-family:'Noto Sans',sans-serif;margin-bottom:12px}
+  .google-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,0,0,0.4)}
+  .google-btn:disabled{opacity:.6;cursor:wait;transform:none}
+  .google-btn svg{width:20px;height:20px;flex-shrink:0}
+  .divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:rgba(255,255,255,0.3);font-size:12px}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.15)}
+  .name-input{width:100%;padding:13px 18px;background:rgba(255,255,255,0.08);border:1px solid rgba(212,160,23,0.25);border-radius:12px;font-size:14px;color:white;font-family:'Noto Sans',sans-serif;outline:none;margin-bottom:10px;transition:border-color .2s}
   .name-input::placeholder{color:rgba(255,255,255,0.3)}
   .name-input:focus{border-color:rgba(212,160,23,0.6)}
-  .start-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:white;cursor:pointer;transition:all .2s;letter-spacing:.05em;box-shadow:0 4px 20px rgba(232,97,26,0.4)}
-  .start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(232,97,26,0.6)}
+  .guest-btn{width:100%;padding:13px;background:transparent;border:1px solid rgba(212,160,23,0.3);border-radius:50px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold-lt);cursor:pointer;transition:all .2s;letter-spacing:.04em}
+  .guest-btn:hover{background:rgba(212,160,23,0.1)}
+  .status-msg{font-size:12px;color:rgba(240,192,64,0.7);margin-top:12px;min-height:18px;font-family:'Cinzel',serif;letter-spacing:.04em}
   .login-terms{margin-top:16px;font-size:11px;color:rgba(255,255,255,0.25);line-height:1.6}
   .topbar{background:rgba(62,0,0,0.97);border-bottom:1px solid rgba(212,160,23,0.25);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
   .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -31,11 +37,13 @@
   @keyframes glow-pulse{0%,100%{box-shadow:0 0 12px rgba(232,97,26,0.4)}50%{box-shadow:0 0 24px rgba(232,97,26,0.8)}}
   .logo-name{font-family:'Cinzel Decorative',serif;font-size:17px;color:var(--gold-lt)}
   .topbar-right{display:flex;align-items:center;gap:12px}
-  .user-info{display:flex;align-items:center;gap:10px}
-  .user-greeting{font-size:13px;color:rgba(255,255,255,0.7);font-family:'Cinzel',serif}
+  .user-info{display:flex;align-items:center;gap:8px}
+  .user-avatar{width:32px;height:32px;border-radius:50%;border:2px solid rgba(212,160,23,0.4);object-fit:cover}
+  .user-avatar-placeholder{width:32px;height:32px;border-radius:50%;background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.3);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:var(--gold-lt)}
+  .user-name{font-size:13px;color:rgba(255,255,255,0.7);font-family:'Cinzel',serif;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .questions-left{font-size:11px;color:var(--gold-lt);background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.2);border-radius:20px;padding:3px 10px;font-family:'Cinzel',serif}
-  .reset-btn{font-family:'Cinzel',serif;font-size:11px;color:rgba(240,192,64,0.5);background:none;border:none;cursor:pointer}
-  .reset-btn:hover{color:var(--gold-lt)}
+  .signout-btn{font-family:'Cinzel',serif;font-size:11px;color:rgba(240,192,64,0.5);background:none;border:none;cursor:pointer}
+  .signout-btn:hover{color:var(--gold-lt)}
   .back-btn{font-family:'Cinzel',serif;font-size:11px;color:rgba(240,192,64,0.7);text-decoration:none}
   .limit-banner{background:linear-gradient(135deg,rgba(232,97,26,0.15),rgba(212,160,23,0.1));border-bottom:1px solid rgba(212,160,23,0.2);padding:10px 20px;text-align:center;font-size:13px;color:var(--gold-lt);font-family:'EB Garamond',serif;font-style:italic;display:none}
   .limit-banner.show{display:block}
@@ -78,22 +86,33 @@
   .send-btn svg{width:20px;height:20px;fill:white}
   .input-hint{text-align:center;font-size:11px;color:rgba(255,255,255,0.2);margin-top:8px;font-family:'Cinzel',serif;letter-spacing:.04em}
   .error-msg{background:rgba(232,97,26,0.1);border:1px solid rgba(232,97,26,0.3);border-radius:10px;padding:10px 14px;font-size:13px;color:rgba(245,131,42,0.9);text-align:center;max-width:820px;margin:0 auto;width:100%}
-  @media(max-width:600px){.topbar{padding:0 12px}.messages{padding:16px 12px}.input-area{padding:12px}.bubble{max-width:88%}.login-box{padding:36px 24px}}
+  @media(max-width:600px){.topbar{padding:0 12px}.user-name{display:none}.messages{padding:16px 12px}.input-area{padding:12px}.bubble{max-width:88%}.login-box{padding:36px 24px}}
 </style>
 </head>
 <body>
 
-<!-- WELCOME / NAME ENTRY SCREEN -->
+<!-- LOGIN SCREEN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="login-om">ॐ</div>
     <div class="login-title">DharmaChat</div>
     <div class="login-sub">Your personal guide to the wisdom of Sanatana Dharma — Bhagavad Gita, Mahabharata, Ramayana and beyond.</div>
     <div class="free-badge">✦ Free — 10 Questions Daily</div>
-    <label class="name-label">YOUR NAME</label>
-    <input class="name-input" id="nameInput" type="text" placeholder="Enter your name to begin..." maxlength="40" onkeydown="if(event.key==='Enter')startChat()"/>
-    <button class="start-btn" onclick="startChat()">Begin Your Dharmic Journey →</button>
-    <div class="login-terms">No account needed · No password · Free forever<br>Your conversations are private and secure.</div>
+
+    <!-- Google Sign In -->
+    <button class="google-btn" id="googleBtn" onclick="signInWithGoogle()">
+      <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Continue with Google
+    </button>
+
+    <div class="divider">or continue as guest</div>
+
+    <!-- Guest / Name entry -->
+    <input class="name-input" id="nameInput" type="text" placeholder="Enter your name..." maxlength="40" onkeydown="if(event.key==='Enter')signInAsGuest()"/>
+    <button class="guest-btn" onclick="signInAsGuest()">Begin Your Dharmic Journey →</button>
+
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="login-terms">No password needed · Free forever · Private & secure</div>
   </div>
 </div>
 
@@ -105,9 +124,10 @@
   </a>
   <div class="topbar-right">
     <div class="user-info" id="userInfo" style="display:none">
-      <span class="user-greeting" id="userGreeting"></span>
+      <div id="avatarWrap"></div>
+      <span class="user-name" id="userName"></span>
       <span class="questions-left" id="questionsLeft"></span>
-      <button class="reset-btn" onclick="resetUser()">Change name</button>
+      <button class="signout-btn" onclick="signOutUser()">Sign out</button>
     </div>
     <a class="back-btn" href="index.html">← Home</a>
   </div>
@@ -148,51 +168,119 @@
   </div>
 </div>
 
-<script>
-  const API_ENDPOINT = 'https://dharmachat-github-io.vercel.app/api/chat';
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut as fbSignOut }
+    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDRLhE41tzXYmicLr7SWDrYuk5eHqjhl2o",
+    authDomain: "dharmachat-cc71d.firebaseapp.com",
+    projectId: "dharmachat-cc71d",
+    storageBucket: "dharmachat-cc71d.firebasestorage.app",
+    messagingSenderId: "718284855701",
+    appId: "1:718284855701:web:63120c283d07d30cf13e9c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
   const FREE_LIMIT = 10;
+  const API_ENDPOINT = 'https://dharmachat-github-io.vercel.app/api/chat';
+
   let conversationHistory = [];
   let isLoading = false;
-  let userName = '';
+  let currentUser = null;
   let questionsUsed = 0;
+  let isGoogleUser = false;
 
-  // Check if user already entered name
+  // Check guest session on load
   window.addEventListener('load', () => {
-    const saved = localStorage.getItem('dc_user');
-    if (saved) {
-      userName = saved;
-      showChat();
+    const guestName = localStorage.getItem('dc_guest');
+    if (guestName) {
+      showChatUI(guestName, null, false);
     }
   });
 
-  function startChat() {
+  // Firebase auth state
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isGoogleUser = true;
+      currentUser = user;
+      localStorage.removeItem('dc_guest');
+      showChatUI(user.displayName?.split(' ')[0] || 'Devotee', user.photoURL, true);
+    }
+  });
+
+  // Google Sign In
+  window.signInWithGoogle = async function() {
+    const btn = document.getElementById('googleBtn');
+    const status = document.getElementById('statusMsg');
+    btn.disabled = true;
+    status.textContent = 'Opening Google sign-in...';
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      if (err.code === 'auth/popup-blocked') {
+        status.textContent = 'Popup blocked — please allow popups for dharmachat.in';
+      } else if (err.code === 'auth/cancelled-popup-request') {
+        status.textContent = '';
+        btn.disabled = false;
+      } else {
+        status.textContent = 'Google sign-in failed. Please use guest mode below.';
+        btn.disabled = false;
+      }
+    }
+  };
+
+  // Guest Sign In
+  window.signInAsGuest = function() {
     const input = document.getElementById('nameInput');
     const name = input.value.trim();
     if (!name) {
       input.style.borderColor = 'rgba(232,97,26,0.8)';
-      input.placeholder = 'Please enter your name to continue...';
+      input.placeholder = 'Please enter your name...';
       input.focus();
       return;
     }
-    userName = name;
-    localStorage.setItem('dc_user', name);
-    showChat();
-  }
+    localStorage.setItem('dc_guest', name);
+    showChatUI(name, null, false);
+  };
 
-  function showChat() {
+  function showChatUI(name, photoURL, isGoogle) {
+    currentUser = currentUser || { displayName: name, photoURL: photoURL };
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('userInfo').style.display = 'flex';
-    document.getElementById('userGreeting').textContent = 'Namaste, ' + userName.split(' ')[0] + ' 🙏';
-    document.getElementById('welcomeGreeting').textContent = 'Namaste, ' + userName.split(' ')[0] + ' 🙏';
+    document.getElementById('userName').textContent = name;
+    document.getElementById('welcomeGreeting').textContent = 'Namaste, ' + name + ' 🙏';
+
+    // Set avatar
+    const avatarWrap = document.getElementById('avatarWrap');
+    if (photoURL) {
+      avatarWrap.innerHTML = '<img class="user-avatar" src="' + photoURL + '" alt=""/>';
+    } else {
+      avatarWrap.innerHTML = '<div class="user-avatar-placeholder">' + name.charAt(0).toUpperCase() + '</div>';
+    }
+
     loadQuestionsUsed();
     document.getElementById('userInput').focus();
   }
 
-  function resetUser() {
-    localStorage.removeItem('dc_user');
+  // Sign out
+  window.signOutUser = async function() {
+    if (isGoogleUser) await fbSignOut(auth);
+    localStorage.removeItem('dc_guest');
     localStorage.removeItem('dc_usage');
+    conversationHistory = [];
     location.reload();
-  }
+  };
+
+  window.showUpgrade = function() {
+    alert('Premium plan coming soon!\n\nUnlimited questions + all 18 scriptures + audio recitation\nfor just ₹199/month!\n\nWe will notify you when it launches!');
+  };
 
   function loadQuestionsUsed() {
     const today = new Date().toDateString();
@@ -223,18 +311,15 @@
     }
   }
 
-  function showUpgrade() {
-    alert('Premium plan coming soon!\n\nUnlimited questions + all 18 scriptures + audio recitation\nfor just ₹199/month.\n\nWe will notify you when it launches!');
-  }
-
-  async function sendMessage() {
+  window.sendMessage = async function() {
     if (questionsUsed >= FREE_LIMIT) { document.getElementById('limitBanner').classList.add('show'); return; }
     const input = document.getElementById('userInput');
     const text = input.value.trim();
     if (!text || isLoading) return;
     const welcome = document.getElementById('welcome');
     if (welcome) welcome.remove();
-    addMessage('user', text);
+    const userName = document.getElementById('userName').textContent;
+    addMessage('user', text, currentUser?.photoURL, userName);
     conversationHistory.push({ role: 'user', content: text });
     input.value = '';
     input.style.height = 'auto';
@@ -258,13 +343,13 @@
       showError(err.message || 'Connection error. Please try again.');
     }
     setLoading(false);
-  }
+  };
 
-  function askSuggestion(el) { document.getElementById('userInput').value = el.textContent; sendMessage(); }
-  function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
-  function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 140) + 'px'; }
+  window.askSuggestion = function(el) { document.getElementById('userInput').value = el.textContent; window.sendMessage(); };
+  window.handleKey = function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); window.sendMessage(); } };
+  window.autoResize = function(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 140) + 'px'; };
 
-  function addMessage(role, text) {
+  function addMessage(role, text, photoURL, name) {
     const msgs = document.getElementById('messages');
     const div = document.createElement('div');
     div.className = 'msg ' + role;
@@ -273,9 +358,14 @@
     if (role === 'ai') {
       avatar.textContent = 'ॐ';
       avatar.style.cssText = 'background:linear-gradient(135deg,#6B1A1A,#E8611A);color:#F0C040;font-family:"EB Garamond",serif;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0';
+    } else if (photoURL) {
+      const img = document.createElement('img');
+      img.src = photoURL;
+      img.style.cssText = 'width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0';
+      avatar.appendChild(img);
     } else {
-      avatar.style.cssText = 'background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.3);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-family:"Cinzel",serif;color:#F0C040';
-      avatar.textContent = userName.charAt(0).toUpperCase();
+      avatar.style.cssText = 'background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.3);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;font-family:"Cinzel",serif;color:#F0C040';
+      avatar.textContent = (name || 'U').charAt(0).toUpperCase();
     }
     const bubble = document.createElement('div');
     bubble.className = 'bubble';
