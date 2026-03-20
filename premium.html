@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DharmaChat Premium — Unlimited Dharmic Wisdom</title>
+<link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{--saffron:#E8611A;--saffron-lt:#F5832A;--gold:#D4A017;--gold-lt:#F0C040;--maroon:#6B1A1A;--maroon-dk:#3E0000;--cream:#FDF6E3;--white:#FFFFFF}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Noto Sans',sans-serif;background:var(--cream);color:var(--maroon-dk)}
+  .topbar{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.25);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo-wrap img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+  .logo-name{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-lt)}
+  .back-btn{font-family:'Cinzel',serif;font-size:12px;color:rgba(240,192,64,0.7);text-decoration:none;letter-spacing:.05em}
+  .hero{background:linear-gradient(160deg,var(--maroon-dk) 0%,#5A0A0A 60%,var(--saffron) 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'ॐ';position:absolute;font-size:400px;color:rgba(212,160,23,0.04);font-family:'EB Garamond',serif;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-tag{display:inline-block;background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.4);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+  .hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(26px,5vw,48px);color:var(--white);line-height:1.2;margin-bottom:16px}
+  .hero h1 span{color:var(--gold-lt)}
+  .hero p{font-family:'EB Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,0.7);max-width:560px;margin:0 auto}
+  .plans{max-width:900px;margin:0 auto;padding:60px 24px}
+  .plans-title{text-align:center;font-family:'Cinzel',serif;font-size:13px;letter-spacing:.15em;color:var(--saffron);margin-bottom:40px}
+  .plans-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:48px}
+  .plan-card{background:var(--white);border-radius:20px;padding:32px 24px;border:1px solid rgba(107,26,26,0.1);box-shadow:0 4px 24px rgba(107,26,26,0.08);position:relative;transition:transform .2s}
+  .plan-card:hover{transform:translateY(-4px)}
+  .plan-card.featured{border:2px solid var(--gold);box-shadow:0 8px 40px rgba(212,160,23,0.2)}
+  .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;padding:4px 16px;border-radius:20px;white-space:nowrap}
+  .plan-name{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;color:var(--maroon);margin-bottom:8px;font-weight:700}
+  .plan-price{font-family:'Cinzel Decorative',serif;font-size:36px;color:var(--maroon-dk);line-height:1;margin-bottom:4px}
+  .plan-price span{font-size:16px;font-family:'Noto Sans',sans-serif;font-weight:400;color:#888}
+  .plan-desc{font-size:13px;color:#888;margin-bottom:20px;font-family:'EB Garamond',serif;font-style:italic}
+  .plan-features{list-style:none;margin-bottom:24px}
+  .plan-features li{font-size:13px;color:#555;padding:7px 0;border-bottom:1px dashed rgba(107,26,26,0.1);display:flex;align-items:center;gap:8px;line-height:1.4}
+  .plan-features li::before{content:'✦';color:var(--gold);font-size:9px;flex-shrink:0}
+  .plan-features li.cross{color:#bbb}
+  .plan-features li.cross::before{content:'✕';color:#ddd;font-size:10px}
+  .plan-btn{width:100%;padding:14px;border-radius:50px;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;border:none}
+  .plan-btn.primary{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;box-shadow:0 4px 16px rgba(232,97,26,0.3)}
+  .plan-btn.primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(232,97,26,0.5)}
+  .plan-btn.secondary{background:transparent;border:2px solid var(--maroon);color:var(--maroon)}
+  .plan-btn.secondary:hover{background:var(--maroon);color:white}
+  .plan-btn.outline{background:transparent;border:1px solid #ddd;color:#888}
+  .savings-badge{display:inline-block;background:rgba(232,97,26,0.1);color:var(--saffron);font-size:11px;font-family:'Cinzel',serif;padding:2px 10px;border-radius:10px;margin-left:6px}
+  .features-section{background:var(--maroon-dk);padding:60px 24px}
+  .features-inner{max-width:900px;margin:0 auto}
+  .features-title{font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold-lt);text-align:center;margin-bottom:8px}
+  .features-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:48px}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .feature-item{text-align:center;padding:24px 16px}
+  .feature-icon{font-size:32px;margin-bottom:12px}
+  .feature-item h3{font-family:'Cinzel',serif;font-size:14px;color:var(--gold-lt);margin-bottom:8px;font-weight:700}
+  .feature-item p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;font-family:'EB Garamond',serif;font-style:italic}
+  .guarantee{max-width:600px;margin:48px auto;text-align:center;padding:32px;background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.2);border-radius:16px}
+  .guarantee h3{font-family:'Cinzel',serif;font-size:16px;color:var(--maroon);margin-bottom:8px;font-weight:700}
+  .guarantee p{font-size:14px;color:#666;line-height:1.7;font-family:'EB Garamond',serif;font-style:italic}
+  .loading-overlay{display:none;position:fixed;inset:0;background:rgba(62,0,0,0.9);z-index:1000;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+  .loading-overlay.show{display:flex}
+  .loading-om{font-size:60px;color:var(--gold-lt);font-family:'EB Garamond',serif;animation:pulse 1.5s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+  .loading-text{font-family:'Cinzel',serif;font-size:14px;color:rgba(255,255,255,0.7);letter-spacing:.1em}
+  .success-overlay{display:none;position:fixed;inset:0;background:rgba(62,0,0,0.95);z-index:1000;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:24px}
+  .success-overlay.show{display:flex}
+  .success-om{font-size:80px;color:var(--gold-lt);font-family:'EB Garamond',serif}
+  .success-title{font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold-lt)}
+  .success-msg{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,0.7);max-width:480px;line-height:1.7}
+  .success-btn{margin-top:16px;padding:14px 40px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;font-family:'Cinzel',serif;font-size:14px;color:white;cursor:pointer;font-weight:700;letter-spacing:.06em}
+  @media(max-width:700px){.plans-grid{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:500px){.features-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="logo-wrap" href="index.html">
+    <img src="logo.jpeg" alt="DharmaChat"/>
+    <span class="logo-name">DharmaChat</span>
+  </a>
+  <a class="back-btn" href="chat.html">← Back to Chat</a>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">✦ DHARMACHAT PREMIUM</div>
+  <h1>Unlock the Full Ocean<br>of <span>Dharmic Wisdom</span></h1>
+  <p>Go deeper into the scriptures with unlimited access to all 18 sacred texts, audio recitations, and exclusive content.</p>
+</div>
+
+<div class="plans">
+  <div class="plans-title">CHOOSE YOUR PLAN</div>
+  <div class="plans-grid">
+
+    <!-- FREE PLAN -->
+    <div class="plan-card">
+      <div class="plan-name">FREE</div>
+      <div class="plan-price">₹0 <span>/month</span></div>
+      <div class="plan-desc">Begin your dharmic journey</div>
+      <ul class="plan-features">
+        <li>10 questions per day</li>
+        <li>Bhagavad Gita access</li>
+        <li>Ramayana & Mahabharata</li>
+        <li class="cross">All 18 scriptures</li>
+        <li class="cross">Unlimited questions</li>
+        <li class="cross">Audio shlokas</li>
+        <li class="cross">Exclusive podcasts</li>
+      </ul>
+      <button class="plan-btn outline" onclick="window.location.href='chat.html'">Current Plan</button>
+    </div>
+
+    <!-- MONTHLY PLAN -->
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">PREMIUM MONTHLY</div>
+      <div class="plan-price">₹199 <span>/month</span></div>
+      <div class="plan-desc">Full access, cancel anytime</div>
+      <ul class="plan-features">
+        <li>Unlimited questions daily</li>
+        <li>All 18 Mahapuranas</li>
+        <li>All 108 Upanishads</li>
+        <li>All 4 Vedas</li>
+        <li>Audio shloka recitations</li>
+        <li>Exclusive dharma podcasts</li>
+        <li>Priority AI responses</li>
+      </ul>
+      <button class="plan-btn primary" onclick="startPayment('monthly', 19900)">Subscribe — ₹199/month</button>
+    </div>
+
+    <!-- YEARLY PLAN -->
+    <div class="plan-card">
+      <div class="plan-name">PREMIUM YEARLY <span class="savings-badge">Save 37%</span></div>
+      <div class="plan-price">₹1,499 <span>/year</span></div>
+      <div class="plan-desc">Best value — only ₹125/month</div>
+      <ul class="plan-features">
+        <li>Everything in Monthly</li>
+        <li>Save ₹889 per year</li>
+        <li>Early access to new features</li>
+        <li>Exclusive yearly devotee badge</li>
+        <li>Priority customer support</li>
+        <li>Offline shloka downloads</li>
+        <li>Special dharma calendar</li>
+      </ul>
+      <button class="plan-btn secondary" onclick="startPayment('yearly', 149900)">Subscribe — ₹1,499/year</button>
+    </div>
+
+  </div>
+
+  <div class="guarantee">
+    <h3>🙏 Our Sacred Promise</h3>
+    <p>If you are not completely satisfied with DharmaChat Premium within the first 7 days, we will refund your payment — no questions asked. Your trust is more sacred to us than your payment.</p>
+  </div>
+</div>
+
+<div class="features-section">
+  <div class="features-inner">
+    <div class="features-title">What's in Premium</div>
+    <div class="features-sub">Everything a sincere seeker needs on the dharmic path</div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">📚</div>
+        <h3>All 18 Scriptures</h3>
+        <p>Complete access to all 18 Mahapuranas, 108 Upanishads, 4 Vedas, Yoga Sutras and more</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔊</div>
+        <h3>Audio Recitations</h3>
+        <p>Listen to shlokas recited in authentic Sanskrit pronunciation by learned pandits</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎙️</div>
+        <h3>Dharma Podcasts</h3>
+        <p>Exclusive audio episodes exploring deeper aspects of Hindu philosophy and mythology</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">♾️</div>
+        <h3>Unlimited Questions</h3>
+        <p>No daily limit — ask as many questions as your spiritual curiosity requires</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <h3>Priority Responses</h3>
+        <p>Premium members get faster, more detailed answers with deeper scriptural analysis</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🕉️</div>
+        <h3>Exclusive Content</h3>
+        <p>Special dharma guides, festival calendars, meditation instructions and more added monthly</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-om">ॐ</div>
+  <div class="loading-text">PREPARING YOUR SACRED JOURNEY...</div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-om">ॐ</div>
+  <div class="success-title">Welcome to Premium! 🙏</div>
+  <div class="success-msg">Your payment was successful. You now have unlimited access to the full ocean of Dharmic wisdom. May this knowledge light your path.</div>
+  <button class="success-btn" onclick="window.location.href='chat.html'">Begin Your Journey →</button>
+</div>
+
+<!-- Razorpay SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  async function startPayment(plan, amount) {
+    document.getElementById('loadingOverlay').classList.add('show');
+    try {
+      const response = await fetch('https://dharmachat-github-io.vercel.app/api/payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: amount,
+          currency: 'INR',
+          receipt: 'dharmachat_' + plan + '_' + Date.now(),
+          plan: plan
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to create order');
+      const data = await response.json();
+      document.getElementById('loadingOverlay').classList.remove('show');
+
+      const options = {
+        key: data.keyId,
+        amount: data.amount,
+        currency: data.currency,
+        name: 'DharmaChat',
+        description: plan === 'monthly' ? 'Premium Monthly — Unlimited Dharmic Wisdom' : 'Premium Yearly — Full Sacred Access',
+        image: 'https://dharmachat.in/logo.jpeg',
+        order_id: data.orderId,
+        handler: function(response) {
+          // Payment successful
+          localStorage.setItem('dc_premium', JSON.stringify({
+            plan: plan,
+            paymentId: response.razorpay_payment_id,
+            orderId: response.razorpay_order_id,
+            date: new Date().toISOString(),
+            expiry: plan === 'monthly'
+              ? new Date(Date.now() + 30*24*60*60*1000).toISOString()
+              : new Date(Date.now() + 365*24*60*60*1000).toISOString()
+          }));
+          document.getElementById('successOverlay').classList.add('show');
+        },
+        prefill: {
+          name: '',
+          email: '',
+          contact: ''
+        },
+        notes: { plan: plan },
+        theme: {
+          color: '#E8611A'
+        },
+        modal: {
+          ondismiss: function() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+          }
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function(response) {
+        alert('Payment failed. Please try again or contact support.');
+      });
+      rzp.open();
+
+    } catch (err) {
+      document.getElementById('loadingOverlay').classList.remove('show');
+      alert('Something went wrong. Please try again.');
+      console.error(err);
+    }
+  }
+</script>
+</body>
+</html>
