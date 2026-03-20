@@ -753,34 +753,6 @@ window.shareShlokaWhatsApp = function() {
 };
 
 buildLangButtons();
-loadShloka(); };
-    container.appendChild(btn);
-  });
-}
-
-window.shareShlokaWhatsApp = function() {
-  const s = getTodayShloka();
-  const plain = s.d.replace(/<br>/g, '\n');
-  const meaning = s.m[currentLang] || s.m.en;
-  const text = '🕉️ Shloka of the Day\n\n' + plain + '\n\n' + meaning + '\n\n' + s.s + '\n\nExplore more at dharmachat.in';
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-};
-
-buildLangButtons();
-loadShloka(); };
-    container.appendChild(btn);
-  });
-}
-
-window.shareShlokaWhatsApp = function() {
-  const s = getTodayShloka();
-  const plain = s.devanagari.replace(/<br>/g, '\n');
-  const meaning = s.meanings[currentLang] || s.meanings.en;
-  const text = `🕉️ Shloka of the Day\n\n${plain}\n\n${meaning}\n\n${s.source}\n\nExplore more at dharmachat.in`;
-  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-};
-
-buildLangButtons();
 loadShloka();
 </script>
 
