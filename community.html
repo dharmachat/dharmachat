@@ -192,13 +192,19 @@ footer a{color:rgba(240,192,64,0.6);text-decoration:none;margin:0 12px}
     <img src="logo.jpeg" alt="DharmaChat"/>
     <span class="logo-name">DharmaChat</span>
   </a>
-  <div class="nav-links">
+  <div class="nav-links" style="display:flex;align-items:center;gap:16px;">
     <a class="nav-link" href="index.html">Home</a>
     <a class="nav-link" href="lessons.html">Lessons</a>
     <a class="nav-link active" href="community.html">Community</a>
+    <div id="navAuth"></div>
     <a class="btn-try" href="chat.html">Ask AI →</a>
   </div>
 </nav>
+
+<script type="module">
+import { initNavAuth } from './auth.js';
+initNavAuth();
+</script>
 
 <!-- HERO -->
 <div class="hero">
@@ -669,7 +675,7 @@ onSnapshot(q, (snapshot) => {
   const container = document.getElementById('commentsList');
   if (!container) return;
   if (snapshot.empty) {
-    container.innerHTML = '<div style="text-align:center;padding:32px;font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:#aaa;">Be the first to share a reflection! 🙏</div>';
+    container.innerHTML = '<div style="text-align:center;padding:32px;font-family:EB Garamond,serif;font-style:italic;font-size:16px;color:#aaa;">Be the first to share a reflection! 🙏</div>';
     return;
   }
   container.innerHTML = '';
