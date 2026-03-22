@@ -116,7 +116,7 @@
 </div>
 
 <!-- LOGIN SCREEN -->
-<div class="login-screen" id="loginScreen">
+<div class="login-screen" id="loginScreen" style="display:none;">
   <div class="login-box">
     <img src="logo.jpeg" style="width:130px;height:130px;border-radius:50%;object-fit:cover;margin-bottom:16px;box-shadow:0 0 40px rgba(212,160,23,0.5),0 0 80px rgba(232,97,26,0.2);" alt="DharmaChat"/>
     <div class="login-title">DharmaChat</div>
@@ -225,6 +225,7 @@
 
   // Firebase auth state
   onAuthStateChanged(auth, (user) => {
+     document.getElementById('loginScreen').style.display = user ? 'none' : 'flex';
     if (user) {
       isGoogleUser = true;
       currentUser = user;
