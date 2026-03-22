@@ -24,19 +24,10 @@
     --shadow:     0 8px 40px rgba(107,26,26,0.18);
     --radius:     18px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
 
-  body {
-    font-family: 'Noto Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    overflow-x: hidden;
-  }
-
-  /* ── UTILITY ── */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
@@ -45,8 +36,7 @@
     font-size: 15px; letter-spacing: .04em;
     padding: 14px 32px; border-radius: 50px; border: none; cursor: pointer;
     box-shadow: 0 4px 24px rgba(232,97,26,0.4);
-    transition: transform .2s, box-shadow .2s;
-    text-decoration: none;
+    transition: transform .2s, box-shadow .2s; text-decoration: none;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232,97,26,0.5); }
   .btn-outline {
@@ -58,7 +48,6 @@
   }
   .btn-outline:hover { background: var(--saffron); color: var(--white); }
 
-  /* ── MANDALA BG PATTERN ── */
   .mandala-bg {
     background-image:
       radial-gradient(circle at 20% 50%, rgba(232,97,26,0.06) 0%, transparent 50%),
@@ -66,7 +55,7 @@
       url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A017' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
     background: rgba(253,246,227,0.95);
@@ -74,45 +63,33 @@
     border-bottom: 2px solid rgba(212,160,23,0.2);
     padding: 0 24px;
   }
-  .nav-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
     font-family: 'Cinzel Decorative', serif; font-weight: 700;
     font-size: 20px; color: var(--maroon); text-decoration: none;
   }
-  .nav-logo .om {
-    width: 38px; height: 38px; background: linear-gradient(135deg, var(--saffron), var(--gold));
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 20px; color: white; box-shadow: 0 2px 12px rgba(232,97,26,0.4);
-  }
   .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a {
     font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
-    color: var(--text-mid); text-decoration: none; letter-spacing: .04em;
-    transition: color .2s;
+    color: var(--text-mid); text-decoration: none; letter-spacing: .04em; transition: color .2s;
   }
   .nav-links a:hover { color: var(--saffron); }
   .nav-cta { display: flex; gap: 12px; align-items: center; }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     min-height: 100vh; display: flex; align-items: center;
     background: linear-gradient(160deg, var(--maroon-dk) 0%, var(--maroon) 35%, #8B2500 65%, var(--saffron) 100%);
     position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='58' fill='none' stroke='%23D4A017' stroke-opacity='0.08' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23D4A017' stroke-opacity='0.06' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='22' fill='none' stroke='%23D4A017' stroke-opacity='0.06' stroke-width='1'/%3E%3Cline x1='2' y1='60' x2='118' y2='60' stroke='%23D4A017' stroke-opacity='0.05' stroke-width='1'/%3E%3Cline x1='60' y1='2' x2='60' y2='118' stroke='%23D4A017' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E") repeat;
     opacity: .6;
   }
   .hero::after {
-    content: 'ॐ';
-    position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+    content: 'ॐ'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
     font-size: 500px; color: rgba(212,160,23,0.05); font-family: 'EB Garamond', serif;
     line-height: 1; pointer-events: none;
   }
@@ -127,29 +104,15 @@
     color: var(--gold-lt); font-family: 'Cinzel', serif; font-size: 12px;
     letter-spacing: .1em; padding: 6px 16px; border-radius: 50px; margin-bottom: 24px;
   }
-  .hero h1 {
-    font-family: 'Cinzel Decorative', serif; font-size: clamp(32px, 5vw, 58px);
-    color: var(--white); line-height: 1.15; margin-bottom: 20px;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
+  .hero h1 { font-family: 'Cinzel Decorative', serif; font-size: clamp(32px, 5vw, 58px); color: var(--white); line-height: 1.15; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
   .hero h1 span { color: var(--gold-lt); }
-  .hero-sub {
-    font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic;
-    color: rgba(255,255,255,0.8); margin-bottom: 12px; line-height: 1.6;
-  }
-  .hero-desc {
-    font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.7;
-  }
+  .hero-sub { font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic; color: rgba(255,255,255,0.8); margin-bottom: 12px; line-height: 1.6; }
+  .hero-desc { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.7; }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
   .hero-stats { display: flex; gap: 32px; }
-  .hero-stat strong {
-    display: block; font-family: 'Cinzel', serif; font-size: 24px;
-    color: var(--gold-lt); font-weight: 700;
-  }
+  .hero-stat strong { display: block; font-family: 'Cinzel', serif; font-size: 24px; color: var(--gold-lt); font-weight: 700; }
   .hero-stat span { font-size: 13px; color: rgba(255,255,255,0.6); }
-  .hero-visual {
-    display: flex; flex-direction: column; align-items: center; gap: 20px;
-  }
+  .hero-visual { display: flex; flex-direction: column; align-items: center; gap: 20px; }
   .phone-mockup {
     width: 280px; height: 560px;
     background: linear-gradient(160deg, #1a0a00, #3E0000);
@@ -158,201 +121,69 @@
     display: flex; flex-direction: column; align-items: center; padding: 32px 20px;
     position: relative; overflow: hidden;
   }
-  .phone-mockup::before {
-    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 100px; height: 6px; background: rgba(212,160,23,0.5); border-radius: 0 0 8px 8px;
-  }
-  .phone-om {
-    font-size: 80px; color: var(--gold-lt); font-family: 'EB Garamond', serif;
-    margin-bottom: 16px; text-shadow: 0 0 40px rgba(240,192,64,0.6);
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-  @keyframes pulse-glow {
-    0%, 100% { text-shadow: 0 0 40px rgba(240,192,64,0.6); }
-    50% { text-shadow: 0 0 80px rgba(240,192,64,0.9), 0 0 120px rgba(232,97,26,0.4); }
-  }
-  .phone-title {
-    font-family: 'Cinzel Decorative', serif; font-size: 16px;
-    color: var(--gold-lt); margin-bottom: 20px;
-  }
-  .phone-verse {
-    background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25);
-    border-radius: 14px; padding: 16px; text-align: center; width: 100%;
-    font-family: 'EB Garamond', serif; font-style: italic;
-    font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 16px;
-  }
-  .phone-verse cite {
-    display: block; margin-top: 8px; font-size: 12px;
-    color: var(--gold-lt); font-style: normal; font-family: 'Cinzel', serif;
-  }
+  .phone-mockup::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 6px; background: rgba(212,160,23,0.5); border-radius: 0 0 8px 8px; }
+  @keyframes pulse-glow { 0%, 100% { text-shadow: 0 0 40px rgba(240,192,64,0.6); } 50% { text-shadow: 0 0 80px rgba(240,192,64,0.9), 0 0 120px rgba(232,97,26,0.4); } }
+  .phone-title { font-family: 'Cinzel Decorative', serif; font-size: 16px; color: var(--gold-lt); margin-bottom: 20px; }
+  .phone-verse { background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25); border-radius: 14px; padding: 16px; text-align: center; width: 100%; font-family: 'EB Garamond', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 16px; }
+  .phone-verse cite { display: block; margin-top: 8px; font-size: 12px; color: var(--gold-lt); font-style: normal; font-family: 'Cinzel', serif; }
   .phone-chat { width: 100%; display: flex; flex-direction: column; gap: 10px; }
-  .chat-bubble {
-    padding: 10px 14px; border-radius: 14px; font-size: 12px; line-height: 1.5;
-    max-width: 85%;
-  }
-  .chat-user {
-    background: var(--saffron); color: white; align-self: flex-end; border-radius: 14px 14px 4px 14px;
-  }
-  .chat-ai {
-    background: rgba(212,160,23,0.15); color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(212,160,23,0.2); align-self: flex-start; border-radius: 14px 14px 14px 4px;
-  }
+  .chat-bubble { padding: 10px 14px; border-radius: 14px; font-size: 12px; line-height: 1.5; max-width: 85%; }
+  .chat-user { background: var(--saffron); color: white; align-self: flex-end; border-radius: 14px 14px 4px 14px; }
+  .chat-ai { background: rgba(212,160,23,0.15); color: rgba(255,255,255,0.85); border: 1px solid rgba(212,160,23,0.2); align-self: flex-start; border-radius: 14px 14px 14px 4px; }
 
-  /* ── REVIEW CARD SMALL ── */
-  .review-mini {
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
-    border: 1px solid rgba(212,160,23,0.3); border-radius: 14px;
-    padding: 14px 18px; color: white; max-width: 260px;
-  }
-  .review-mini .stars { color: var(--gold-lt); font-size: 13px; margin-bottom: 6px; }
-  .review-mini p { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 8px; }
-  .review-mini .name { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold-lt); }
-
-  /* ── SECTION LABELS ── */
-  .section-tag {
-    display: inline-block; font-family: 'Cinzel', serif; font-size: 11px;
-    font-weight: 700; letter-spacing: .15em; color: var(--saffron);
-    background: rgba(232,97,26,0.1); padding: 5px 14px; border-radius: 50px;
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-family: 'Cinzel Decorative', serif; font-size: clamp(24px, 3.5vw, 38px);
-    color: var(--maroon); line-height: 1.25; margin-bottom: 16px;
-  }
-  .section-sub {
-    font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic;
-    color: var(--text-light); line-height: 1.6; max-width: 640px;
-  }
+  /* SECTION LABELS */
+  .section-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; letter-spacing: .15em; color: var(--saffron); background: rgba(232,97,26,0.1); padding: 5px 14px; border-radius: 50px; margin-bottom: 14px; }
+  .section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(24px, 3.5vw, 38px); color: var(--maroon); line-height: 1.25; margin-bottom: 16px; }
+  .section-sub { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text-light); line-height: 1.6; max-width: 640px; }
   section { padding: 100px 0; }
 
-  /* ── MISSION ── */
-  .mission {
-    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dk) 100%);
-    text-align: center;
-  }
-  .mission-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 60px;
-  }
-  .mission-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 36px 28px; box-shadow: var(--shadow);
-    border-top: 4px solid var(--gold); text-align: left;
-    transition: transform .25s;
-  }
+  /* MISSION */
+  .mission { background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dk) 100%); text-align: center; }
+  .mission-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 60px; }
+  .mission-card { background: var(--white); border-radius: var(--radius); padding: 36px 28px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); text-align: left; transition: transform .25s; }
   .mission-card:hover { transform: translateY(-6px); }
-  .mission-icon {
-    width: 56px; height: 56px; border-radius: 16px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(232,97,26,0.3);
-  }
-  .mission-card h3 {
-    font-family: 'Cinzel', serif; font-size: 17px; color: var(--maroon);
-    margin-bottom: 10px; font-weight: 700;
-  }
+  .mission-icon { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, var(--saffron), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(232,97,26,0.3); }
+  .mission-card h3 { font-family: 'Cinzel', serif; font-size: 17px; color: var(--maroon); margin-bottom: 10px; font-weight: 700; }
   .mission-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
 
-  /* ── FEATURES ── */
+  /* FEATURES */
   .features { background: var(--cream); }
   .features-header { text-align: center; margin-bottom: 70px; }
   .feature-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px; }
-  .feature-card {
-    background: var(--white); border-radius: var(--radius); overflow: hidden;
-    box-shadow: var(--shadow); display: flex; flex-direction: column;
-    border: 1px solid rgba(212,160,23,0.15); transition: transform .25s;
-  }
+  .feature-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; border: 1px solid rgba(212,160,23,0.15); transition: transform .25s; }
   .feature-card:hover { transform: translateY(-4px); }
-  .feature-top {
-    background: linear-gradient(135deg, var(--maroon-dk), var(--maroon));
-    padding: 40px 36px; position: relative; overflow: hidden;
-  }
-  .feature-top::after {
-    content: attr(data-glyph);
-    position: absolute; right: -10px; bottom: -20px;
-    font-size: 100px; opacity: .07; font-family: 'EB Garamond', serif;
-    color: var(--gold-lt); line-height: 1;
-  }
-  .feature-top h3 {
-    font-family: 'Cinzel Decorative', serif; font-size: 20px;
-    color: var(--gold-lt); margin-bottom: 10px;
-  }
-  .feature-top p {
-    font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7;
-  }
+  .feature-top { background: linear-gradient(135deg, var(--maroon-dk), var(--maroon)); padding: 40px 36px; position: relative; overflow: hidden; }
+  .feature-top::after { content: attr(data-glyph); position: absolute; right: -10px; bottom: -20px; font-size: 100px; opacity: .07; font-family: 'EB Garamond', serif; color: var(--gold-lt); line-height: 1; }
+  .feature-top h3 { font-family: 'Cinzel Decorative', serif; font-size: 20px; color: var(--gold-lt); margin-bottom: 10px; }
+  .feature-top p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
   .feature-bot { padding: 28px 36px; }
-  .feature-tag {
-    display: inline-block; font-size: 11px; font-family: 'Cinzel', serif;
-    letter-spacing: .1em; background: rgba(232,97,26,0.1); color: var(--saffron);
-    padding: 4px 12px; border-radius: 50px; margin-bottom: 12px;
-  }
+  .feature-tag { display: inline-block; font-size: 11px; font-family: 'Cinzel', serif; letter-spacing: .1em; background: rgba(232,97,26,0.1); color: var(--saffron); padding: 4px 12px; border-radius: 50px; margin-bottom: 12px; }
   .feature-list { list-style: none; }
-  .feature-list li {
-    font-size: 14px; color: var(--text-mid); padding: 7px 0;
-    border-bottom: 1px solid rgba(212,160,23,0.1);
-    display: flex; align-items: center; gap: 10px;
-  }
+  .feature-list li { font-size: 14px; color: var(--text-mid); padding: 7px 0; border-bottom: 1px solid rgba(212,160,23,0.1); display: flex; align-items: center; gap: 10px; }
   .feature-list li::before { content: '✦'; color: var(--gold); font-size: 10px; flex-shrink: 0; }
 
-  /* ── SCRIPTURES ── */
-  .scriptures {
-    background: linear-gradient(160deg, var(--maroon-dk) 0%, #5A0A0A 100%);
-    position: relative; overflow: hidden;
-  }
-  .scriptures::before {
-    content: 'ॐ'; position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%,-50%); font-size: 700px;
-    color: rgba(212,160,23,0.03); font-family: 'EB Garamond', serif;
-    pointer-events: none; line-height: 1;
-  }
+  /* SCRIPTURES */
+  .scriptures { background: linear-gradient(160deg, var(--maroon-dk) 0%, #5A0A0A 100%); position: relative; overflow: hidden; }
+  .scriptures::before { content: 'ॐ'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 700px; color: rgba(212,160,23,0.03); font-family: 'EB Garamond', serif; pointer-events: none; line-height: 1; }
   .scriptures .section-title { color: var(--gold-lt); }
   .scriptures .section-sub { color: rgba(255,255,255,0.6); }
   .scriptures .section-tag { background: rgba(212,160,23,0.15); color: var(--gold-lt); }
-  .scripture-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px;
-  }
-  .scripture-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2);
-    border-radius: var(--radius); padding: 32px 24px; transition: all .25s;
-    position: relative; overflow: hidden;
-  }
-  .scripture-card:hover {
-    background: rgba(212,160,23,0.1); border-color: rgba(212,160,23,0.5);
-    transform: translateY(-4px);
-  }
-  .scripture-num {
-    font-family: 'Cinzel Decorative', serif; font-size: 48px;
-    color: rgba(212,160,23,0.2); line-height: 1; margin-bottom: 16px;
-  }
-  .scripture-name {
-    font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold-lt);
-    font-weight: 700; margin-bottom: 8px;
-  }
-  .scripture-sanskrit {
-    font-family: 'EB Garamond', serif; font-style: italic;
-    font-size: 14px; color: rgba(212,160,23,0.6); margin-bottom: 12px;
-  }
+  .scripture-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+  .scripture-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2); border-radius: var(--radius); padding: 32px 24px; transition: all .25s; position: relative; overflow: hidden; }
+  .scripture-card:hover { background: rgba(212,160,23,0.1); border-color: rgba(212,160,23,0.5); transform: translateY(-4px); }
+  .scripture-num { font-family: 'Cinzel Decorative', serif; font-size: 48px; color: rgba(212,160,23,0.2); line-height: 1; margin-bottom: 16px; }
+  .scripture-name { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold-lt); font-weight: 700; margin-bottom: 8px; }
+  .scripture-sanskrit { font-family: 'EB Garamond', serif; font-style: italic; font-size: 14px; color: rgba(212,160,23,0.6); margin-bottom: 12px; }
   .scripture-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
-  .scripture-count {
-    margin-top: 16px; display: inline-block; font-family: 'Cinzel', serif;
-    font-size: 11px; letter-spacing: .08em;
-    color: var(--saffron-lt); background: rgba(232,97,26,0.15);
-    padding: 4px 12px; border-radius: 50px;
-  }
+  .scripture-count { margin-top: 16px; display: inline-block; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .08em; color: var(--saffron-lt); background: rgba(232,97,26,0.15); padding: 4px 12px; border-radius: 50px; }
 
-  /* ── LESSONS ── */
+  /* LESSONS */
   .lessons { background: var(--cream-dk); }
   .lessons-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
   .lessons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-  .lesson-card {
-    background: var(--white); border-radius: var(--radius);
-    overflow: hidden; box-shadow: var(--shadow);
-    border: 1px solid rgba(212,160,23,0.12); transition: transform .25s;
-  }
+  .lesson-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(212,160,23,0.12); transition: transform .25s; display: block; text-decoration: none; color: inherit; }
   .lesson-card:hover { transform: translateY(-4px); }
-  .lesson-img {
-    height: 160px; display: flex; align-items: center; justify-content: center;
-    font-size: 64px; position: relative; overflow: hidden;
-  }
+  .lesson-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 64px; position: relative; overflow: hidden; }
   .lesson-img-1 { background: linear-gradient(135deg, #1a0a00, #6B1A1A); }
   .lesson-img-2 { background: linear-gradient(135deg, #0A1A0A, #1A4A2A); }
   .lesson-img-3 { background: linear-gradient(135deg, #0A0A2A, #1A1A6B); }
@@ -361,209 +192,86 @@
   .lesson-img-6 { background: linear-gradient(135deg, #1A0A1A, #4A1A4A); }
   .lesson-body { padding: 20px 22px; }
   .lesson-tag-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .lesson-source {
-    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .1em;
-    color: var(--saffron); background: rgba(232,97,26,0.08); padding: 3px 10px; border-radius: 50px;
-  }
-  .lesson-date { font-size: 11px; color: var(--text-light); }
-  .lesson-card h3 {
-    font-family: 'Cinzel', serif; font-size: 14px; color: var(--maroon);
-    line-height: 1.5; margin-bottom: 8px; font-weight: 700;
-  }
+  .lesson-source { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .1em; color: var(--saffron); background: rgba(232,97,26,0.08); padding: 3px 10px; border-radius: 50px; }
+  .lesson-card h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--maroon); line-height: 1.5; margin-bottom: 8px; font-weight: 700; }
   .lesson-card p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
 
-  /* ── QUESTIONS ── */
+  /* QUESTIONS */
   .questions { background: var(--cream); }
   .questions-header { text-align: center; margin-bottom: 60px; }
   .questions-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-  .question-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 28px 28px; box-shadow: 0 4px 20px rgba(107,26,26,0.1);
-    border-left: 4px solid var(--gold); transition: transform .2s;
-  }
+  .question-card { background: var(--white); border-radius: var(--radius); padding: 28px 28px; box-shadow: 0 4px 20px rgba(107,26,26,0.1); border-left: 4px solid var(--gold); transition: transform .2s; }
   .question-card:hover { transform: translateX(4px); }
-  .q-count {
-    font-family: 'Cinzel', serif; font-size: 11px; color: var(--text-light);
-    margin-bottom: 10px; letter-spacing: .05em;
-  }
-  .question-card h3 {
-    font-family: 'Cinzel', serif; font-size: 15px; color: var(--maroon);
-    margin-bottom: 10px; font-weight: 700; line-height: 1.4;
-  }
+  .q-count { font-family: 'Cinzel', serif; font-size: 11px; color: var(--text-light); margin-bottom: 10px; letter-spacing: .05em; }
+  .question-card h3 { font-family: 'Cinzel', serif; font-size: 15px; color: var(--maroon); margin-bottom: 10px; font-weight: 700; line-height: 1.4; }
   .question-card p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
-  .q-link {
-    display: inline-block; margin-top: 14px; font-family: 'Cinzel', serif;
-    font-size: 12px; color: var(--saffron); letter-spacing: .05em;
-    text-decoration: none; border-bottom: 1px solid var(--saffron);
-  }
+  .q-link { display: inline-block; margin-top: 14px; font-family: 'Cinzel', serif; font-size: 12px; color: var(--saffron); letter-spacing: .05em; text-decoration: none; border-bottom: 1px solid var(--saffron); }
 
-  /* ── VERSE COLLECTIONS ── */
+  /* VERSE COLLECTIONS */
   .verses { background: var(--cream-dk); }
   .verses-header { text-align: center; margin-bottom: 60px; }
   .verse-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-  .verse-cat {
-    background: var(--white); border-radius: var(--radius);
-    padding: 28px; box-shadow: var(--shadow); border: 1px solid rgba(212,160,23,0.15);
-  }
-  .verse-cat-icon {
-    font-size: 36px; margin-bottom: 16px; display: block;
-  }
-  .verse-cat h3 {
-    font-family: 'Cinzel', serif; font-size: 15px; color: var(--maroon);
-    margin-bottom: 14px; font-weight: 700;
-  }
+  .verse-cat { background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); border: 1px solid rgba(212,160,23,0.15); }
+  .verse-cat-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .verse-cat h3 { font-family: 'Cinzel', serif; font-size: 15px; color: var(--maroon); margin-bottom: 14px; font-weight: 700; }
   .verse-cat ul { list-style: none; }
-  .verse-cat li {
-    font-size: 13px; color: var(--saffron); padding: 5px 0;
-    border-bottom: 1px dashed rgba(212,160,23,0.2); cursor: pointer;
-    transition: color .2s;
-  }
+  .verse-cat li { font-size: 13px; color: var(--saffron); padding: 5px 0; border-bottom: 1px dashed rgba(212,160,23,0.2); cursor: pointer; transition: color .2s; }
   .verse-cat li:hover { color: var(--maroon); }
-  .verse-more {
-    margin-top: 10px; display: block; font-family: 'Cinzel', serif;
-    font-size: 11px; letter-spacing: .08em; color: var(--gold);
-  }
+  .verse-more { margin-top: 10px; display: block; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .08em; color: var(--gold); cursor: pointer; }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials {
-    background: linear-gradient(160deg, var(--maroon-dk), #4A0A00);
-    padding: 100px 0;
-  }
-  .testimonials .section-title { color: var(--gold-lt); text-align: center; }
-  .testimonials .section-tag { background: rgba(212,160,23,0.15); color: var(--gold-lt); margin: 0 auto 14px; display: block; width: fit-content; }
-  .t-subtitle { text-align: center; color: rgba(255,255,255,0.6); font-family: 'EB Garamond', serif; font-style: italic; font-size: 18px; margin-bottom: 60px; }
-  .t-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-  .t-card {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(212,160,23,0.2);
-    border-radius: var(--radius); padding: 28px 22px; transition: transform .2s;
-  }
-  .t-card:hover { transform: translateY(-4px); background: rgba(212,160,23,0.08); }
-  .t-stars { color: var(--gold-lt); font-size: 14px; margin-bottom: 14px; }
-  .t-card p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 16px; font-family: 'EB Garamond', serif; }
-  .t-name { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-lt); letter-spacing: .06em; }
-
-  /* ── DOWNLOAD CTA ── */
-  .download-cta {
-    background: var(--cream); text-align: center;
-    padding: 100px 24px;
-  }
-  .download-cta .section-title { margin-bottom: 16px; }
-  .download-cta p { font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-light); margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
-  .store-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-  .store-btn {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--maroon-dk); color: white;
-    padding: 14px 28px; border-radius: 14px; text-decoration: none;
-    border: 1px solid rgba(212,160,23,0.3);
-    transition: all .2s; min-width: 200px;
-  }
-  .store-btn:hover { background: var(--maroon); border-color: var(--gold); }
-  .store-btn-icon { font-size: 28px; }
-  .store-btn-text small { display: block; font-size: 10px; letter-spacing: .1em; color: rgba(255,255,255,0.6); }
-  .store-btn-text strong { font-family: 'Cinzel', serif; font-size: 16px; }
-  .or-divider { display: flex; align-items: center; gap: 16px; max-width: 400px; margin: 24px auto; }
-  .or-divider::before, .or-divider::after {
-    content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.3);
-  }
-  .or-divider span { color: var(--text-light); font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .1em; }
-
-  /* ── FAQ ── */
+  /* FAQ */
   .faq { background: var(--cream-dk); }
   .faq-header { text-align: center; margin-bottom: 60px; }
   .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-  .faq-item {
-    background: var(--white); border-radius: var(--radius);
-    box-shadow: 0 2px 12px rgba(107,26,26,0.08); overflow: hidden;
-    border: 1px solid rgba(212,160,23,0.12);
-  }
-  .faq-q {
-    padding: 22px 28px; cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; font-family: 'Cinzel', serif; font-size: 15px;
-    color: var(--maroon); font-weight: 700; transition: background .2s;
-  }
+  .faq-item { background: var(--white); border-radius: var(--radius); box-shadow: 0 2px 12px rgba(107,26,26,0.08); overflow: hidden; border: 1px solid rgba(212,160,23,0.12); }
+  .faq-q { padding: 22px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Cinzel', serif; font-size: 15px; color: var(--maroon); font-weight: 700; transition: background .2s; }
   .faq-q:hover { background: rgba(212,160,23,0.05); }
   .faq-icon { font-size: 20px; color: var(--gold); transition: transform .3s; flex-shrink: 0; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
-  .faq-a {
-    max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
-    padding: 0 28px;
-  }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s; padding: 0 28px; }
   .faq-item.open .faq-a { max-height: 300px; padding: 0 28px 22px; }
   .faq-a p { font-size: 14px; color: var(--text-mid); line-height: 1.8; }
 
-  /* ── NEWSLETTER ── */
-  .newsletter {
-    background: linear-gradient(135deg, var(--maroon-dk), #5A0A0A);
-    padding: 80px 24px; text-align: center;
-  }
-  .newsletter h2 {
-    font-family: 'Cinzel Decorative', serif; font-size: 30px;
-    color: var(--gold-lt); margin-bottom: 12px;
-  }
+  /* NEWSLETTER */
+  .newsletter { background: linear-gradient(135deg, var(--maroon-dk), #5A0A0A); padding: 80px 24px; text-align: center; }
+  .newsletter h2 { font-family: 'Cinzel Decorative', serif; font-size: 30px; color: var(--gold-lt); margin-bottom: 12px; }
   .newsletter p { color: rgba(255,255,255,0.7); font-family: 'EB Garamond', serif; font-style: italic; font-size: 18px; margin-bottom: 36px; }
   .nl-form { display: flex; gap: 12px; justify-content: center; max-width: 500px; margin: 0 auto; }
-  .nl-input {
-    flex: 1; padding: 14px 20px; border-radius: 50px;
-    border: 1px solid rgba(212,160,23,0.4); background: rgba(255,255,255,0.08);
-    color: white; font-size: 14px; outline: none;
-  }
+  .nl-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(212,160,23,0.4); background: rgba(255,255,255,0.08); color: white; font-size: 14px; outline: none; }
   .nl-input::placeholder { color: rgba(255,255,255,0.4); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--maroon-dk); color: rgba(255,255,255,0.6);
-    padding: 60px 0 32px;
-  }
-  .footer-inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 24px;
-  }
+  /* FOOTER */
+  footer { background: var(--maroon-dk); color: rgba(255,255,255,0.6); padding: 60px 0 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
   .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-  .footer-brand .logo {
-    font-family: 'Cinzel Decorative', serif; font-size: 22px;
-    color: var(--gold-lt); display: flex; align-items: center; gap: 10px;
-    margin-bottom: 16px;
-  }
+  .footer-brand .logo { font-family: 'Cinzel Decorative', serif; font-size: 22px; color: var(--gold-lt); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
   .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; color: rgba(255,255,255,0.5); }
-  .footer-col h4 {
-    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .12em;
-    color: var(--gold-lt); margin-bottom: 16px; font-weight: 700;
-  }
+  .footer-col h4 { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .12em; color: var(--gold-lt); margin-bottom: 16px; font-weight: 700; }
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .footer-col a {
-    font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none;
-    transition: color .2s;
-  }
+  .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
   .footer-col a:hover { color: var(--gold-lt); }
-  .footer-bottom {
-    border-top: 1px solid rgba(212,160,23,0.15); padding-top: 28px;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
-    font-size: 12px;
-  }
+  .footer-bottom { border-top: 1px solid rgba(212,160,23,0.15); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; }
   .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
     .mission-grid, .scripture-grid, .lessons-grid { grid-template-columns: 1fr 1fr; }
     .feature-grid { grid-template-columns: 1fr; }
-    .t-grid { grid-template-columns: 1fr 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .verse-cats { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
-    .mission-grid, .scripture-grid, .lessons-grid, .questions-grid,
-    .verse-cats, .t-grid { grid-template-columns: 1fr; }
+    .mission-grid, .scripture-grid, .lessons-grid, .questions-grid, .verse-cats { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
 
-  /* ── ANIMATE ON SCROLL (simple) ── */
-  .fade-up {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
   .fade-up.visible { opacity: 1; transform: none; }
+  @keyframes slideLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  #reviewTrack:hover { animation-play-state: paused; }
 </style>
 </head>
 <body>
@@ -576,63 +284,16 @@
       DharmaChat
     </a>
     <ul class="nav-links">
-      <li><a href="#">Scriptures</a></li>
-      <li><a href="#lessons-section">Lessons</a></li>
-      <li><a href="articles.html">Dharma Lessons</a></li>
+      <li><a href="articles.html">Dharma Articles</a></li>
+      <li><a href="lessons.html">Learn</a></li>
       <li><a href="community.html">Community</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Podcast</a></li>
-      <li><a href="#">Top Questions</a></li>
     </ul>
     <div class="nav-cta" style="display:flex;align-items:center;gap:12px;">
       <div id="navAuth"></div>
-      <a class="btn-primary" href="#" onclick="handleTryFree(event)">Try Free</a>
+      <a class="btn-primary" href="chat.html">Try Free</a>
     </div>
   </div>
 </nav>
-
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-
-const _app = initializeApp({
-  apiKey: "AIzaSyDvw26WTzNRsBBgjXG9At60pN8ApDvPB7o",
-  authDomain: "dharmachat-cc71d.firebaseapp.com",
-  projectId: "dharmachat-cc71d",
-  storageBucket: "dharmachat-cc71d.firebasestorage.app",
-  messagingSenderId: "718284855701",
-  appId: "1:718284855701:web:d7ef64292cd48ffdf13e9c"
-});
-const _auth = getAuth(_app);
-const _provider = new GoogleAuthProvider();
-
-onAuthStateChanged(_auth, (user) => {
-  const cta = document.querySelector('.nav-cta');
-  if (!cta) return;
-  if (user) {
-    const firstName = user.displayName?.split(' ')[0] || 'Devotee';
-    cta.innerHTML =
-      '<div style="display:flex;align-items:center;gap:10px;">' +
-        '<img src="' + (user.photoURL || '') + '" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);" onerror="this.style.display=\'none\'"/>' +
-        '<span style="font-family:Cinzel,serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">' + firstName + '</span>' +
-        '<a href="chat.html" style="background:linear-gradient(135deg,#E8611A,#D4A017);color:white;font-family:Cinzel,serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:.05em;">Open Chat →</a>' +
-      '</div>';
-  } else {
-    cta.innerHTML = '<a class="btn-primary" href="#" onclick="handleTryFree(event)">Try Free</a>';
-  }
-});
-
-window.handleTryFree = async function(e) {
-  e.preventDefault();
-  try {
-    await signInWithPopup(_auth, _provider);
-  } catch(err) {
-    if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') return;
-    console.error(err.code);
-  }
-};
-</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -644,7 +305,6 @@ window.handleTryFree = async function(e) {
       <p class="hero-desc">Explore the Bhagavad Gita, Ramayana, Mahabharata, Upanishads, Vedas and more. Trained exclusively on sacred Hindu scriptures with guidance from learned pandits and acharyas. Available free on all devices.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="chat.html">Try DharmaChat Free</a>
-        
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><strong>10 Questions</strong><span>Free Every Day</span></div>
@@ -666,9 +326,9 @@ window.handleTryFree = async function(e) {
           <div class="chat-bubble chat-ai">According to the Mahabharata, Dharma is that which upholds, sustains and supports the universe and all beings within it — Anushasana Parva 113.8.</div>
         </div>
       </div>
-      <div class="review-mini" style="background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.25);border-radius:12px;padding:12px 16px;text-align:center;margin-top:8px;">
+      <div style="background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.25);border-radius:12px;padding:12px 16px;text-align:center;margin-top:8px;">
         <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:#F0C040;margin-bottom:4px;cursor:pointer;" onclick="document.getElementById('download-section').scrollIntoView({behavior:'smooth'})">APP COMING SOON ↓</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.7);">Android & iOS — Notify me below</div>
+        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.7);">Android &amp; iOS — Notify me below</div>
       </div>
     </div>
   </div>
@@ -676,58 +336,36 @@ window.handleTryFree = async function(e) {
 
 <!-- SHLOKA OF THE DAY -->
 <section style="background:linear-gradient(160deg,#2A0000 0%,#4A0808 50%,#2A0000 100%);padding:80px 24px;position:relative;overflow:hidden;">
-  <!-- Decorative top border -->
   <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.6),transparent);"></div>
-  <!-- Decorative bottom border -->
   <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.6),transparent);"></div>
-
   <div style="position:relative;max-width:800px;margin:0 auto;text-align:center;">
-    <!-- Tag -->
-    <div style="display:flex;justify-content:center;margin-bottom:32px;">
-      <div style="background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:4px 14px;">
-        <span style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;color:#F0C040;">✦ SHLOKA OF THE DAY</span>
-      </div>
+    <div style="display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:4px 14px;margin-bottom:32px;">
+      <span style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;color:#F0C040;">✦ SHLOKA OF THE DAY</span>
     </div>
-
-    <!-- Decorative top divider -->
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
       <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.3));"></div>
       <div style="color:rgba(212,160,23,0.5);font-size:18px;">✦</div>
       <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,0.3),transparent);"></div>
     </div>
-
-    <!-- Sanskrit Devanagari -->
     <div id="shlokaDevanagari" style="font-family:'EB Garamond',serif;font-size:clamp(20px,3vw,32px);color:#F0C040;line-height:1.8;margin-bottom:16px;font-style:italic;text-shadow:0 0 40px rgba(240,192,64,0.4),0 0 80px rgba(240,192,64,0.15);"></div>
-
-    <!-- Transliteration -->
     <div id="shlokaTranslit" style="font-family:'EB Garamond',serif;font-size:clamp(13px,1.8vw,17px);color:rgba(255,255,255,0.45);margin-bottom:24px;font-style:italic;line-height:1.7;"></div>
-
-    <!-- Decorative divider -->
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
       <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,0.2));"></div>
       <div style="color:rgba(212,160,23,0.3);font-size:12px;">✦</div>
       <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,0.2),transparent);"></div>
     </div>
-
-    <!-- English meaning -->
     <div id="shlokaEnglish" style="font-family:'EB Garamond',serif;font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:24px;font-style:italic;max-width:660px;margin-left:auto;margin-right:auto;"></div>
-
-    <!-- Source -->
     <div id="shlokaSource" style="font-family:'Cinzel',serif;font-size:12px;color:rgba(212,160,23,0.6);letter-spacing:.1em;margin-bottom:20px;"></div>
-
-    <!-- Language selector -->
     <div style="margin-bottom:28px;">
       <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.3);margin-bottom:10px;">TRANSLATE MEANING</div>
       <div id="langButtons" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;"></div>
     </div>
-
-    <!-- Action buttons -->
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
-      <button onclick="shareShlokaWhatsApp()" style="display:flex;align-items:center;gap:8px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.35);color:#25D366;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;padding:12px 24px;border-radius:50px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(37,211,102,0.22)'" onmouseout="this.style.background='rgba(37,211,102,0.12)'">
+      <button onclick="shareShlokaWhatsApp()" style="display:flex;align-items:center;gap:8px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.35);color:#25D366;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;padding:12px 24px;border-radius:50px;cursor:pointer;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Share on WhatsApp
       </button>
-      <a href="chat.html" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(232,97,26,0.2),rgba(212,160,23,0.15));border:1px solid rgba(212,160,23,0.35);color:#F0C040;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;padding:12px 24px;border-radius:50px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(232,97,26,0.35),rgba(212,160,23,0.25))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(232,97,26,0.2),rgba(212,160,23,0.15))'">
+      <a href="chat.html" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(232,97,26,0.2),rgba(212,160,23,0.15));border:1px solid rgba(212,160,23,0.35);color:#F0C040;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;padding:12px 24px;border-radius:50px;text-decoration:none;">
         Ask DharmaChat AI about this shloka →
       </a>
     </div>
@@ -735,41 +373,41 @@ window.handleTryFree = async function(e) {
 </section>
 
 <script>
-const shlokas = [
-  {d:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",t:"Karmanye vadhikaraste ma phaleshu kadachana,<br>Ma karmaphalaheturbhur ma te sangostvakarmani",m:{en:"You have the right to perform your duties, but you are not entitled to the fruits of your actions.",hi:"तुम्हें कर्म करने का अधिकार है, परंतु फल की कामना मत करो।",kn:"ನೀವು ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸಬೇಕು, ಆದರೆ ಫಲದ ಆಸೆ ಬೇಡ.",ta:"நீங்கள் கடமை செய்ய உரிமை உண்டு, ஆனால் பலனை எதிர்பார்க்காதீர்கள்.",te:"మీకు కర్తవ్యం చేసే హక్కు ఉంది, కానీ ఫలితాలను కోరకండి.",ml:"നിങ്ങൾക്ക് കർമ്മം ചെയ്യാൻ അധികാരമുണ്ട്, ഫലത്തിൽ ആഗ്രഹം വേണ്ട.",gu:"તમને કર્મ કરવાનો અધિકાર છે, પરંતુ ફળની ઇચ્છા ન રાખો.",mr:"तुम्हाला कर्म करण्याचा अधिकार आहे, पण फळाची अपेक्षा करू नका.",bn:"তোমার কর্ম করার অধিকার আছে, কিন্তু ফলের আকাঙ্ক্ষা করো না।"},s:"— Bhagavad Gita · 2.47"},
-  {d:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।<br>अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥",t:"Yada yada hi dharmasya glanir bhavati bharata,<br>Abhyutthanam adharmasya tadatmanam srijamyaham",m:{en:"Whenever righteousness declines and unrighteousness rises, I manifest Myself to restore dharma.",hi:"जब-जब धर्म की हानि होती है, तब-तब मैं अवतार लेता हूं।",kn:"ಧರ್ಮ ಕ್ಷೀಣಿಸಿ ಅಧರ್ಮ ಹೆಚ್ಚಾದಾಗ, ನಾನು ಅವತಾರ ತಾಳುತ್ತೇನೆ.",ta:"தர்மம் குறைந்து அதர்மம் அதிகரிக்கும்போது, நான் அவதரிக்கிறேன்.",te:"ధర్మం తగ్గి అధర్మం పెరిగినప్పుడు, నేను అవతరిస్తాను.",ml:"ധർമ്മം ക്ഷയിക്കുകയും അധർമ്മം വർദ്ധിക്കുകയും ചെയ്യുമ്പോൾ, ഞാൻ അവതരിക്കുന്നു.",gu:"જ્યારે ધર્મ ઘટે અને અધર્મ વધે, ત્યારે હું અવતાર ધારણ કરું છું.",mr:"जेव्हा धर्माची हानी होते आणि अधर्म वाढतो, तेव्हा मी अवतार घेतो.",bn:"যখন ধর্ম হ্রাস পায় এবং অধর্ম বৃদ্ধি পায়, তখন আমি অবতার নিই।"},s:"— Bhagavad Gita · 4.7"},
-  {d:"सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।<br>अहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥",t:"Sarva dharman parityajya mam ekam saranam vraja,<br>Aham tvam sarva papebhyo mokshayishyami ma shucah",m:{en:"Abandon all varieties of dharma and surrender unto Me alone. I shall deliver you from all sins.",hi:"सब धर्मों को छोड़कर केवल मेरी शरण में आओ। मैं तुम्हें सब पापों से मुक्त करूंगा।",kn:"ಎಲ್ಲ ಧರ್ಮಗಳನ್ನು ತ್ಯಜಿಸಿ ನನ್ನೊಬ್ಬನ ಶರಣು ಹೋಗು.",ta:"எல்லா தர்மங்களையும் விட்டு என்னை மட்டும் சரணடை.",te:"అన్ని ధర్మాలను విడిచి నన్ను మాత్రమే శరణు పొందు.",ml:"എല്ലാ ധർമ്മങ്ങളും ഉപേക്ഷിച്ച് എന്നിൽ മാത്രം ശരണം പ്രാപിക്കൂ.",gu:"બધા ધર્મો છોડી માત્ર મારે શરણે આવ.",mr:"सर्व धर्म सोडून केवळ माझ्या शरणी ये.",bn:"সমস্ত ধর্ম ত্যাগ করে শুধু আমার শরণ নাও।"},s:"— Bhagavad Gita · 18.66"},
-  {d:"नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।<br>न चैनं क्लेदयन्त्यापो न शोषयति मारुतः॥",t:"Nainam chhindanti shastrani nainam dahati pavakah,<br>Na chainam kledayantyapo na shoshayati marutah",m:{en:"The soul cannot be cut by weapons, burned by fire, moistened by water, nor dried by wind.",hi:"आत्मा को न शस्त्र काट सकते हैं, न आग जला सकती है, न जल भिगो सकता है।",kn:"ಆತ್ಮವನ್ನು ಶಸ್ತ್ರಗಳು ಕತ್ತರಿಸಲಾರವು, ಬೆಂಕಿ ಸುಡಲಾರದು.",ta:"ஆத்மாவை ஆயுதங்கள் வெட்ட முடியாது, நெருப்பு எரிக்க முடியாது.",te:"ఆత్మను ఆయుధాలు కత్తిరించలేవు, అగ్ని కాల్చలేదు.",ml:"ആത്മാവിനെ ആയുധങ്ങൾ മുറിക്കില്ല, അഗ്നി കത്തിക്കില്ല.",gu:"આત્માને શસ્ત્ર કાપી શકતા નથી, અગ્નિ બાળી શકતો નથી.",mr:"आत्म्याला शस्त्रे कापू शकत नाहीत, अग्नी जाळू शकत नाही.",bn:"অস্ত্র আত্মাকে ছেদ করতে পারে না, অগ্নি পোড়াতে পারে না।"},s:"— Bhagavad Gita · 2.23"},
-  {d:"सत्यमेव जयते नानृतं<br>सत्येन पन्था विततो देवयानः।",t:"Satyameva jayate nanritam<br>Satyena pantha vitato devayanah",m:{en:"Truth alone triumphs, not falsehood. Through truth the divine path is spread out.",hi:"सत्य की ही जीत होती है, असत्य की नहीं।",kn:"ಸತ್ಯವೇ ಜಯಿಸುತ್ತದೆ, ಅಸತ್ಯವಲ್ಲ.",ta:"சத்தியமே வெற்றி பெறும், பொய்யல்ல.",te:"సత్యమే జయిస్తుంది, అసత్యం కాదు.",ml:"സത്യമേ ജയിക്കൂ, അസത്യമല്ല.",gu:"સત્ય જ જીતે છે, અસત્ય નહીં.",mr:"सत्याचाच विजय होतो, असत्याचा नाही.",bn:"সত্যেরই জয় হয়, মিথ্যার নয়।"},s:"— Mundaka Upanishad · 3.1.6"},
-  {d:"अहं ब्रह्मास्मि।",t:"Aham Brahmasmi",m:{en:"I am Brahman. One of the four Mahavakyas declaring the identity of the individual soul with the Supreme.",hi:"मैं ब्रह्म हूं। आत्मा और परमात्मा की एकता का महावाक्य।",kn:"ನಾನು ಬ್ರಹ್ಮ. ಜೀವ ಮತ್ತು ಪರಮಾತ್ಮನ ಐಕ್ಯವನ್ನು ಸಾರುತ್ತದೆ.",ta:"நான் பிரம்மம். ஜீவாத்மா பரமாத்மா ஒன்றே என உணர்த்துகிறது.",te:"నేను బ్రహ్మమే. జీవాత్మ మరియు పరమాత్మ ఒకటేనని చెప్తుంది.",ml:"ഞാൻ ബ്രഹ്മമാണ്. ജീവാത്മാവും പരമാത്മാവും ഒന്നാണ്.",gu:"હું બ્રહ્મ છું. જીવ અને પરમાત્માની એકતા.",mr:"मी ब्रह्म आहे. जीव आणि परमात्म्याची एकता.",bn:"আমি ব্রহ্ম। জীবাত্মা ও পরমাত্মার অভিন্নতা।"},s:"— Brihadaranyaka Upanishad · 1.4.10"},
-  {d:"सर्वे भवन्तु सुखिनः। सर्वे सन्तु निरामयाः।<br>सर्वे भद्राणि पश्यन्तु। मा कश्चिद्दुःखभाग्भवेत्॥",t:"Sarve bhavantu sukhinah, sarve santu niramayah,<br>Sarve bhadrani pashyantu, ma kashchid duhkhabhag bhavet",m:{en:"May all beings be happy. May all be free from illness. May all see auspiciousness. May no one suffer.",hi:"सभी सुखी हों, सभी रोगमुक्त हों, सभी शुभ देखें, कोई दुःख का भागी न हो।",kn:"ಎಲ್ಲರೂ ಸುಖಿಯಾಗಲಿ, ರೋಗಮುಕ್ತರಾಗಲಿ, ಯಾರಿಗೂ ದುಃಖ ಬಾರದಿರಲಿ.",ta:"அனைவரும் சந்தோஷமாக இருக்கட்டும், யாரும் துன்பப்படாதிருக்கட்டும்.",te:"అందరూ సుఖంగా ఉండాలి, ఎవరూ బాధపడకుండా ఉండాలి.",ml:"എല്ലാവരും സുഖമായിരിക്കട്ടെ, ആരും ദുഃഖം അനുഭവിക്കാതിരിക്കട്ടെ.",gu:"સૌ સુખી થાઓ, સૌ નિરોગી થાઓ, કોઈ દુઃખ ન ભોગવો.",mr:"सर्व सुखी होवोत, सर्व निरोगी होवोत, कोणालाही दुःख न होवो.",bn:"সকলে সুখী হোক, সকলে রোগমুক্त হোক, কেউ দুঃখ না পাক।"},s:"— Brihadaranyaka Upanishad"},
-  {d:"अयं निजः परो वेति गणना लघुचेतसाम्।<br>उदारचरितानां तु वसुधैव कुटुम्बकम्॥",t:"Ayam nijah paro veti ganana laghuchetasam,<br>Udaracharitanam tu vasudhaiva kutumbakam",m:{en:"The distinction of mine and theirs is the thinking of the small-minded. For the noble-hearted, the entire world is one family.",hi:"उदार चरित्र वालों के लिए सारी पृथ्वी एक परिवार है।",kn:"ಉದಾರ ಹೃದಯಿಗೆ ಇಡೀ ಜಗತ್ತು ಒಂದೇ ಕುಟುಂಬ.",ta:"உயர்ந்த மனதிற்கு உலகமே ஒரு குடும்பம்.",te:"ఉదార హృదయులకు సమస్త ప్రపంచం ఒక కుటుంబం.",ml:"ഉദാര ഹൃദയർക്ക് ഇഡീ ലോകം ഒരു കുടുംബം.",gu:"ઉદાર ચારિત્ર્યવાળા માટે સમગ્ર પૃથ્વી એક પરિવાર છે.",mr:"उदार माणसासाठी सारी पृथ्वी एक कुटुंब आहे.",bn:"উদার হৃদয়ের মানুষের কাছে সারা পৃথিবী এক পরিবার।"},s:"— Maha Upanishad · 6.71"},
-  {d:"धर्मो रक्षति रक्षितः।",t:"Dharmo rakshati rakshitah",m:{en:"Dharma protects those who protect dharma.",hi:"धर्म उसकी रक्षा करता है जो धर्म की रक्षा करता है।",kn:"ಧರ್ಮವನ್ನು ರಕ್ಷಿಸಿದವರನ್ನು ಧರ್ಮ ರಕ್ಷಿಸುತ್ತದೆ.",ta:"தர்மத்தை காப்பவரை தர்மம் காக்கும்.",te:"ధర్మాన్ని రక్షించిన వారిని ధర్మం రక్షిస్తుంది.",ml:"ധർമ്മം രക്ഷിച്ചവരെ ധർമ്മം രക്ഷിക്കും.",gu:"જે ધર્મ રક્ષે, ધર્મ તેની રક્ષા કરે.",mr:"धर्म त्याचे रक्षण करतो जो धर्माचे रक्षण करतो.",bn:"যে ধর্ম রক্ষা করে, ধর্ম তাকে রক্ষা করে।"},s:"— Mahabharata · Vana Parva"},
-  {d:"जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।",t:"Janani janmabhoomishcha swargadapi gariyasi",m:{en:"Mother and motherland are greater than heaven itself.",hi:"माता और मातृभूमि स्वर्ग से भी महान हैं।",kn:"ತಾಯಿ ಮತ್ತು ತಾಯ್ನಾಡು ಸ್ವರ್ಗಕ್ಕಿಂತಲೂ ಮಹಾನ್.",ta:"தாயும் தாய்நாடும் சொர்க்கத்தையும் விட சிறந்தவை.",te:"తల్లి మరియు మాతృభూమి స్వర్గం కంటే గొప్పవి.",ml:"അമ്മയും മാതൃഭൂമിയും സ്വർഗ്ഗത്തേക്കാൾ മഹത്തരമാണ്.",gu:"માતા અને માતૃભૂમિ સ્વર્ગ કરતાં પણ ઉત્તમ છે.",mr:"माता आणि मातृभूमी स्वर्गापेक्षाही श्रेष्ठ आहेत.",bn:"মাতা ও মাতৃভূমি স্বর্গের চেয়েও মহান।"},s:"— Valmiki Ramayana · 6.124.17"},
-  {d:"ॐ असतो मा सद्गमय।<br>तमसो मा ज्योतिर्गमय।<br>मृत्योर्मा अमृतं गमय॥",t:"Om asato ma sadgamaya,<br>tamaso ma jyotirgamaya,<br>mrityorma amritam gamaya",m:{en:"Lead me from untruth to truth. Lead me from darkness to light. Lead me from death to immortality.",hi:"असत्य से सत्य की ओर ले चलो। अंधकार से प्रकाश की ओर। मृत्यु से अमृत की ओर।",kn:"ಅಸತ್ಯದಿಂದ ಸತ್ಯದೆಡೆಗೆ ನಡೆಸು. ಅಂಧಕಾರದಿಂದ ಬೆಳಕಿನೆಡೆಗೆ.",ta:"பொய்யிலிருந்து உண்மைக்கு அழைத்துச் செல். இருளிலிருந்து வெளிச்சத்திற்கு.",te:"అసత్యం నుండి సత్యం వైపు నడిపించు. చీకటి నుండి వెలుతురు వైపు.",ml:"അസത്യത്തിൽ നിന്ന് സത്യത്തിലേക്ക്. ഇരുളിൽ നിന്ന് വെളിച്ചത്തിലേക്ക്.",gu:"અસત્યથી સત્ય તરફ. અંધારામાંથી પ્રકાશ તરફ.",mr:"असत्याकडून सत्याकडे. अंधाराकडून प्रकाशाकडे.",bn:"অসত্য থেকে সত্যের দিকে। অন্ধকার থেকে আলোর দিকে।"},s:"— Brihadaranyaka Upanishad · 1.3.28"},
-  {d:"योगः कर्मसु कौशलम्।",t:"Yogah karmasu kaushalam",m:{en:"Yoga is excellence in action. True yoga means performing every action with full skill and awareness.",hi:"योग कर्मों में कुशलता है। सच्चा योग हर कार्य में निपुणता है।",kn:"ಯೋಗ ಎಂದರೆ ಕರ್ಮಗಳಲ್ಲಿ ನಿಪುಣತೆ.",ta:"யோகம் என்பது செயல்களில் திறமை.",te:"యోగం అంటే కర్మలలో నైపుణ్యం.",ml:"യോഗം എന്നത് കർമ്മങ്ങളിലെ നൈപുണ്യം.",gu:"યોગ એટલે કર્મોમાં કુશળતા.",mr:"योग म्हणजे कर्मांमध्ये कुशलता.",bn:"যোগ হলো কর্মে দক্ষতা।"},s:"— Bhagavad Gita · 2.50"},
-  {d:"सर्वं खल्विदं ब्रह्म।",t:"Sarvam khalvidam brahma",m:{en:"All this is indeed Brahman. Everything in existence is a manifestation of the one divine consciousness.",hi:"यह सब कुछ ब्रह्म ही है।",kn:"ಇವೆಲ್ಲವೂ ಬ್ರಹ್ಮವೇ.",ta:"இவை அனைத்தும் பிரம்மமே.",te:"ఇవన్నీ బ్రహ్మమే.",ml:"ഇതെല്ലാം ബ്രഹ്മം തന്നെ.",gu:"આ સઘળું બ્રહ્મ જ છે.",mr:"हे सर्व ब्रह्मच आहे.",bn:"এই সব কিছুই ব্রহ্ম।"},s:"— Chandogya Upanishad · 3.14.1"},
-  {d:"तत् त्वम् असि।",t:"Tat Tvam Asi",m:{en:"That thou art. You are not separate from the universal consciousness. The divine is within you.",hi:"वह तुम हो। परमात्मा तुम्हारे भीतर है।",kn:"ಅದು ನೀನೇ. ದೇವರು ನಿನ್ನ ಒಳಗಿದ್ದಾನೆ.",ta:"அது நீயே. இறை உன்னுள்ளே உள்ளது.",te:"అది నువ్వే. దేవుడు నీలోనే ఉన్నాడు.",ml:"അത് നീ തന്നെ. ദൈവം നിനക്കുള്ളിലുണ്ട്.",gu:"તે તું જ છે. ઈશ્વર તમારી ભીતર છે.",mr:"ते तूच आहेस. देव तुझ्या आत आहे.",bn:"সেটা তুমিই। ঈশ্বর তোমার মধ্যেই আছেন।"},s:"— Chandogya Upanishad · 6.8.7"},
-  {d:"परोपकाराय फलन्ति वृक्षाः<br>परोपकाराय वहन्ति नद्यः।<br>परोपकारार्थमिदं शरीरम्॥",t:"Paropakaaraya phalanti vrikshaah<br>Paropakaaraya vahanti nadyah",m:{en:"Trees bear fruit for others. Rivers flow for others. This body exists for the service of others.",hi:"वृक्ष दूसरों के लिए फल देते हैं, यह शरीर भी परोपकार के लिए है।",kn:"ಮರಗಳು ಇತರರಿಗಾಗಿ ಫಲ ನೀಡುತ್ತವೆ, ಈ ದೇಹ ಸೇವೆಗಾಗಿಯೇ.",ta:"மரங்கள் மற்றவர்களுக்காக பழம் தரும், இந்த உடல் சேவைக்காகவே.",te:"చెట్లు ఇతరుల కోసం ఫలాలు ఇస్తాయి, ఈ శరీరం ఇతరుల సేవకే.",ml:"മരങ്ങൾ മറ്റുള്ളവർക്കായി ഫലം നൽകുന്നു, ഈ ശരീരം സേവനത്തിനായുള്ളതാണ്.",gu:"વૃક્ષો બીજા માટે ફળ આપે, આ શરીર પણ પરોપકાર માટે છે.",mr:"झाडे इतरांसाठी फळे देतात, हे शरीरही परोपकारासाठीच आहे.",bn:"গাছ অন্যের জন্য ফল দেয়, এই শরীরও অন্যের সেবার জন্য।"},s:"— Subhashitani"}
+var shlokas = [
+  {d:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥",t:"Karmanye vadhikaraste ma phaleshu kadachana,<br>Ma karmaphalaheturbhur ma te sangostvakarmani",m:{en:"You have the right to perform your duties, but you are not entitled to the fruits of your actions.",hi:"तुम्हें कर्म करने का अधिकार है, परंतु फल की कामना मत करो।",kn:"ನೀವು ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸಬೇಕು, ಆದರೆ ಫಲದ ಆಸೆ ಬೇಡ.",ta:"நீங்கள் கடமை செய்ய உரிமை உண்டு.",te:"మీకు కర్తవ్యం చేసే హక్కు ఉంది.",ml:"നിങ്ങൾക്ക് കർമ്മം ചെയ്യാൻ അധികാരമുണ്ട്.",gu:"તમને કર્મ કરવાનો અધિકાર છે.",mr:"तुम्हाला कर्म करण्याचा अधिकार आहे.",bn:"তোমার কর্ম করার অধিকার আছে।"},s:"— Bhagavad Gita 2.47"},
+  {d:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।<br>अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥",t:"Yada yada hi dharmasya glanir bhavati bharata",m:{en:"Whenever righteousness declines and unrighteousness rises, I manifest Myself to restore dharma.",hi:"जब-जब धर्म की हानि होती है, तब-तब मैं अवतार लेता हूं।",kn:"ಧರ್ಮ ಕ್ಷೀಣಿಸಿ ಅಧರ್ಮ ಹೆಚ್ಚಾದಾಗ ನಾನು ಅವತಾರ ತಾಳುತ್ತೇನೆ.",ta:"தர்மம் குறைந்து அதர்மம் அதிகரிக்கும்போது நான் அவதரிக்கிறேன்.",te:"ధర్మం తగ్గి అధర్మం పెరిగినప్పుడు నేను అవతరిస్తాను.",ml:"ധർമ്മം ക്ഷയിക്കുമ്പോൾ ഞാൻ അവതരിക്കുന്നു.",gu:"જ્યારે ધર્મ ઘટે ત્યારે હું અવતાર ધારણ કરું છું.",mr:"जेव्हा धर्माची हानी होते तेव्हा मी अवतार घेतो.",bn:"যখন ধর্ম হ্রাস পায় তখন আমি অবতার নিই।"},s:"— Bhagavad Gita 4.7"},
+  {d:"सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।<br>अहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥",t:"Sarva dharman parityajya mam ekam saranam vraja",m:{en:"Abandon all varieties of dharma and surrender unto Me alone. I shall deliver you from all sins.",hi:"सब धर्मों को छोड़कर केवल मेरी शरण में आओ।",kn:"ಎಲ್ಲ ಧರ್ಮಗಳನ್ನು ತ್ಯಜಿಸಿ ನನ್ನೊಬ್ಬನ ಶರಣು ಹೋಗು.",ta:"எல்லா தர்மங்களையும் விட்டு என்னை மட்டும் சரணடை.",te:"అన్ని ధర్మాలను విడిచి నన్నే శరణు పొందు.",ml:"എല്ലാ ധർമ്മങ്ങളും ഉപേക്ഷിച്ച് എന്നിൽ ശരണം പ്രാപിക്കൂ.",gu:"બધા ધર્મો છોડી મારે શરણે આવ.",mr:"सर्व धर्म सोडून माझ्या शरणी ये.",bn:"সমস্ত ধর্ম ত্যাগ করে আমার শরণ নাও।"},s:"— Bhagavad Gita 18.66"},
+  {d:"नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।",t:"Nainam chhindanti shastrani nainam dahati pavakah",m:{en:"The soul cannot be cut by weapons, burned by fire, moistened by water, nor dried by wind.",hi:"आत्मा को न शस्त्र काट सकते हैं, न आग जला सकती है।",kn:"ಆತ್ಮವನ್ನು ಶಸ್ತ್ರಗಳು ಕತ್ತರಿಸಲಾರವು, ಬೆಂಕಿ ಸುಡಲಾರದು.",ta:"ஆத்மாவை ஆயுதங்கள் வெட்ட முடியாது.",te:"ఆత్మను ఆయుధాలు కత్తిరించలేవు.",ml:"ആത്മാവിനെ ആയുധങ്ങൾ മുറിക്കില്ല.",gu:"આત્માને શસ્ત્ર કાપી શકતા નથી.",mr:"आत्म्याला शस्त्रे कापू शकत नाहीत.",bn:"অস্ত্র আত্মাকে ছেদ করতে পারে না।"},s:"— Bhagavad Gita 2.23"},
+  {d:"सत्यमेव जयते नानृतं<br>सत्येन पन्था विततो देवयानः।",t:"Satyameva jayate nanritam satyena pantha vitato devayanah",m:{en:"Truth alone triumphs, not falsehood. Through truth the divine path is spread out.",hi:"सत्य की ही जीत होती है, असत्य की नहीं।",kn:"ಸತ್ಯವೇ ಜಯಿಸುತ್ತದೆ, ಅಸತ್ಯವಲ್ಲ.",ta:"சத்தியமே வெற்றி பெறும், பொய்யல்ல.",te:"సత్యమే జయిస్తుంది, అసత్యం కాదు.",ml:"സത്യമേ ജയിക്കൂ, അസത്യമല്ല.",gu:"સત્ય જ જીતે છે, અસત્ય નહીં.",mr:"सत्याचाच विजय होतो.",bn:"সত্যেরই জয় হয়, মিথ্যার নয়।"},s:"— Mundaka Upanishad 3.1.6"},
+  {d:"अहं ब्रह्मास्मि।",t:"Aham Brahmasmi",m:{en:"I am Brahman. The identity of the individual soul with the Supreme.",hi:"मैं ब्रह्म हूं।",kn:"ನಾನು ಬ್ರಹ್ಮ.",ta:"நான் பிரம்மம்.",te:"నేను బ్రహ్మమే.",ml:"ഞാൻ ബ്രഹ്മമാണ്.",gu:"હું બ્રહ્મ છું.",mr:"मी ब्रह्म आहे.",bn:"আমি ব্রহ্ম।"},s:"— Brihadaranyaka Upanishad 1.4.10"},
+  {d:"सर्वे भवन्तु सुखिनः।<br>सर्वे सन्तु निरामयाः।",t:"Sarve bhavantu sukhinah sarve santu niramayah",m:{en:"May all beings be happy. May all be free from illness. May no one suffer.",hi:"सभी सुखी हों, सभी रोगमुक्त हों।",kn:"ಎಲ್ಲರೂ ಸುಖಿಯಾಗಲಿ, ರೋಗಮುಕ್ತರಾಗಲಿ.",ta:"அனைவரும் சந்தோஷமாக இருக்கட்டும்.",te:"అందరూ సుఖంగా ఉండాలి.",ml:"എല്ലാവരും സുഖമായിരിക്കട്ടെ.",gu:"સૌ સુખી થાઓ, સૌ નિરોગી થાઓ.",mr:"सर्व सुखी होवोत, सर्व निरोगी होवोत.",bn:"সকলে সুখী হোক, সকলে রোগমুক্ত হোক।"},s:"— Brihadaranyaka Upanishad"},
+  {d:"वसुधैव कुटुम्बकम्।",t:"Vasudhaiva Kutumbakam",m:{en:"The entire world is one family. For the noble-hearted, there is no mine or theirs.",hi:"सारी पृथ्वी एक परिवार है।",kn:"ಇಡೀ ಜಗತ್ತು ಒಂದೇ ಕುಟುಂಬ.",ta:"உலகமே ஒரு குடும்பம்.",te:"సమస్త ప్రపంచం ఒక కుటుంబం.",ml:"ഇഡീ ലോകം ഒരു കുടുംബം.",gu:"સમગ્ર પૃથ્વી એક પરિવાર છે.",mr:"सारी पृथ्वी एक कुटुंब आहे.",bn:"সারা পৃথিবী এক পরিবার।"},s:"— Maha Upanishad 6.71"},
+  {d:"धर्मो रक्षति रक्षितः।",t:"Dharmo rakshati rakshitah",m:{en:"Dharma protects those who protect dharma.",hi:"धर्म उसकी रक्षा करता है जो धर्म की रक्षा करता है।",kn:"ಧರ್ಮವನ್ನು ರಕ್ಷಿಸಿದವರನ್ನು ಧರ್ಮ ರಕ್ಷಿಸುತ್ತದೆ.",ta:"தர்மத்தை காப்பவரை தர்மம் காக்கும்.",te:"ధర్మాన్ని రక్షించిన వారిని ధర్మం రక్షిస్తుంది.",ml:"ധർമ്മം രക്ഷിച്ചവരെ ധർമ്മം രക്ഷിക്കും.",gu:"જે ધર્મ રક્ષે ધર્મ તેની રક્ષા કરે.",mr:"धर्म त्याचे रक्षण करतो जो धर्माचे रक्षण करतो.",bn:"যে ধর্ম রক্ষা করে ধর্ম তাকে রক্ষা করে।"},s:"— Mahabharata Vana Parva"},
+  {d:"जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।",t:"Janani janmabhoomishcha swargadapi gariyasi",m:{en:"Mother and motherland are greater than heaven itself.",hi:"माता और मातृभूमि स्वर्ग से भी महान हैं।",kn:"ತಾಯಿ ಮತ್ತು ತಾಯ್ನಾಡು ಸ್ವರ್ಗಕ್ಕಿಂತಲೂ ಮಹಾನ್.",ta:"தாயும் தாய்நாடும் சொர்க்கத்தையும் விட சிறந்தவை.",te:"తల్లి మరియు మాతృభూమి స్వర్గం కంటే గొప్పవి.",ml:"അമ്മയും മാതൃഭൂമിയും സ്വർഗ്ഗത്തേക്കാൾ മഹത്തരമാണ്.",gu:"માતા અને માતૃભૂમિ સ્વર્ગ કરતાં ઉત્તમ છે.",mr:"माता आणि मातृभूमी स्वर्गापेक्षाही श्रेष्ठ आहेत.",bn:"মাতা ও মাতৃভূমি স্বর্গের চেয়েও মহান।"},s:"— Valmiki Ramayana 6.124.17"},
+  {d:"ॐ असतो मा सद्गमय।<br>तमसो मा ज्योतिर्गमय।",t:"Om asato ma sadgamaya tamaso ma jyotirgamaya",m:{en:"Lead me from untruth to truth. Lead me from darkness to light.",hi:"असत्य से सत्य की ओर ले चलो। अंधकार से प्रकाश की ओर।",kn:"ಅಸತ್ಯದಿಂದ ಸತ್ಯದೆಡೆಗೆ ನಡೆಸು. ಅಂಧಕಾರದಿಂದ ಬೆಳಕಿನೆಡೆಗೆ.",ta:"பொய்யிலிருந்து உண்மைக்கு. இருளிலிருந்து வெளிச்சத்திற்கு.",te:"అసత్యం నుండి సత్యం వైపు. చీకటి నుండి వెలుతురు వైపు.",ml:"അസത്യത്തിൽ നിന്ന് സത്യത്തിലേക്ക്.",gu:"અસત્યથી સત્ય તરફ. અંધારામાંથી પ્રકાશ તરફ.",mr:"असत्याकडून सत्याकडे. अंधाराकडून प्रकाशाकडे.",bn:"অসত্য থেকে সত্যের দিকে। অন্ধকার থেকে আলোর দিকে।"},s:"— Brihadaranyaka Upanishad 1.3.28"},
+  {d:"योगः कर्मसु कौशलम्।",t:"Yogah karmasu kaushalam",m:{en:"Yoga is excellence in action. True yoga means performing every action with skill and awareness.",hi:"योग कर्मों में कुशलता है।",kn:"ಯೋಗ ಎಂದರೆ ಕರ್ಮಗಳಲ್ಲಿ ನಿಪುಣತೆ.",ta:"யோகம் என்பது செயல்களில் திறமை.",te:"యోగం అంటే కర్మలలో నైపుణ్యం.",ml:"യോഗം കർമ്മങ്ങളിലെ നൈപുണ്യം.",gu:"યોગ એટલે કર્મોમાં કુશળતા.",mr:"योग म्हणजे कर्मांमध्ये कुशलता.",bn:"যোগ হলো কর্মে দক্ষতা।"},s:"— Bhagavad Gita 2.50"},
+  {d:"सर्वं खल्विदं ब्रह्म।",t:"Sarvam khalvidam brahma",m:{en:"All this is indeed Brahman. Everything in existence is a manifestation of divine consciousness.",hi:"यह सब कुछ ब्रह्म ही है।",kn:"ಇವೆಲ್ಲವೂ ಬ್ರಹ್ಮವೇ.",ta:"இவை அனைத்தும் பிரம்மமே.",te:"ఇవన్నీ బ్రహ్మమే.",ml:"ഇതെല்லாം ബ്രഹ്മം തന്നെ.",gu:"આ સઘળું બ્રહ્મ જ છે.",mr:"हे सर्व ब्रह्मच आहे.",bn:"এই সব কিছুই ব্রহ্ম।"},s:"— Chandogya Upanishad 3.14.1"},
+  {d:"तत् त्वम् असि।",t:"Tat Tvam Asi",m:{en:"That thou art. You are not separate from the universal consciousness. The divine is within you.",hi:"वह तुम हो। परमात्मा तुम्हारे भीतर है।",kn:"ಅದು ನೀನೇ. ದೇವರು ನಿನ್ನ ಒಳಗಿದ್ದಾನೆ.",ta:"அது நீயே. இறை உன்னுள்ளே உள்ளது.",te:"అది నువ్వే. దేవుడు నీలోనే ఉన్నాడు.",ml:"അത് നീ തന്നെ. ദൈവം നിനക്കുള്ളിലുണ്ട്.",gu:"તે તું જ છે. ઈશ્વર ભીતર છે.",mr:"ते तूच आहेस. देव तुझ्या आत आहे.",bn:"সেটা তুমিই। ঈশ্বর তোমার মধ্যেই।"},s:"— Chandogya Upanishad 6.8.7"},
+  {d:"परोपकारार्थमिदं शरीरम्।",t:"Paropakaarthamidam shareeram",m:{en:"This body exists for the service of others. Trees, rivers and cows all give for others.",hi:"यह शरीर परोपकार के लिए है।",kn:"ಈ ದೇಹ ಸೇವೆಗಾಗಿಯೇ.",ta:"இந்த உடல் மற்றவர்களின் சேவைக்காகவே.",te:"ఈ శరీరం ఇతరుల సేవకే.",ml:"ഈ ശരീരം സേവനത്തിനായുള്ളതാണ്.",gu:"આ શરીર પરોપકાર માટે છે.",mr:"हे शरीर परोपकारासाठीच आहे.",bn:"এই শরীর অন্যের সেবার জন্য।"},s:"— Subhashitani"}
 ];
 
-let currentLang = 'en';
-const langNames = {en:'English',hi:'हिंदी',kn:'ಕನ್ನಡ',ta:'தமிழ்',te:'తెలుగు',ml:'മലയാളം',gu:'ગુજરાતી',mr:'मराठी',bn:'বাংলা'};
+var currentLang = 'en';
+var langNames = {en:'English',hi:'Hindi',kn:'Kannada',ta:'Tamil',te:'Telugu',ml:'Malayalam',gu:'Gujarati',mr:'Marathi',bn:'Bengali'};
 
 function getTodayShloka() {
-  const today = new Date();
-  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  var today = new Date();
+  var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
   return shlokas[dayOfYear % shlokas.length];
 }
 
 function loadShloka() {
-  const s = getTodayShloka();
+  var s = getTodayShloka();
   document.getElementById('shlokaDevanagari').innerHTML = s.d;
   document.getElementById('shlokaTranslit').innerHTML = s.t;
   document.getElementById('shlokaEnglish').textContent = s.m[currentLang] || s.m.en;
   document.getElementById('shlokaSource').textContent = s.s;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    const active = btn.dataset.lang === currentLang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    var active = btn.dataset.lang === currentLang;
     btn.style.background = active ? 'rgba(212,160,23,0.3)' : 'rgba(212,160,23,0.08)';
     btn.style.borderColor = active ? 'rgba(212,160,23,0.7)' : 'rgba(212,160,23,0.2)';
     btn.style.color = active ? '#F0C040' : 'rgba(255,255,255,0.5)';
@@ -777,14 +415,13 @@ function loadShloka() {
 }
 
 function buildLangButtons() {
-  const container = document.getElementById('langButtons');
+  var container = document.getElementById('langButtons');
   if (!container) return;
-  Object.entries(langNames).forEach(function(entry) {
-    const code = entry[0], name = entry[1];
-    const btn = document.createElement('button');
+  Object.keys(langNames).forEach(function(code) {
+    var btn = document.createElement('button');
     btn.className = 'lang-btn';
     btn.dataset.lang = code;
-    btn.textContent = name;
+    btn.textContent = langNames[code];
     btn.style.cssText = 'background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.2);color:rgba(255,255,255,0.5);font-family:Cinzel,serif;font-size:10px;letter-spacing:.06em;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all .2s;';
     btn.onclick = function() { currentLang = code; loadShloka(); };
     container.appendChild(btn);
@@ -792,10 +429,10 @@ function buildLangButtons() {
 }
 
 window.shareShlokaWhatsApp = function() {
-  const s = getTodayShloka();
-  const plain = s.d.replace(/<br>/g, '\n');
-  const meaning = s.m[currentLang] || s.m.en;
-  const text = '🕉️ Shloka of the Day\n\n' + plain + '\n\n' + meaning + '\n\n' + s.s + '\n\nExplore more at dharmachat.in';
+  var s = getTodayShloka();
+  var plain = s.d.replace(/<br>/g, ' ');
+  var meaning = s.m[currentLang] || s.m.en;
+  var text = '🕉️ Shloka of the Day\n\n' + plain + '\n\n' + meaning + '\n\n' + s.s + '\n\nExplore more at dharmachat.in';
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
 };
 
@@ -808,7 +445,7 @@ loadShloka();
   <div class="container">
     <div class="section-tag">Our Sacred Mission</div>
     <h2 class="section-title">Dharma is the eternal light<br>that guides every soul</h2>
-    <p class="section-sub" style="margin: 0 auto; text-align:center">We are devoted to making the wisdom of Sanatana Dharma accessible to every seeker — through technology rooted in reverence for our sacred scriptures.</p>
+    <p class="section-sub" style="margin:0 auto;text-align:center;">We are devoted to making the wisdom of Sanatana Dharma accessible to every seeker — through technology rooted in reverence for our sacred scriptures.</p>
     <div class="mission-grid fade-up">
       <div class="mission-card">
         <div class="mission-icon">🕉️</div>
@@ -822,7 +459,7 @@ loadShloka();
       </div>
       <div class="mission-card">
         <div class="mission-icon">📿</div>
-        <h3>Authentic & Pandit-Guided</h3>
+        <h3>Authentic &amp; Pandit-Guided</h3>
         <p>Our AI is trained exclusively on sacred texts and refined with guidance from qualified acharyas and pandits to ensure scriptural accuracy and respect.</p>
       </div>
     </div>
@@ -835,7 +472,7 @@ loadShloka();
     <div class="features-header">
       <div class="section-tag">Features</div>
       <h2 class="section-title">Discover DharmaChat's<br>Sacred Features</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align:center">A complete dharmic experience — from shloka discovery to epic character studies and interactive quizzes that make scripture come alive.</p>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">A complete dharmic experience — from shloka discovery to epic character studies and interactive quizzes that make scripture come alive.</p>
     </div>
     <div class="feature-grid fade-up">
       <div class="feature-card">
@@ -844,12 +481,12 @@ loadShloka();
           <p>Find the perfect verse for any question or moment. Search by emotion, topic, or keyword across the Gita, Ramayana, Mahabharata, Upanishads, and Puranas — with full Sanskrit, transliteration, and meaning.</p>
         </div>
         <div class="feature-bot">
-          <span class="feature-tag">SEARCH & DISCOVER</span>
+          <span class="feature-tag">SEARCH &amp; DISCOVER</span>
           <ul class="feature-list">
             <li>Search by emotion, topic or keyword</li>
             <li>Sanskrit + transliteration + translation</li>
             <li>Commentary from traditional acharyas</li>
-            <li>Save & share your favourite shlokas</li>
+            <li>Save &amp; share your favourite shlokas</li>
           </ul>
         </div>
       </div>
@@ -859,9 +496,9 @@ loadShloka();
           <p>Test your knowledge of the epics, Vedic lore, and Hindu philosophy. Challenge yourself with quizzes on characters, events, and teachings from the Mahabharata, Ramayana, and beyond.</p>
         </div>
         <div class="feature-bot">
-          <span class="feature-tag">LEARN & PLAY</span>
+          <span class="feature-tag">LEARN &amp; PLAY</span>
           <ul class="feature-list">
-            <li>Mahabharata & Ramayana character quizzes</li>
+            <li>Mahabharata &amp; Ramayana character quizzes</li>
             <li>Vedic knowledge levels: Beginner to Vidwan</li>
             <li>Daily challenge with streak rewards</li>
             <li>Leaderboards with the community</li>
@@ -877,7 +514,7 @@ loadShloka();
           <span class="feature-tag">CHARACTER STUDIES</span>
           <ul class="feature-list">
             <li>200+ detailed character profiles</li>
-            <li>Virtues, relationships & story arcs</li>
+            <li>Virtues, relationships &amp; story arcs</li>
             <li>Find your ideal spiritual role model</li>
             <li>Connect characters across scriptures</li>
           </ul>
@@ -894,7 +531,7 @@ loadShloka();
             <li>Answers sourced only from sacred texts</li>
             <li>Full verse references with every answer</li>
             <li>Journal your dharmic reflections</li>
-            <li>Create personalised stotras & prayers</li>
+            <li>Create personalised stotras &amp; prayers</li>
           </ul>
         </div>
       </div>
@@ -904,7 +541,7 @@ loadShloka();
 
 <!-- SCRIPTURES -->
 <section class="scriptures">
-  <div class="container" style="position:relative;z-index:2">
+  <div class="container" style="position:relative;z-index:2;">
     <div class="section-tag">Sacred Texts</div>
     <h2 class="section-title">Explore 18+ Sacred Scriptures</h2>
     <p class="section-sub">From the eternal Vedas to the beloved epics — DharmaChat brings the full treasury of Hindu wisdom to your fingertips.</p>
@@ -961,57 +598,57 @@ loadShloka();
     <div class="lessons-header">
       <div>
         <div class="section-tag">Dharma Lessons</div>
-        <h2 class="section-title">Explore 2,000+ Dharma Lessons</h2>
+        <h2 class="section-title">Explore Dharma Lessons</h2>
       </div>
-      <a class="btn-outline" href="articles.html">View All Lessons →</a>
+      <a class="btn-outline" href="articles.html">View All Articles →</a>
     </div>
     <div class="lessons-grid fade-up">
-      <a href="who-is-arjuna.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
-        <div class="lesson-img lesson-img-1">🏹</div>
+      <a href="who-is-lord-krishna.html" class="lesson-card">
+        <div class="lesson-img lesson-img-1">🦚</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Mahabharata</span><span class="lesson-date">Jun 27 2025</span></div>
-          <h3>Who is Arjuna? The Dharma of the Greatest Warrior</h3>
-          <p>Explore the spiritual journey of Arjuna — from self-doubt on Kurukshetra to becoming the foremost disciple of Lord Krishna.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Bhagavad Gita</span></div>
+          <h3>Who is Lord Krishna? Life, Teachings and Divine Legacy</h3>
+          <p>Explore the life of Krishna — the divine charioteer, the philosopher of the Gita, and the most complete avatar of Lord Vishnu.</p>
         </div>
       </a>
-      <a href="articles.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
-        <div class="lesson-img lesson-img-2">🌿</div>
+      <a href="who-is-hanuman.html" class="lesson-card">
+        <div class="lesson-img lesson-img-2">🐒</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Ramayana</span><span class="lesson-date">Jun 27 2025</span></div>
-          <h3>Who is Sita Mata? The Embodiment of Shakti and Devotion</h3>
-          <p>A deep exploration of Sita Mata's life — her trials, courage, and what she represents as the ideal of feminine divine power.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Ramayana</span></div>
+          <h3>Who is Hanuman? The Greatest Devotee in All of Scripture</h3>
+          <p>A deep exploration of Hanuman — his divine birth, his extraordinary feats, and what he teaches about devotion and strength.</p>
         </div>
       </a>
-      <a href="articles.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
-        <div class="lesson-img lesson-img-3">🌊</div>
+      <a href="what-is-moksha.html" class="lesson-card">
+        <div class="lesson-img lesson-img-3">🌟</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Upanishads</span><span class="lesson-date">Jun 25 2025</span></div>
-          <h3>What is Brahman? Understanding the Ultimate Reality</h3>
-          <p>The Mandukya, Chandogya and Brihadaranyaka Upanishads unravel the nature of Brahman — the infinite, eternal consciousness.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Upanishads</span></div>
+          <h3>What is Moksha? The Path to Liberation Explained</h3>
+          <p>The Upanishads and Bhagavad Gita explain what liberation means and the four paths to achieve it in this very lifetime.</p>
         </div>
       </a>
-      <a href="who-is-lord-shiva.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
+      <a href="who-is-lord-shiva.html" class="lesson-card">
         <div class="lesson-img lesson-img-4">🔱</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Shiva Purana</span><span class="lesson-date">Jun 25 2025</span></div>
-          <h3>The 12 Jyotirlingas — Sacred Abodes of Lord Shiva</h3>
-          <p>Journey through the 12 divine Jyotirlinga shrines — their significance, stories, and the liberation they offer to sincere devotees.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Shiva Purana</span></div>
+          <h3>Who is Lord Shiva? The Destroyer, The Yogi, The Supreme</h3>
+          <p>A complete guide to Mahadeva — his divine symbols, his marriage to Parvati, the 12 Jyotirlingas, and why he is Bholenath.</p>
         </div>
       </a>
-      <a href="bhagavad-gita-18-chapters.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
-        <div class="lesson-img lesson-img-5">🌸</div>
+      <a href="bhagavad-gita-18-chapters.html" class="lesson-card">
+        <div class="lesson-img lesson-img-5">📖</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Bhagavad Gita</span><span class="lesson-date">Jun 24 2025</span></div>
-          <h3>The Three Paths to Liberation — Jnana, Bhakti & Karma Yoga</h3>
-          <p>Lord Krishna reveals three complete paths to moksha. Which yoga is right for you? A comprehensive guide to all three.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Bhagavad Gita</span></div>
+          <h3>The 18 Chapters of the Bhagavad Gita — Complete Summary</h3>
+          <p>Lord Krishna reveals three complete paths to moksha. A chapter-by-chapter guide to the divine song of God.</p>
         </div>
       </a>
-      <a href="articles.html" class="lesson-card" style="text-decoration:none;color:inherit;display:block;">
-        <div class="lesson-img lesson-img-6">🌙</div>
+      <a href="what-happens-after-death.html" class="lesson-card">
+        <div class="lesson-img lesson-img-6">🕯️</div>
         <div class="lesson-body">
-          <div class="lesson-tag-row"><span class="lesson-source">Devi Mahatmya</span><span class="lesson-date">Jun 23 2025</span></div>
-          <h3>Who is Goddess Durga? The Invincible Power of the Universe</h3>
-          <p>From the Devi Mahatmya to the Lalita Sahasranama — understanding the supreme Shakti who upholds all creation.</p>
+          <div class="lesson-tag-row"><span class="lesson-source">Garuda Purana</span></div>
+          <h3>What Happens After Death? The Hindu View of the Afterlife</h3>
+          <p>From the Garuda Purana to the Bhagavad Gita — what Hindu scripture says about the soul's journey after death.</p>
         </div>
       </a>
     </div>
@@ -1024,44 +661,44 @@ loadShloka();
     <div class="questions-header">
       <div class="section-tag">Community Questions</div>
       <h2 class="section-title">Top Questions from<br>Our Devotee Community</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align:center">Discover the most-asked questions from our community and explore answers rooted in authentic scripture.</p>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Discover the most-asked questions from our community and explore answers rooted in authentic scripture.</p>
     </div>
     <div class="questions-grid fade-up">
       <div class="question-card">
         <p class="q-count">Asked 1,247 times</p>
         <h3>What is Karma and how does it affect our next life?</h3>
         <p>Explore what the Bhagavad Gita, Mahabharata and Upanishads teach about the law of karma, sanchita karma, and the cycle of rebirth.</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="what-is-moksha.html">Read More →</a>
       </div>
       <div class="question-card">
         <p class="q-count">Asked 983 times</p>
         <h3>What is the true meaning of Dharma according to Hindu scriptures?</h3>
         <p>The Mahabharata, Manusmriti, and Bhagavad Gita all speak of Dharma differently. How do we understand it in today's world?</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="who-is-lord-krishna.html">Read More →</a>
       </div>
       <div class="question-card">
         <p class="q-count">Asked 876 times</p>
         <h3>How can I achieve peace of mind through Hindu philosophy?</h3>
         <p>Lord Krishna's teachings in Chapters 2, 5 and 6 of the Gita offer profound guidance on achieving equanimity and inner stillness.</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="bhagavad-gita-18-chapters.html">Read More →</a>
       </div>
       <div class="question-card">
         <p class="q-count">Asked 754 times</p>
         <h3>What does Hinduism say about the purpose of human life (Purushartha)?</h3>
         <p>Artha, Kama, Dharma, and Moksha — the four aims of life as described in the Vedas, Puranas, and Arthashastra.</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="what-are-the-4-vedas.html">Read More →</a>
       </div>
       <div class="question-card">
         <p class="q-count">Asked 612 times</p>
         <h3>Who created the universe according to Hinduism?</h3>
         <p>From Brahma's cosmic egg to the Nasadiya Sukta of the Rigveda — Hindu scriptures offer profound and varied accounts of creation.</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="what-are-the-4-vedas.html">Read More →</a>
       </div>
       <div class="question-card">
         <p class="q-count">Asked 548 times</p>
         <h3>Is non-violence (Ahimsa) absolute in Hinduism?</h3>
         <p>The Mahabharata presents the complex dharmic debate on Ahimsa — from Bhishma's teachings to Krishna's justification of righteous war.</p>
-        <a class="q-link" href="#">Read More →</a>
+        <a class="q-link" href="who-is-bhishma.html">Read More →</a>
       </div>
     </div>
   </div>
@@ -1073,74 +710,74 @@ loadShloka();
     <div class="verses-header">
       <div class="section-tag">Sacred Verses</div>
       <h2 class="section-title">Explore 1,000+ Sacred Shlokas</h2>
-      <p class="section-sub" style="margin: 0 auto; text-align:center">Curated collections for every moment — from daily prayer to life's biggest decisions.</p>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Curated collections for every moment — from daily prayer to life's biggest decisions.</p>
     </div>
     <div class="verse-cats fade-up">
       <div class="verse-cat">
         <span class="verse-cat-icon">❤️</span>
-        <h3>Relationships & Life</h3>
+        <h3>Relationships &amp; Life</h3>
         <ul>
-          <li>Shlokas About Love & Devotion</li>
+          <li>Shlokas About Love &amp; Devotion</li>
           <li>Shlokas About Marriage</li>
           <li>Shlokas About Friendship</li>
           <li>Shlokas About Family</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
       <div class="verse-cat">
         <span class="verse-cat-icon">🧘</span>
-        <h3>Wisdom & Growth</h3>
+        <h3>Wisdom &amp; Growth</h3>
         <ul>
           <li>Shlokas About Self-Discipline</li>
           <li>Shlokas About Patience</li>
           <li>Shlokas About Knowledge</li>
           <li>Shlokas About Courage</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
       <div class="verse-cat">
         <span class="verse-cat-icon">🙏</span>
-        <h3>Devotion & Prayer</h3>
+        <h3>Devotion &amp; Prayer</h3>
         <ul>
           <li>Shlokas About Bhakti</li>
           <li>Shlokas About God's Grace</li>
           <li>Shlokas About Surrender</li>
           <li>Morning Prayer Shlokas</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
       <div class="verse-cat">
         <span class="verse-cat-icon">🌺</span>
-        <h3>Healing & Peace</h3>
+        <h3>Healing &amp; Peace</h3>
         <ul>
           <li>Shlokas About Grief</li>
           <li>Shlokas About Fear</li>
           <li>Shlokas About Inner Peace</li>
           <li>Shlokas About Forgiveness</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
       <div class="verse-cat">
         <span class="verse-cat-icon">🏛️</span>
-        <h3>Dharma & Ethics</h3>
+        <h3>Dharma &amp; Ethics</h3>
         <ul>
           <li>Shlokas About Righteousness</li>
           <li>Shlokas About Truth (Satya)</li>
           <li>Shlokas About Non-Violence</li>
           <li>Shlokas About Service</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
       <div class="verse-cat">
         <span class="verse-cat-icon">✨</span>
-        <h3>Festivals & Occasions</h3>
+        <h3>Festivals &amp; Occasions</h3>
         <ul>
           <li>Diwali Shlokas</li>
           <li>Navratri Shlokas</li>
           <li>Shlokas for New Beginnings</li>
           <li>Shlokas for Funerals (Antyesti)</li>
         </ul>
-        <span class="verse-more">Discover more →</span>
+        <span class="verse-more" onclick="window.location='articles.html'">Discover more →</span>
       </div>
     </div>
   </div>
@@ -1172,7 +809,7 @@ loadShloka();
   </div>
 </section>
 
-<!-- COMMUNITY LOVE - AUTO SLIDING -->
+<!-- COMMUNITY REVIEWS -->
 <section style="background:var(--maroon-dk);padding:80px 0;overflow:hidden;">
   <div style="text-align:center;padding:0 24px;margin-bottom:48px;">
     <div class="section-tag" style="margin:0 auto 14px;display:block;width:fit-content;background:rgba(212,160,23,0.15);color:var(--gold-lt);">Community Love</div>
@@ -1181,68 +818,47 @@ loadShloka();
   </div>
   <div style="position:relative;overflow:hidden;">
     <div id="reviewTrack" style="display:flex;gap:24px;width:max-content;animation:slideLeft 40s linear infinite;padding:0 24px;">
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;Finally an app that explains the Gita in a way I actually understand. The Sanskrit references are spot on.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Vikram S. · Chennai</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;I grew up abroad and felt distant from my roots. DharmaChat helped me reconnect with the Ramayana beautifully.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Priya A. · London</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;The shloka explanations are extraordinary. Found verses for every challenge in life. Nothing else comes close.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Arjun M. · Bengaluru</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;I use DharmaChat to teach my children about the Mahabharata. Stories are engaging and beautifully explained.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Lakshmi R. · Hyderabad</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;The multilingual support is a game changer. Reading shlokas in Kannada makes it so much more meaningful.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Deepa K. · Mysuru</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;My father can now read shlokas in Tamil. This is truly a seva to our community. Deeply grateful.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Rajan T. · Coimbatore</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;Asked about karma and got the most complete answer with 5 different shlokas. Absolutely incredible.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Suresh P. · Mumbai</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;As a yoga teacher I recommend DharmaChat to all my students. The depth of knowledge is truly impressive.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Meena V. · Pune</div></div>
-      <!-- Duplicate for seamless loop -->
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;Finally an app that explains the Gita in a way I actually understand. The Sanskrit references are spot on.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Vikram S. · Chennai</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;I grew up abroad and felt distant from my roots. DharmaChat helped me reconnect with the Ramayana beautifully.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Priya A. · London</div></div>
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">&quot;The shloka explanations are extraordinary. Found verses for every challenge in life. Nothing else comes close.&quot;</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Arjun M. · Bengaluru</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"Finally an app that explains the Gita in a way I actually understand. The Sanskrit references are spot on."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Vikram S. · Chennai</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"I grew up abroad and felt distant from my roots. DharmaChat helped me reconnect with the Ramayana beautifully."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Priya A. · London</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"The shloka explanations are extraordinary. Found verses for every challenge in life. Nothing else comes close."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Arjun M. · Bengaluru</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"I use DharmaChat to teach my children about the Mahabharata. Stories are engaging and beautifully explained."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Lakshmi R. · Hyderabad</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"The multilingual support is a game changer. Reading shlokas in Kannada makes it so much more meaningful."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Deepa K. · Mysuru</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"My father can now read shlokas in Tamil. This is truly a seva to our community. Deeply grateful."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Rajan T. · Coimbatore</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"Asked about karma and got the most complete answer with 5 different shlokas. Absolutely incredible."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Suresh P. · Mumbai</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"As a yoga teacher I recommend DharmaChat to all my students. The depth of knowledge is truly impressive."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Meena V. · Pune</div></div>
+      <!-- Duplicates for seamless loop -->
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"Finally an app that explains the Gita in a way I actually understand. The Sanskrit references are spot on."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Vikram S. · Chennai</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"I grew up abroad and felt distant from my roots. DharmaChat helped me reconnect with the Ramayana beautifully."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Priya A. · London</div></div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:24px;width:300px;flex-shrink:0;"><div style="color:#F0C040;font-size:14px;margin-bottom:10px;">★★★★★</div><p style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:14px;">"The shloka explanations are extraordinary. Found verses for every challenge in life. Nothing else comes close."</p><div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-lt);">Arjun M. · Bengaluru</div></div>
     </div>
   </div>
 </section>
 
-<style>
-@keyframes slideLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-#reviewTrack:hover { animation-play-state: paused; }
-</style>
-
 <!-- DOWNLOAD CTA -->
-<section class="download-cta mandala-bg" id="download-section">
-  <div class="container">
-    <div class="section-tag" style="margin:0 auto 14px; display:block; width:fit-content">DharmaChat App</div>
-    <h2 class="section-title">📱 App Coming Soon</h2>
-    <p>DharmaChat is coming to Android and iOS. Be the first to know when we launch — enter your email below and we will notify you the moment it is live.</p>
-
-    <!-- Coming soon badges -->
-    <div class="store-btns" style="margin-bottom:32px;">
-      <div class="store-btn" style="cursor:default;opacity:0.7;">
-        <div class="store-btn-icon"><svg height="28" viewBox="0 0 814 1000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 405.8 15 312.1 15 222.1c0-152.6 99.7-233.3 197.1-233.3 52.4 0 95.9 34.4 128.4 34.4 31.1 0 79.5-37 140.5-37 22.7 0 108.2 2 168.7 71.3zm-234.6-135.6c28.7-35.6 49.3-85 49.3-134.4 0-6.7-.6-13.5-1.9-19.3-46.4 1.9-101.7 31.1-134.9 71.3-25.8 29.6-50.5 78.3-50.5 128.4 0 7.1 1.3 14.2 1.9 16.5 2.6.6 6.4 1.3 10.3 1.3 41.4 0 93.1-27.7 125.8-63.8z"/></svg></div>
-        <div class="store-btn-text">
-          <small>COMING SOON ON</small>
-          <strong>App Store</strong>
-        </div>
-      </div>
-      <div class="store-btn" style="cursor:default;opacity:0.7;">
-        <div class="store-btn-icon"><svg height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76c.37.2.8.24 1.2.12l11.7-11.7-3.36-3.36L3.18 23.76z" fill="#EA4335"/><path d="M22.32 10.56l-3.18-1.8-3.6 3.6 3.6 3.6 3.24-1.8c.9-.54.9-1.86-.06-2.4z" fill="#FBBC05"/><path d="M1.5.6C1.26 1.02 1.2 1.56 1.2 2.04v19.92c0 .48.12 1.02.36 1.44L12.9 12 1.5.6z" fill="#4285F4"/><path d="M16.32 12L4.38.12C3.96-.12 3.48-.12 3 .12L16.32 12z" fill="#34A853"/></svg></div>
-        <div class="store-btn-text">
-          <small>COMING SOON ON</small>
-          <strong>Google Play</strong>
-        </div>
-      </div>
+<section id="download-section" style="background:linear-gradient(160deg,#3E0000,#5A0A0A);padding:100px 24px;text-align:center;">
+  <div class="container" style="text-align:center;">
+    <div class="section-tag" style="margin:0 auto 16px;display:block;width:fit-content;background:rgba(212,160,23,0.15);color:var(--gold-lt);">DharmaChat App</div>
+    <h2 style="font-family:'Cinzel Decorative',serif;font-size:clamp(24px,4vw,38px);color:var(--gold-lt);margin-bottom:12px;">App Coming Soon 📱</h2>
+    <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto 40px;line-height:1.7;">DharmaChat is coming to Android and iOS. Be the first to know when we launch.</p>
+    <div style="max-width:400px;margin:0 auto;">
+      <input id="notifyEmail" type="email" placeholder="Enter your email address" style="width:100%;padding:15px 20px;border-radius:50px;border:1px solid rgba(212,160,23,0.35);background:rgba(255,255,255,0.08);color:white;font-family:'Noto Sans',sans-serif;font-size:14px;outline:none;margin-bottom:12px;display:block;"/>
+      <button onclick="notifyMe()" style="width:100%;padding:15px;background:linear-gradient(135deg,#E8611A,#D4A017);border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;box-shadow:0 4px 20px rgba(232,97,26,0.4);">Notify Me 🔔</button>
+      <div id="notifyMsg" style="font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:#F0C040;margin-top:12px;min-height:20px;"></div>
     </div>
-
-    <!-- Email notify form -->
-    <div style="max-width:460px;margin:0 auto 32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-      <input id="notifyEmail" type="email" placeholder="Enter your email address" style="flex:1;min-width:220px;padding:14px 18px;border-radius:50px;border:1px solid rgba(212,160,23,0.3);background:rgba(255,255,255,0.08);color:white;font-family:Noto Sans,sans-serif;font-size:14px;outline:none;"/>
-      <button onclick="notifyMe()" style="padding:14px 24px;background:linear-gradient(135deg,#E8611A,#D4A017);border:none;border-radius:50px;color:white;font-family:Cinzel,serif;font-size:13px;font-weight:700;letter-spacing:.05em;cursor:pointer;">Notify Me 🔔</button>
+    <div style="display:flex;align-items:center;gap:16px;max-width:400px;margin:32px auto 24px;">
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.15);"></div>
+      <span style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,0.4);">OR</span>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.15);"></div>
     </div>
-    <div id="notifyMsg" style="font-family:EB Garamond,serif;font-style:italic;font-size:15px;color:#F0C040;margin-bottom:24px;min-height:20px;"></div>
-
-    <div class="or-divider"><span>AVAILABLE NOW ON WEB</span></div>
     <a class="btn-primary" href="chat.html">Open DharmaChat in Browser →</a>
+    <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.35);margin-top:12px;">Available now on web — free, no download required</p>
   </div>
 </section>
 
 <script>
 function notifyMe() {
-  const email = document.getElementById('notifyEmail').value.trim();
-  const msg = document.getElementById('notifyMsg');
+  var email = document.getElementById('notifyEmail').value.trim();
+  var msg = document.getElementById('notifyMsg');
   if (!email || !email.includes('@')) {
     msg.style.color = '#F5832A';
     msg.textContent = 'Please enter a valid email address.';
@@ -1268,7 +884,7 @@ function notifyMe() {
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Is DharmaChat free?<span class="faq-icon">+</span></div>
-        <div class="faq-a"><p>Yes! DharmaChat is free to download for everyone. Over 95% of users enjoy the full experience at no cost, including shloka search, the AI Dharma Guide, quizzes, and scripture reading. A Premium Plan is available for those who wish to support our mission, with a 7-day free trial.</p></div>
+        <div class="faq-a"><p>Yes! DharmaChat is free for everyone. 10 free questions every day with no credit card required. A Premium Plan is available for those who wish to support our mission and unlock unlimited questions.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">How do I know the answers are scripturally accurate?<span class="faq-icon">+</span></div>
@@ -1276,15 +892,15 @@ function notifyMe() {
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Which scriptures does DharmaChat cover?<span class="faq-icon">+</span></div>
-        <div class="faq-a"><p>DharmaChat covers 18+ sacred texts including the Bhagavad Gita, Mahabharata (all 18 Parvas), Ramayana (Valmiki & Tulsi), the 108 Upanishads, four Vedas, 18 Mahapuranas, Yoga Sutras, Arthashastra, Manusmriti, and more.</p></div>
+        <div class="faq-a"><p>DharmaChat covers 18+ sacred texts including the Bhagavad Gita, Mahabharata (all 18 Parvas), Ramayana (Valmiki &amp; Tulsi), the 108 Upanishads, four Vedas, 18 Mahapuranas, Yoga Sutras, Arthashastra, Manusmriti, and more.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Is DharmaChat suitable for all Hindu traditions?<span class="faq-icon">+</span></div>
-        <div class="faq-a"><p>Absolutely. DharmaChat welcomes devotees from all sampradayas — Vaishnavism, Shaivism, Shaktism, Smartism, and others. You can set your preferred tradition and deity focus when setting up the app, and the experience will adapt accordingly.</p></div>
+        <div class="faq-a"><p>Absolutely. DharmaChat welcomes devotees from all sampradayas — Vaishnavism, Shaivism, Shaktism, Smartism, and others. The experience adapts to your preferred tradition and deity focus.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Who created DharmaChat?<span class="faq-icon">+</span></div>
-        <div class="faq-a"><p>DharmaChat was created by a team of Hindu devotees — software engineers, entrepreneurs, and dharmic educators united by a shared belief that modern technology can deepen our connection to Sanatana Dharma. Our work is guided by learned pandits and Vedic scholars.</p></div>
+        <div class="faq-a"><p>DharmaChat was founded by Sukhil Babu from Bengaluru, India — an entrepreneur and devotee who believed that modern technology can deepen our connection to Sanatana Dharma. Our work is guided by learned pandits and Vedic scholars.</p></div>
       </div>
     </div>
   </div>
@@ -1296,10 +912,10 @@ function notifyMe() {
     <h2>Vedic Wisdom, Straight to Your Inbox</h2>
     <p>Join a growing community receiving daily shlokas, dharmic reflections, and insights from the sacred texts of Hinduism.</p>
     <div class="nl-form">
-      <input class="nl-input" type="email" placeholder="Your email address" />
+      <input class="nl-input" type="email" placeholder="Your email address"/>
       <a class="btn-primary" href="premium.html">Subscribe</a>
     </div>
-    <p style="margin-top:16px; font-size:12px; color:rgba(255,255,255,0.4)">*You can unsubscribe at any time. No spam. Only dharma.</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);">*You can unsubscribe at any time. No spam. Only dharma.</p>
   </div>
 </div>
 
@@ -1317,64 +933,61 @@ function notifyMe() {
       <div class="footer-col">
         <h4>Scriptures</h4>
         <ul>
-          <li><a href="#">Bhagavad Gita</a></li>
-          <li><a href="#">Mahabharata</a></li>
-          <li><a href="#">Ramayana</a></li>
-          <li><a href="#">Upanishads</a></li>
-          <li><a href="#">Vedas</a></li>
-          <li><a href="#">Puranas</a></li>
+          <li><a href="bhagavad-gita-18-chapters.html">Bhagavad Gita</a></li>
+          <li><a href="who-is-karna.html">Mahabharata</a></li>
+          <li><a href="who-is-hanuman.html">Ramayana</a></li>
+          <li><a href="what-is-moksha.html">Upanishads</a></li>
+          <li><a href="what-are-the-4-vedas.html">Vedas</a></li>
+          <li><a href="what-happens-after-death.html">Puranas</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Explore</h4>
         <ul>
-          <li><a href="index.html#shloka">Shloka of the Day</a></li>
-          <li><a href="#">All Dharma Lessons</a></li>
-          <li><a href="#">All Shlokas</a></li>
-          <li><a href="#">Top Questions</a></li>
-          <li><a href="#">Character Library</a></li>
-          <li><a href="#">Dharma Glossary</a></li>
+          <li><a href="index.html#lessons-section">Shloka of the Day</a></li>
+          <li><a href="articles.html">All Dharma Lessons</a></li>
+          <li><a href="articles.html">All Shlokas</a></li>
+          <li><a href="articles.html">Top Questions</a></li>
+          <li><a href="articles.html">Character Library</a></li>
+          <li><a href="articles.html">Dharma Glossary</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="community.html">About Us</a></li>
+          <li><a href="community.html">Contact</a></li>
           <li><a href="community.html">Community</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Podcast</a></li>
+          <li><a href="articles.html">Blog</a></li>
+          <li><a href="community.html">Podcast</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="privacy.html">Terms & Conditions</a></li>
+          <li><a href="privacy.html">Terms &amp; Conditions</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>Copyright © 2026 DharmaChat. All Rights Reserved.</span>
-      <span>🕉️ &nbsp; Built with reverence for Sanatana Dharma</span>
-       <span>Founded & built by Sukhil Babu · Bengaluru, India</span>
-      <div style="display:flex;gap:16px">
+      <span>Copyright &copy; 2026 DharmaChat. All Rights Reserved.</span>
+      <span>🕉️ &nbsp; Founded &amp; built by Sukhil Babu · Bengaluru, India</span>
+      <div style="display:flex;gap:16px;">
         <a href="privacy.html">Privacy Policy</a>
-        <a href="privacy.html">Terms & Conditions</a>
+        <a href="privacy.html">Terms &amp; Conditions</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // FAQ Toggle
   function toggleFaq(el) {
-    const item = el.parentElement;
-    item.classList.toggle('open');
+    el.parentElement.classList.toggle('open');
   }
-
-  // Fade-up on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+</script>
+
 <script type="module" src="nav.js"></script>
 </body>
 </html>
