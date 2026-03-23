@@ -311,62 +311,68 @@
         <div class="hero-stat"><strong>18+</strong><span>Sacred Texts</span></div>
         <div class="hero-stat"><strong>9</strong><span>Indian Languages</span></div>
       </div>
-      <section class="sadhana-section" style="background:var(--cream);padding:60px 24px 40px;text-align:center;border-top:1px solid rgba(212,160,23,0.15);">
-  <div class="container" style="max-width:820px;margin:0 auto">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-      <div style="font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--maroon-dk)">Today's Sadhana Journey</div>
-      <div style="display:flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:18px;color:var(--saffron)">
-        🔥 <span id="streakCount">3</span> day streak
-      </div>
+<section style="background:var(--cream);padding:70px 24px 50px;text-align:center;border-top:1px solid rgba(212,160,23,0.15);">
+  <div style="max-width:860px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:26px;color:var(--maroon-dk)">Today's Sadhana Journey</div>
+      <div style="font-family:'Cinzel',serif;font-size:19px;color:var(--saffron)">🔥 <span id="streakCount">3</span> day streak</div>
     </div>
 
-    <!-- 7-day calendar placeholder -->
-    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:20px" id="calendar"></div>
+    <div id="sadhanaCalendar" style="display:flex;justify-content:center;gap:8px;margin-bottom:28px"></div>
 
-    <!-- Progress bar -->
-    <div style="background:rgba(107,26,26,0.08);height:6px;border-radius:999px;margin-bottom:32px;overflow:hidden">
+    <div style="height:8px;background:rgba(107,26,26,0.08);border-radius:999px;margin-bottom:36px;overflow:hidden">
       <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));"></div>
     </div>
 
-    <!-- 4 Daily Cards -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
-      <a href="chat.html?q=Give+me+today%27s+shloka+with+meaning" style="background:white;border-radius:16px;padding:20px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .2s">
-        <div style="font-size:28px;margin-bottom:8px">📖</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <a href="chat.html?q=Give+me+today%27s+shloka+with+meaning+and+audio" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s">
+        <div style="font-size:32px;margin-bottom:12px">📖</div>
         <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">YOUR SHLOKA • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--maroon-dk);margin:12px 0 8px">Gita 2.47 – You have the right to action, not to its fruits</div>
+        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Gita 2.47 – You have the right to action, not to its fruits</div>
       </a>
 
-      <a href="chat.html?q=Give+me+a+personalised+teaching+for+today" style="background:white;border-radius:16px;padding:20px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .2s">
-        <div style="font-size:28px;margin-bottom:8px">🪔</div>
+      <a href="chat.html?q=Give+me+a+personalised+teaching+for+today" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s">
+        <div style="font-size:32px;margin-bottom:12px">🪔</div>
         <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">PERSONALISED GURU INSIGHT • 3 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--maroon-dk);margin:12px 0 8px">What Krishna would say to you today</div>
+        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">What Krishna would tell you today</div>
       </a>
 
-      <a href="chat.html?q=Help+me+write+my+daily+reflection+prayer" style="background:white;border-radius:16px;padding:20px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .2s">
-        <div style="font-size:28px;margin-bottom:8px">🙏</div>
+      <a href="chat.html?q=Help+me+write+my+daily+reflection+prayer" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s">
+        <div style="font-size:32px;margin-bottom:12px">🙏</div>
         <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">MY REFLECTION PRAYER • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--maroon-dk);margin:12px 0 8px">Write to Krishna</div>
+        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Write to Krishna</div>
       </a>
 
-      <a href="lessons.html" style="background:white;border-radius:16px;padding:20px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .2s">
-        <div style="font-size:28px;margin-bottom:8px">🧠</div>
+      <a href="lessons.html" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s">
+        <div style="font-size:32px;margin-bottom:12px">🧠</div>
         <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">DHARMA TRIVIA • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--maroon-dk);margin:12px 0 8px">Test your knowledge</div>
+        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Test your knowledge</div>
       </a>
     </div>
   </div>
 </section>
 
 <script>
-// Simple streak counter
-const today = new Date().toDateString();
+// Working streak + calendar
+const days = ['S','M','T','W','T','F','S'];
+const today = new Date().getDay();
 let streak = parseInt(localStorage.getItem('dc_streak') || '3');
-if (localStorage.getItem('dc_last_day') !== today) {
+if (localStorage.getItem('dc_last_day') !== new Date().toDateString()) {
   streak++;
   localStorage.setItem('dc_streak', streak);
-  localStorage.setItem('dc_last_day', today);
+  localStorage.setItem('dc_last_day', new Date().toDateString());
 }
 document.getElementById('streakCount').textContent = streak;
+
+const cal = document.getElementById('sadhanaCalendar');
+days.forEach((d,i) => {
+  const dot = document.createElement('div');
+  dot.style.cssText = `width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Cinzel,serif;font-size:11px;color:#666;border:2px solid #ddd;`;
+  if (i === today) dot.style.borderColor = '#E8611A';
+  if (i < today) dot.style.background = '#E8611A';
+  dot.textContent = d;
+  cal.appendChild(dot);
+});
 </script>
     </div>
     <div class="hero-visual">
