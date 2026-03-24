@@ -355,38 +355,41 @@
       <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));"></div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
-      <!-- Real professional images -->
-      <a href="chat.html?q=Give+me+today%27s+shloka+with+meaning+and+audio" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s;display:block;">
-        <div style="width:100%;height:140px;border-radius:12px;margin-bottom:16px;overflow:hidden;background:linear-gradient(135deg,#FDF6E3,#F5EDD0);display:flex;align-items:center;justify-content:center;">
-          <img src="shloka-scroll.png" style="height:130px;width:auto;object-fit:contain;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Sanskrit Shloka Scroll">
-        </div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">YOUR SHLOKA • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Gita 2.47 – You have the right to action, not to its fruits</div>
+    <style>
+      @keyframes floatIcon{0%,100%{transform:translateY(0px)}50%{transform:translateY(-10px)}}
+      .sadhana-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+      .sadhana-card{background:white;border-radius:18px;padding:20px 16px;text-align:center;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .3s;display:flex;flex-direction:column;align-items:center;}
+      .sadhana-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(107,26,26,0.15);border-color:rgba(212,160,23,0.5);}
+      .sadhana-icon{height:84px;width:84px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+      .sadhana-icon img{height:80px;width:auto;object-fit:contain;}
+      .sadhana-card:nth-child(1) .sadhana-icon img{animation:floatIcon 3s ease-in-out infinite 0s;}
+      .sadhana-card:nth-child(2) .sadhana-icon img{animation:floatIcon 3s ease-in-out infinite 0.5s;}
+      .sadhana-card:nth-child(3) .sadhana-icon img{animation:floatIcon 3s ease-in-out infinite 1s;}
+      .sadhana-card:nth-child(4) .sadhana-icon img{animation:floatIcon 3s ease-in-out infinite 1.5s;}
+      .sadhana-label{font-family:'Cinzel',serif;font-size:10px;color:var(--saffron);letter-spacing:.07em;margin-bottom:8px;line-height:1.4;text-align:center;}
+      .sadhana-text{font-family:'EB Garamond',serif;font-style:italic;font-size:13.5px;color:var(--maroon-dk);line-height:1.5;text-align:center;}
+      @media(max-width:700px){.sadhana-row{grid-template-columns:repeat(2,1fr);}}
+    </style>
+    <div class="sadhana-row">
+      <a href="chat.html?q=Give+me+today%27s+shloka+with+meaning+and+audio" class="sadhana-card">
+        <div class="sadhana-icon"><img src="shloka-scroll.png" alt="Shloka Scroll"/></div>
+        <div class="sadhana-label">YOUR SHLOKA • 1 MIN</div>
+        <div class="sadhana-text">Gita 2.47 – You have the right to action, not to its fruits</div>
       </a>
-
-      <a href="chat.html?q=Give+me+a+personalised+teaching+for+today" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s;display:block;">
-        <div style="width:100%;height:140px;border-radius:12px;margin-bottom:16px;overflow:hidden;background:linear-gradient(135deg,#EEF4FF,#E8F0FF);display:flex;align-items:center;justify-content:center;">
-          <img src="krishna-flute.png" style="height:130px;width:auto;object-fit:contain;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Lord Krishna">
-        </div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">PERSONALISED GURU INSIGHT • 3 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">What Krishna would tell you today</div>
+      <a href="chat.html?q=Give+me+a+personalised+teaching+for+today" class="sadhana-card">
+        <div class="sadhana-icon"><img src="krishna-flute.png" alt="Lord Krishna"/></div>
+        <div class="sadhana-label">PERSONALISED GURU INSIGHT • 3 MIN</div>
+        <div class="sadhana-text">What Krishna would tell you today</div>
       </a>
-
-      <a href="chat.html?q=Help+me+write+my+daily+reflection+prayer" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s;display:block;">
-        <div style="width:100%;height:140px;border-radius:12px;margin-bottom:16px;overflow:hidden;background:linear-gradient(135deg,#FFF8EE,#FFF0D8);display:flex;align-items:center;justify-content:center;">
-          <img src="prayer-hands.png" style="height:130px;width:auto;object-fit:contain;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="Prayer Hands">
-        </div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">MY REFLECTION PRAYER • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Write to Krishna</div>
+      <a href="chat.html?q=Help+me+write+my+daily+reflection+prayer" class="sadhana-card">
+        <div class="sadhana-icon"><img src="prayer-hands.png" alt="Prayer Hands"/></div>
+        <div class="sadhana-label">MY REFLECTION PRAYER • 1 MIN</div>
+        <div class="sadhana-text">Write to Krishna</div>
       </a>
-
-      <a href="lessons.html" style="background:white;border-radius:18px;padding:24px;text-align:left;border:1px solid rgba(212,160,23,0.2);text-decoration:none;color:inherit;transition:all .25s;display:block;">
-        <div style="width:100%;height:140px;border-radius:12px;margin-bottom:16px;overflow:hidden;background:linear-gradient(135deg,#1a0800,#3E0000);display:flex;align-items:center;justify-content:center;">
-          <img src="om-book.png" style="height:130px;width:auto;object-fit:contain;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" alt="OM Sacred Book">
-        </div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron)">DHARMA TRIVIA • 1 MIN</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:15.5px;color:var(--maroon-dk);margin:14px 0">Test your knowledge</div>
+      <a href="lessons.html" class="sadhana-card">
+        <div class="sadhana-icon" style="background:linear-gradient(135deg,#2a0800,#5A0A0A);border-radius:14px;"><img src="om-book.png" alt="Dharma Trivia" style="height:64px;"/></div>
+        <div class="sadhana-label">DHARMA TRIVIA • 1 MIN</div>
+        <div class="sadhana-text">Test your knowledge</div>
       </a>
     </div>
   </div>
