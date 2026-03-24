@@ -57,121 +57,25 @@
 
   /* NAV */
   nav {
-    position: sticky; top: 0; z-index: 1000;
-    background: rgba(253,246,227,0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(212,160,23,0.2);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,246,227,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid rgba(212,160,23,0.2);
+    padding: 0 24px;
   }
-  .nav-inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 20px;
-    display: flex; align-items: center; justify-content: space-between; height: 64px;
-  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
     font-family: 'Cinzel Decorative', serif; font-weight: 700;
-    font-size: 18px; color: var(--maroon); text-decoration: none; flex-shrink: 0;
+    font-size: 20px; color: var(--maroon); text-decoration: none;
   }
-  .nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 10px rgba(212,160,23,0.5); }
   .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a {
     font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
     color: var(--text-mid); text-decoration: none; letter-spacing: .04em; transition: color .2s;
   }
   .nav-links a:hover { color: var(--saffron); }
-  .nav-cta { display: flex; gap: 10px; align-items: center; }
-  .nav-try-btn {
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: white; font-family: 'Cinzel', serif; font-weight: 700;
-    font-size: 13px; letter-spacing: .04em; padding: 10px 22px;
-    border-radius: 50px; border: none; cursor: pointer; text-decoration: none;
-    box-shadow: 0 4px 16px rgba(232,97,26,0.35); transition: all .2s; white-space: nowrap;
-  }
-  .nav-try-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,97,26,0.5); }
-  .burger {
-    display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    background: none; border: none; padding: 8px; border-radius: 8px;
-    transition: background .2s; z-index: 1001;
-  }
-  .burger:hover { background: rgba(107,26,26,0.08); }
-  .burger span {
-    display: block; width: 22px; height: 2px;
-    background: var(--maroon); border-radius: 2px;
-    transition: all .35s cubic-bezier(.4,0,.2,1);
-    transform-origin: center;
-  }
-  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .mobile-drawer { display: none; position: fixed; inset: 0; z-index: 999; }
-  .mobile-drawer.open { display: block; }
-  .drawer-overlay {
-    position: absolute; inset: 0; background: rgba(20,0,0,0.5);
-    backdrop-filter: blur(4px); animation: fadeIn .25s ease;
-  }
-  .drawer-panel {
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: min(300px, 85vw); background: var(--cream);
-    box-shadow: -8px 0 40px rgba(107,26,26,0.2);
-    display: flex; flex-direction: column;
-    animation: slideInRight .3s cubic-bezier(.4,0,.2,1);
-    overflow-y: auto;
-  }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
-  .drawer-top {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 24px; border-bottom: 1px solid rgba(212,160,23,0.2);
-    background: var(--maroon-dk);
-  }
-  .drawer-logo { display: flex; align-items: center; gap: 10px; }
-  .drawer-logo img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
-  .drawer-logo span { font-family: 'Cinzel Decorative', serif; font-size: 15px; color: var(--gold-lt); }
-  .drawer-close {
-    width: 32px; height: 32px; border-radius: 50%;
-    border: 1px solid rgba(212,160,23,0.3); background: rgba(212,160,23,0.1);
-    color: var(--gold-lt); font-size: 18px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; line-height: 1;
-  }
-  .drawer-nav { padding: 16px 0; flex: 1; }
-  .drawer-nav a {
-    display: flex; align-items: center; gap: 14px; padding: 14px 24px;
-    font-family: 'Cinzel', serif; font-size: 14px; color: var(--text-mid);
-    text-decoration: none; letter-spacing: .04em; transition: all .2s;
-    border-left: 3px solid transparent;
-  }
-  .drawer-nav a:hover { background: rgba(212,160,23,0.08); color: var(--saffron); border-left-color: var(--saffron); }
-  .drawer-icon { font-size: 18px; width: 24px; text-align: center; }
-  .drawer-divider { height: 1px; background: rgba(212,160,23,0.15); margin: 8px 24px; }
-  .drawer-bottom { padding: 20px 24px; border-top: 1px solid rgba(212,160,23,0.15); }
-  .drawer-cta {
-    display: block; width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--saffron), var(--gold));
-    color: white; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
-    letter-spacing: .06em; border: none; border-radius: 50px; cursor: pointer;
-    text-align: center; text-decoration: none; margin-bottom: 10px;
-    box-shadow: 0 4px 16px rgba(232,97,26,0.35);
-  }
-    @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-cta { display: none; }
-    .burger { display: flex; }
-    .nav-logo { font-size: 15px; }
-    .nav-logo img { width: 32px; height: 32px; }
-    section { padding: 60px 0; }
-    .hero-inner { padding: 50px 20px; grid-template-columns: 1fr; }
-    .hero h1 { font-size: clamp(28px, 8vw, 42px); }
-    .hero-sub { font-size: 16px; }
-    .hero-desc { font-size: 14px; }
-    .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .hero-stat strong { font-size: 20px; }
-    .mission-grid, .scripture-grid, .lessons-grid { grid-template-columns: 1fr; }
-    .questions-grid, .verse-cats { grid-template-columns: 1fr; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; }
-    .nl-form { flex-direction: column; }
-    .sadhana-row { grid-template-columns: repeat(2,1fr) !important; }
-  }
+  .nav-cta { display: flex; gap: 12px; align-items: center; }
 
   /* HERO */
   .hero {
@@ -349,6 +253,21 @@
   .footer-bottom { border-top: 1px solid rgba(212,160,23,0.15); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; }
   .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .mission-grid, .scripture-grid, .lessons-grid { grid-template-columns: 1fr 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .verse-cats { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .mission-grid, .scripture-grid, .lessons-grid, .questions-grid, .verse-cats { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
   .fade-up.visible { opacity: 1; transform: none; }
   @keyframes slideLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -373,53 +292,12 @@
       <li><a href="lessons.html">Dharma Lessons</a></li>
       <li><a href="community.html">Community</a></li>
     </ul>
-    <div class="nav-cta">
+    <div class="nav-cta" style="display:flex;align-items:center;gap:12px;">
       <div id="navAuth"></div>
       <a class="btn-primary" href="chat.html">Try Free</a>
     </div>
-    <button class="burger" id="burgerBtn" aria-label="Open menu">☰</button>
   </div>
 </nav>
-
-<!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <div class="drawer-panel">
-    <div class="drawer-top">
-      <div class="drawer-logo">
-        <img src="logo.jpeg" alt="DharmaChat"/>
-        <span>DharmaChat</span>
-      </div>
-      <button class="drawer-close" id="drawerClose">✕</button>
-    </div>
-    <nav class="drawer-nav">
-      <a href="chat.html"><span class="drawer-icon">🕉️</span>AI Dharma Guide</a>
-      <a href="articles.html"><span class="drawer-icon">📖</span>Dharma Articles</a>
-      <a href="lessons.html"><span class="drawer-icon">🪔</span>Dharma Lessons</a>
-      <a href="community.html"><span class="drawer-icon">🙏</span>Community</a>
-      <div class="drawer-divider"></div>
-      <a href="premium.html"><span class="drawer-icon">✦</span>Premium Plans</a>
-      <a href="privacy.html"><span class="drawer-icon">🔒</span>Privacy Policy</a>
-    </nav>
-    <div class="drawer-bottom">
-      <a class="drawer-cta" href="chat.html">Try DharmaChat Free 🕉️</a>
-      <div id="drawerAuth"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-  var burger = document.getElementById('burgerBtn');
-  var drawer = document.getElementById('mobileDrawer');
-  var overlay = document.getElementById('drawerOverlay');
-  var closeBtn = document.getElementById('drawerClose');
-  function openDrawer() { drawer.classList.add('open'); burger.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeDrawer() { drawer.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow = ''; }
-  burger.addEventListener('click', function() { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
-  overlay.addEventListener('click', closeDrawer);
-  closeBtn.addEventListener('click', closeDrawer);
-  drawer.querySelectorAll('.drawer-nav a').forEach(function(a) { a.addEventListener('click', closeDrawer); });
-</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -509,7 +387,7 @@
         <div class="sadhana-text">Write to Krishna</div>
       </a>
       <a href="lessons.html" class="sadhana-card">
-        <div class="sadhana-icon" style="background:linear-gradient(135deg,#2a0800,#5A0A0A);border-radius:14px;"><img src="om-book.png" alt="Dharma Trivia" style="height:64px;"/></div>
+        <div class="sadhana-icon"><img src="om-book.png" alt="Dharma Trivia"/></div>
         <div class="sadhana-label">DHARMA TRIVIA • 1 MIN</div>
         <div class="sadhana-text">Test your knowledge</div>
       </a>
@@ -1190,7 +1068,7 @@ function notifyForApp() {
     </div>
     <div class="footer-bottom">
       <span>Copyright &copy; 2026 DharmaChat. All Rights Reserved.</span>
-      <span>🕉️ &nbsp; Founded &amp; built by Sukhil Babu · Bengaluru, India</span>
+      <span> &nbsp; Made with reverence in India &nbsp; • &nbsp; Founded &amp; built by Sukhil Babu · Bengaluru</span>
       <div style="display:flex;gap:16px;">
         <a href="privacy.html">Privacy Policy</a>
         <a href="privacy.html">Terms &amp; Conditions</a>
@@ -1212,10 +1090,5 @@ function notifyForApp() {
 </script>
 
 <script type="module" src="nav.js"></script>
-<script>
-  document.getElementById('burgerBtn').addEventListener('click', function() {
-    alert('Menu opened! (We will connect the full drawer in next step)');
-  });
-</script>  
 </body>
 </html>
