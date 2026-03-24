@@ -266,6 +266,145 @@
     .mission-grid, .scripture-grid, .lessons-grid, .questions-grid, .verse-cats { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .burger { display: flex; }
+  }
+
+  /* BURGER BUTTON — hidden on desktop, shown on mobile */
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    z-index: 1001;
+    flex-shrink: 0;
+  }
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--maroon);
+    border-radius: 2px;
+    transition: all .32s cubic-bezier(.4,0,.2,1);
+    transform-origin: center;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE DRAWER */
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+  }
+  .mobile-drawer.open { display: block; }
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,0,0,0.55);
+    backdrop-filter: blur(3px);
+    animation: drawerFadeIn .25s ease;
+  }
+  @keyframes drawerFadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes drawerSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  .drawer-panel {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: min(290px, 82vw);
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    animation: drawerSlideIn .3s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto;
+  }
+  .drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: var(--maroon-dk);
+    border-bottom: 1px solid rgba(212,160,23,0.25);
+    flex-shrink: 0;
+  }
+  .drawer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14px;
+    color: var(--gold-lt);
+    text-decoration: none;
+  }
+  .drawer-brand img {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .drawer-x {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,160,23,0.35);
+    background: rgba(212,160,23,0.1);
+    color: var(--gold-lt);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .drawer-links {
+    flex: 1;
+    padding: 12px 0;
+  }
+  .drawer-links a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: .04em;
+    color: var(--text-mid);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all .18s;
+  }
+  .drawer-links a:hover {
+    background: rgba(212,160,23,0.08);
+    color: var(--saffron);
+    border-left-color: var(--saffron);
+  }
+  .drawer-links .di { font-size: 17px; width: 22px; text-align: center; }
+  .drawer-hr { height: 1px; background: rgba(212,160,23,0.15); margin: 6px 22px; }
+  .drawer-foot {
+    padding: 18px 22px;
+    border-top: 1px solid rgba(212,160,23,0.15);
+    flex-shrink: 0;
+  }
+  .drawer-cta-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    color: white;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(232,97,26,0.35);
   }
 
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
@@ -296,8 +435,52 @@
       <div id="navAuth"></div>
       <a class="btn-primary" href="chat.html">Try Free</a>
     </div>
+    <!-- Burger: only visible on mobile via CSS -->
+    <button class="burger" id="burgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER — only rendered/visible on mobile -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <a class="drawer-brand" href="index.html">
+        <img src="logo.jpeg" alt="DharmaChat"/>
+        DharmaChat
+      </a>
+      <button class="drawer-x" id="drawerClose">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a href="chat.html"><span class="di">🕉️</span>AI Dharma Guide</a>
+      <a href="articles.html"><span class="di">📖</span>Dharma Articles</a>
+      <a href="lessons.html"><span class="di">🪔</span>Dharma Lessons</a>
+      <a href="community.html"><span class="di">🙏</span>Community</a>
+      <div class="drawer-hr"></div>
+      <a href="premium.html"><span class="di">✦</span>Go Premium</a>
+      <a href="privacy.html"><span class="di">🔒</span>Privacy Policy</a>
+    </div>
+    <div class="drawer-foot">
+      <a class="drawer-cta-btn" href="chat.html">Try DharmaChat Free 🕉️</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var btn = document.getElementById('burgerBtn');
+  var drawer = document.getElementById('mobileDrawer');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeX = document.getElementById('drawerClose');
+  function open(){ drawer.classList.add('open'); btn.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ drawer.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow=''; }
+  btn.addEventListener('click', function(){ drawer.classList.contains('open') ? close() : open(); });
+  overlay.addEventListener('click', close);
+  closeX.addEventListener('click', close);
+  drawer.querySelectorAll('.drawer-links a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero">
