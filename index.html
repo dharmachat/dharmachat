@@ -169,8 +169,10 @@
   .scriptures .section-sub { color: rgba(255,255,255,0.6); }
   .scriptures .section-tag { background: rgba(212,160,23,0.15); color: var(--gold-lt); }
   .scripture-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
-  .scripture-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2); border-radius: var(--radius); padding: 32px 24px; transition: all .25s; position: relative; overflow: hidden; }
+  .scripture-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2); border-radius: var(--radius); padding: 32px 24px; transition: all .25s; position: relative; overflow: hidden; text-decoration: none; display: block; cursor: pointer; }
   .scripture-card:hover { background: rgba(212,160,23,0.1); border-color: rgba(212,160,23,0.5); transform: translateY(-4px); }
+  .scripture-card .read-arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .08em; color: var(--gold-lt); opacity: 0; transform: translateX(-6px); transition: all .25s; }
+  .scripture-card:hover .read-arrow { opacity: 1; transform: translateX(0); }
   .scripture-num { font-family: 'Cinzel Decorative', serif; font-size: 48px; color: rgba(212,160,23,0.2); line-height: 1; margin-bottom: 16px; }
   .scripture-name { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold-lt); font-weight: 700; margin-bottom: 8px; }
   .scripture-sanskrit { font-family: 'EB Garamond', serif; font-style: italic; font-size: 14px; color: rgba(212,160,23,0.6); margin-bottom: 12px; }
@@ -809,48 +811,61 @@ loadShloka();
     <h2 class="section-title">Explore 18+ Sacred Scriptures</h2>
     <p class="section-sub">From the eternal Vedas to the beloved epics — DharmaChat brings the full treasury of Hindu wisdom to your fingertips.</p>
     <div class="scripture-grid fade-up">
-      <div class="scripture-card">
+
+      <a class="scripture-card" href="bhagavad-gita.html">
         <div class="scripture-num">01</div>
         <div class="scripture-name">Bhagavad Gita</div>
         <div class="scripture-sanskrit">भगवद्गीता</div>
         <p class="scripture-desc">The divine song of Lord Krishna to Arjuna on the battlefield of Kurukshetra — the ultimate guide to life, duty, and liberation.</p>
         <span class="scripture-count">700 Shlokas · 18 Chapters</span>
-      </div>
-      <div class="scripture-card">
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
+      <a class="scripture-card" href="mahabharata.html">
         <div class="scripture-num">02</div>
         <div class="scripture-name">Mahabharata</div>
         <div class="scripture-sanskrit">महाभारत</div>
         <p class="scripture-desc">The world's longest epic — a timeless narrative of dharma, war, love, and wisdom across 100,000 verses and 18 parvas.</p>
         <span class="scripture-count">100,000 Verses · 18 Parvas</span>
-      </div>
-      <div class="scripture-card">
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
+      <a class="scripture-card" href="ramayana.html">
         <div class="scripture-num">03</div>
         <div class="scripture-name">Ramayana</div>
         <div class="scripture-sanskrit">रामायण</div>
         <p class="scripture-desc">The sacred story of Lord Rama — an immortal tale of devotion, virtue, courage, and the eternal battle between dharma and adharma.</p>
         <span class="scripture-count">24,000 Verses · 7 Kandas</span>
-      </div>
-      <div class="scripture-card">
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
+      <a class="scripture-card" href="upanishads.html">
         <div class="scripture-num">04</div>
         <div class="scripture-name">The Upanishads</div>
         <div class="scripture-sanskrit">उपनिषद्</div>
         <p class="scripture-desc">The philosophical crown of the Vedas — 108 texts exploring Brahman, Atman, consciousness, and the nature of ultimate reality.</p>
         <span class="scripture-count">108 Texts · Principal 13</span>
-      </div>
-      <div class="scripture-card">
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
+      <a class="scripture-card" href="vedas.html">
         <div class="scripture-num">05</div>
         <div class="scripture-name">The Vedas</div>
         <div class="scripture-sanskrit">वेद</div>
         <p class="scripture-desc">The most ancient sacred knowledge of humanity — Rigveda, Yajurveda, Samaveda and Atharvaveda form the eternal foundation of Dharma.</p>
         <span class="scripture-count">4 Vedas · Countless Mantras</span>
-      </div>
-      <div class="scripture-card">
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
+      <a class="scripture-card" href="puranas.html">
         <div class="scripture-num">06</div>
         <div class="scripture-name">Puranas</div>
         <div class="scripture-sanskrit">पुराण</div>
         <p class="scripture-desc">The 18 Mahapuranas including Bhagavata, Vishnu, Shiva, Devi Bhagavata and more — ancient stories of creation, gods, and cosmic cycles.</p>
         <span class="scripture-count">18 Mahapuranas</span>
-      </div>
+        <div class="read-arrow">Read Now →</div>
+      </a>
+
     </div>
   </div>
 </section>
