@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ramayana — Complete Story in 6 Languages | DharmaChat</title>
+<meta name="description" content="Read the complete Valmiki Ramayana — all 7 Kandas — in English, Hindi, Kannada, Tamil, Telugu and Malayalam. The sacred story of Lord Rama, Sita, Hanuman and the eternal triumph of dharma."/>
+<link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--saffron:#E8611A;--saffron-lt:#F5832A;--gold:#D4A017;--gold-lt:#F0C040;--gold-dk:#A07800;--maroon:#6B1A1A;--maroon-dk:#3E0000;--maroon-mid:#5A0A0A;--cream:#FDF6E3;--cream-dk:#F5EDD0;--white:#FFFFFF;--text-dark:#1E0A00;--text-mid:#4A2010;--text-lt:#8B6050;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans',sans-serif;background:var(--cream);color:var(--text-dark);line-height:1.6;overflow-x:hidden}
+nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-wrap img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.logo-name{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-lt)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-link{font-family:'Cinzel',serif;font-size:12px;color:rgba(240,192,64,0.65);text-decoration:none;letter-spacing:.06em}
+.nav-link:hover{color:var(--gold-lt)}
+.btn-upgrade{background:linear-gradient(135deg,var(--gold),var(--saffron));color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:.05em}
+.hero{background:linear-gradient(160deg,var(--maroon-dk) 0%,#4A0A0A 40%,#7A2000 70%,#3E0000 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='58' fill='none' stroke='%23D4A017' stroke-opacity='0.07' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23D4A017' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E") repeat;opacity:.7}
+.hero::after{content:'🏹';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:380px;opacity:.04;pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;padding:5px 18px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(28px,5vw,52px);color:var(--white);line-height:1.15;margin-bottom:10px;text-shadow:0 2px 20px rgba(0,0,0,0.4)}
+.hero h1 span{color:var(--gold-lt)}
+.hero-devanagari{font-family:'EB Garamond',serif;font-size:26px;color:rgba(240,192,64,0.5);margin-bottom:12px}
+.hero-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,0.65);max-width:700px;margin:0 auto 16px;line-height:1.7}
+.hero-meta{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-bottom:36px}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.hero-stat{text-align:center}
+.hero-stat strong{display:block;font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--gold-lt);line-height:1}
+.hero-stat span{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-top:4px;display:block}
+.premium-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(212,160,23,0.2),rgba(232,97,26,0.15));border:1px solid rgba(212,160,23,0.4);border-radius:50px;padding:8px 20px;font-family:'Cinzel',serif;font-size:12px;color:var(--gold-lt);letter-spacing:.08em}
+.lang-bar{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.15);padding:14px 24px;position:sticky;top:64px;z-index:100}
+.lang-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lang-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.35);margin-right:4px;flex-shrink:0}
+.lang-btn{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.04em;padding:6px 14px;border-radius:50px;border:1px solid rgba(212,160,23,0.2);background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;transition:all .2s;flex-shrink:0}
+.lang-btn:hover{background:rgba(212,160,23,0.1);color:var(--gold-lt)}
+.lang-btn.active{background:rgba(212,160,23,0.2);border-color:rgba(212,160,23,0.5);color:var(--gold-lt)}
+.progress-bar{max-width:900px;margin:0 auto;padding:20px 24px 0}
+.progress-track{display:flex;gap:4px;align-items:center}
+.progress-k{height:4px;border-radius:2px;flex:1;background:rgba(107,26,26,0.15);cursor:pointer;transition:all .2s;position:relative}
+.progress-k.free-k{background:linear-gradient(90deg,var(--saffron),var(--gold))}
+.progress-k:hover::after{content:attr(data-name);position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:var(--maroon-dk);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:9px;padding:3px 8px;border-radius:4px;white-space:nowrap;pointer-events:none}
+.main{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+.kanda{margin-bottom:64px}
+.kanda-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid rgba(212,160,23,0.15)}
+.kanda-num{font-family:'Cinzel Decorative',serif;font-size:52px;color:rgba(212,160,23,0.2);line-height:1;flex-shrink:0;min-width:60px}
+.kanda-badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:.12em;padding:3px 10px;border-radius:20px;background:rgba(232,97,26,0.1);color:var(--saffron);margin-bottom:8px}
+.kanda-title{font-family:'Cinzel',serif;font-size:24px;color:var(--maroon-dk);font-weight:700;line-height:1.2;margin-bottom:4px}
+.kanda-sanskrit{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:var(--gold-dk)}
+.kanda-meta{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.08em;color:#bbb;margin-top:6px}
+.story{background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.07);box-shadow:0 2px 12px rgba(107,26,26,0.05);padding:28px;margin-bottom:20px}
+.story-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--saffron);margin-bottom:12px}
+.story h3{font-family:'Cinzel',serif;font-size:18px;color:var(--maroon-dk);font-weight:700;margin-bottom:14px;line-height:1.4}
+.story-text{font-family:'EB Garamond',serif;font-size:18px;line-height:1.85;color:var(--text-dark)}
+.story-text p{margin-bottom:16px}
+.story-text strong{color:var(--maroon-dk)}
+.shloka-block{background:linear-gradient(135deg,rgba(62,0,0,0.03),rgba(212,160,23,0.06));border:1px solid rgba(212,160,23,0.2);border-radius:12px;padding:22px 26px;margin:20px 0;text-align:center}
+.shloka-sanskrit{font-family:'EB Garamond',serif;font-size:20px;color:var(--maroon-dk);line-height:1.7;margin-bottom:6px;font-weight:500}
+.shloka-meaning{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--text-mid);line-height:1.6;margin-bottom:6px}
+.shloka-source{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.08em;color:var(--gold-dk)}
+.teaching-box{background:linear-gradient(135deg,rgba(62,0,0,0.06),rgba(212,160,23,0.04));border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0}
+.teaching-box h4{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.1em;color:var(--saffron);margin-bottom:8px}
+.teaching-box p{font-family:'EB Garamond',serif;font-style:italic;font-size:17px;color:var(--text-mid);line-height:1.7}
+.kanda.locked-k{position:relative}
+.kanda.locked-k .kanda-content{filter:blur(5px);user-select:none;pointer-events:none;max-height:200px;overflow:hidden}
+.paywall-overlay{position:absolute;bottom:0;left:0;right:0;z-index:10;background:linear-gradient(to top,var(--cream) 50%,transparent 100%);padding:0 0 24px;text-align:center}
+.paywall-box{background:linear-gradient(135deg,var(--maroon-dk),var(--maroon-mid));border-radius:20px;padding:32px 28px;margin:0 auto;max-width:560px;border:1px solid rgba(212,160,23,0.3);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.paywall-icon{font-size:36px;margin-bottom:12px}
+.paywall-box h3{font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold-lt);margin-bottom:10px}
+.paywall-box p{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.6}
+.paywall-features{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.paywall-feature{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;color:var(--gold-lt);background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.2);border-radius:50px;padding:5px 14px}
+.btn-unlock{display:block;width:fit-content;margin:0 auto 12px;padding:14px 36px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(232,97,26,0.4);transition:all .2s}
+.btn-unlock:hover{transform:translateY(-2px)}
+.paywall-note{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:.06em}
+.k-divider{text-align:center;margin:48px 0;display:flex;align-items:center;gap:16px}
+.k-divider::before,.k-divider::after{content:'';flex:1;height:1px;background:rgba(107,26,26,0.1)}
+.k-divider span{font-family:'EB Garamond',serif;font-size:24px;color:rgba(212,160,23,0.3)}
+.k-nav{background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);padding:24px;margin-bottom:40px}
+.k-nav h3{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.1em;color:var(--maroon-dk);margin-bottom:16px;font-weight:700}
+.k-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.k-nav-item{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.04em;padding:8px 10px;border-radius:8px;border:1px solid rgba(107,26,26,0.08);color:var(--text-mid);text-decoration:none;display:flex;align-items:center;gap:6px;line-height:1.3;transition:all .2s}
+.k-nav-item:hover{background:rgba(107,26,26,0.04);border-color:rgba(212,160,23,0.25);color:var(--maroon)}
+footer{background:var(--maroon-dk);padding:40px 24px;text-align:center}
+footer p{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:.05em}
+footer a{color:rgba(240,192,64,0.5);text-decoration:none;margin:0 10px}
+@media(max-width:600px){.kanda-header{flex-direction:column;gap:10px}.kanda-num{font-size:36px}.kanda-title{font-size:18px}.k-nav-grid{grid-template-columns:repeat(2,1fr)}nav .nav-right .nav-link{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo-wrap" href="index.html"><img src="logo.jpeg" alt="DharmaChat"/><span class="logo-name">DharmaChat</span></a>
+  <div class="nav-right">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="articles.html">Articles</a>
+    <a class="btn-upgrade" href="premium.html">👑 Go Premium</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">✦ VALMIKI RAMAYANA · 24,000 VERSES</div>
+  <h1>The <span>Ramayana</span></h1>
+  <div class="hero-devanagari">रामायण</div>
+  <p class="hero-sub">The sacred journey of Lord Rama — an immortal tale of perfect love, unshakeable dharma, absolute devotion, and the eternal triumph of righteousness over evil across 24,000 verses.</p>
+  <p class="hero-meta">7 KANDAS · 6 LANGUAGES · 24,000 VERSES · THE STORY OF IDEAL DHARMA</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>7</strong><span>KANDAS</span></div>
+    <div class="hero-stat"><strong>6</strong><span>LANGUAGES</span></div>
+    <div class="hero-stat"><strong>24,000</strong><span>VERSES</span></div>
+    <div class="hero-stat"><strong>500</strong><span>CHAPTERS</span></div>
+  </div>
+  <div class="premium-badge">🏹 &nbsp; Kandas 1–2 Free · Unlock all 7 with Premium</div>
+</div>
+
+<div class="lang-bar">
+  <div class="lang-inner">
+    <span class="lang-label">READ IN:</span>
+    <button class="lang-btn active" onclick="setLang('en',this)">English</button>
+    <button class="lang-btn" onclick="setLang('hi',this)">हिंदी</button>
+    <button class="lang-btn" onclick="setLang('kn',this)">ಕನ್ನಡ</button>
+    <button class="lang-btn" onclick="setLang('ta',this)">தமிழ்</button>
+    <button class="lang-btn" onclick="setLang('te',this)">తెలుగు</button>
+    <button class="lang-btn" onclick="setLang('ml',this)">മലയാളം</button>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-track" id="progressTrack"></div></div>
+
+<div class="main">
+  <div class="k-nav">
+    <h3>🏹 ALL 7 KANDAS OF THE VALMIKI RAMAYANA</h3>
+    <div class="k-nav-grid" id="kandaNavGrid"></div>
+  </div>
+
+  <!-- KANDA 1 — BALA KANDA (FREE) -->
+  <div class="kanda" id="k-1">
+    <div class="kanda-header">
+      <div class="kanda-num">01</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">FREE · 77 SARGAS · 2,145 SHLOKAS</div>
+        <div class="kanda-title" data-lang="en">Bala Kanda — The Book of Childhood</div>
+        <div class="kanda-title" data-lang="hi" style="display:none;">बाल काण्ड — बाल्यकाल की कथा</div>
+        <div class="kanda-title" data-lang="kn" style="display:none;">ಬಾಲ ಕಾಂಡ — ಬಾಲ್ಯದ ಕಥೆ</div>
+        <div class="kanda-title" data-lang="ta" style="display:none;">பால காண்டம் — சிறுவயது கதை</div>
+        <div class="kanda-title" data-lang="te" style="display:none;">బాల కాండ — బాల్యపు కథ</div>
+        <div class="kanda-title" data-lang="ml" style="display:none;">ബാല കാണ്ഡം — ബാല്യകാലത്തിന്റെ കഥ</div>
+        <div class="kanda-sanskrit">बालकाण्ड</div>
+        <div class="kanda-meta">THE BIRTH OF RAMA · SAGE VISHWAMITRA · SITA'S SWAYAMVARA</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ STORY 1 · THE BIRTH OF THE IDEAL KING</div>
+        <h3 data-lang="en">How Lord Rama Came Into This World — The Divine Plan of King Dasharatha's Sons</h3>
+        <h3 data-lang="hi" style="display:none;">भगवान राम का इस संसार में आगमन — राजा दशरथ के पुत्रों की दैवी योजना</h3>
+        <h3 data-lang="kn" style="display:none;">ಭಗವಾನ್ ರಾಮ ಈ ಜಗತ್ತಿಗೆ ಬಂದ ಕಥೆ — ರಾಜ ದಶರಥನ ಪುತ್ರರ ದೈವಿಕ ಯೋಜನೆ</h3>
+        <h3 data-lang="ta" style="display:none;">இறைவன் ராமன் இவ்வுலகில் வந்த கதை — தசரதனின் புத்திரர்களின் தெய்வீக திட்டம்</h3>
+        <h3 data-lang="te" style="display:none;">భగవాన్ రాముడు ఈ లోకానికి వచ్చిన కథ — రాజు దశరథుని పుత్రుల దైవిక పథకం</h3>
+        <h3 data-lang="ml" style="display:none;">ഭഗവാൻ രാമൻ ഈ ലോകത്ത് വന്ന കഥ — രാജാ ദശരഥന്റെ പുത്രന്മാരുടെ ദൈവിക പദ്ധതി</h3>
+        <div class="story-text">
+          <div data-lang="en">
+            <p>In the ancient city of <strong>Ayodhya</strong> — whose name means "that which cannot be conquered" — on the banks of the sacred Sarayu river, there ruled the great King <strong>Dasharatha</strong> of the Solar Dynasty. He was beloved by all, righteous in every action, powerful beyond measure, yet his heart carried one great sorrow: after many decades of ruling, he had no son to carry on the dynasty.</p>
+            <p>Dasharatha had three queens: <strong>Kaushalya</strong>, the eldest and most devoted; <strong>Kaikeyi</strong>, the beautiful and spirited warrior-princess who had once saved Dasharatha's life on the battlefield; and <strong>Sumitra</strong>, the gentle and wise. All three were noble, but none had given him an heir. The king was growing old. The land needed a successor.</p>
+            <p>At the advice of his great guru <strong>Vashishtha</strong>, Dasharatha performed the <strong>Putrakameshti Yajna</strong> — a sacred fire sacrifice specifically performed to beget sons — under the guidance of the sage Rishyashringa. From the sacred flames emerged a divine being carrying a golden vessel of <strong>payasam</strong> (sacred pudding). The gods themselves had heard Dasharatha's prayer and sent their blessings.</p>
+            <p>Dasharatha distributed the payasam among his queens: half to Kaushalya, half of the remainder to Kaikeyi, and the last portion divided between Sumitra — who received it twice. In due course, four divine sons were born: <strong>Rama</strong> to Kaushalya on the ninth day of Chaitra (now celebrated as Ram Navami), <strong>Bharata</strong> to Kaikeyi, and the twins <strong>Lakshmana</strong> and <strong>Shatrughna</strong> to Sumitra. But Rama — born under the Punarvasu nakshatra, when five planets were in their highest positions — was no ordinary prince. The gods whispered: <strong>the Vishnu himself had been born.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">रामो विग्रहवान् धर्मः साधुः सत्यपराक्रमः।<br>राजा सर्वस्य लोकस्य देवानां मघवानिव॥</div>
+              <div class="shloka-meaning">"Rama is Dharma incarnate. He is the embodiment of goodness, truth and valor. He is to all people what Indra is to all the gods — the king, the protector, the upholder."</div>
+              <div class="shloka-source">— Valmiki Ramayana · Bala Kanda · 1.1.1</div>
+            </div>
+          </div>
+          <div data-lang="hi" style="display:none;">
+            <p>प्राचीन नगरी <strong>अयोध्या</strong> में — जिसका अर्थ है "जिसे जीता न जा सके" — पवित्र सरयू नदी के तट पर, सूर्यवंश के महान राजा <strong>दशरथ</strong> राज करते थे। वे प्रजाप्रिय थे, हर कार्य में धर्मनिष्ठ थे, असीम पराक्रमी थे — किन्तु उनके हृदय में एक बड़ा दुख था: कई दशकों के शासन के बाद भी उनके कोई पुत्र नहीं था।</p>
+            <p>दशरथ की तीन रानियाँ थीं: <strong>कौशल्या</strong> — ज्येष्ठ और परम भक्त; <strong>कैकेयी</strong> — वह सुंदर और वीर राजकुमारी जिसने एक बार युद्धभूमि पर दशरथ के प्राण बचाए थे; और <strong>सुमित्रा</strong> — शांत और विवेकशील। तीनों महान थीं, किन्तु किसी ने उन्हें उत्तराधिकारी नहीं दिया था।</p>
+            <p>महागुरु <strong>वशिष्ठ</strong> के परामर्श पर दशरथ ने <strong>पुत्रकामेष्टि यज्ञ</strong> कराया। पवित्र अग्नि से एक दिव्य पुरुष प्रकट हुए जो स्वर्ण पात्र में <strong>पायस</strong> (खीर) लिए हुए थे। देवताओं ने दशरथ की प्रार्थना सुन ली थी और अपना आशीर्वाद भेजा था।</p>
+            <p>दशरथ ने पायस तीनों रानियों में बाँटा। तत्पश्चात चार दिव्य पुत्रों का जन्म हुआ: कौशल्या के गर्भ से चैत्र शुक्ल नवमी को <strong>राम</strong>, कैकेयी से <strong>भरत</strong>, और सुमित्रा से जुड़वाँ <strong>लक्ष्मण</strong> और <strong>शत्रुघ्न</strong>। लेकिन राम — पुनर्वसु नक्षत्र में पाँच ग्रहों की उच्च स्थिति में जन्मे — कोई साधारण राजकुमार नहीं थे। देवताओं ने फुसफुसाया: <strong>स्वयं विष्णु ने जन्म लिया है।</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">रामो विग्रहवान् धर्मः साधुः सत्यपराक्रमः।</div>
+              <div class="shloka-meaning">"राम साक्षात् धर्म के मूर्त रूप हैं। वे साधुता, सत्य और पराक्रम के अवतार हैं।"</div>
+              <div class="shloka-source">— वाल्मीकि रामायण · बाल काण्ड</div>
+            </div>
+          </div>
+          <div data-lang="kn" style="display:none;">
+            <p>ಪ್ರಾಚೀನ ನಗರ <strong>ಅಯೋಧ್ಯೆ</strong>ಯಲ್ಲಿ — "ಯಾರಿಂದಲೂ ಜಯಿಸಲ್ಪಡಲಾಗದ" ಎಂಬ ಅರ್ಥದ ನಗರ — ಪವಿತ್ರ ಸರಯೂ ನದಿಯ ದಡದಲ್ಲಿ, ಸೂರ್ಯವಂಶದ ಮಹಾ ರಾಜ <strong>ದಶರಥ</strong> ರಾಜ್ಯಭಾರ ಮಾಡುತ್ತಿದ್ದರು. ಅವರು ಪ್ರಜಾಪ್ರಿಯರು, ಧರ್ಮನಿಷ್ಠರು, ಅಸೀಮ ಪರಾಕ್ರಮಿ — ಆದರೆ ಅವರ ಹೃದಯದಲ್ಲಿ ಒಂದು ದೊಡ್ಡ ದುಃಖ ಇತ್ತು: ಹಲವು ದಶಕಗಳ ಆಳ್ವಿಕೆಯ ನಂತರವೂ ಅವರಿಗೆ ಮಗನಿರಲಿಲ್ಲ.</p>
+            <p>ದಶರಥರಿಗೆ ಮೂರು ರಾಣಿಯರು ಇದ್ದರು: <strong>ಕೌಸಲ್ಯ</strong> — ಹಿರಿಯ ಮತ್ತು ಅತ್ಯಂತ ಭಕ್ತ; <strong>ಕೈಕೇಯಿ</strong> — ಸುಂದರ ಮತ್ತು ವೀರ ರಾಜಕುಮಾರಿ, ಒಮ್ಮೆ ಯುದ್ಧಭೂಮಿಯಲ್ಲಿ ದಶರಥರ ಪ್ರಾಣ ಉಳಿಸಿದ ಕೀರ್ತಿ ಹೊಂದಿದ್ದಳು; ಮತ್ತು <strong>ಸುಮಿತ್ರ</strong> — ಶಾಂತ ಮತ್ತು ವಿವೇಕಿ. ಮಹಾಗುರು <strong>ವಶಿಷ್ಠ</strong>ರ ಸಲಹೆಯ ಮೇರೆಗೆ ದಶರಥರು <strong>ಪುತ್ರಕಾಮೇಷ್ಟಿ ಯಜ್ಞ</strong> ನಡೆಸಿದರು. ಅಗ್ನಿಯಿಂದ ದಿವ್ಯ ಪಾಯಸ ಪ್ರಕಟವಾಯಿತು.</p>
+            <p>ಅನಂತರ ನಾಲ್ಕು ದಿವ್ಯ ಪುತ್ರರು ಜನಿಸಿದರು: ಕೌಸಲ್ಯೆಗೆ <strong>ರಾಮ</strong>, ಕೈಕೇಯಿಗೆ <strong>ಭರತ</strong>, ಮತ್ತು ಸುಮಿತ್ರೆಗೆ ಅವಳಿ <strong>ಲಕ್ಷ್ಮಣ</strong> ಮತ್ತು <strong>ಶತ್ರುಘ್ನ</strong>. ದೇವತೆಗಳು ಮೆಲ್ಲಗೆ ಹೇಳಿದರು: <strong>ವಿಷ್ಣುವೇ ಜನ್ಮ ತಾಳಿದ್ದಾನೆ.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ರಾಮೋ ವಿಗ್ರಹವಾನ್ ಧರ್ಮಃ ಸಾಧುಃ ಸತ್ಯಪರಾಕ್ರಮಃ</div>
+              <div class="shloka-meaning">"ರಾಮ ಸಾಕ್ಷಾತ್ ಧರ್ಮದ ಮೂರ್ತಿ. ಅವರು ಸಾಧುತ್ವ, ಸತ್ಯ ಮತ್ತು ಪರಾಕ್ರಮದ ಅವತಾರ."</div>
+              <div class="shloka-source">— ವಾಲ್ಮೀಕಿ ರಾಮಾಯಣ · ಬಾಲ ಕಾಂಡ</div>
+            </div>
+          </div>
+          <div data-lang="ta" style="display:none;">
+            <p>பண்டைய நகரம் <strong>அயோத்தியில்</strong> — "யாராலும் வெல்ல முடியாதது" என்று பொருள்படும் பெயர் — புனித சரயூ நதியின் கரையில், சூரிய வம்சத்தின் மாவீரன் <strong>தசரதன்</strong> ஆட்சி புரிந்தான். அவன் குடிமக்களால் நேசிக்கப்பட்டவன், நீதி மார்க்கத்தில் நடந்தவன், வீரமிக்கவன் — ஆனால் அவன் இதயத்தில் ஒரு பெரும் வலி இருந்தது: பல தசாப்தங்களாக ஆட்சி செய்தும் அவனுக்கு வாரிசு இல்லை.</p>
+            <p>தசரதனுக்கு மூன்று மனைவிகள் இருந்தனர்: <strong>கௌசல்யை</strong> — மூத்தவள், மிகவும் பக்தியுள்ளவள்; <strong>கைகேயி</strong> — அழகான போர்வீரக் குமாரி, ஒருமுறை போர்க்களத்தில் தசரதனின் உயிரைக் காப்பாற்றினவள்; மற்றும் <strong>சுமித்ரை</strong> — அமைதியானவள், ஞானமுள்ளவள். மஹாகுரு <strong>வசிஷ்டரின்</strong> ஆலோசனைப்படி தசரதன் <strong>புத்ரகாமேஷ்டி யாகம்</strong> நடத்தினான். தேவர்கள் கேட்டனர், புனித பாயசம் தோன்றியது.</p>
+            <p>நான்கு தெய்வீக மகன்கள் பிறந்தனர்: கௌசல்யைக்கு <strong>ராமன்</strong>, கைகேயிக்கு <strong>பரதன்</strong>, சுமித்ரைக்கு இரட்டையர் <strong>லட்சுமணன்</strong> மற்றும் <strong>சத்துருக்னன்</strong>. தேவர்கள் மெல்ல கூறினர்: <strong>விஷ்ணுவே அவதரித்திருக்கிறார்.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ராமோ விக்ரஹவான் தர்மஃ ஸாதுஃ ஸத்யபராக்ரமஃ</div>
+              <div class="shloka-meaning">"ராமன் தர்மத்தின் உடல் வடிவம். அவர் நல்லொழுக்கம், உண்மை மற்றும் வீரத்தின் அவதாரம்."</div>
+              <div class="shloka-source">— வால்மீகி ராமாயணம் · பால காண்டம்</div>
+            </div>
+          </div>
+          <div data-lang="te" style="display:none;">
+            <p>పురాతన నగరం <strong>అయోధ్యలో</strong> — "ఎవరూ జయించలేనిది" అని అర్థం — పవిత్ర సరయూ నది ఒడ్డున, సూర్యవంశపు మహారాజు <strong>దశరథుడు</strong> పాలించేవాడు. అతను ప్రజాప్రియుడు, ధర్మనిష్ఠుడు, అపార పరాక్రమవంతుడు — కానీ అతని హృదయంలో ఒక గొప్ప దుఃఖం ఉండేది: దశకాల పాలన తర్వాత కూడా వారసుడు లేడు.</p>
+            <p>దశరథుడికి ముగ్గురు రాణులు: <strong>కౌసల్య</strong> — పెద్ద రాణి, అత్యంత భక్తిమంతురాలు; <strong>కైకేయి</strong> — అందమైన, వీర రాజకుమారి, ఒకప్పుడు యుద్ధభూమిలో దశరథుని ప్రాణాలు కాపాడింది; మరియు <strong>సుమిత్ర</strong> — శాంతస్వభావి, వివేకి. మహాగురు <strong>వశిష్ఠుని</strong> సలహాపై దశరథుడు <strong>పుత్రకామేష్టి యజ్ఞం</strong> నిర్వహించాడు. పవిత్ర అగ్ని నుండి దివ్య పాయసం ప్రత్యక్షమైంది.</p>
+            <p>నాలుగు దివ్య పుత్రులు జన్మించారు: కౌసల్యకు <strong>రాముడు</strong>, కైకేయికి <strong>భరతుడు</strong>, సుమిత్రకు జంట <strong>లక్ష్మణుడు</strong> మరియు <strong>శత్రుఘ్నుడు</strong>. దేవతలు మెల్లగా అన్నారు: <strong>విష్ణువు స్వయంగా జన్మించాడు.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">రామో విగ్రహవాన్ ధర్మః సాధుః సత్యపరాక్రమః</div>
+              <div class="shloka-meaning">"రాముడు ధర్మం యొక్క సాకారం. అతను సాధుత్వం, సత్యం మరియు పరాక్రమం యొక్క అవతారం."</div>
+              <div class="shloka-source">— వాల్మీకి రామాయణం · బాల కాండ</div>
+            </div>
+          </div>
+          <div data-lang="ml" style="display:none;">
+            <p>പ്രാചീന നഗരം <strong>അയോദ്ധ്യയിൽ</strong> — "ആർക്കും ജയിക്കാൻ കഴിയാത്തത്" എന്ന് അർത്ഥം — പുണ്യ സരയൂ നദിയുടെ തീരത്ത്, സൂര്യ വംശത്തിലെ മഹാരാജാ <strong>ദശരഥൻ</strong> ഭരിച്ചിരുന്നു. അദ്ദേഹം പ്രജകൾ സ്നേഹിക്കുന്ന, ധർമ്മ നിഷ്ഠ, അപാര പരാക്രമം ഉള്ളവൻ — എന്നാൽ ഹൃദയത്തിൽ ഒരു വലിയ ദുഃഖം ഉണ്ടായിരുന്നു: ദശകങ്ങൾ ഭരിച്ചിട്ടും പുത്രൻ ഇല്ലായിരുന്നു.</p>
+            <p>ദശരഥന് മൂന്ന് ഭാര്യമാർ: <strong>കൗശല്യ</strong> — മൂത്ത രാജ്ഞി, അത്യന്ത ഭക്ത; <strong>കൈകേയി</strong> — സുന്ദരി, വീര രാജകുമാരി, ഒരിക്കൽ യുദ്ധഭൂമിയിൽ ദശരഥന്റെ ജീവൻ രക്ഷിച്ചവൾ; <strong>സുമിത്ര</strong> — ശാന്ത, ജ്ഞാനി. മഹാഗുരു <strong>വശിഷ്ഠന്റെ</strong> ഉപദേശപ്രകാരം <strong>പുത്രകാമേഷ്ടി യജ്ഞം</strong> നടത്തി. ദിവ്യ പായസം പ്രത്യക്ഷമായി.</p>
+            <p>നാല് ദിവ്യ പുത്രന്മാർ ജനിച്ചു: കൗശല്യക്ക് <strong>രാമൻ</strong>, കൈകേയിക്ക് <strong>ഭരതൻ</strong>, സുമിത്രക്ക് ഇരട്ടകൾ <strong>ലക്ഷ്മണൻ</strong> മരിയും <strong>ശത്രുഘ്നൻ</strong>. ദേവന്മാർ മന്ത്രിച്ചു: <strong>വിഷ്ണു തന്നെ ജനിച്ചിരിക്കുന്നു.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">രാമോ വിഗ്രഹവാൻ ധർമ്മഃ സാധുഃ സത്യ പരാക്രമഃ</div>
+              <div class="shloka-meaning">"രാമൻ ധർമ്മത്തിന്റെ ഉടൽ. അദ്ദേഹം സദ്ഗുണം, സത്യം, പരാക്രമം എന്നിവയുടെ അവതാരം."</div>
+              <div class="shloka-source">— വാൽമീകി രാമായണം · ബാല കാണ്ഡം</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story">
+        <div class="story-label">✦ STORY 2 · THE SWAYAMVARA OF SITA</div>
+        <h3 data-lang="en">How Rama Broke the Bow of Shiva and Won the Hand of Sita Devi</h3>
+        <h3 data-lang="hi" style="display:none;">राम ने शिव का धनुष तोड़कर सीता देवी का वरण किया</h3>
+        <h3 data-lang="kn" style="display:none;">ರಾಮ ಶಿವನ ಬಿಲ್ಲನ್ನು ಮುರಿದು ಸೀತಾ ದೇವಿಯನ್ನು ಗೆದ್ದ ಕಥೆ</h3>
+        <h3 data-lang="ta" style="display:none;">ராமன் சிவனின் வில்லை முறித்து சீதா தேவியை வென்ற கதை</h3>
+        <h3 data-lang="te" style="display:none;">రాముడు శివుని విల్లు విరిచి సీతాదేవిని గెలుచుకున్న కథ</h3>
+        <h3 data-lang="ml" style="display:none;">രാമൻ ശിവന്റെ ധനുസ്സ് ഒടിച്ച് സീതാദേവിയെ നേടിയ കഥ</h3>
+        <div class="story-text">
+          <div data-lang="en">
+            <p>The sage <strong>Vishwamitra</strong> arrived at Dasharatha's court with an unusual request: he needed the young princes Rama and Lakshmana to protect his sacred fire sacrifices from the demons Maricha and Subahu. Dasharatha was terrified — sending his beloved young sons into the forest felt like sending them to their deaths. But Vishwamitra's word was absolute, and the guru's request could not be denied.</p>
+            <p>This journey changed everything. Rama and Lakshmana defeated the demons, learned divine weapons from Vishwamitra, and then traveled to the kingdom of <strong>Mithila</strong>, ruled by the virtuous King <strong>Janaka</strong>. There, Janaka had organized a <strong>Swayamvara</strong> — a ceremony where a princess chooses her husband — for his daughter <strong>Sita</strong>, who had been found as an infant in a furrow of the earth when Janaka was plowing his field. She was no ordinary child — she was considered a daughter of the Earth goddess Bhoomi Devi, born with divine grace.</p>
+            <p>The condition of the Swayamvara was extraordinary: any man who wished to marry Sita must first string and lift the <strong>Pinaka</strong> — the great bow of Lord Shiva, so massive and heavy that it took 300 men just to carry it on a cart. Hundreds of kings and princes had tried and failed. Even mighty Ravana, the demon king of Lanka, had attempted and been humiliated.</p>
+            <p>When Rama's turn came, he approached the bow with serene confidence. He picked it up effortlessly with one hand, strung it with the ease of a man picking up a flower — and then, to demonstrate its inadequacy for his power, <strong>pulled it so hard that it snapped in two with a sound like a thunderbolt</strong>, shaking the entire earth. The entire assembly gasped. Sita stepped forward, garland in hand, and placed it around Rama's neck. In that moment, <strong>the most celebrated love in all of Hindu mythology was sealed.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">स जग्राह धनुर्मध्ये सज्यं च क्षणमात्रतः।<br>लीलयैव महाबाहुः पूरयामास तद् धनुः॥</div>
+              <div class="shloka-meaning">"The mighty-armed Rama, with ease — as if in play — took hold of the bow in its middle, strung it in a mere moment, and drew it to its full length."</div>
+              <div class="shloka-source">— Valmiki Ramayana · Bala Kanda · 1.67</div>
+            </div>
+          </div>
+          <div data-lang="hi" style="display:none;">
+            <p>महर्षि <strong>विश्वामित्र</strong> दशरथ के दरबार में आए और एक असामान्य निवेदन किया: उन्हें राक्षसों मारीच और सुबाहु से अपने यज्ञ की रक्षा के लिए राम और लक्ष्मण की आवश्यकता थी। दशरथ भयभीत हुए, किन्तु गुरु का आदेश अटल था।</p>
+            <p>इस यात्रा ने सब कुछ बदल दिया। राम और लक्ष्मण ने राक्षसों को पराजित किया, दिव्य अस्त्र सीखे, फिर <strong>मिथिला</strong> पहुँचे जहाँ राजा <strong>जनक</strong> ने अपनी पुत्री <strong>सीता</strong> के लिए स्वयंवर आयोजित किया था। शर्त थी: <strong>भगवान शिव के पिनाक धनुष</strong> को उठाकर प्रत्यंचा चढ़ानी होगी। सैकड़ों राजा-महाराजा असफल हो चुके थे। स्वयं रावण भी अपमानित होकर लौट गया था।</p>
+            <p>जब राम की बारी आई, उन्होंने उस धनुष को एक हाथ से उठाया, पलक झपकते प्रत्यंचा चढ़ाई — और फिर ऐसी प्रत्यंचा खींची कि <strong>वज्रपात की ध्वनि के साथ धनुष दो टुकड़ों में टूट गया</strong>। पूरी पृथ्वी काँप उठी। सीता ने वरमाला हाथ में ली और राम के गले में डाल दी। उस क्षण, <strong>हिन्दू पौराणिकता का सबसे प्रसिद्ध प्रेम अमर हो गया।</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">स जग्राह धनुर्मध्ये सज्यं च क्षणमात्रतः</div>
+              <div class="shloka-meaning">"महाबाहु राम ने धनुष को मध्य से पकड़ा, क्षण भर में प्रत्यंचा चढ़ाई — मानो खेल में ही।"</div>
+              <div class="shloka-source">— वाल्मीकि रामायण · बाल काण्ड · 1.67</div>
+            </div>
+          </div>
+          <div data-lang="kn" style="display:none;">
+            <p>ಮಹರ್ಷಿ <strong>ವಿಶ್ವಾಮಿತ್ರ</strong> ದಶರಥ ದರ್ಬಾರಿಗೆ ಬಂದು ರಾಮ ಮತ್ತು ಲಕ್ಷ್ಮಣರನ್ನು ಕಾಡಿಗೆ ಕರೆದೊಯ್ಯಲು ಕೇಳಿದರು. ರಾಕ್ಷಸರನ್ನು ಜಯಿಸಿ, ದಿವ್ಯ ಅಸ್ತ್ರಗಳನ್ನು ಕಲಿತ ನಂತರ ಅವರು <strong>ಮಿಥಿಲೆ</strong>ಗೆ ತಲುಪಿದರು. ರಾಜ <strong>ಜನಕ</strong>ನ ಪುತ್ರಿ <strong>ಸೀತೆ</strong>ಯ ಸ್ವಯಂವರ ನಡೆಯುತ್ತಿತ್ತು. ಷರತ್ತು: <strong>ಭಗವಾನ್ ಶಿವನ ಪಿನಾಕ ಧನಸ್ಸನ್ನು</strong> ಎತ್ತಿ ಹೆದೆ ಏರಿಸಬೇಕು. ನೂರಾರು ರಾಜರು ವಿಫಲರಾಗಿದ್ದರು. ರಾವಣನೇ ಅಪಮಾನಿತನಾಗಿ ಹಿಂತಿರುಗಿದ್ದ.</p>
+            <p>ರಾಮ ಆ ಧನಸ್ಸನ್ನು ಒಂದು ಕೈಯಿಂದ ಎತ್ತಿ, ಕ್ಷಣದಲ್ಲಿ ಹೆದೆ ಏರಿಸಿ — ಅಷ್ಟು ಜೋರಾಗಿ ಎಳೆದರು ಎಂದರೆ <strong>ಧನಸ್ಸು ಗುಡುಗಿನ ಶಬ್ದದೊಂದಿಗೆ ಎರಡು ತುಂಡಾಯಿತು</strong>. ಸೀತೆ ವರಮಾಲೆ ಹಿಡಿದು ರಾಮನ ಕೊರಳಿಗೆ ಹಾಕಿದಳು. ಆ ಕ್ಷಣದಲ್ಲಿ <strong>ಹಿಂದೂ ಪುರಾಣದ ಅತ್ಯಂತ ಪ್ರಸಿದ್ಧ ಪ್ರೇಮ ಅಮರವಾಯಿತು.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ಸ ಜಗ್ರಾಹ ಧನುರ್ಮಧ್ಯೇ ಸಜ್ಯಂ ಚ ಕ್ಷಣಮಾತ್ರತಃ</div>
+              <div class="shloka-meaning">"ಮಹಾಬಾಹು ರಾಮ ಧನಸ್ಸನ್ನು ಮಧ್ಯದಿಂದ ಹಿಡಿದು, ಕ್ಷಣದಲ್ಲಿ ಹೆದೆ ಏರಿಸಿದರು — ಮಾನೋ ಆಟದಂತೆ."</div>
+              <div class="shloka-source">— ವಾಲ್ಮೀಕಿ ರಾಮಾಯಣ · ಬಾಲ ಕಾಂಡ · 1.67</div>
+            </div>
+          </div>
+          <div data-lang="ta" style="display:none;">
+            <p>மகரிஷி <strong>விஸ்வாமித்திரர்</strong> தசரதனிடம் வந்து ராமன் மற்றும் லட்சுமணனை காட்டிற்கு அழைத்துச் செல்ல வேண்டினார். ராட்சதர்களை வென்று, தெய்வீக ஆயுதங்களை கற்று, அவர்கள் <strong>மிதிலைக்கு</strong> வந்தனர். ராஜா <strong>ஜனகனின்</strong> மகள் <strong>சீதையின்</strong> சுயம்வரம் நடைபெறுகிறது. நிபந்தனை: <strong>சிவபெருமானின் பினாக வில்லை</strong> தூக்கி நாண் ஏற்ற வேண்டும். நூற்றுக்கணக்கான மன்னர்கள் தோல்வி அடைந்தனர். இலங்கை அரக்கன் இராவணனே அவமானப்பட்டு திரும்பினான்.</p>
+            <p>ராமன் அந்த வில்லை ஒரு கையால் எடுத்து, ஒரு நொடியில் நாண் ஏற்றி — அவ்வளவு சக்தியாக இழுத்தான், <strong>வில் இடிமுழக்கம் போல் இரண்டாக முறிந்தது</strong>. சீதை மாலை எடுத்து ராமன் கழுத்தில் அணிவித்தாள். அந்த தருணத்தில் <strong>இந்து புராணத்தின் மிகவும் புகழ்பெற்ற காதல் அமரமாகியது.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ஸ ஜக்ராஹ தனுர்மத்யே ஸஜ்யம் ச க்ஷணமாத்ரதஃ</div>
+              <div class="shloka-meaning">"மஹாபாஹு ராமன் வில்லை நடுவிலிருந்து பிடித்து, ஒரு நொடியில் நாண் ஏற்றினான் — விளையாட்டாக."</div>
+              <div class="shloka-source">— வால்மீகி ராமாயணம் · பால காண்டம் · 1.67</div>
+            </div>
+          </div>
+          <div data-lang="te" style="display:none;">
+            <p>మహర్షి <strong>విశ్వామిత్రుడు</strong> దశరథుని వద్దకు వచ్చి రాముడు, లక్ష్మణులను అడవికి తీసుకువెళ్ళమని కోరాడు. రాక్షసులను జయించి, దివ్య అస్త్రాలు నేర్చి, వారు <strong>మిథిలకు</strong> చేరారు. రాజు <strong>జనకుని</strong> పుత్రి <strong>సీత</strong> స్వయంవరం జరుగుతోంది. షరతు: <strong>శివుని పినాక ధనుస్సును</strong> ఎత్తి నారి సంధించాలి. వందలమంది రాజులు విఫలమయ్యారు. రావణుడే అవమానపడి తిరిగి వెళ్ళాడు.</p>
+            <p>రాముడు ఆ ధనుస్సును ఒక చేతితో ఎత్తి, క్షణంలో నారి సంధించి — అంత గట్టిగా లాగాడంటే <strong>ఆ ధనుస్సు ఉరుమువంటి శబ్దంతో రెండు ముక్కలయింది</strong>. సీత మాల తీసి రాముని కంఠంలో వేసింది. ఆ క్షణంలో <strong>హిందూ పురాణంలోని అత్యంత ప్రసిద్ధ ప్రేమ అమరమైంది.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">స జగ్రాహ ధనుర్మధ్యే సజ్యం చ క్షణమాత్రతః</div>
+              <div class="shloka-meaning">"మహాబాహు రాముడు విల్లు మధ్యలోంచి పట్టుకొని, క్షణంలో నారి సంధించాడు — ఆటగా మాత్రమే."</div>
+              <div class="shloka-source">— వాల్మీకి రామాయణం · బాల కాండ · 1.67</div>
+            </div>
+          </div>
+          <div data-lang="ml" style="display:none;">
+            <p>മഹർഷി <strong>വിശ്വാമിത്രൻ</strong> ദശരഥന്റെ അടുക്കൽ വന്ന് രാമനെയും ലക്ഷ്മണനെയും കാട്ടിലേക്ക് ആവശ്യപ്പെട്ടു. രാക്ഷസരെ ജയിച്ച്, ദിവ്യ ആയുധങ്ങൾ പഠിച്ച്, അവർ <strong>മിഥിലയിൽ</strong> എത്തി. രാജാ <strong>ജനകന്റെ</strong> പുത്രി <strong>സീതയുടെ</strong> സ്വയംവരം നടക്കുകയാണ്. നിബന്ധന: <strong>ശിവന്റെ പിനാക ധനുസ്സ്</strong> ഉയർത്തി ഞാൺ വലിക്കണം. നൂറുകണക്കിന് രാജാക്കന്മാർ പരാജയപ്പെട്ടു. രാവണൻ തന്നെ അപമാനിക്കപ്പെട്ട് മടങ്ങി.</p>
+            <p>രാമൻ ആ ധനുസ്സ് ഒരു കൈകൊണ്ട് ഉയർത്തി, ഒരു നിമിഷത്തിൽ ഞാൺ ഏർപ്പെടുത്തി — അത്ര ശക്തിയോടെ വലിച്ചു, <strong>ഇടിമുഴക്കം പോലുള്ള ശബ്ദത്തോടെ ആ ധനുസ്സ് രണ്ടായി ഒടിഞ്ഞു</strong>. സീത മാല എടുത്ത് രാമന്റെ കഴുത്തിൽ അണിഞ്ഞു. ആ നിമിഷം <strong>ഹിന്ദൂ പുരാണത്തിലെ ഏറ്റവും പ്രസിദ്ധമായ പ്രണയം അമരമായി.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">സ ജഗ്രാഹ ധനുർ മധ്യേ സജ്യം ച ക്ഷണ മാത്രതഃ</div>
+              <div class="shloka-meaning">"മഹാബാഹു രാമൻ ധനുസ്സ് മധ്യത്തിൽ നിന്ന് പിടിച്ചു, ഒരു നിമിഷത്തിൽ ഞാൺ ഏർപ്പെടുത്തി — കളി പോലെ."</div>
+              <div class="shloka-source">— വാൽമീകി രാമായണം · ബാല കാണ്ഡം · 1.67</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="k-divider"><span>ॐ</span></div>
+
+  <!-- KANDA 2 — AYODHYA KANDA (FREE) -->
+  <div class="kanda" id="k-2">
+    <div class="kanda-header">
+      <div class="kanda-num">02</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">FREE · 119 SARGAS · 4,281 SHLOKAS</div>
+        <div class="kanda-title" data-lang="en">Ayodhya Kanda — The Book of Exile</div>
+        <div class="kanda-title" data-lang="hi" style="display:none;">अयोध्या काण्ड — वनवास की कथा</div>
+        <div class="kanda-title" data-lang="kn" style="display:none;">ಅಯೋಧ್ಯಾ ಕಾಂಡ — ವನವಾಸದ ಕಥೆ</div>
+        <div class="kanda-title" data-lang="ta" style="display:none;">அயோத்யா காண்டம் — வனவாசத்தின் கதை</div>
+        <div class="kanda-title" data-lang="te" style="display:none;">అయోధ్య కాండ — అరణ్యవాసపు కథ</div>
+        <div class="kanda-title" data-lang="ml" style="display:none;">അയോദ്ധ്യ കാണ്ഡം — വനവാസത്തിന്റെ കഥ</div>
+        <div class="kanda-sanskrit">अयोध्याकाण्ड</div>
+        <div class="kanda-meta">KAIKEYI'S BOONS · RAMA'S EXILE · DASHARATHA'S DEATH · BHARATA'S DEVOTION</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ THE MOST HEARTBREAKING CHAPTER IN ALL OF SCRIPTURE</div>
+        <h3 data-lang="en">The Night That Destroyed a Kingdom — Kaikeyi's Two Boons and Rama's Smile</h3>
+        <h3 data-lang="hi" style="display:none;">वह रात जिसने एक राज्य तोड़ दिया — कैकेयी के दो वरदान और राम की मुस्कान</h3>
+        <h3 data-lang="kn" style="display:none;">ಒಂದು ರಾಜ್ಯವನ್ನು ಒಡೆದ ರಾತ್ರಿ — ಕೈಕೇಯಿಯ ಎರಡು ವರ ಮತ್ತು ರಾಮನ ನಗು</h3>
+        <h3 data-lang="ta" style="display:none;">ஒரு ராஜ்யத்தை உடைத்த இரவு — கைகேயியின் இரண்டு வரங்களும் ராமனின் புன்னகையும்</h3>
+        <h3 data-lang="te" style="display:none;">ఒక రాజ్యాన్ని చీకాకు చేసిన రాత్రి — కైకేయి రెండు వరాలు మరియు రాముని చిరునవ్వు</h3>
+        <h3 data-lang="ml" style="display:none;">ഒരു രാജ്യം തകർത്ത രാത്രി — കൈകേയിയുടെ രണ്ട് വരങ്ങളും രാമന്റെ പുഞ്ചിരിയും</h3>
+        <div class="story-text">
+          <div data-lang="en">
+            <p>The preparations for Rama's coronation as Crown Prince of Ayodhya were underway, the entire city was decorated, every citizen was rejoicing — when the maid <strong>Manthara</strong> whispered poison into Kaikeyi's ear. She convinced Kaikeyi that if Rama became king, Kaikeyi's son Bharata would become a servant in his own kingdom. Slowly, the poison worked. Kaikeyi went to the kopa-griha — the chamber of anger — and waited for Dasharatha.</p>
+            <p>The desperate, aging king offered Kaikeyi anything she desired. She invoked two boons he had given her long ago on the battlefield when she had saved his life: <strong>First: Send Rama to the forest for 14 years. Second: Crown Bharata as king instead.</strong> Dasharatha collapsed. He begged, he wept, he fell at her feet. But Kaikeyi would not relent. The boons had been given. Dharma, even when it is painful, must be honored.</p>
+            <p>When Rama was informed of this decree, what he did became the defining moment of the entire Ramayana. He did not protest. He did not argue. He did not show even a shadow of grief. He simply said: <strong>"If this is my father's command and mother's wish, then I go to the forest gladly."</strong> He smiled. He took off his royal ornaments. He wrapped himself in the bark cloth of an ascetic. And he asked: where is the chariot?</p>
+            <p>Sita refused to stay behind. "A wife's dharma is to be by her husband's side — in palace or in forest, in joy or in sorrow." And Lakshmana, eyes burning with indignation, also refused to stay. The three — Rama, Sita, and Lakshmana — walked out of Ayodhya on foot while the entire city wept. <strong>Dasharatha died of grief three days later.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।</div>
+              <div class="shloka-meaning">"Mother and motherland are greater than even heaven." — Rama to Lakshmana, upon their return to Ayodhya after 14 years</div>
+              <div class="shloka-source">— Valmiki Ramayana · Yuddha Kanda · 6.124.17</div>
+            </div>
+          </div>
+          <div data-lang="hi" style="display:none;">
+            <p>राम के राज्याभिषेक की तैयारियाँ चल रही थीं, पूरी अयोध्या सजी हुई थी — तभी दासी <strong>मन्थरा</strong> ने कैकेयी के कान में विष भर दिया। कैकेयी <strong>कोपभवन</strong> में चली गई। दशरथ ने जब कुछ भी माँगने की बात कही, कैकेयी ने अपने दो पूर्व-वरदान माँगे: <strong>पहला: राम को 14 वर्ष के लिए वन भेजो। दूसरा: भरत को राजा बनाओ।</strong></p>
+            <p>दशरथ टूट गए। उन्होंने भीख माँगी, रोए, पाँव पड़े। किन्तु कैकेयी अटल रही। जब राम को यह आदेश मिला तो उन्होंने जो किया वह रामायण का परिभाषित क्षण बन गया। <strong>"यदि यही पिताजी की आज्ञा और माताजी की इच्छा है, तो मैं प्रसन्नतापूर्वक वन जाऊँगा।"</strong> वे मुस्कुराए। उन्होंने राजसी आभूषण उतारे, वल्कल वस्त्र धारण किया। सीता ने साथ आने की जिद की, लक्ष्मण ने भी। तीनों पैदल अयोध्या से निकले, नगर रोया। <strong>तीन दिन बाद दशरथ का प्राणांत हो गया।</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">जननी जन्मभूमिश्च स्वर्गादपि गरीयसी।</div>
+              <div class="shloka-meaning">"माता और मातृभूमि स्वर्ग से भी बड़ी हैं।"</div>
+              <div class="shloka-source">— वाल्मीकि रामायण · युद्ध काण्ड · 6.124.17</div>
+            </div>
+          </div>
+          <div data-lang="kn" style="display:none;">
+            <p>ರಾಮನ ಪಟ್ಟಾಭಿಷೇಕದ ತಯಾರಿ ನಡೆಯುತ್ತಿತ್ತು — ಆಗ ದಾಸಿ <strong>ಮಂಥರೆ</strong> ಕೈಕೇಯಿಯ ಕಿವಿಯಲ್ಲಿ ವಿಷ ತುಂಬಿದಳು. ಕೈಕೇಯಿ <strong>ಕೋಪ ಭವನಕ್ಕೆ</strong> ಹೋದಳು. ದಶರಥ ಯಾವ ವರವನ್ನಾದರೂ ನೀಡುವೆನೆಂದಾಗ, ಆಕೆ ಹಿಂದೆ ನೀಡಿದ ಎರಡು ವರ ಕೇಳಿದಳು: <strong>ಮೊದಲನೆಯದು: ರಾಮನನ್ನು 14 ವರ್ಷ ಕಾಡಿಗೆ ಕಳಿಸು. ಎರಡನೆಯದು: ಭರತನನ್ನು ರಾಜ ಮಾಡು.</strong></p>
+            <p>ದಶರಥ ಮುರಿದರು. ರಾಮನಿಗೆ ಈ ಆಜ್ಞೆ ತಿಳಿದಾಗ ಅವನು ಮಾಡಿದ್ದು ರಾಮಾಯಣದ ಮಹತ್ವದ ಕ್ಷಣ. <strong>"ಇದು ತಂದೆಯ ಆಜ್ಞೆ ಮತ್ತು ತಾಯಿಯ ಇಚ್ಛೆ ಆದರೆ, ನಾನು ಸಂತೋಷದಿಂದ ಕಾಡಿಗೆ ಹೋಗುತ್ತೇನೆ."</strong> ಅವನು ನಕ್ಕ. ರಾಜ ಆಭರಣ ಕಳಚಿ, ವಲ್ಕಲ ಧರಿಸಿದ. ಸೀತೆ ಮತ್ತು ಲಕ್ಷ್ಮಣ ಜೊತೆ ಬಂದರು. ಅಯೋಧ್ಯೆ ಅತ್ತಿತು. <strong>ಮೂರು ದಿನ ನಂತರ ದಶರಥ ನಿಧನರಾದರು.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ಜನನೀ ಜನ್ಮಭೂಮಿಶ್ಚ ಸ್ವರ್ಗಾದಪಿ ಗರೀಯಸೀ</div>
+              <div class="shloka-meaning">"ತಾಯಿ ಮತ್ತು ಮಾತೃಭೂಮಿ ಸ್ವರ್ಗಕ್ಕಿಂತಲೂ ಶ್ರೇಷ್ಠ."</div>
+              <div class="shloka-source">— ವಾಲ್ಮೀಕಿ ರಾಮಾಯಣ · ಯುದ್ಧ ಕಾಂಡ · 6.124.17</div>
+            </div>
+          </div>
+          <div data-lang="ta" style="display:none;">
+            <p>ராமனின் பட்டாபிஷேகம் தயாராகிக் கொண்டிருந்தது — அப்போது தாசி <strong>மந்தரை</strong> கைகேயியின் காதில் விஷம் ஊற்றினாள். கைகேயி <strong>கோப அறைக்கு</strong> சென்றாள். தசரதன் எதுவேண்டுமானாலும் தருவதாக சொன்னபோது, முன்னர் கொடுத்த இரண்டு வரங்களை கேட்டாள்: <strong>முதலாவது: ராமனை 14 ஆண்டுகள் காட்டுக்கு அனுப்பு. இரண்டாவது: பரதனை ராஜாவாக்கு.</strong></p>
+            <p>ராமனுக்கு இந்த ஆணை தெரிந்தபோது அவன் செய்தது ராமாயணத்தின் வரையறுக்கும் தருணம். <strong>"இது தந்தையின் கட்டளையும் தாயின் விருப்பமும் என்றால், நான் மகிழ்ச்சியுடன் காட்டுக்கு செல்கிறேன்."</strong> அவன் சிரித்தான். ராஜ ஆபரணங்களை கழற்றினான், பட்டை ஆடை அணிந்தான். சீதையும் லட்சுமணனும் உடன் வந்தனர். அயோத்தி அழுதது. <strong>மூன்று நாட்களில் தசரதன் இறந்தான்.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ஜனனீ ஜன்மபூமிஸ்ச ஸ்வர்காதபி கரீயஸீ</div>
+              <div class="shloka-meaning">"தாயும் தாய்நாடும் சொர்க்கத்தைவிட மேலானவை."</div>
+              <div class="shloka-source">— வால்மீகி ராமாயணம் · யுத்த காண்டம் · 6.124.17</div>
+            </div>
+          </div>
+          <div data-lang="te" style="display:none;">
+            <p>రాముని పట్టాభిషేక ప్రస్తుతులు జరుగుతున్నాయి — అప్పుడు దాసి <strong>మంధర</strong> కైకేయి చెవిలో విషం నింపింది. కైకేయి <strong>కోప భవనానికి</strong> వెళ్ళింది. దశరథుడు ఏదైనా ఇస్తానని చెప్పినప్పుడు, ముందు ఇచ్చిన రెండు వరాలు అడిగింది: <strong>మొదటిది: రాముని 14 ఏళ్ళు అడవికి పంపు. రెండవది: భరతుడిని రాజుగా పట్టాభిషేకం చేయి.</strong></p>
+            <p>రాముడికి ఈ ఆజ్ఞ తెలిసినప్పుడు అతను చేసింది రామాయణంలో అత్యంత ముఖ్యమైన క్షణం. <strong>"ఇది తండ్రి ఆజ్ఞ మరియు తల్లి కోరిక అయితే, నేను సంతోషంగా అడవికి వెళ్తాను."</strong> అతను నవ్వాడు. రాజ ఆభరణాలు తొలగించుకొని, బెక్కు వస్త్రాలు ధరించాడు. సీత మరియు లక్ష్మణుడు వెంట వచ్చారు. అయోధ్య ఏడ్చింది. <strong>మూడు రోజులలో దశరథుడు మరణించాడు.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">జననీ జన్మభూమిశ్చ స్వర్గాదపి గరీయసీ</div>
+              <div class="shloka-meaning">"తల్లి మరియు మాతృభూమి స్వర్గం కంటే గొప్పవి."</div>
+              <div class="shloka-source">— వాల్మీకి రామాయణం · యుద్ధ కాండ · 6.124.17</div>
+            </div>
+          </div>
+          <div data-lang="ml" style="display:none;">
+            <p>രാമന്റെ പട്ടാഭിഷേക ഒരുക്കങ്ങൾ നടക്കുകയായിരുന്നു — അപ്പോൾ ദാസി <strong>മന്ഥര</strong> കൈകേയിയുടെ ചെവിയിൽ വിഷം നിറച്ചു. കൈകേയി <strong>കോപ ഭവനത്തിൽ</strong> പോയി. ദശരഥൻ ഏതുവരവും തരാമെന്ന് പറഞ്ഞപ്പോൾ, ആദ്യം കൊടുത്ത രണ്ട് വരങ്ങൾ ചോദിച്ചു: <strong>ആദ്യം: രാമനെ 14 വർഷം കാട്ടിലേക്ക് അയക്കൂ. രണ്ടാമത്: ഭരതനെ രാജാവാക്കൂ.</strong></p>
+            <p>രാമന് ഈ ഉത്തരവ് കിട്ടിയപ്പോൾ അദ്ദേഹം ചെയ്തത് രാമായണത്തിലെ നിർവചിക്കുന്ന നിമിഷമായി. <strong>"ഇത് അച്ഛന്റെ ആജ്ഞയും അമ്മയുടെ ആഗ്രഹവും ആണെങ്കിൽ, ഞാൻ സന്തോഷത്തോടെ കാട്ടിലേക്ക് പോകും."</strong> അദ്ദേഹം ചിരിച്ചു. രാജ ആഭരണങ്ങൾ അഴിച്ചുവെച്ചു, തൊലി ഉടുത്തു. സീതയും ലക്ഷ്മണനും ഒപ്പം വന്നു. അയോദ്ധ്യ കരഞ്ഞു. <strong>മൂന്ന് ദിവസം കഴിഞ്ഞ് ദശരഥൻ മരിച്ചു.</strong></p>
+            <div class="shloka-block">
+              <div class="shloka-sanskrit">ജനനീ ജന്മഭൂമിശ്ച സ്വർഗ്ഗാദപി ഗരീയസീ</div>
+              <div class="shloka-meaning">"അമ്മയും മാതൃഭൂമിയും സ്വർഗ്ഗത്തേക്കാൾ മഹത്തരമാണ്."</div>
+              <div class="shloka-source">— വാൽമീകി രാമായണം · യുദ്ധ കാണ്ഡം · 6.124.17</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="k-divider"><span>ॐ</span></div>
+
+  <!-- KANDAS 3-7 — LOCKED -->
+  <div class="kanda locked-k" id="k-3">
+    <div class="kanda-header">
+      <div class="kanda-num">03</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">PREMIUM · 75 SARGAS · 2,387 SHLOKAS</div>
+        <div class="kanda-title">Aranya Kanda — The Forest of Trials</div>
+        <div class="kanda-sanskrit">अरण्यकाण्ड</div>
+        <div class="kanda-meta">14 YEARS IN THE FOREST · SURPANAKHA · SITA'S ABDUCTION · MARICHA THE GOLDEN DEER</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <h3>The Golden Deer and the Abduction of Sita</h3>
+        <div class="story-text"><p>In the deep forest of Dandaka, the demon Maricha takes the form of a golden deer to lure Rama away from Sita. When the Lakshmana Rekha is crossed, Ravana appears in disguise as a mendicant...</p></div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">🔐</div>
+        <h3>Unlock Kandas 3–7</h3>
+        <p>Sita's abduction, Hanuman's leap to Lanka, the Battle of Lanka, and Rama's return to Ayodhya — the greatest story ever told awaits.</p>
+        <div class="paywall-features">
+          <span class="paywall-feature">ALL 7 KANDAS</span>
+          <span class="paywall-feature">6 LANGUAGES</span>
+          <span class="paywall-feature">COMPLETE STORY</span>
+          <span class="paywall-feature">EVERY KEY SHLOKA</span>
+        </div>
+        <a class="btn-unlock" href="premium.html">Unlock Full Ramayana — ₹199/month</a>
+        <div class="paywall-note">7-DAY FREE TRIAL · CANCEL ANYTIME</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick preview of locked kandas -->
+  <div style="background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);padding:28px;margin-bottom:40px;">
+    <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;color:var(--maroon-dk);margin-bottom:20px;">🏹 KANDAS 3–7 · UNLOCK THE COMPLETE EPIC →</h3>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 3 · ARANYA KANDA</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Forest of Trials</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The golden deer, Sita's abduction by Ravana, Jatayu's sacrifice, and Rama's anguished search through the forest.</div>
+      </div>
+      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 4 · KISHKINDHA KANDA</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Kingdom of the Vanaras</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">Alliance with Sugriva, the killing of Vali, and Hanuman revealed as Rama's greatest devotee.</div>
+      </div>
+      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);background:linear-gradient(135deg,rgba(62,0,0,0.04),rgba(212,160,23,0.04));">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-dk);margin-bottom:6px;">KANDA 5 · SUNDARA KANDA · ★ MOST BELOVED</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Hanuman's Leap to Lanka</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">Hanuman's epic flight across the ocean, his meeting with Sita in Ashoka Vatika, the burning of Lanka — one of the most thrilling accounts in world literature.</div>
+      </div>
+      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 6 · YUDDHA KANDA</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">The Battle of Lanka</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The bridge across the ocean, the death of Kumbhakarna and Indrajit, Rama's final confrontation with Ravana, and Sita's Agni Pariksha.</div>
+      </div>
+      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);grid-column:1/-1;">
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-dk);margin-bottom:6px;">KANDA 7 · UTTARA KANDA · ★ THE EPILOGUE</div>
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Rama's Return and the Reign of Ram Rajya</div>
+        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The triumphant return to Ayodhya aboard the Pushpaka Vimana, the coronation of Lord Rama, the establishment of Ram Rajya — the golden age of perfect governance — and the bittersweet final chapters.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="premium.html" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(232,97,26,0.4);">Unlock All 7 Kandas — ₹199/month →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="index.html">Home</a><a href="bhagavad-gita.html">Bhagavad Gita</a><a href="mahabharata.html">Mahabharata</a><a href="premium.html">Go Premium</a></p>
+  <p style="margin-top:12px">© 2026 DharmaChat · Built with devotion for Sanatana Dharma 🕉️</p>
+</footer>
+
+<script>
+var kandas=[{n:'01',title:'Bala Kanda',free:true},{n:'02',title:'Ayodhya Kanda',free:true},{n:'03',title:'Aranya Kanda',free:false},{n:'04',title:'Kishkindha Kanda',free:false},{n:'05',title:'Sundara Kanda',free:false},{n:'06',title:'Yuddha Kanda',free:false},{n:'07',title:'Uttara Kanda',free:false}];
+var pt=document.getElementById('progressTrack');
+kandas.forEach(function(k,i){var d=document.createElement('div');d.className='progress-k'+(k.free?' free-k':'');d.setAttribute('data-name','Kanda '+k.n+': '+k.title);d.onclick=function(){k.free?document.getElementById('k-'+(i+1)).scrollIntoView({behavior:'smooth'}):window.location='premium.html';};pt.appendChild(d);});
+var grid=document.getElementById('kandaNavGrid');
+kandas.forEach(function(k,i){var a=document.createElement('a');a.href=k.free?'#k-'+(i+1):'premium.html';a.className='k-nav-item';a.innerHTML=(k.free?'📖':'🔒')+' Kanda '+k.n+' · '+k.title;grid.appendChild(a);});
+function setLang(lang,btn){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.querySelectorAll('[data-lang]').forEach(function(el){el.style.display=el.getAttribute('data-lang')===lang?'':'none';});}
+</script>
+</body>
+</html>
