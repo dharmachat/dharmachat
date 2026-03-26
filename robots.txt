@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dharmachat.in/sitemap.xml
+
+# DharmaChat - Sacred Hindu Scripture Platform
+# https://dharmachat.in
