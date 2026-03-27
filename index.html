@@ -23,6 +23,9 @@
 <meta property="og:title" content="DharmaChat — #1 AI Hindu Scripture App | Bhagavad Gita, Ramayana & More"/>
 <meta property="og:description" content="Explore the Bhagavad Gita, Ramayana, Mahabharata, Upanishads & Vedas with AI. 10 free questions daily. Sacred shlokas & dharma lessons in 9 Indian languages."/>
 <meta property="og:image" content="https://dharmachat.in/logo.jpeg"/>
+<meta property="og:image:width" content="512"/>
+<meta property="og:image:height" content="512"/>
+<meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:site_name" content="DharmaChat"/>
 <meta property="og:locale" content="en_IN"/>
 
@@ -39,16 +42,35 @@
 
 <!-- SEO: Schema.org -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "DharmaChat",
-  "url": "https://dharmachat.in",
-  "potentialAction": { "@type": "SearchAction", "target": "https://dharmachat.in/chat.html?q={search_term_string}", "query-input": "required name=search_term_string" }
-}
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DharmaChat",
+    "url": "https://dharmachat.in",
+    "potentialAction": { "@type": "SearchAction", "target": "https://dharmachat.in/chat.html?q={search_term_string}", "query-input": "required name=search_term_string" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DharmaChat",
+    "url": "https://dharmachat.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dharmachat.in/logo.jpeg",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://dharmachat.in/logo.jpeg",
+    "description": "India's #1 AI Hindu Scripture App. Explore the Bhagavad Gita, Ramayana, Mahabharata, Upanishads and Vedas with AI guidance in 7 Indian languages.",
+    "sameAs": []
+  }
+]
 </script>
 <link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
+<link rel="shortcut icon" type="image/jpeg" href="favicon.jpeg"/>
 <link rel="apple-touch-icon" href="logo.jpeg"/>
+<link rel="apple-touch-icon" sizes="180x180" href="logo.jpeg"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -1084,7 +1106,7 @@ loadShloka();
 </section>
 
 <!-- SCRIPTURES -->
-<section class="scriptures">
+<section class="scriptures" id="scriptures-section">
   <div class="container" style="position:relative;z-index:2;">
     <div class="section-tag">Sacred Texts</div>
     <h2 class="section-title">Explore 18+ Sacred Scriptures</h2>
@@ -1225,7 +1247,7 @@ loadShloka();
 </section>
 
 <!-- QUESTIONS -->
-<section class="questions">
+<section class="questions" id="questions-section">
   <div class="container">
     <div class="questions-header">
       <div class="section-tag">Community Questions</div>
@@ -1274,7 +1296,7 @@ loadShloka();
 </section>
 
 <!-- VERSE COLLECTIONS -->
-<section class="verses">
+<section class="verses" id="shlokas-section">
   <div class="container">
     <div class="verses-header">
       <div class="section-tag">Sacred Verses</div>
@@ -1502,27 +1524,38 @@ function notifyForApp() {
           DharmaChat
         </div>
         <p>The world's most comprehensive Hindu scripture companion — bringing the eternal wisdom of Sanatana Dharma to every seeker, everywhere.</p>
+        <div style="margin-top:20px;">
+          <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.35);margin-bottom:10px;">COMING SOON ON</p>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <a href="#" aria-label="Download on the App Store" style="display:block;opacity:0.75;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">
+              <img src="app-store-badge.svg" alt="Download on the App Store" style="height:38px;width:auto;"/>
+            </a>
+            <a href="#" aria-label="Get it on Google Play" style="display:block;opacity:0.75;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">
+              <img src="google-play-badge.svg" alt="Get it on Google Play" style="height:38px;width:auto;"/>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Scriptures</h4>
         <ul>
           <li><a href="bhagavad-gita-18-chapters.html">Bhagavad Gita</a></li>
-          <li><a href="who-is-karna.html">Mahabharata</a></li>
-          <li><a href="who-is-hanuman.html">Ramayana</a></li>
-          <li><a href="what-is-moksha.html">Upanishads</a></li>
-          <li><a href="what-are-the-4-vedas.html">Vedas</a></li>
-          <li><a href="what-happens-after-death.html">Puranas</a></li>
+          <li><a href="mahabharata.html">Mahabharata</a></li>
+          <li><a href="ramayana.html">Ramayana</a></li>
+          <li><a href="upanishads.html">Upanishads</a></li>
+          <li><a href="vedas.html">Vedas</a></li>
+          <li><a href="puranas.html">Puranas</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Explore</h4>
         <ul>
           <li><a href="index.html#lessons-section">Shloka of the Day</a></li>
-          <li><a href="articles.html">All Dharma Lessons</a></li>
-          <li><a href="articles.html">All Shlokas</a></li>
-          <li><a href="articles.html">Top Questions</a></li>
-          <li><a href="articles.html">Character Library</a></li>
-          <li><a href="articles.html">Dharma Glossary</a></li>
+          <li><a href="index.html#lessons-section">All Dharma Lessons</a></li>
+          <li><a href="index.html#shlokas-section">All Shlokas</a></li>
+          <li><a href="index.html#questions-section">Top Questions</a></li>
+          <li><a href="index.html#scriptures-section">Character Library</a></li>
+          <li><a href="chat.html">Ask Dharma AI</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1532,7 +1565,7 @@ function notifyForApp() {
           <li><a href="community.html">Contact</a></li>
           <li><a href="community.html">Community</a></li>
           <li><a href="articles.html">Blog</a></li>
-          <li><a href="community.html">Podcast</a></li>
+          <li><a href="premium.html">Go Premium</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="privacy.html">Terms &amp; Conditions</a></li>
         </ul>
@@ -1548,7 +1581,6 @@ function notifyForApp() {
     </div>
   </div>
 </footer>
-
 <script>
   function toggleFaq(el) {
     el.parentElement.classList.toggle('open');
