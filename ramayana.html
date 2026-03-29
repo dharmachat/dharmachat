@@ -69,7 +69,7 @@ nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);pad
 .nav-link{font-family:'Cinzel',serif;font-size:12px;color:rgba(240,192,64,0.65);text-decoration:none;letter-spacing:.06em}
 .nav-link:hover{color:var(--gold-lt)}
 .btn-upgrade{background:linear-gradient(135deg,var(--gold),var(--saffron));color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:.05em}
-.hero{background:linear-gradient(160deg,var(--maroon-dk) 0%,#4A0A0A 40%,#7A2000 70%,#3E0000 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero{background:linear-gradient(160deg,#2A0000 0%,#3E0000 30%,#5A0A0A 60%,#3E0000 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='58' fill='none' stroke='%23D4A017' stroke-opacity='0.07' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23D4A017' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E") repeat;opacity:.7}
 .hero::after{content:'🏹';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:380px;opacity:.04;pointer-events:none}
 .hero-tag{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;padding:5px 18px;border-radius:20px;margin-bottom:20px}
@@ -82,6 +82,14 @@ nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);pad
 .hero-stat{text-align:center}
 .hero-stat strong{display:block;font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--gold-lt);line-height:1}
 .hero-stat span{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-top:4px;display:block}
+
+.hero-swords{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-swords svg{position:absolute;width:100%;height:100%;opacity:.06}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,rgba(212,160,23,0.12) 0%,transparent 65%);pointer-events:none}
+.hero-divider{position:relative;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px}
+.hero-quote{position:relative;max-width:680px;margin:0 auto 32px;background:rgba(255,255,255,0.04);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:22px 30px}
+.hero-quote p{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:8px}
+.hero-quote cite{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--gold-dk)}
 .premium-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(212,160,23,0.2),rgba(232,97,26,0.15));border:1px solid rgba(212,160,23,0.4);border-radius:50px;padding:8px 20px;font-family:'Cinzel',serif;font-size:12px;color:var(--gold-lt);letter-spacing:.08em}
 .lang-bar{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.15);padding:14px 24px;position:sticky;top:64px;z-index:100}
 .lang-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -439,75 +447,377 @@ footer a{color:rgba(240,192,64,0.5);text-decoration:none;margin:0 10px}
 
   <div class="k-divider"><span>ॐ</span></div>
 
-  <!-- KANDAS 3-7 — LOCKED -->
+
+
+  <div class="k-divider"><span>ॐ</span></div>
   <div class="kanda locked-k" id="k-3">
     <div class="kanda-header">
       <div class="kanda-num">03</div>
       <div class="kanda-title-wrap">
-        <div class="kanda-badge">PREMIUM · 75 SARGAS · 2,387 SHLOKAS</div>
-        <div class="kanda-title">Aranya Kanda — The Forest of Trials</div>
-        <div class="kanda-sanskrit">अरण्यकाण्ड</div>
-        <div class="kanda-meta">14 YEARS IN THE FOREST · SURPANAKHA · SITA'S ABDUCTION · MARICHA THE GOLDEN DEER</div>
+        <div class="kanda-badge">👑 PREMIUM · 75 SARGAS · 2,387 SHLOKAS</div>
+        <div class="kanda-title" data-lang="en">Aranya Kanda — The Forest of Trials</div>
+        <div class="kanda-title" data-lang="hi" style="display:none">अरण्यकाण्ड — परीक्षाओं का वन</div>
+        <div class="kanda-title" data-lang="kn" style="display:none">ಅರಣ್ಯಕಾಂಡ — ಪರೀಕ್ಷೆಗಳ ಕಾಡು</div>
+        <div class="kanda-title" data-lang="te" style="display:none">అరణ్య కాండ — పరీక్షల అడవి</div>
+        <div class="kanda-title" data-lang="ta" style="display:none">அரண்ய காண்டம் — சோதனைகளின் காடு</div>
+        <div class="kanda-title" data-lang="ml" style="display:none">അരണ്യ കാണ്ഡം — പരീക്ഷണങ്ങളുടെ കാട്</div>
+        <div class="kanda-sanskrit">अरण्यकाण्डम्</div>
+        <div class="kanda-meta">14 YEARS IN THE FOREST · THE GOLDEN DEER · SITA'S ABDUCTION · JATAYU'S SACRIFICE</div>
       </div>
     </div>
     <div class="kanda-content">
       <div class="story">
-        <h3>The Golden Deer and the Abduction of Sita</h3>
-        <div class="story-text"><p>In the deep forest of Dandaka, the demon Maricha takes the form of a golden deer to lure Rama away from Sita. When the Lakshmana Rekha is crossed, Ravana appears in disguise as a mendicant...</p></div>
+        <div class="story-label">✦ STORY 1 · ARANYA KANDA</div>
+        <h3 data-lang="en">The Golden Deer — Maricha's Fatal Deception</h3>
+        <h3 data-lang="hi" style="display:none">सोने का हिरण — मारीच का घातक छल</h3>
+        <h3 data-lang="kn" style="display:none">ಚಿನ್ನದ ಜಿಂಕೆ — ಮಾರೀಚನ ಮಾರಕ ಮೋಸ</h3>
+        <h3 data-lang="te" style="display:none">బంగారు జింక — మారీచుని మోసం</h3>
+        <h3 data-lang="ta" style="display:none">பொற்மான் — மாரீசனின் கொடுமையான வஞ்சகம்</h3>
+        <h3 data-lang="ml" style="display:none">സ്വർണ്ണ മാൻ — മാരീചന്റെ മാരകമായ ചതി</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>In the Dandaka forest, the demon <strong>Surpanakha</strong> — sister of Ravana — encounters Rama and falls obsessively in love with him. Rama, faithful to Sita, gently rebuffs her. She attacks Sita. Lakshmana, furious, cuts off her nose and ears. Surpanakha, bleeding and humiliated, flies to Lanka and places a burning image of Sita before her brother <strong>Ravana</strong>: <em>"The most beautiful woman in all three worlds lives in the forest with her husband. And you, great king of Lanka, are without a queen."</em></p>
+<p>Ravana, inflamed by desire and wounded pride, hatches a plan. He approaches the demon <strong>Maricha</strong> — who has felt the terror of Rama's arrows before — and orders him to become a golden deer of supernatural beauty to lure Rama away. Maricha protests: <em>"Rama is death itself. Anyone who seeks war with him seeks his own destruction."</em> But Ravana insists. Maricha obeys. And the golden deer appears in the forest, its antlers gleaming, its flanks impossibly beautiful.</p>
+<p>Sita is enchanted. She begs Rama to catch it for her. Rama, knowing something is wrong but unable to refuse the woman he loves, goes after the deer — leaving Lakshmana to guard Sita. Deep in the forest, Rama's arrow finally finds Maricha. As Maricha dies, he cries out in Rama's voice: <em>"O Sita! O Lakshmana!"</em> — and this single cry sets the entire catastrophe in motion.</p></div>
+          <div data-lang="hi" style="display:none"><p>दण्डक वन में राक्षसी <strong>शूर्पणखा</strong> राम पर मोहित हो जाती है। अस्वीकृति के बाद वह सीता पर आक्रमण करती है। लक्ष्मण उसकी नाक-कान काट देते हैं। वह रावण के पास पहुँचकर सीता की सुंदरता का वर्णन करती है। रावण पागल हो उठता है और मारीच को सोने का हिरण बनने का आदेश देता है। मारीच की मृत्यु-चीख <em>"हे सीते! हे लक्ष्मण!"</em> — इस एक पुकार से सम्पूर्ण त्रासदी आरम्भ होती है।</p></div>
+          <div data-lang="kn" style="display:none"><p>ದಂಡಕ ಕಾಡಿನಲ್ಲಿ ರಾಕ್ಷಸಿ <strong>ಶೂರ್ಪಣಖಿ</strong> ರಾಮನ ಮೇಲೆ ಮೋಹ ತಾಳುತ್ತಾಳೆ. ತಿರಸ್ಕೃತಳಾಗಿ ಸೀತೆಯ ಮೇಲೆ ಆಕ್ರಮಣ ಮಾಡಿದಾಗ ಲಕ್ಷ್ಮಣ ಅವಳ ಮೂಗು ಕಿವಿ ಕತ್ತರಿಸುತ್ತಾನೆ. ರಾವಣ ಮಾರೀಚನಿಗೆ ಚಿನ್ನದ ಜಿಂಕೆಯಾಗಲು ಆಜ್ಞಾಪಿಸುತ್ತಾನೆ. ಮಾರೀಚನ ಸಾವಿನ ಕೂಗು — ಇಡೀ ದುರಂತಕ್ಕೆ ನಾಂದಿ.</p></div>
+          <div data-lang="te" style="display:none"><p>దండక అరణ్యంలో రాక్షసి <strong>శూర్పణఖ</strong> రాముని మోహించింది. తిరస్కరించబడి సీత మీద దాడి చేయగా లక్ష్మణుడు ఆమె ముక్కు చెవులు కోశాడు. రావణుడు మారీచుని బంగారు జింకగా మారమని ఆజ్ఞాపించాడు. మారీచుని చావు కేక — మొత్తం విషాదానికి నాంది.</p></div>
+          <div data-lang="ta" style="display:none"><p>தண்டக காட்டில் ராக்ஷஸி <strong>சூர்ப்பணகை</strong> ராமனை மோகிக்கிறாள். நிராகரிக்கப்பட்டு சீதை மீது தாக்கினால் லக்ஷ்மணன் அவள் மூக்கு காதுகளை வெட்டினான். இராவணன் மாரீசனை பொற்மானாக மாறுமாறு கட்டளையிட்டான். மாரீசனின் இறப்பு கூக்குரல் — முழு சோகத்திற்கும் தொடக்கம்.</p></div>
+          <div data-lang="ml" style="display:none"><p>ദണ്ഡക വനത്തിൽ രാക്ഷസി <strong>ശൂർപ്പണഖ</strong> രാമനോട് മോഹം തോന്നി. നിരസിക്കപ്പെട്ടപ്പോൾ സീതയെ ആക്രമിച്ചു, ലക്ഷ്മണൻ അവളുടെ മൂക്ക് കാത് അറുത്തു. രാവണൻ മാരീചനോട് സ്വർണ്ണ മൃഗമാകാൻ ആജ്ഞ നൽകി. മാരീചന്റെ മരണ കൂക്ക് — സകല ദുരന്തത്തിന്റെ ആരംഭം.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">सोने के हिरण का भ्रम दूर करो जो काल का रूप है</div>
+            <div class="shloka-meaning">The golden deer that is death in disguise</div>
+            <div class="shloka-source">— Aranya Kanda · The forest knows no mercy for the distracted eye</div>
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-label">✦ STORY 2 · ARANYA KANDA</div>
+        <h3 data-lang="en">Jatayu's Sacrifice — The Eagle Who Fought God's Enemy</h3>
+        <h3 data-lang="hi" style="display:none">जटायु का बलिदान — देव-शत्रु से लड़ने वाला गरुड़</h3>
+        <h3 data-lang="kn" style="display:none">ಜಟಾಯು ಬಲಿದಾನ — ದೇವ ಶತ್ರುವಿನ ವಿರುದ್ಧ ಹೋರಾಡಿದ ಹದ್ದು</h3>
+        <h3 data-lang="te" style="display:none">జటాయువు బలిదానం — దేవ శత్రువుతో పోరాడిన గరుడుడు</h3>
+        <h3 data-lang="ta" style="display:none">ஜடாயுவின் தியாகம் — தெய்வ எதிரியோடு போரிட்ட கழுகு</h3>
+        <h3 data-lang="ml" style="display:none">ജടായുവിന്റെ ത്യാഗം — ദൈവ ശത്രുവോട് പൊരുതിയ കഴുക്</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>With Lakshmana gone to help Rama and the Lakshmana Rekha crossed, <strong>Ravana</strong> appears in the guise of a mendicant and abducts Sita, carrying her through the sky in his Pushpaka Vimana toward Lanka. Sita cries out desperately — and the ancient eagle king <strong>Jatayu</strong>, a friend of Sita's father Janaka and of Rama's father Dasharatha, hears her cry.</p>
+<p>Jatayu — old, his wings heavy with age — rises and intercepts the aerial chariot. He challenges Ravana fearlessly, speaking to the demon king of dharma and the laws of protection of women. Ravana laughs. The battle begins. Jatayu's talons tear at the chariot, at Ravana's horses, at the demon king himself. But Ravana is too powerful. He cuts off Jatayu's wings with a single blow of his sword. The eagle falls from the sky.</p>
+<p>When Rama and Lakshmana find Jatayu — wings severed, body broken, barely alive — Jatayu gasps out what he saw: Ravana's direction, the sight of Sita calling out Rama's name, her flowers falling from the sky. He dies in Rama's arms. Rama weeps as he would for a father. He performs the funeral rites for the bird that gave its life for Sita's honour — making Jatayu perhaps the most beloved minor character in all of world literature.</p></div>
+          <div data-lang="hi" style="display:none"><p>रावण के वेश में आकर सीता का हरण। <strong>जटायु</strong> — वृद्ध, टूटे पंख — रावण के खिलाफ उठ खड़ा होता है। रावण उसके पंख काट देता है। वह राम की गोद में सीता की दिशा बताकर प्राण त्यागता है। राम पुत्र की तरह उसका अंतिम संस्कार करते हैं।</p></div>
+          <div data-lang="kn" style="display:none"><p>ರಾವಣ ಮೋಡಿ ರೂಪದಲ್ಲಿ ಸೀತೆ ಅಪಹರಿಸಿದ. <strong>ಜಟಾಯು</strong> — ವೃದ್ಧ ಗರುಡ — ರಾವಣನ ವಿರುದ್ಧ ಹೋರಾಡಿದ. ರಾವಣ ರೆಕ್ಕೆ ಕತ್ತರಿಸಿದ. ರಾಮನ ತೊಡೆಯ ಮೇಲೆ ಸೀತೆ ದಿಕ್ಕು ಹೇಳಿ ಪ್ರಾಣ ಬಿಟ್ಟ. ರಾಮ ಮಗನಂತೆ ಅಂತ್ಯಸಂಸ್ಕಾರ ಮಾಡಿದ.</p></div>
+          <div data-lang="te" style="display:none"><p>రావణుడు మోసపూ రీతిలో సీతను అపహరించాడు. <strong>జటాయువు</strong> — వృద్ధ గరుడుడు — రావణునితో పోరాడాడు. రావణుడు రెక్కలు కోశాడు. రాముని ఒడిలో సీత దిశ చెప్పి ప్రాణాలు వదిలాడు. రాముడు కొడుకులా అంత్యక్రియలు చేశాడు.</p></div>
+          <div data-lang="ta" style="display:none"><p>இராவணன் மோசமாக சீதையை கடத்தினான். <strong>ஜடாயு</strong> — வயோதிக கழுகு — இராவணனோடு போரிட்டான். இராவணன் இறக்கைகளை வெட்டினான். இராமன் மடியில் சீதை திசை சொல்லி உயிர் விட்டான். இராமன் மகனைப் போல் இறுதி சடங்கு செய்தான்.</p></div>
+          <div data-lang="ml" style="display:none"><p>രാവണൻ വേഷം മാറി സീതയെ അപഹരിച്ചു. <strong>ജടായു</strong> — വൃദ്ധ ഗരുഡൻ — രാവണനോട് ഏറ്റുമുട്ടി. രാവണൻ ചിറക് ഛേദിച്ചു. രാമന്റെ മടിയിൽ സീതയുടെ ദിശ പറഞ്ഞ് ജടായു പ്രാണൻ വിട്ടു. രാമൻ പുത്രനെ പോലെ അന്ത്യക്രിയ ചെയ്തു.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">स मात्रे जिगाय च मया आत्मा न विपरीयः</div>
+            <div class="shloka-meaning">"I gave my life for Sita's honour — and my soul is at peace." — Jatayu, the first martyr of the Ramayana.</div>
+            <div class="shloka-source">— Valmiki Ramayana · Aranya Kanda</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="paywall-overlay">
       <div class="paywall-box">
-        <div class="paywall-icon">🔐</div>
-        <h3>Unlock Kandas 3–7</h3>
-        <p>Sita's abduction, Hanuman's leap to Lanka, the Battle of Lanka, and Rama's return to Ayodhya — the greatest story ever told awaits.</p>
+        <div class="paywall-icon">🦅</div>
+        <h3>Unlock Kanda 3 — Aranya Kanda</h3>
+        <p>The forest exile, the golden deer, Sita's abduction by Ravana, and Jatayu's supreme sacrifice — the turning point of the entire Ramayana.</p>
         <div class="paywall-features">
-          <span class="paywall-feature">ALL 7 KANDAS</span>
-          <span class="paywall-feature">6 LANGUAGES</span>
-          <span class="paywall-feature">COMPLETE STORY</span>
-          <span class="paywall-feature">EVERY KEY SHLOKA</span>
+          <span class="paywall-feature">✦ All Kandas</span>
+          <span class="paywall-feature">✦ 6 Languages</span>
+          <span class="paywall-feature">✦ Every Shloka</span>
+          <span class="paywall-feature">✦ Unlimited AI Chat</span>
         </div>
-        <a class="btn-unlock" href="premium.html">Unlock Full Ramayana — ₹199/month</a>
-        <div class="paywall-note">7-DAY FREE TRIAL · CANCEL ANYTIME</div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="k-divider"><span>ॐ</span></div>
+  <div class="kanda locked-k" id="k-4">
+    <div class="kanda-header">
+      <div class="kanda-num">04</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">👑 PREMIUM · 67 SARGAS · 2,665 SHLOKAS</div>
+        <div class="kanda-title" data-lang="en">Kishkindha Kanda — Kingdom of the Vanaras</div>
+        <div class="kanda-title" data-lang="hi" style="display:none">किष्किन्धाकाण्ड — वानरों का राज्य</div>
+        <div class="kanda-title" data-lang="kn" style="display:none">ಕಿಷ್ಕಿಂಧಾ ಕಾಂಡ — ವಾನರರ ರಾಜ್ಯ</div>
+        <div class="kanda-title" data-lang="te" style="display:none">కిష్కింధా కాండ — వానరుల రాజ్యం</div>
+        <div class="kanda-title" data-lang="ta" style="display:none">கிஷ்கிந்தா காண்டம் — வானரர்களின் நாடு</div>
+        <div class="kanda-title" data-lang="ml" style="display:none">കിഷ്കിന്ധ കാണ്ഡം — വാനരന്മാരുടെ രാജ്യം</div>
+        <div class="kanda-sanskrit">किष्किन्धाकाण्डम्</div>
+        <div class="kanda-meta">SUGRIVA'S EXILE · KILLING OF VALI · HANUMAN REVEALED · THE GREAT SEARCH</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ STORY 1 · KISHKINDHA KANDA</div>
+        <h3 data-lang="en">Rama and Sugriva — The Alliance That Changed Everything</h3>
+        <h3 data-lang="hi" style="display:none">राम और सुग्रीव — वह संधि जिसने सब बदल दिया</h3>
+        <h3 data-lang="kn" style="display:none">ರಾಮ ಮತ್ತು ಸುಗ್ರೀವ — ಎಲ್ಲ ಬದಲಿಸಿದ ಒಕ್ಕೂಟ</h3>
+        <h3 data-lang="te" style="display:none">రామ మరియు సుగ్రీవ — అన్నీ మార్చిన కూటమి</h3>
+        <h3 data-lang="ta" style="display:none">ராமனும் சுக்ரீவனும் — எல்லாவற்றையும் மாற்றிய கூட்டணி</h3>
+        <h3 data-lang="ml" style="display:none">രാമനും സുഗ്രീവനും — എല്ലാം മാറ്റിய സഖ്യം</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>Rama and Lakshmana, searching frantically for Sita, encounter the <strong>Vanaras</strong> — the monkey people — in the Kishkindha region. The vanara king <strong>Sugriva</strong> has been exiled by his brother <strong>Vali</strong>, who unjustly took his wife and kingdom. Sugriva and Rama meet on Mount Rishyamukha, brought together by the great counsellor <strong>Hanuman</strong> — who approaches them in disguise, tests their character through conversation, and then reveals himself.</p>
+<p>The alliance is formed: Rama will kill Vali and restore Sugriva to his throne; Sugriva will command his vast vanara army to search for Sita across the entire earth. Rama challenges Vali and kills him with a single arrow as Vali fights Sugriva. Vali's dying words are among the most philosophically charged in the Ramayana — he accuses Rama of acting from hidden cover, an unchivalrous act. Rama's answer teaches the complex ethics of dharma in situations of cosmic necessity.</p>
+<p>Sugriva, restored to his throne, becomes distracted in the pleasure of his kingdom and forgets his promise. Lakshmana, furious, goes to Kishkindha to remind him. Sugriva, chastened, calls his vanara generals. Millions of vanaras begin the search for Sita across every corner of the earth.</p></div>
+          <div data-lang="hi" style="display:none"><p>खोज के दौरान राम को <strong>सुग्रीव</strong> मिलते हैं — अपने भाई वाली से निर्वासित। <strong>हनुमान</strong> उनसे मेलाप कराते हैं। संधि: राम वाली को मारें, सुग्रीव सीता खोजे। राम तीर से वाली का वध करते हैं। वाली के अंतिम शब्द धर्म के जटिल प्रश्न उठाते हैं।</p></div>
+          <div data-lang="kn" style="display:none"><p>ಹುಡುಕಾಟದಲ್ಲಿ ರಾಮ <strong>ಸುಗ್ರೀವ</strong>ನನ್ನು ಭೇಟಿಯಾಗುತ್ತಾರೆ — ಅಣ್ಣ ವಾಲಿಯಿಂದ ನಿರ್ವಾಸಿತ. <strong>ಹನುಮಂತ</strong> ಪರಿಚಯ ಮಾಡುತ್ತಾನೆ. ಒಪ್ಪಂದ: ರಾಮ ವಾಲಿ ಕೊಲ್ಲಲಿ, ಸುಗ್ರೀವ ಸೀತೆ ಹುಡುಕಲಿ. ವಾಲಿಯ ಕೊನೆಯ ಮಾತು ಧರ್ಮದ ಸಂಕೀರ್ಣ ಪ್ರಶ್ನೆ ಎತ್ತುತ್ತದೆ.</p></div>
+          <div data-lang="te" style="display:none"><p>శోధనలో రాముడు <strong>సుగ్రీవుడిని</strong> కలుసుకున్నాడు — అన్న వాలి చేత బహిష్కరించబడిన. <strong>హనుమంతుడు</strong> పరిచయం చేశాడు. ఒప్పందం: రాముడు వాలిని చంపాలి, సుగ్రీవుడు సీతను వెతకాలి. వాలి చివరి మాటలు ధర్మ సంక్లిష్టతను ప్రశ్నిస్తాయి.</p></div>
+          <div data-lang="ta" style="display:none"><p>தேடலில் ராமன் <strong>சுக்ரீவனை</strong> சந்திக்கிறான் — அண்ணன் வாலியால் நாடு கடத்தப்பட்டவன். <strong>ஹனுமான்</strong> அறிமுகம் செய்தார். உடன்படிக்கை: ராமன் வாலியை கொல்லட்டும், சுக்ரீவன் சீதையை தேடட்டும். வாலியின் இறுதி வார்த்தைகள் தர்மத்தின் சிக்கலை கேட்கின்றன.</p></div>
+          <div data-lang="ml" style="display:none"><p>തിരച്ചിലിൽ രാമൻ <strong>സുഗ്രീവനെ</strong> കണ്ടുമുട്ടി — അണ്ണൻ വാലി ബഹിഷ്കരിച്ചവൻ. <strong>ഹനുമാൻ</strong> പരിചയപ്പെടുത്തി. ഉടമ്പടി: രാമൻ വാലിയെ കൊല്ലണം, സുഗ്രീവൻ സീതയെ തേടണം. വാലിയുടെ അന്തിമ വാക്കുകൾ ധർമ്മത്തിന്റെ സങ്കീർണ്ണ ചോദ്യമുന്നയിക്കുന്നു.</p></div>
+
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-label">✦ STORY 2 · KISHKINDHA KANDA</div>
+        <h3 data-lang="en">Hanuman's Revelation — The Greatest Devotee Accepts His Mission</h3>
+        <h3 data-lang="hi" style="display:none">हनुमान का प्रकाशन — सबसे महान भक्त अपना दायित्व स्वीकारते हैं</h3>
+        <h3 data-lang="kn" style="display:none">ಹನುಮಂತನ ಪ್ರಕಟೀಕರಣ — ಅತ್ಯಂತ ಮಹಾ ಭಕ್ತ ತನ್ನ ಕಾರ್ಯ ಒಪ್ಪಿಕೊಳ್ಳುತ್ತಾನೆ</h3>
+        <h3 data-lang="te" style="display:none">హనుమంతుని వెల్లడి — అత్యంత గొప్ప భక్తుడు తన పని అంగీకరిస్తాడు</h3>
+        <h3 data-lang="ta" style="display:none">ஹனுமானின் வெளிப்பாடு — மிகச் சிறந்த பக்தன் தன் கடமை ஏற்கிறான்</h3>
+        <h3 data-lang="ml" style="display:none">ഹനുമാന്റെ വെളിപ്പെടുത്തൽ — ഏറ്റം മഹത്തായ ഭക്തൻ ദൗത്യം സ്വീകരിക്കുന്നു</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>When the vanara search parties disperse across the earth, one group reaches the southern ocean — and their hearts fail. The ocean stretches infinite before them. Lanka is somewhere beyond, but who can cross such a distance? The great vanara <strong>Angada</strong> declares he can leap but cannot return. Others confess their limits. The search is about to fail at the last moment.</p>
+<p>Then the elder vanara <strong>Jambavan</strong> turns to <strong>Hanuman</strong> and speaks quietly: <em>"Son of the wind, you alone are capable of this crossing. Do you not remember your own power? You flew to the sun as a child, thinking it was a fruit. You shook Mount Meru when playing. You are the equal of your father Vayu. Rise, Hanuman. This is your moment. This is why you were born."</em></p>
+<p>Hanuman grows. The word is inadequate. His body expands to fill the sky. His roar shakes the ocean. He leaps from the mountain top, his form golden, his tail streaming fire, his eyes like twin suns. The vanaras below shout in awe and joy. The ocean itself, recognising the son of the wind god, rises to pay homage. Hanuman flies toward Lanka — and the Sundara Kanda begins.</p></div>
+          <div data-lang="hi" style="display:none"><p>जब खोज दल समुद्र के किनारे पराजित खड़ा है, <strong>जाम्बवान</strong> <strong>हनुमान</strong> से कहते हैं: <em>"वायुपुत्र, क्या आपको अपनी शक्ति याद नहीं? आप सूर्य को फल समझकर उड़े थे। यही वह क्षण है जिसके लिए आपका जन्म हुआ।"</em> हनुमान विशाल होते हैं और महासागर लाँघकर लंका की ओर उड़ते हैं।</p></div>
+          <div data-lang="kn" style="display:none"><p>ಹುಡುಕಾಟ ತಂಡ ಸಮುದ್ರ ದಡದಲ್ಲಿ ನಿಂತು ಸೋಲೊಪ್ಪಿಕೊಳ್ಳಲು ಸಿದ್ಧ. <strong>ಜಾಂಬವಾನ್</strong> <strong>ಹನುಮಂತ</strong>ನಿಗೆ: <em>"ವಾಯುಪುತ್ರ, ನಿನ್ನ ಶಕ್ತಿ ಮರೆತಿರುವೆಯಾ? ನೀನು ಸೂರ್ಯ ಹಣ್ಣೆಂದು ಹಾರಿದ್ದೆ. ಈ ಕ್ಷಣಕ್ಕಾಗಿ ಜನ್ಮ."</em> ಹನುಮಂತ ಬೃಹತ್ತಾಗಿ ಸಮುದ್ರ ದಾಟಿ ಲಂಕೆಗೆ ಹಾರುತ್ತಾನೆ.</p></div>
+          <div data-lang="te" style="display:none"><p>శోధన బృందం సముద్రం తీరంలో నిరాశగా నిలిచింది. <strong>జాంబవంతుడు</strong> <strong>హనుమంతుడికి</strong>: <em>"వాయుపుత్రా, నీ శక్తి మర్చిపోయావా? నీవు సూర్యుని పండు అని ఎగిరావు. ఈ క్షణం కోసమే నీవు జన్మించావు."</em> హనుమంతుడు విశాలంగా మారి సముద్రం దాటి లంకకు ఎగిరాడు.</p></div>
+          <div data-lang="ta" style="display:none"><p>தேடல் குழு கடல் ஓரத்தில் தோல்வியை ஒப்புக்கொண்டு நிற்கிறது. <strong>ஜாம்பவான்</strong> <strong>ஹனுமானிடம்</strong>: <em>"வாயு புத்ரா, உன் சக்தி மறந்தாயா? நீ சூரியனை பழம் என்று பறந்தாய். இந்த தருணத்திற்காகவே நீ பிறந்தாய்."</em> ஹனுமான் மாபெரும் வடிவெடுத்து கடலை தாண்டி இலங்கை நோக்கி பறந்தான்.</p></div>
+          <div data-lang="ml" style="display:none"><p>തിരച്ചിൽ സംഘം സമുദ്ര തീരത്ത് പരാജയം ഒപ്പിടാൻ സിദ്ധം. <strong>ജാംബവൻ</strong> <strong>ഹനുമാനോട്</strong>: <em>"വായുപുത്രാ, നിന്റെ ശക്തി മറന്നോ? നീ സൂര്യനെ ഫലമെന്ന് കരുതി പറന്നത്. ഈ നിമിഷത്തിനായി ജനിച്ചവൻ."</em> ഹനുമാൻ ദേഹം വലുതാക്കി സമുദ്രം ചാടി ലങ്കയ്ക്ക് പറന്നു.</p></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">🐒</div>
+        <h3>Unlock Kanda 4 — Kishkindha Kanda</h3>
+        <p>The alliance with Sugriva, the death of Vali, Hanuman's revelation of his power, and the beginning of the great search for Sita across the earth.</p>
+        <div class="paywall-features">
+          <span class="paywall-feature">✦ All Kandas</span>
+          <span class="paywall-feature">✦ 6 Languages</span>
+          <span class="paywall-feature">✦ Every Shloka</span>
+          <span class="paywall-feature">✦ Unlimited AI Chat</span>
+        </div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="k-divider"><span>ॐ</span></div>
+  <div class="kanda locked-k" id="k-5">
+    <div class="kanda-header">
+      <div class="kanda-num">05</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">👑 PREMIUM · 68 SARGAS · MOST BELOVED KANDA</div>
+        <div class="kanda-title" data-lang="en">Sundara Kanda — Hanuman's Beautiful Mission ★</div>
+        <div class="kanda-title" data-lang="hi" style="display:none">सुन्दर काण्ड — हनुमान का सुंदर अभियान ★</div>
+        <div class="kanda-title" data-lang="kn" style="display:none">ಸುಂದರ ಕಾಂಡ — ಹನುಮಂತನ ಸುಂದರ ಯಾತ್ರೆ ★</div>
+        <div class="kanda-title" data-lang="te" style="display:none">సుందర కాండ — హనుమంతుని సుందర యాత్ర ★</div>
+        <div class="kanda-title" data-lang="ta" style="display:none">சுந்தர காண்டம் — ஹனுமானின் அழகிய பணி ★</div>
+        <div class="kanda-title" data-lang="ml" style="display:none">സുന്ദര കാണ്ഡം — ഹനുമാന്റെ സുന്ദര ദൗത്യം ★</div>
+        <div class="kanda-sanskrit">सुन्दरकाण्डम्</div>
+        <div class="kanda-meta">HANUMAN'S LEAP · SITA IN ASHOKA VATIKA · LANKA BURNS · THE MOST CHANTED KANDA</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ STORY 1 · SUNDARA KANDA · ★ MOST BELOVED OF ALL KANDAS</div>
+        <h3 data-lang="en">Hanuman's Leap — The Most Heroic Act in All of Literature</h3>
+        <h3 data-lang="hi" style="display:none">हनुमान की छलाँग — समस्त साहित्य का सबसे वीरतापूर्ण कृत्य</h3>
+        <h3 data-lang="kn" style="display:none">ಹನುಮಂತನ ಜಿಗಿತ — ಸಮಸ್ತ ಸಾಹಿತ್ಯದ ಅತ್ಯಂತ ಧೀರ ಕಾರ್ಯ</h3>
+        <h3 data-lang="te" style="display:none">హనుమంతుని ఎగురు — సాహిత్యంలో అత్యంత వీరోచిత కార్యం</h3>
+        <h3 data-lang="ta" style="display:none">ஹனுமான் தாவல் — இலக்கியத்தின் மிக வீரமான செயல்</h3>
+        <h3 data-lang="ml" style="display:none">ഹനുമാന്റെ ചാട്ടം — സകല സാഹിത്യത്തിലെ ഏറ്റം ധീരമായ പ്രവൃത്തി</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The Sundara Kanda — "The Beautiful Chapter" — is the most beloved book in the entire Ramayana, and perhaps the most spiritually potent section of any Hindu scripture. It is named "Beautiful" not for its poetry but for its subject: <strong>Hanuman</strong>, the perfect devotee, in the fullness of his devotion and power.</p>
+<p>Hanuman crosses the ocean alone — a distance of hundreds of miles — through a series of challenges. The sea goddess Surasa blocks his path to test him; he expands to fill the sky, then shrinks to the size of a thumb and passes through her mouth in an instant, earning her blessing. The demoness Simhika grabs his shadow to drag him down; he tears her apart and continues. He reaches Lanka at night, shrinks to the size of a cat, and enters the heavily guarded golden city of Ravana.</p>
+<p>Lanka is breathtaking. Valmiki describes it in stunning detail — a city built by Vishvakarma himself, with golden palaces and gems in the streets. Hanuman searches through the night, unseen, checking every quarter of the city. He finds Ravana's harem — beautiful women from every kingdom in the world, sleeping in luxury. But Sita is not among them. His heart falls. Where is she?</p>
+<p>Then, in a quiet garden — the Ashoka Vatika — he finds her. Thin, grief-worn, surrounded by demonesses, sitting under an Ashoka tree. Her hair unbound (a widow's gesture, or a prisoner's). But her face — Hanuman recognises Rama's description of her. He watches from the treetops as Ravana approaches, demanding she accept him. Sita picks up a blade of grass and places it between herself and Ravana: <em>"I will not even look at you directly."</em> The courage of the imprisoned queen reduces Hanuman to tears of devotion.</p></div>
+          <div data-lang="hi" style="display:none"><p>सुन्दर काण्ड — सबसे प्रिय काण्ड। <strong>हनुमान</strong> अकेले समुद्र पार करके स्वर्णिम लंका में प्रवेश करते हैं। रात भर खोजने के बाद अशोक वाटिका में <strong>सीता</strong> को पाते हैं — दुबली, दुखी, दैत्यनियों से घिरी। रावण के सामने वे एक तिनका रखकर कहती हैं: <em>"मैं तुम्हारी ओर देखूँगी भी नहीं।"</em></p></div>
+          <div data-lang="kn" style="display:none"><p>ಸುಂದರ ಕಾಂಡ — ಅತ್ಯಂತ ಪ್ರಿಯ ಕಾಂಡ. <strong>ಹನುಮಂತ</strong> ಒಂಟಿಯಾಗಿ ಸಮುದ್ರ ದಾಟಿ ಚಿನ್ನದ ಲಂಕೆ ಪ್ರವೇಶ. ರಾತ್ರಿ ಅಶೋಕ ವಾಟಿಕೆಯಲ್ಲಿ <strong>ಸೀತೆ</strong>ಯನ್ನು ಕಾಣುತ್ತಾನೆ — ಕ್ಷೀಣ, ದುಃಖಿ. ರಾವಣನ ಮುಂದೆ ಹುಲ್ಲು ಹಾಕಿ: <em>"ನಿಮ್ಮನ್ನು ನೋಡಲೂ ಮಾಡೆ."</em></p></div>
+          <div data-lang="te" style="display:none"><p>సుందర కాండ — అత్యంత ప్రియమైన కాండ. <strong>హనుమంతుడు</strong> ఒంటరిగా సముద్రం దాటి బంగారు లంక ప్రవేశించాడు. రాత్రంతా వెతికి అశోక వాటికలో <strong>సీతను</strong> చూశాడు — క్షీణించిన, దుఃఖిత. రావణుని ముందు పరకు ఉంచి: <em>"నిన్ను చూడనూ."</em></p></div>
+          <div data-lang="ta" style="display:none"><p>சுந்தர காண்டம் — மிக பிரியமான காண்டம். <strong>ஹனுமான்</strong> தனியாக கடலை கடந்து தங்க இலங்கை நுழைந்தான். இரவு முழுவதும் தேடி அசோக வனத்தில் <strong>சீதையை</strong> கண்டான் — மெலிந்த, துயர். இராவணன் முன்னிலையில் புல்லை வைத்து: <em>"உன்னை பார்க்கவும் மாட்டேன்."</em></p></div>
+          <div data-lang="ml" style="display:none"><p>സുന്ദര കാണ്ഡം — ഏറ്റം പ്രിയ കാണ്ഡം. <strong>ഹനുമാൻ</strong> ഒറ്റക്ക് സമുദ്രം ചാടി സ്വർണ്ണ ലങ്ക കടന്നു. രാത്രി മുഴുക്കെ തിരഞ്ഞ് അശോക വനത്തിൽ <strong>സീതയെ</strong> കണ്ടു — ക്ഷീണിച്ച, ദുഃഖ ഭരിത. രാവണൻ മുൻ ഒരു പുൽ‌ കൂ വച്ചു: <em>"ഞാൻ നിന്നെ നോക്കുകയില്ല."</em></p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्</div>
+            <div class="shloka-meaning">"Swift as the mind, equal to the wind in speed, master of the senses, foremost among the wise..." — The most famous description of Hanuman, still chanted as a prayer.</div>
+            <div class="shloka-source">— Valmiki Ramayana · Sundara Kanda</div>
+          </div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-label">✦ STORY 2 · SUNDARA KANDA</div>
+        <h3 data-lang="en">The Burning of Lanka — Hanuman's Warning to Ravana</h3>
+        <h3 data-lang="hi" style="display:none">लंकादहन — रावण को हनुमान की चेतावनी</h3>
+        <h3 data-lang="kn" style="display:none">ಲಂಕಾದಹನ — ರಾವಣನಿಗೆ ಹನುಮಂತನ ಎಚ್ಚರಿಕೆ</h3>
+        <h3 data-lang="te" style="display:none">లంకాదహనం — రావణుడికి హనుమంతుని హెచ్చరిక</h3>
+        <h3 data-lang="ta" style="display:none">இலங்கை எரிப்பு — இராவணனுக்கு ஹனுமானின் எச்சரிக்கை</h3>
+        <h3 data-lang="ml" style="display:none">ലങ്കാദഹനം — രാവണന് ഹനുമാന്റെ മുന്നറിയിപ്പ്</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>Hanuman delivers Rama's message to Sita and receives her message in return — the jewel from her hair, a token Rama will recognise. But before leaving, he does something extraordinary: he allows himself to be captured. Ravana's soldiers bind him with serpent ropes. They drag him before Ravana himself.</p>
+<p>Standing before the ten-headed king of Lanka in his golden throne room, surrounded by demon lords, Hanuman does not flinch. He addresses Ravana directly, calling himself Rama's ambassador and commanding Ravana to return Sita or face annihilation. Ravana, outraged, orders Hanuman's tail to be set on fire. The demons wrap his tail in oil-soaked cloth and set it alight. Hanuman allows this — then breaks free.</p>
+<p>With his burning tail, Hanuman leaps from palace to palace, from tower to tower, from the golden battlements to the gleaming streets — and sets Lanka ablaze. The entire city of gold burns. Then he dips his tail in the ocean, rises again, and flies back to India. His final act: landing gently before Sita and receiving her last blessing for Rama. <em>"Tell him,"</em> she says, <em>"tell him I still live."</em></p></div>
+          <div data-lang="hi" style="display:none"><p>हनुमान सीता को संदेश देते हैं और उनकी चूड़ामणि लेते हैं। वे स्वेच्छा से पकड़े जाते हैं, रावण के दरबार में निर्भीक खड़े होते हैं। पूंछ जलाने पर पूरी लंका को आग लगा देते हैं। फिर समुद्र में पूंछ बुझाकर सीता का अंतिम संदेश लेकर वापस उड़ते हैं: <em>"उन्हें बताओ — मैं जीवित हूँ।"</em></p></div>
+          <div data-lang="kn" style="display:none"><p>ಹನುಮಂತ ಸೀತೆಗೆ ಸಂದೇಶ ನೀಡಿ ಚೂಡಾಮಣಿ ತಕ್ಕೊಳ್ಳುತ್ತಾನೆ. ಸ್ವೇಚ್ಛೆಯಿಂದ ಬಂದಿಯಾಗಿ ರಾವಣ ಸಭೆಯಲ್ಲಿ ನಿರ್ಭಯ. ಬಾಲ ಸುಟ್ಟಾಗ ಇಡೀ ಲಂಕೆ ಸುಟ್ಟ. ಸೀತೆ ಕೊನೆ ಸಂದೇಶ: <em>"ಹೇಳಿ — ನಾನು ಜೀವಂತ ಇದ್ದೇನೆ."</em></p></div>
+          <div data-lang="te" style="display:none"><p>హనుమంతుడు సీతకు సందేశమిచ్చి చూడామణి తీసుకున్నాడు. స్వచ్ఛందంగా పట్టుబడి రావణ సభలో నిర్భయంగా నిలిచాడు. తోక కాల్చినప్పుడు మొత్తం లంక కాల్చాడు. సీత చివరి సందేశం: <em>"చెప్పండి — నేను జీవించి ఉన్నాను."</em></p></div>
+          <div data-lang="ta" style="display:none"><p>ஹனுமான் சீதைக்கு செய்தி கொடுத்து சூடாமணி வாங்கினான். விருப்பத்தோடு சிறைப்பட்டு இராவணன் சபையில் அஞ்சாமல் நின்றான். வால் கொளுத்தியதால் முழு இலங்கையை எரித்தான். சீதையின் இறுதி செய்தி: <em>"சொல்லுங்கள் — நான் உயிரோடு இருக்கிறேன்."</em></p></div>
+          <div data-lang="ml" style="display:none"><p>ഹനുമാൻ സീതക്ക് സന്ദേശം നൽകി ചൂഡാമണി വാങ്ങി. ഇഷ്ടപ്പൂർവ്വം ബദ്ധനായി രാവണ സഭയിൽ നിർഭയം നിന്നു. വാൽ കത്തിച്ചതിൽ ലങ്ക മുഴുവൻ കത്തിച്ചു. സീതയുടെ അവസാന സന്ദേശം: <em>"പറഞ്ഞോളൂ — ഞാൻ ജീവിക്കുന്നു."</em></p></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">🔥</div>
+        <h3>Unlock Kanda 5 — The Most Beloved Sundara Kanda</h3>
+        <p>Hanuman's leap across the ocean, finding Sita in Ashoka Vatika, the burning of Lanka — the most devotionally potent section of any Hindu scripture.</p>
+        <div class="paywall-features">
+          <span class="paywall-feature">✦ All Kandas</span>
+          <span class="paywall-feature">✦ 6 Languages</span>
+          <span class="paywall-feature">✦ Every Shloka</span>
+          <span class="paywall-feature">✦ Unlimited AI Chat</span>
+        </div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="k-divider"><span>ॐ</span></div>
+  <div class="kanda locked-k" id="k-6">
+    <div class="kanda-header">
+      <div class="kanda-num">06</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">👑 PREMIUM · 128 SARGAS · THE GREAT WAR</div>
+        <div class="kanda-title" data-lang="en">Yuddha Kanda — The Battle of Lanka</div>
+        <div class="kanda-title" data-lang="hi" style="display:none">युद्धकाण्ड — लंका का युद्ध</div>
+        <div class="kanda-title" data-lang="kn" style="display:none">ಯುದ್ಧ ಕಾಂಡ — ಲಂಕೆಯ ಯುದ್ಧ</div>
+        <div class="kanda-title" data-lang="te" style="display:none">యుద్ధ కాండ — లంక యుద్ధం</div>
+        <div class="kanda-title" data-lang="ta" style="display:none">யுத்த காண்டம் — இலங்கை போர்</div>
+        <div class="kanda-title" data-lang="ml" style="display:none">യുദ്ധ കാണ്ഡം — ലങ്കയുടെ യുദ്ധം</div>
+        <div class="kanda-sanskrit">युद्धकाण्डम्</div>
+        <div class="kanda-meta">RAM SETU BRIDGE · KUMBHAKARNA · INDRAJIT · THE DEATH OF RAVANA · SITA'S FIRE TEST</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ STORY 1 · YUDDHA KANDA</div>
+        <h3 data-lang="en">The Bridge Across the Ocean — Ram Setu</h3>
+        <h3 data-lang="hi" style="display:none">समुद्र पर पुल — रामसेतु</h3>
+        <h3 data-lang="kn" style="display:none">ಸಮುದ್ರದ ಮೇಲೆ ಸೇತುವೆ — ರಾಮಸೇತು</h3>
+        <h3 data-lang="te" style="display:none">సముద్రంపై వంతెన — రామసేతు</h3>
+        <h3 data-lang="ta" style="display:none">கடல் மீது பாலம் — ராம சேது</h3>
+        <h3 data-lang="ml" style="display:none">സമുദ്രത്തിന് മേൽ പാലം — രാമസേതു</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>Rama's army — millions of vanaras — stands at the ocean's edge. Lanka is on the other side. The question of how to cross occupies everyone. Rama approaches the ocean and prays. Three days pass. The ocean does not respond. On the third day, Rama picks up his bow. The ocean, afraid, appears in human form: <em>"Forgive me, Lord. I am bound by my nature. But Nala the architect can build you a bridge."</em></p>
+<p><strong>Nala</strong>, son of Vishvakarma the divine architect, directs the vanara army. Stones and trees are brought from mountains. Each stone has "Rama" inscribed on it by Hanuman, and the stones float. The bridge — <strong>Ram Setu</strong> — is built in five days across a hundred leagues of ocean. The engineering feat stuns both gods and demons.</p>
+<p>As the army crosses, the demon king <strong>Vibhishana</strong> — Ravana's own brother, a righteous soul who counselled Ravana to return Sita — arrives to join Rama. Some vanaras are suspicious. But Rama accepts him immediately: <em>"Whoever comes to me in surrender — even my enemy — I will protect. This is my vow."</em> Vibhishana becomes one of Rama's most trusted allies and guides them through the secret defences of Lanka.</p></div>
+          <div data-lang="hi" style="display:none"><p>राम तीन दिन प्रार्थना के बाद धनुष उठाते हैं। समुद्र प्रकट होता है: <em>"नल सेतु बनाएगा।"</em> हनुमान पत्थरों पर "राम" लिखते हैं — पत्थर तैरते हैं। पाँच दिन में <strong>रामसेतु</strong> बनता है। रावण का भाई <strong>विभीषण</strong> राम के पास आता है। राम कहते हैं: <em>"जो भी शरण में आए — मैं रक्षा करूँगा।"</em></p></div>
+          <div data-lang="kn" style="display:none"><p>ರಾಮ ಮೂರು ದಿನ ಪ್ರಾರ್ಥನೆಯ ನಂತರ ಬಿಲ್ಲು ಎತ್ತಿದ. ಸಮುದ್ರ ಪ್ರಕಟ: <em>"ನಳ ಸೇತು ನಿರ್ಮಿಸುತ್ತಾನೆ."</em> ಹನುಮಂತ ಕಲ್ಲಿಗೆ "ರಾಮ" ಬರೆದ — ಕಲ್ಲು ತೇಲಿತು. ಐದು ದಿನದಲ್ಲಿ <strong>ರಾಮಸೇತು</strong>. ರಾವಣನ ತಮ್ಮ <strong>ವಿಭೀಷಣ</strong> ಬಂದ. ರಾಮ: <em>"ಶರಣಾಗತರನ್ನು ರಕ್ಷಿಸುವೆ — ಇದು ನನ್ನ ಪ್ರತಿಜ್ಞೆ."</em></p></div>
+          <div data-lang="te" style="display:none"><p>రాముడు మూడు రోజుల ప్రార్థన తర్వాత విల్లు ఎత్తాడు. సముద్రం ప్రకటించింది: <em>"నళుడు వంతెన నిర్మిస్తాడు."</em> హనుమంతుడు రాళ్ళకు "రాం" రాశాడు — రాళ్ళు తేలాయి. ఐదు రోజుల్లో <strong>రామసేతు</strong>. రావణుని సోదరుడు <strong>విభీషణుడు</strong> వచ్చాడు. రాముడు: <em>"శరణాగతులను రక్షిస్తాను — ఇది నా ప్రతిజ్ఞ."</em></p></div>
+          <div data-lang="ta" style="display:none"><p>ராமன் மூன்று நாட்கள் பிரார்த்தனைக்கு பிறகு வில் எடுத்தான். கடல் வெளிப்பட்டது: <em>"நளன் பாலம் கட்டுவான்."</em> ஹனுமான் கற்களில் "ராம்" எழுதினான் — கற்கள் மிதந்தன. ஐந்து நாளில் <strong>ராம சேது</strong>. இராவணன் தம்பி <strong>விபீஷணன்</strong> வந்தான். ராமன்: <em>"சரண் அடைந்தவரை காப்பாற்றுவேன் — இது என் சபதம்."</em></p></div>
+          <div data-lang="ml" style="display:none"><p>രാമൻ മൂന്ന് ദിവസ പ്രാർഥനക്ക് ശേഷം ശരം എടുത്തു. സമുദ്രം പ്രത്യക്ഷനായി: <em>"നള‌ പാലം നിർമ്മിക്കും."</em> ഹനുമാൻ കല്ലിൽ "രാം" എഴുതി — കല്ല് പൊങ്ങി. അഞ്ച് ദിവസം <strong>രാമസേതു</strong>. രാവണന്റെ അനുജൻ <strong>വിഭീഷണൻ</strong> വന്നു. രാമൻ: <em>"ശരണം തേടുന്നവരെ ഞാൻ കാക്കും — ഇതാണ് എന്റെ പ്രതിജ്ഞ."</em></p></div>
+
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-label">✦ STORY 2 · YUDDHA KANDA</div>
+        <h3 data-lang="en">Rama Defeats Ravana — The End of an Age</h3>
+        <h3 data-lang="hi" style="display:none">राम का रावण पर विजय — एक युग का अंत</h3>
+        <h3 data-lang="kn" style="display:none">ರಾಮ ರಾವಣನ ಮೇಲೆ ವಿಜಯ — ಒಂದು ಯುಗದ ಅಂತ್ಯ</h3>
+        <h3 data-lang="te" style="display:none">రాముడు రావణుడిని జయించాడు — ఒక యుగం ముగింపు</h3>
+        <h3 data-lang="ta" style="display:none">ராமன் இராவணனை வென்றான் — ஒரு யுகத்தின் முடிவு</h3>
+        <h3 data-lang="ml" style="display:none">രാമൻ രാവണനെ ജയിച്ചു — ഒരു യുഗത്തിന്റെ അന്ത്യം</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The war is epic in the truest sense — armies of millions, divine weapons that reshape the sky, heroes and demons falling by the thousands. <strong>Kumbhakarna</strong>, the giant brother of Ravana, is woken from his six-month sleep to fight and dies in battle with Rama. <strong>Indrajit</strong>, Ravana's son and one of the mightiest warriors ever born, uses the Brahmastra to seemingly kill Lakshmana. Only the Sanjeevani herb, fetched by Hanuman from the Himalayas, brings Lakshmana back.</p>
+<p>At last, Ravana himself enters the battlefield. He is everything the legends say — ten heads, twenty arms, divine armour, weapons gifted by Brahma himself. Rama's arrows cut off his heads and they grow back. Cut off his arms and they regenerate. Then Vibhishana reveals the secret: Ravana has amrita — immortality nectar — stored in his navel. Rama aims for the navel with the Brahmastra given by the sage Agastya. Ravana falls.</p>
+<p>The death of Ravana is one of the most complex moments in the Ramayana. Rama himself performs Ravana's funeral rites, acknowledging: <em>"In battle, he was my equal. As a scholar of the Vedas, he was without peer. In him died a greatness that made him capable of being history's greatest villain and its greatest scholar simultaneously."</em> Even Sita weeps at the death of the man who abducted her — for his death is the death of a titan.</p></div>
+          <div data-lang="hi" style="display:none"><p>युद्ध में <strong>कुम्भकर्ण</strong> और <strong>इन्द्रजित</strong> मारे जाते हैं। लक्ष्मण ब्रह्मास्त्र से मूर्छित। हनुमान हिमालय से संजीवनी लाते हैं। अंत में रावण युद्ध में। विभीषण नाभि का रहस्य बताते हैं — राम ब्रह्मास्त्र से रावण को मारते हैं। राम रावण का अंतिम संस्कार करते हैं: <em>"युद्ध में वह मेरे समकक्ष था।"</em></p></div>
+          <div data-lang="kn" style="display:none"><p>ಯುದ್ಧದಲ್ಲಿ <strong>ಕುಂಭಕರ್ಣ</strong> ಮತ್ತು <strong>ಇಂದ್ರಜಿತ್</strong> ನಿಧನ. ಲಕ್ಷ್ಮಣ ಬ್ರಹ್ಮಾಸ್ತ್ರಕ್ಕೆ ಮೂರ್ಛಿತ. ಹನುಮಂತ ಹಿಮಾಲಯದಿಂದ ಸಂಜೀವನಿ ತರುತ್ತಾನೆ. ಅಂತ್ಯದಲ್ಲಿ ರಾವಣ ಯುದ್ಧ. ರಾಮ ಬ್ರಹ್ಮಾಸ್ತ್ರದಿಂದ ರಾವಣ ಕೊಲ್ಲುತ್ತಾನೆ. ರಾಮ ರಾವಣನ ಅಂತ್ಯಸಂಸ್ಕಾರ ಮಾಡುತ್ತಾನೆ.</p></div>
+          <div data-lang="te" style="display:none"><p>యుద్ధంలో <strong>కుంభకర్ణుడు</strong> మరియు <strong>ఇంద్రజిత్</strong> మరణించారు. లక్ష్మణుడు బ్రహ్మాస్త్రానికి మూర్ఛిల్లాడు. హనుమంతుడు హిమాలయల నుండి సంజీవని తెచ్చాడు. చివరకు రాముడు బ్రహ్మాస్త్రంతో రావణుడిని సంహరించాడు. రాముడు రావణుని అంత్యక్రియలు చేశాడు.</p></div>
+          <div data-lang="ta" style="display:none"><p>போரில் <strong>கும்பகர்ணன்</strong> மற்றும் <strong>இந்திரஜித்</strong> இறந்தனர். லக்ஷ்மணன் பிரம்மாஸ்திரத்தால் மயக்கமடைந்தான். ஹனுமான் ஹிமாலயத்திலிருந்து சஞ்சீவனி கொண்டுவந்தான். இறுதியில் ராமன் பிரம்மாஸ்திரத்தால் இராவணனை கொன்றான். ராமன் இராவணனுக்கு இறுதி சடங்கு செய்தான்.</p></div>
+          <div data-lang="ml" style="display:none"><p>യുദ്ധത്തിൽ <strong>കുംഭകർണ്ണൻ</strong> ഉം <strong>ഇന്ദ്രജിത്ത്</strong> ഉം മരിച്ചു. ലക്ഷ്മണൻ ബ്രഹ്മാസ്ത്രത്തിൽ മൂർഛിച്ചു. ഹനുമാൻ ഹിമാലയത്തിൽ നിന്ന് സഞ്ജീവനി കൊണ്ടുവന്നു. ഒടുക്കം രാമൻ ബ്രഹ്മാസ്ത്രത്തൽ രാവണനെ ജയിച്ചു. രാമൻ രാവണന്റെ ക്രിയ ചെയ്തു.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">तमसो मा ज्योतिर्गमय। मृत्योर्माऽमृतं गमय।</div>
+            <div class="shloka-meaning">"Lead me from darkness to light. Lead me from death to immortality." — The deepest prayer of the Yuddha Kanda: war is not the end. Through war, through loss, through the ultimate confrontation — light emerges.</div>
+            <div class="shloka-source">— Brihadaranyaka Upanishad · quoted in Yuddha Kanda's spirit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">⚔️</div>
+        <h3>Unlock Kanda 6 — The Battle of Lanka</h3>
+        <p>The building of Ram Setu, the deaths of Kumbhakarna and Indrajit, Rama's final battle with Ravana, and Sita's Agni Pariksha — the climax of the greatest epic.</p>
+        <div class="paywall-features">
+          <span class="paywall-feature">✦ All Kandas</span>
+          <span class="paywall-feature">✦ 6 Languages</span>
+          <span class="paywall-feature">✦ Every Shloka</span>
+          <span class="paywall-feature">✦ Unlimited AI Chat</span>
+        </div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="k-divider"><span>ॐ</span></div>
+  <div class="kanda locked-k" id="k-7">
+    <div class="kanda-header">
+      <div class="kanda-num">07</div>
+      <div class="kanda-title-wrap">
+        <div class="kanda-badge">👑 PREMIUM · 111 SARGAS · THE GOLDEN EPILOGUE</div>
+        <div class="kanda-title" data-lang="en">Uttara Kanda — Ram Rajya, The Golden Age ★</div>
+        <div class="kanda-title" data-lang="hi" style="display:none">उत्तरकाण्ड — राम राज्य, स्वर्णिम युग ★</div>
+        <div class="kanda-title" data-lang="kn" style="display:none">ಉತ್ತರ ಕಾಂಡ — ರಾಮ ರಾಜ್ಯ, ಸ್ವರ್ಣ ಯುಗ ★</div>
+        <div class="kanda-title" data-lang="te" style="display:none">ఉత్తర కాండ — రామ రాజ్యం, స్వర్ణ యుగం ★</div>
+        <div class="kanda-title" data-lang="ta" style="display:none">உத்தர காண்டம் — ராம ராஜ்யம், தங்க யுகம் ★</div>
+        <div class="kanda-title" data-lang="ml" style="display:none">ഉത്തര കാണ്ഡം — രാമ രാജ്യം, സ്വർണ്ണ യുഗം ★</div>
+        <div class="kanda-sanskrit">उत्तरकाण्डम्</div>
+        <div class="kanda-meta">RETURN TO AYODHYA · PUSHPAKA VIMANA · CORONATION · RAM RAJYA · THE GOLDEN AGE</div>
+      </div>
+    </div>
+    <div class="kanda-content">
+      <div class="story">
+        <div class="story-label">✦ STORY 1 · UTTARA KANDA</div>
+        <h3 data-lang="en">The Return to Ayodhya — The Pushpaka Vimana</h3>
+        <h3 data-lang="hi" style="display:none">अयोध्या वापसी — पुष्पक विमान</h3>
+        <h3 data-lang="kn" style="display:none">ಅಯೋಧ್ಯೆಗೆ ಮರಳು — ಪುಷ್ಪಕ ವಿಮಾನ</h3>
+        <h3 data-lang="te" style="display:none">అయోధ్యకు తిరిగి — పుష్పక విమానం</h3>
+        <h3 data-lang="ta" style="display:none">அயோத்தியா திரும்பல் — புஷ்பக விமானம்</h3>
+        <h3 data-lang="ml" style="display:none">അയോദ്ധ്യയിലേക്ക് തിരിച്ചു — പുഷ്പക വിമാനം</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The war is over. Ravana is dead. Lanka is Vibhishana's. And now the Pushpaka Vimana — the celestial aerial vehicle that Ravana stole from Kubera — is given to Rama. The return journey to Ayodhya is a flight across the whole of India, with Rama pointing out to Sita every place they passed through: the forest where they lived, the ocean they crossed, the monkey kingdom of Kishkindha, the mountains where they searched.</p>
+<p>Fourteen years of exile are over. Bharata, who has been ruling as Rama's regent — his sandals on the throne — has sworn to enter fire if Rama does not return by the appointed day. As the Pushpaka Vimana approaches Ayodhya, Bharata sees it from a distance and falls to his knees. The reunion of the brothers is the most emotionally powerful scene in the Uttara Kanda.</p>
+<p>The coronation of <strong>Rama</strong> — <em>Rama Rajyabhisheka</em> — is the culmination of the Ramayana. The gods shower flowers. Every citizen rejoices. <strong>Ram Rajya</strong> begins — the golden age of perfect governance, where no subject suffers, no child dies before its parents, no injustice goes unaddressed. Ram Rajya is not just Ayodhya's political ideal — it is the Hindu concept of the ideal human society: dharmic, just, compassionate, and presided over by a king who places duty above personal desire.</p></div>
+          <div data-lang="hi" style="display:none"><p>युद्ध समाप्त। पुष्पक विमान पर राम सीता को सम्पूर्ण भारत दिखाते हैं। चौदह वर्षों का वनवास पूर्ण। <strong>भरत</strong> प्रण था — यदि राम नहीं आए तो अग्नि में प्रवेश करेंगे। राम को देख वे घुटनों पर आ जाते हैं। <strong>राम राज्याभिषेक</strong> — <strong>राम राज्य</strong> की स्थापना। धर्म, न्याय, करुणा पर आधारित स्वर्णिम युग।</p></div>
+          <div data-lang="kn" style="display:none"><p>ಯುದ್ಧ ಮುಗಿದು. ಪುಷ್ಪಕ ವಿಮಾನದಲ್ಲಿ ರಾಮ ಸೀತೆಗೆ ಭಾರತ ದರ್ಶನ. ಹದಿನಾಲ್ಕು ವರ್ಷ ಮುಗಿದು. <strong>ಭರತ</strong> ಪ್ರತಿಜ್ಞೆ — ರಾಮ ಬರದಿದ್ದರೆ ಅಗ್ನಿ ಪ್ರವೇಶ. ರಾಮನ ಸಿಂಹಾಸನಾರೋಹಣ — <strong>ರಾಮ ರಾಜ್ಯ</strong> ಆರಂಭ। ಧರ್ಮ, ನ್ಯಾಯ, ಕರುಣೆಯ ಸ್ವರ್ಣ ಯುಗ.</p></div>
+          <div data-lang="te" style="display:none"><p>యుద్ధం ముగిసింది. పుష్పక విమానంలో రాముడు సీతకు మొత్తం భారత్ చూపించాడు. పద్నాలుగు సంవత్సరాలు ముగిశాయి. <strong>భరతుడు</strong> ప్రతిజ్ఞ — రాముడు రాకపోతే అగ్నిలో ప్రవేశిస్తానని. <strong>రామ పట్టాభిషేకం</strong> — <strong>రామ రాజ్యం</strong> ప్రారంభం. ధర్మ, న్యాయ, కరుణ స్వర్ణ యుగం.</p></div>
+          <div data-lang="ta" style="display:none"><p>போர் முடிந்தது. புஷ்பக விமானத்தில் ராமன் சீதைக்கு இந்தியா முழுவதும் காட்டினான். பதினான்கு ஆண்டுகள் முடிந்தன. <strong>பரதன்</strong> சபதம் — ராமன் வராவிட்டால் தீயில் பிரவேசிப்பேன் என்று. <strong>ராமன் பட்டாபிஷேகம்</strong> — <strong>ராம ராஜ்யம்</strong> தொடக்கம். தர்மம், நீதி, கருணை தங்க யுகம்.</p></div>
+          <div data-lang="ml" style="display:none"><p>യുദ്ധം കഴിഞ്ഞു. പുഷ്പക വിമാനത്തിൽ രാമൻ സീതക്ക് ഭാരതം കാട്ടി. പതിനാല് വർഷം ആമ്പ. <strong>ഭരതൻ</strong> ശപഥം — രാമൻ വരായ്കിൽ അഗ്നിയിൽ പ്രവേശിക്കും. <strong>രാമ രാജ്യാഭിഷേകം</strong> — <strong>രാമ രാജ്യം</strong> ആരംഭം. ധർമ്മ, നീതി, കരുണ സ്വർണ്ണ യുഗം.</p></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">👑</div>
+        <h3>Unlock Kanda 7 — Ram Rajya, the Golden Epilogue</h3>
+        <p>The triumphant return to Ayodhya, the coronation of Lord Rama, and the establishment of Ram Rajya — the Hindu ideal of perfect governance and the golden age of dharma.</p>
+        <div class="paywall-features">
+          <span class="paywall-feature">✦ All Kandas</span>
+          <span class="paywall-feature">✦ 6 Languages</span>
+          <span class="paywall-feature">✦ Every Shloka</span>
+          <span class="paywall-feature">✦ Unlimited AI Chat</span>
+        </div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
       </div>
     </div>
   </div>
 
-  <!-- Quick preview of locked kandas -->
-  <div style="background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);padding:28px;margin-bottom:40px;">
-    <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;color:var(--maroon-dk);margin-bottom:20px;">🏹 KANDAS 3–7 · UNLOCK THE COMPLETE EPIC →</h3>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
-      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 3 · ARANYA KANDA</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Forest of Trials</div>
-        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The golden deer, Sita's abduction by Ravana, Jatayu's sacrifice, and Rama's anguished search through the forest.</div>
-      </div>
-      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 4 · KISHKINDHA KANDA</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Kingdom of the Vanaras</div>
-        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">Alliance with Sugriva, the killing of Vali, and Hanuman revealed as Rama's greatest devotee.</div>
-      </div>
-      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);background:linear-gradient(135deg,rgba(62,0,0,0.04),rgba(212,160,23,0.04));">
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-dk);margin-bottom:6px;">KANDA 5 · SUNDARA KANDA · ★ MOST BELOVED</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Hanuman's Leap to Lanka</div>
-        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">Hanuman's epic flight across the ocean, his meeting with Sita in Ashoka Vatika, the burning of Lanka — one of the most thrilling accounts in world literature.</div>
-      </div>
-      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);">
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--saffron);margin-bottom:6px;">KANDA 6 · YUDDHA KANDA</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">The Battle of Lanka</div>
-        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The bridge across the ocean, the death of Kumbhakarna and Indrajit, Rama's final confrontation with Ravana, and Sita's Agni Pariksha.</div>
-      </div>
-      <div style="padding:14px;border-radius:10px;border:1px solid rgba(107,26,26,0.08);grid-column:1/-1;">
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--gold-dk);margin-bottom:6px;">KANDA 7 · UTTARA KANDA · ★ THE EPILOGUE</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;">Rama's Return and the Reign of Ram Rajya</div>
-        <div style="font-size:12px;color:var(--text-mid);margin-top:4px;font-family:'EB Garamond',serif;font-style:italic;">The triumphant return to Ayodhya aboard the Pushpaka Vimana, the coronation of Lord Rama, the establishment of Ram Rajya — the golden age of perfect governance — and the bittersweet final chapters.</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:20px;">
-      <a href="premium.html" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(232,97,26,0.4);">Unlock All 7 Kandas — ₹199/month →</a>
-    </div>
-  </div>
-</div>
+</div><!-- /main end -->
 
 <footer>
   <p><a href="index.html">Home</a><a href="bhagavad-gita.html">Bhagavad Gita</a><a href="mahabharata.html">Mahabharata</a><a href="premium.html">Go Premium</a></p>
