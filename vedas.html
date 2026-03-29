@@ -69,7 +69,7 @@ nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);pad
 .nav-link{font-family:'Cinzel',serif;font-size:12px;color:rgba(240,192,64,0.65);text-decoration:none;letter-spacing:.06em}
 .nav-link:hover{color:var(--gold-lt)}
 .btn-upgrade{background:linear-gradient(135deg,var(--gold),var(--saffron));color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:.05em}
-.hero{background:linear-gradient(160deg,#0A0A2A 0%,#1A0A3A 30%,#4A0808 65%,#3E0000 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero{background:linear-gradient(160deg,#2A0000 0%,#3E0000 30%,#5A0A0A 60%,#3E0000 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='60' cy='60' r='58' fill='none' stroke='%23D4A017' stroke-opacity='0.08' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23D4A017' stroke-opacity='0.06' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='22' fill='none' stroke='%23D4A017' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E") repeat;opacity:.8}
 .hero::after{content:'ॐ';position:absolute;right:-30px;top:50%;transform:translateY(-50%);font-size:420px;color:rgba(212,160,23,0.05);font-family:'EB Garamond',serif;pointer-events:none;line-height:1}
 .hero-tag{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;padding:5px 18px;border-radius:20px;margin-bottom:20px}
@@ -82,6 +82,14 @@ nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);pad
 .hero-stat{text-align:center}
 .hero-stat strong{display:block;font-family:'Cinzel Decorative',serif;font-size:24px;color:var(--gold-lt);line-height:1}
 .hero-stat span{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.4);margin-top:4px;display:block}
+
+.hero-swords{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-swords svg{position:absolute;width:100%;height:100%;opacity:.06}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,rgba(212,160,23,0.12) 0%,transparent 65%);pointer-events:none}
+.hero-divider{position:relative;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px}
+.hero-quote{position:relative;max-width:680px;margin:0 auto 32px;background:rgba(255,255,255,0.04);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:22px 30px}
+.hero-quote p{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:8px}
+.hero-quote cite{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--gold-dk)}
 .premium-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(212,160,23,0.2),rgba(232,97,26,0.15));border:1px solid rgba(212,160,23,0.4);border-radius:50px;padding:8px 20px;font-family:'Cinzel',serif;font-size:12px;color:var(--gold-lt);letter-spacing:.08em}
 .lang-bar{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.15);padding:14px 24px;position:sticky;top:64px;z-index:100}
 .lang-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -439,68 +447,170 @@ footer a{color:rgba(240,192,64,0.5);text-decoration:none;margin:0 10px}
   <div class="v-divider"><span>ॐ</span></div>
 
   <!-- VEDAS 2-4 — LOCKED -->
+
+
   <div class="veda locked-veda" id="v-2">
     <div class="veda-header">
       <div class="veda-num">02</div>
-      <div>
-        <div class="veda-badge">PREMIUM · 1,975 MANTRAS · KRISHNA & SHUKLA YAJURVEDA</div>
-        <div class="veda-title">Yajurveda — The Veda of Ritual Action</div>
-        <div class="veda-sanskrit">यजुर्वेद</div>
-        <div class="veda-meta">YAJNA MANTRAS · RUDRAM · CHAMAKAM · SHATARUDRIYA · THE SCIENCE OF RITUAL</div>
+      <div class="veda-title-wrap">
+        <div class="veda-badge">👑 PREMIUM · 1,875 MANTRAS · RITUAL SCRIPTURE</div>
+        <div class="veda-title" data-lang="en">Yajurveda — The Veda of Sacred Ritual</div>
+        <div class="veda-title" data-lang="hi" style="display:none">यजुर्वेद — पवित्र यज्ञ का वेद</div>
+        <div class="veda-title" data-lang="kn" style="display:none">ಯಜುರ್ವೇದ — ಪವಿತ್ರ ಯಜ್ಞದ ವೇದ</div>
+        <div class="veda-title" data-lang="te" style="display:none">యజుర్వేదం — పవిత్ర యజ్ఞ వేదం</div>
+        <div class="veda-title" data-lang="ta" style="display:none">யஜுர் வேதம் — புனித யாகத்தின் வேதம்</div>
+        <div class="veda-title" data-lang="ml" style="display:none">യജുർ വേദം — പവിത്ര യജ്ഞത്തിന്റെ വേദം</div>
+        <div class="veda-sanskrit">यजुर्वेदः</div>
+        <div class="veda-meta">1,875 MANTRAS · SRI RUDRAM · ISHA UPANISHAD · CHAMAKAM</div>
       </div>
     </div>
     <div class="veda-content">
       <div class="story">
-        <h3>The Sri Rudram — The Most Powerful Chant to Lord Shiva Ever Composed</h3>
-        <div class="story-text"><p>The Yajurveda is the priest's manual — the collection of mantras used during the performance of yajnas (fire rituals). But it contains one of the most magnificent hymns ever composed: the <strong>Sri Rudram</strong> (also called the Shri Rudrashtadhyayi), an invocation to the terrifying, benevolent, all-pervading Rudra who later became Lord Shiva. The Chamakam follows, asking the divine for all that is needed for a good life — "And give me this too, and this too" — chamakam means "and to me"...</p></div>
+        <div class="story-label">✦ THE RITUAL VEDA · VOICE OF SACRED ACTION</div>
+        <h3 data-lang="en">Yajurveda — The Scripture of Sacrifice and Sacred Action</h3>
+        <h3 data-lang="hi" style="display:none">यजुर्वेद — यज्ञ और पवित्र कर्म का शास्त्र</h3>
+        <h3 data-lang="kn" style="display:none">ಯಜುರ್ವೇದ — ಯಜ್ಞ ಮತ್ತು ಪವಿತ್ರ ಕರ್ಮದ ಶಾಸ್ತ್ರ</h3>
+        <h3 data-lang="te" style="display:none">యజుర్వేదం — యజ్ఞం మరియు పవిత్ర కర్మ శాస్త్రం</h3>
+        <h3 data-lang="ta" style="display:none">யஜுர் வேதம் — யாகம் மற்றும் புனித செயலின் நூல்</h3>
+        <h3 data-lang="ml" style="display:none">യജുർ വേദം — യജ്ഞവും പവിത്ര കർമ്മവും</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The <strong>Yajurveda</strong> is the Veda of Action — specifically, of the sacred actions performed during the great Vedic yajnas (fire sacrifices). While the Rigveda gives the mantras to recite, the Yajurveda gives the instructions for what to do while reciting them: how to prepare the altar, how to pour the offerings, what movements to make, what prayers to speak at each moment of the ritual.</p>
+<p>The Yajurveda exists in two major recensions: the <strong>Krishna (Black) Yajurveda</strong>, which mixes the mantras with prose explanations (the Brahmanas), and the <strong>Shukla (White) Yajurveda</strong>, which keeps the mantras pure and separate. The Shukla Yajurveda includes the famous <strong>Shatapataha Brahmana</strong> — one of the most important philosophical texts in Vedic literature.</p>
+<p>But the Yajurveda's most profound contribution is not ritual — it is the Isha Upanishad, which forms its final chapter. The Isha Upanishad opens with one of the most radical statements ever made in any philosophy: <em>"All this — whatever moves in this universe — is pervaded by the Lord. Enjoy what He has given you. Do not covet anyone else's wealth."</em> In eighteen verses, it contains a complete philosophy of life, action, and liberation.</p>
+<p>The Yajurveda also contains the <strong>Sri Rudram and Chamakam</strong> — the most powerful hymns to Lord Shiva, still chanted in temples across India every day. The Sri Rudram names Shiva in 170 of His forms, each name a different facet of the cosmic presence that destroys in order to create.</p></div>
+          <div data-lang="hi" style="display:none"><p><strong>यजुर्वेद</strong> कर्म का वेद है — यज्ञ के विधि-विधान। कृष्ण यजुर्वेद और शुक्ल यजुर्वेद दो प्रमुख शाखाएँ। इसमें <strong>ईशावास्योपनिषद्</strong> — केवल अठारह श्लोकों में जीवन, कर्म, मोक्ष का सम्पूर्ण दर्शन। और <strong>श्री रुद्रम् और चमकम्</strong> — शिव के १७० नामों से स्तुति, जो आज भी मन्दिरों में गूँजती है।</p></div>
+          <div data-lang="kn" style="display:none"><p><strong>ಯಜುರ್ವೇದ</strong> ಕರ್ಮದ ವೇದ — ಯಜ್ಞ ವಿಧಿ. ಕೃಷ್ಣ ಮತ್ತು ಶುಕ್ಲ ಯಜುರ್ವೇದ ಎರಡು ಶಾಖೆ. ಇದರಲ್ಲಿ <strong>ಈಶಾವಾಸ್ಯ ಉಪನಿಷತ್</strong> — ಹದಿನೆಂಟು ಶ್ಲೋಕದಲ್ಲಿ ಜೀವನ ದರ್ಶನ. <strong>ಶ್ರೀ ರುದ್ರಂ</strong> — ಶಿವನ ೧೭೦ ನಾಮ, ಇಂದಿಗೂ ದೇವಾಲಯದಲ್ಲಿ ನಿತ್ಯ ಪಠಿಸಲ್ಪಡುತ್ತದೆ.</p></div>
+          <div data-lang="te" style="display:none"><p><strong>యజుర్వేదం</strong> కర్మ వేదం — యజ్ఞ విధులు. కృష్ణ మరియు శుక్ల యజుర్వేదం రెండు శాఖలు. దీనిలో <strong>ఈశావాస్యోపనిషత్</strong> — పద్దెనిమిది శ్లోకాల్లో జీవన దర్శనం. <strong>శ్రీ రుద్రం</strong> — శివుని ౧౭౦ నామాలు, ఇప్పటికీ దేవాలయాల్లో నిత్యం పఠింపబడుతుంది.</p></div>
+          <div data-lang="ta" style="display:none"><p><strong>யஜுர் வேதம்</strong> கர்ம வேதம் — யாக விதிகள். கிருஷ்ண மற்றும் சுக்ல யஜுர் வேதம் இரண்டு கிளைகள். இதில் <strong>ஈசாவாஸ்ய உபநிஷத்</strong> — பதினெட்டு சுலோகங்களில் வாழ்க்கை தரிசனம். <strong>ஸ்ரீ ருத்ரம்</strong> — சிவனின் ௧௭௦ பெயர்கள், இன்றும் கோவில்களில் நாள்தோறும் ஓதப்படுகிறது.</p></div>
+          <div data-lang="ml" style="display:none"><p><strong>യജുർ വേദം</strong> കർമ്മ വേദം — യജ്ഞ വിധികൾ. കൃഷ്ണ, ശുക്ല യജുർ വേദം രണ്ട് ശാഖ. ഇതിൽ <strong>ഈശാവാസ്യ ഉപനിഷദ്</strong> — പതിനെട്ട് ശ്ലോകത്തിൽ ജീവൻ ദർശനം. <strong>ശ്രീ രുദ്രം</strong> — ശിവന്റെ ൧൭൦ നാമം, ഇന്നും ക്ഷേത്രങ്ങളിൽ നിത്യം ഉരുവിടപ്പെടുന്നു.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">ईशावास्यमिदं सर्वं यत्किञ्च जगत्यां जगत्</div>
+            <div class="shloka-meaning">"All this — whatever moves in this moving world — is pervaded by the Lord." — The opening line of Isha Upanishad, the philosophical crown of the Yajurveda.</div>
+            <div class="shloka-source">— Isha Upanishad · Yajurveda · Verse 1</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="paywall-overlay">
       <div class="paywall-box">
-        <div class="paywall-icon">🔐</div>
-        <h3>Unlock All 4 Vedas</h3>
-        <p>Yajurveda's Rudram, Samaveda's sacred music, Atharvaveda's healing mantras — the complete foundation of all Hindu knowledge awaits.</p>
-        <div class="paywall-features">
-          <span class="paywall-feature">ALL 4 VEDAS</span>
-          <span class="paywall-feature">6 LANGUAGES</span>
-          <span class="paywall-feature">SRI RUDRAM</span>
-          <span class="paywall-feature">VEDIC MUSIC</span>
+        <div class="paywall-icon">🔥</div>
+        <h3>Unlock Yajurveda</h3>
+        <p>The Veda of sacred action — containing Sri Rudram, Chamakam, and the Isha Upanishad, with the most potent Shiva mantras ever composed.</p>
+        <div class="paywall-features"><span class="paywall-feature">✦ All 4 Vedas</span><span class="paywall-feature">✦ 6 Languages</span><span class="paywall-feature">✦ Sacred Mantras</span><span class="paywall-feature">✦ Unlimited AI Chat</span></div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+  <div class="veda-divider"><span>ॐ</span></div>
+  <div class="veda locked-veda" id="v-3">
+    <div class="veda-header">
+      <div class="veda-num">03</div>
+      <div class="veda-title-wrap">
+        <div class="veda-badge">👑 PREMIUM · 1,875 MANTRAS · THE MUSICAL VEDA</div>
+        <div class="veda-title" data-lang="en">Samaveda — The Veda of Sacred Melody</div>
+        <div class="veda-title" data-lang="hi" style="display:none">सामवेद — पवित्र संगीत का वेद</div>
+        <div class="veda-title" data-lang="kn" style="display:none">ಸಾಮವೇದ — ಪವಿತ್ರ ಸಂಗೀತದ ವೇದ</div>
+        <div class="veda-title" data-lang="te" style="display:none">సామవేదం — పవిత్ర సంగీత వేదం</div>
+        <div class="veda-title" data-lang="ta" style="display:none">சாம வேதம் — புனித இசையின் வேதம்</div>
+        <div class="veda-title" data-lang="ml" style="display:none">സാമ വേദം — പവിത്ര ഗാനത്തിന്റെ വേദം</div>
+        <div class="veda-sanskrit">सामवेदः</div>
+        <div class="veda-meta">1,875 MANTRAS · TAT TVAM ASI · CHANDOGYA UPANISHAD · CELESTIAL MUSIC</div>
+      </div>
+    </div>
+    <div class="veda-content">
+      <div class="story">
+        <div class="story-label">✦ THE MUSICAL VEDA · THE VEDA OF SACRED SONG</div>
+        <h3 data-lang="en">Samaveda — The Veda of Celestial Music</h3>
+        <h3 data-lang="hi" style="display:none">सामवेद — दिव्य संगीत का वेद</h3>
+        <h3 data-lang="kn" style="display:none">ಸಾಮವೇದ — ದಿವ್ಯ ಸಂಗೀತದ ವೇದ</h3>
+        <h3 data-lang="te" style="display:none">సామవేదం — దివ్య సంగీత వేదం</h3>
+        <h3 data-lang="ta" style="display:none">சாம வேதம் — தெய்வீக இசையின் வேதம்</h3>
+        <h3 data-lang="ml" style="display:none">സാമ വേദം — ദൈവിക സംഗീതത്തിന്റെ വേദം</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The <strong>Samaveda</strong> — "Veda of Melodies" — is the most musical of all the Vedas. It consists primarily of verses taken from the Rigveda, but set to elaborate musical notation and meant to be sung by specially trained priests called <em>Udgatars</em>. If the Rigveda is poetry, the Samaveda is that poetry transformed into song. Krishna himself declares in the Bhagavad Gita: <em>"Of the Vedas, I am the Samaveda"</em> — honouring the musical Veda as the most beautiful.</p>
+<p>The Samaveda contains 1,875 mantras, of which all but 75 are drawn from the Rigveda. But the transformation through music is total. The same mantra that is prayer in the Rigveda becomes rapture in the Samaveda. The Samaveda's singing tradition — <em>Samagan</em> — is the oldest continuous musical tradition on earth, unbroken for over 3,000 years.</p>
+<p>The Samaveda also contains some of the most philosophically profound Upanishads: the <strong>Chandogya Upanishad</strong> — one of the two longest and most important — and the <strong>Kena Upanishad</strong>. The Chandogya contains the famous teaching of <em>Tat Tvam Asi</em> — "That thou art" — the declaration that the individual soul (Atman) and the Universal Soul (Brahman) are ultimately identical.</p></div>
+          <div data-lang="hi" style="display:none"><p><strong>सामवेद</strong> — सुरों का वेद। इसके अधिकांश मंत्र ऋग्वेद से लिए गए हैं, पर संगीत में रूपांतरित। कृष्ण कहते हैं: <em>"वेदों में मैं सामवेद हूँ।"</em> इसमें <strong>छान्दोग्य उपनिषद्</strong> — जहाँ <em>तत् त्वम् असि</em> की शिक्षा है: आत्मा और ब्रह्म एक हैं।</p></div>
+          <div data-lang="kn" style="display:none"><p><strong>ಸಾಮವೇದ</strong> — ರಾಗಗಳ ವೇದ. ಋಗ್ವೇದ ಮಂತ್ರಗಳನ್ನು ಸಂಗೀತಕ್ಕೆ ಪರಿವರ್ತಿಸಿದ ವೇದ. ಕೃಷ್ಣ: <em>"ವೇದಗಳಲ್ಲಿ ನಾನು ಸಾಮವೇದ."</em> ಇದರಲ್ಲಿ <strong>ಛಾಂದೋಗ್ಯ ಉಪನಿಷತ್</strong> — <em>ತತ್ ತ್ವಮ್ ಅಸಿ</em>: ಆತ್ಮ ಮತ್ತು ಬ್ರಹ್ಮ ಒಂದೇ.</p></div>
+          <div data-lang="te" style="display:none"><p><strong>సామవేదం</strong> — రాగాల వేదం. ఋగ్వేద మంత్రాలను సంగీతానికి మార్చిన వేదం. కృష్ణుడు: <em>"వేదాలలో నేను సామవేదం."</em> దీనిలో <strong>చాందోగ్య ఉపనిషత్</strong> — <em>తత్ త్వమ్ అసి</em>: ఆత్మ మరియు బ్రహ్మం ఒకటే.</p></div>
+          <div data-lang="ta" style="display:none"><p><strong>சாம வேதம்</strong> — இராகங்களின் வேதம். ரிக்வேத மந்திரங்களை இசைக்கு மாற்றியது. கிருஷ்ணர்: <em>"வேதங்களில் நான் சாம வேதம்."</em> இதில் <strong>சாந்தோக்ய உபநிஷத்</strong> — <em>தத் த்வம் அஸி</em>: ஆத்மாவும் பிரம்மனும் ஒன்றே.</p></div>
+          <div data-lang="ml" style="display:none"><p><strong>സാമ വേദം</strong> — രാഗങ്ങളുടെ വേദം. ഋഗ്വേദ മന്ത്രങ്ങൾ സംഗീതത്തിൽ രൂപാന്തരം. കൃഷ്ണൻ: <em>"വേദങ്ങളിൽ ഞാൻ സാമ വേദം."</em> ഇതിൽ <strong>ഛാന്ദോഗ്യ ഉപനിഷദ്</strong> — <em>തത് ത്വം അസി</em>: ആത്മയും ബ്രഹ്മവും ഒന്ന്.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">तत्त्वमसि</div>
+            <div class="shloka-meaning">"That thou art." — The mahavakya (great saying) of the Chandogya Upanishad, the Samaveda's crown jewel. You are not separate from the Infinite. You are the Infinite, temporarily wearing a finite form.</div>
+            <div class="shloka-source">— Chandogya Upanishad · Samaveda · 6.8.7</div>
+          </div>
         </div>
-        <a class="btn-unlock" href="premium.html">Unlock All 4 Vedas — ₹199/month</a>
-        <div class="paywall-note">7-DAY FREE TRIAL · CANCEL ANYTIME · ALL 18+ SCRIPTURES INCLUDED</div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">🎵</div>
+        <h3>Unlock Samaveda</h3>
+        <p>The most musical Veda — containing the Chandogya Upanishad with Tat Tvam Asi, and the oldest unbroken musical tradition on earth.</p>
+        <div class="paywall-features"><span class="paywall-feature">✦ All 4 Vedas</span><span class="paywall-feature">✦ 6 Languages</span><span class="paywall-feature">✦ Sacred Mantras</span><span class="paywall-feature">✦ Unlimited AI Chat</span></div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
       </div>
     </div>
   </div>
-
-  <!-- Preview of Vedas 2-4 -->
-  <div style="background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);padding:28px;margin-bottom:40px;">
-    <h3 style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;color:var(--maroon-dk);margin-bottom:20px;">📜 VEDAS 2–4 · UNLOCK THE COMPLETE VEDIC WISDOM →</h3>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
-      <div style="padding:16px;border-radius:12px;border:1px solid rgba(107,26,26,0.08);text-align:center;">
-        <div style="font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(212,160,23,0.2);margin-bottom:8px;">02</div>
-        <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--maroon-dk);font-weight:700;margin-bottom:6px;">Yajurveda</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--text-mid);margin-bottom:8px;">The priest's Veda of ritual action. Contains the magnificent Sri Rudram — the most powerful Shiva hymn ever composed. 1,975 mantras.</div>
-        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--saffron);">SRI RUDRAM · CHAMAKAM · YAJNA SCIENCE</div>
-      </div>
-      <div style="padding:16px;border-radius:12px;border:1px solid rgba(107,26,26,0.08);text-align:center;">
-        <div style="font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(212,160,23,0.2);margin-bottom:8px;">03</div>
-        <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--maroon-dk);font-weight:700;margin-bottom:6px;">Samaveda</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--text-mid);margin-bottom:8px;">The Veda of sacred music — 1,875 verses set to precise melodies. Krishna says in the Gita: "Among the Vedas, I am the Samaveda." The origin of Indian classical music.</div>
-        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--saffron);">NADA BRAHMA · MUSIC AS WORSHIP · ORIGIN OF RAGAS</div>
-      </div>
-      <div style="padding:16px;border-radius:12px;border:1px solid rgba(107,26,26,0.08);text-align:center;">
-        <div style="font-family:'Cinzel Decorative',serif;font-size:32px;color:rgba(212,160,23,0.2);margin-bottom:8px;">04</div>
-        <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--maroon-dk);font-weight:700;margin-bottom:6px;">Atharvaveda</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--text-mid);margin-bottom:8px;">The Veda of everyday life — healing, protection, love, prosperity. 5,977 mantras covering medicine, astronomy, statecraft and the art of living well.</div>
-        <div style="font-family:'Cinzel',serif;font-size:10px;color:var(--saffron);">AYURVEDA ROOTS · PRITHVI SUKTA · HEALING MANTRAS</div>
+  <div class="veda-divider"><span>ॐ</span></div>
+  <div class="veda locked-veda" id="v-4">
+    <div class="veda-header">
+      <div class="veda-num">04</div>
+      <div class="veda-title-wrap">
+        <div class="veda-badge">👑 PREMIUM · 5,977 MANTRAS · THE HUMAN VEDA</div>
+        <div class="veda-title" data-lang="en">Atharvaveda — The Veda of Daily Life and Healing</div>
+        <div class="veda-title" data-lang="hi" style="display:none">अथर्ववेद — दैनिक जीवन और चिकित्सा का वेद</div>
+        <div class="veda-title" data-lang="kn" style="display:none">ಅಥರ್ವವೇದ — ದೈನಂದಿನ ಜೀವನ ಮತ್ತು ಚಿಕಿತ್ಸೆಯ ವೇದ</div>
+        <div class="veda-title" data-lang="te" style="display:none">అధర్వ వేదం — దైనిక జీవన మరియు వైద్య వేదం</div>
+        <div class="veda-title" data-lang="ta" style="display:none">அதர்வ வேதம் — அன்றாட வாழ்க்கை மற்றும் குணப்படுத்தல் வேதம்</div>
+        <div class="veda-title" data-lang="ml" style="display:none">അഥർവ വേദം — ദൈനിക ജീവനത്തിന്റെ വേദം</div>
+        <div class="veda-sanskrit">अथर्ववेदः</div>
+        <div class="veda-meta">5,977 MANTRAS · AYURVEDA SOURCE · MANDUKYA UPANISHAD · BHUMI SUKTA</div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:20px;">
-      <a href="premium.html" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(232,97,26,0.4);">Unlock All 4 Vedas — ₹199/month →</a>
+    <div class="veda-content">
+      <div class="story">
+        <div class="story-label">✦ THE EVERYDAY VEDA · THE VEDA OF HUMAN LIFE</div>
+        <h3 data-lang="en">Atharvaveda — The Veda of Daily Life and Healing</h3>
+        <h3 data-lang="hi" style="display:none">अथर्ववेद — दैनिक जीवन और चिकित्सा का वेद</h3>
+        <h3 data-lang="kn" style="display:none">ಅಥರ್ವವೇದ — ದೈನಂದಿನ ಜೀವನ ಮತ್ತು ಚಿಕಿತ್ಸೆಯ ವೇದ</h3>
+        <h3 data-lang="te" style="display:none">అధర్వ వేదం — దైనిక జీవన మరియు వైద్య వేదం</h3>
+        <h3 data-lang="ta" style="display:none">அதர்வ வேதம் — அன்றாட வாழ்க்கை மற்றும் குணப்படுத்தல் வேதம்</h3>
+        <h3 data-lang="ml" style="display:none">അഥർവ വേദം — ദൈനിക ജീവനത്തിന്റെ വേദം</h3>
+        <div class="story-text">
+          <div data-lang="en"><p>The <strong>Atharvaveda</strong> is the most human of the four Vedas — the Veda closest to daily life. While the Rigveda addresses the cosmic, the Yajurveda addresses the ritual, and the Samaveda addresses the musical, the Atharvaveda addresses the ordinary: love, marriage, healing, agriculture, governance, trade, protection from evil, and the philosophical questions of human existence.</p>
+<p>The Atharvaveda contains 5,977 hymns across 20 books. It is a window into the daily life of ancient India — its fears, its hopes, its medical knowledge, its understanding of plants and their healing properties. The Atharvaveda is one of the primary sources of <strong>Ayurveda</strong> — the ancient Indian system of medicine. It describes hundreds of herbs and their healing applications, making it one of the oldest medical texts in human history.</p>
+<p>The Atharvaveda also contains some of the most philosophically rich Upanishads: the <strong>Mundaka Upanishad</strong> with its teaching of the two kinds of knowledge (higher and lower), the <strong>Mandukya Upanishad</strong> — the shortest Upanishad, just twelve verses, containing the complete philosophy of OM and the four states of consciousness — and the <strong>Prashna Upanishad</strong>. It also contains the famous <strong>Bhumi Sukta</strong> — the Hymn to the Earth — one of the oldest ecological prayers in human history: <em>"O Earth, O Mother, lay me gently, as I lay down my body on you with care — you who are our sacred ground."</em></p></div>
+          <div data-lang="hi" style="display:none"><p><strong>अथर्ववेद</strong> — सबसे मानवीय वेद। प्रेम, विवाह, चिकित्सा, कृषि, राजनीति सब इसमें। <strong>आयुर्वेद</strong> का प्राथमिक स्रोत — सैकड़ों जड़ी-बूटियों का वर्णन। इसमें <strong>माण्डूक्य उपनिषद्</strong> — केवल १२ श्लोकों में OM और चार चेतनावस्थाओं का सम्पूर्ण दर्शन। <strong>भूमि सूक्त</strong> — पृथ्वी माता की स्तुति, विश्व की सबसे पुरानी पर्यावरण प्रार्थना।</p></div>
+          <div data-lang="kn" style="display:none"><p><strong>ಅಥರ್ವವೇದ</strong> — ಅತ್ಯಂತ ಮಾನವೀಯ ವೇದ. ಪ್ರೇಮ, ವಿವಾಹ, ಚಿಕಿತ್ಸೆ, ಕೃಷಿ ಎಲ್ಲ ಇದರಲ್ಲಿ. <strong>ಆಯುರ್ವೇದ</strong>ದ ಪ್ರಮುಖ ಮೂಲ. ಇದರಲ್ಲಿ <strong>ಮಾಂಡೂಕ್ಯ ಉಪನಿಷತ್</strong> — ೧೨ ಶ್ಲೋಕದಲ್ಲಿ OM ದರ್ಶನ. <strong>ಭೂಮಿ ಸೂಕ್ತ</strong> — ಭೂಮಿ ಮಾತೆಯ ಸ್ತುತಿ.</p></div>
+          <div data-lang="te" style="display:none"><p><strong>అధర్వ వేదం</strong> — అత్యంత మానవీయ వేదం. ప్రేమ, వివాహం, వైద్యం, వ్యవసాయం అన్నీ ఇందులో. <strong>ఆయుర్వేదం</strong> యొక్క ప్రాథమిక మూలం. ఇందులో <strong>మాండూక్య ఉపనిషత్</strong> — ౧౨ శ్లోకాల్లో OM దర్శనం. <strong>భూమి సూక్తం</strong> — భూమాత స్తుతి.</p></div>
+          <div data-lang="ta" style="display:none"><p><strong>அதர்வ வேதம்</strong> — மிக மனித வேதம். காதல், திருமணம், மருத்துவம், விவசாயம் அனைத்தும் இதில். <strong>ஆயுர்வேதத்தின்</strong> முதன்மை ஆதாரம். இதில் <strong>மாண்டூக்ய உபநிஷத்</strong> — ௧௨ சுலோகங்களில் OM தரிசனம். <strong>பூமி சூக்தம்</strong> — பூமி தாயின் துதி.</p></div>
+          <div data-lang="ml" style="display:none"><p><strong>അഥർവ വേദം</strong> — ഏറ്റം മാനുഷിക വേദം. പ്രേമം, വിവാഹം, ചികിത്സ, കൃഷി എല്ലാം ഇതിൽ. <strong>ആയുർവേദത്തിന്റെ</strong> പ്രധാന ഉറവ. ഇതിൽ <strong>മാണ്ഡൂക്യ ഉപനിഷദ്</strong> — ൧൨ ശ്ലോകത്തിൽ OM ദർശനം. <strong>ഭൂമി സൂക്തം</strong> — ഭൂ മാതാ സ്തുതി.</p></div>
+          <div class="shloka-block">
+            <div class="shloka-sanskrit">माता भूमि पुत्रो अहम् पृथिव्याः</div>
+            <div class="shloka-meaning">"The Earth is my Mother; I am her son." — The Bhumi Sukta of the Atharvaveda. The oldest ecological prayer in human history, recognising the earth not as a resource but as a divine mother.</div>
+            <div class="shloka-source">— Atharvaveda · Bhumi Sukta · 12.1.12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="paywall-overlay">
+      <div class="paywall-box">
+        <div class="paywall-icon">🌿</div>
+        <h3>Unlock Atharvaveda</h3>
+        <p>The most human of the Vedas — containing Ayurveda's origins, the Mandukya Upanishad, and the ancient Bhumi Sukta hymn to Mother Earth.</p>
+        <div class="paywall-features"><span class="paywall-feature">✦ All 4 Vedas</span><span class="paywall-feature">✦ 6 Languages</span><span class="paywall-feature">✦ Sacred Mantras</span><span class="paywall-feature">✦ Unlimited AI Chat</span></div>
+        <a href="premium.html" class="btn-unlock">👑 Unlock Premium — ₹199/month</a>
+        <div class="paywall-note">7-day free trial · Cancel anytime</div>
+      </div>
     </div>
   </div>
+  <div class="veda-divider"><span>ॐ</span></div>
 
-</div><!-- end .main -->
+</div>
 
 <footer>
   <p><a href="index.html">Home</a><a href="bhagavad-gita.html">Bhagavad Gita</a><a href="upanishads.html">Upanishads</a><a href="premium.html">Go Premium</a></p>
