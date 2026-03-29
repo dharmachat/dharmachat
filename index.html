@@ -553,6 +553,25 @@
     box-shadow: 0 4px 16px rgba(232,97,26,0.4);
   }
 
+  /* Sign out button visibility fix */
+  #navAuth button {
+    color: var(--maroon) !important;
+    background: transparent !important;
+    border: 1px solid rgba(107,26,26,0.3) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: .04em;
+    padding: 7px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  #navAuth button:hover {
+    background: rgba(232,97,26,0.1) !important;
+    border-color: var(--saffron) !important;
+    color: var(--saffron) !important;
+  }
+
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
   .fade-up.visible { opacity: 1; transform: none; }
   @keyframes slideLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -693,17 +712,26 @@
       </a>
       <button class="d-close" id="drawerClose">✕</button>
     </div>
+   <div id="drawer-user-section" style="display:none;padding:16px 22px;flex-direction:row;align-items:center;gap:12px;border-bottom:1px solid rgba(212,160,23,0.15);">
+      <img id="drawer-user-photo" src="" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.5);flex-shrink:0;" alt=""/>
+      <div style="min-width:0;">
+        <div id="drawer-user-name" style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+        <div id="drawer-user-email" style="font-size:11px;color:var(--text-mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+      </div>
+    </div>
     <div class="d-links">
-      <a href="chat.html"><span class="d-icon">🕉️</span>AI Dharma Guide</a>
-      <a href="articles.html"><span class="d-icon">📖</span>Dharma Articles</a>
-      <a href="lessons.html"><span class="d-icon">🪔</span>Dharma Lessons</a>
-      <a href="community.html"><span class="d-icon">🙏</span>Community</a>
+      <a href="chat.html">AI Dharma Guide</a>
+      <a href="articles.html">Dharma Articles</a>
+      <a href="lessons.html">Dharma Lessons</a>
+      <a href="community.html">Community</a>
       <div class="d-sep"></div>
-      <a href="premium.html"><span class="d-icon">⭐</span>Go Premium</a>
-      <a href="privacy.html"><span class="d-icon">🔒</span>Privacy Policy</a>
+      <a href="premium.html">Go Premium</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <div class="d-sep"></div>
+      <div id="drawer-auth-item" style="padding:4px 22px 12px;"></div>
     </div>
     <div class="d-foot">
-      <a class="d-cta" href="chat.html">Try DharmaChat Free 🕉️</a>
+      <a class="d-cta" href="chat.html">Try DharmaChat Free</a>
     </div>
   </div>
 </div>
@@ -1440,12 +1468,12 @@ loadShloka();
     <h2 style="font-family:'Cinzel Decorative',serif;font-size:clamp(28px,4vw,42px);margin-bottom:12px">DharmaChat Mobile App</h2>
     <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,0.7);margin-bottom:40px">Launching soon on Android &amp; iOS</p>
     
-    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:40px;">
-      <a href="#" style="display:block">
-       <img src="app-store-badge.svg" style="height:150px;width:auto;" alt="Download on the App Store">
+    <div style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:nowrap;margin-bottom:28px;">
+      <a href="#" style="display:block;opacity:0.9;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+        <img src="app-store-badge.svg" style="height:52px;width:auto;" alt="Download on the App Store">
       </a>
-      <a href="#" style="display:block">
-        <img src="google-play-badge.svg" style="height:155px;width:auto;" alt="Get it on Google Play">
+      <a href="#" style="display:block;opacity:0.9;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+        <img src="google-play-badge.svg" style="height:52px;width:auto;" alt="Get it on Google Play">
       </a>
     </div>
 
@@ -1593,6 +1621,49 @@ function notifyForApp() {
 </script>
 
 <script type="module" src="nav.js"></script>
+<script>
+// Sync Firebase auth to mobile drawer
+(function() {
+  var drawerSection  = document.getElementById('drawer-user-section');
+  var drawerPhoto    = document.getElementById('drawer-user-photo');
+  var drawerName     = document.getElementById('drawer-user-name');
+  var drawerEmail    = document.getElementById('drawer-user-email');
+  var drawerAuthItem = document.getElementById('drawer-auth-item');
+
+  function updateDrawer() {
+    var navAuth = document.getElementById('navAuth');
+    if (!navAuth) return;
+    var img = navAuth.querySelector('img');
+    if (img && img.src && img.src !== window.location.href) {
+      // Signed in
+      drawerSection.style.display = 'flex';
+      drawerPhoto.src = img.src;
+      var nameEl = navAuth.querySelector('.user-name, [class*="name"], span');
+      drawerName.textContent = nameEl ? nameEl.textContent.trim() : '';
+      var emailEl = navAuth.querySelector('.user-email, [class*="email"]');
+      drawerEmail.textContent = emailEl ? emailEl.textContent.trim() : '';
+      // Mirror the sign-out button
+      var signOutBtn = navAuth.querySelector('button');
+      var onclickAttr = signOutBtn ? (signOutBtn.getAttribute('onclick') || '') : '';
+      drawerAuthItem.innerHTML =
+        '<button onclick="' + onclickAttr + '" style="width:100%;background:transparent;border:1px solid rgba(107,26,26,0.25);border-radius:10px;padding:11px;font-family:\'Cinzel\',serif;font-size:12px;letter-spacing:.05em;color:var(--maroon-dk);cursor:pointer;transition:all .2s;" onmouseover="this.style.background=\'rgba(232,97,26,0.08)\'" onmouseout="this.style.background=\'transparent\'">Sign Out</button>';
+    } else {
+      // Signed out
+      drawerSection.style.display = 'none';
+      drawerAuthItem.innerHTML =
+        '<a href="chat.html" style="display:block;text-align:center;font-family:\'Cinzel\',serif;font-size:13px;color:var(--saffron);letter-spacing:.05em;padding:11px;border:1px solid rgba(232,97,26,0.3);border-radius:10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background=\'rgba(232,97,26,0.08)\'" onmouseout="this.style.background=\'transparent\'">Sign In</a>';
+    }
+  }
+
+  // Watch navAuth for auth state changes
+  var observer = new MutationObserver(updateDrawer);
+  var navAuth = document.getElementById('navAuth');
+  if (navAuth) observer.observe(navAuth, { childList: true, subtree: true, attributes: true });
+  // Fallback poll (handles slow Firebase init)
+  setTimeout(updateDrawer, 800);
+  setTimeout(updateDrawer, 2000);
+})();
+</script>
 
 <!-- PWA Banners — mobile only, slide-up animation -->
 <style>
