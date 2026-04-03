@@ -296,8 +296,24 @@ const navLinks = [
   { href: 'chat.html',      emoji: '🤖', label: 'AI Chat' },
 ];
 
+// ── Read premium status ──────────────────────────────────────
+function readPremium() {
+  try {
+    const raw = localStorage.getItem('dc_premium');
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (!d) return null;
+    if (d.expiry && new Date(d.expiry) <= new Date()) {
+      localStorage.removeItem('dc_premium');
+      return null;
+    }
+    return d;
+  } catch(e) { return null; }
+}
+
 // ── Build drawer HTML ────────────────────────────────────────
 function buildDrawer() {
+  const premium = readPremium();
   const navHtml = navLinks.map(l => `
     <a href="${l.href}" class="${isActive(l.href)}">
       <span class="dc-nav-emoji">${l.emoji}</span>
@@ -305,6 +321,24 @@ function buildDrawer() {
       ${l.badge ? `<span class="dc-nav-badge">${l.badge}</span>` : ''}
     </a>
   `).join('');
+
+  // Premium CTA row — shows different content based on status
+  const premiumRowHtml = premium
+    ? `<a href="premium.html" style="color:#F0C040;">
+        <span class="dc-nav-emoji">👑</span>
+        Premium Member
+        <span class="dc-nav-badge" style="background:rgba(212,160,23,0.2);color:#F0C040;border-color:rgba(212,160,23,0.4);">ACTIVE</span>
+      </a>`
+    : `<a href="premium.html">
+        <span class="dc-nav-emoji">👑</span>
+        Premium Plan
+        <span class="dc-nav-badge">UPGRADE</span>
+      </a>`;
+
+  // Bottom CTA button
+  const ctaBtnHtml = premium
+    ? `<a href="bhagavad-gita.html" style="background:linear-gradient(135deg,#8B1A1A,#D4A017);">📖 Read Scriptures →</a>`
+    : `<a href="chat.html">Ask DharmaChat AI →</a>`;
 
   const drawerEl = document.createElement('div');
   drawerEl.id = 'dcDrawer';
@@ -331,14 +365,10 @@ function buildDrawer() {
     <nav class="dc-drawer-nav">
       ${navHtml}
       <div class="dc-drawer-divider"></div>
-      <a href="premium.html">
-        <span class="dc-nav-emoji">👑</span>
-        Premium Plan
-        <span class="dc-nav-badge">UPGRADE</span>
-      </a>
+      ${premiumRowHtml}
     </nav>
     <div class="dc-drawer-cta">
-      <a href="chat.html">Ask DharmaChat AI →</a>
+      ${ctaBtnHtml}
       <button class="dc-drawer-signout" id="dcDrawerSignOut" style="display:none;">Sign Out</button>
     </div>
   `;
@@ -470,6 +500,8 @@ function updateDesktopAuth(user) {
   const navAuth = document.getElementById('navAuth');
   if (!navAuth) return;
 
+  const premium = readPremium();
+
   if (user) {
     const name  = user.displayName?.split(' ')[0] || 'Devotee';
     const photo = user.photoURL || '';
@@ -477,8 +509,15 @@ function updateDesktopAuth(user) {
       <div style="display:flex;align-items:center;gap:10px;">
         ${photo ? `<img src="${photo}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);" onerror="this.style.display='none'"/>` : ''}
         <span style="font-family:Cinzel,serif;font-size:12px;color:rgba(240,192,64,0.9);">${name}</span>
+        ${premium ? `<span style="font-family:Cinzel,serif;font-size:10px;color:#F0C040;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);border-radius:20px;padding:3px 10px;letter-spacing:.04em;">👑 Premium</span>` : ''}
         <button onclick="window.__dcNavSignOut()" style="font-family:Cinzel,serif;font-size:10px;color:rgba(255,255,255,0.4);background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;cursor:pointer;letter-spacing:.04em;">Sign Out</button>
       </div>`;
+  } else if (premium) {
+    /* Premium but not signed in (guest premium) */
+    navAuth.innerHTML = `
+      <a href="premium.html" style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:11px;color:#F0C040;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:5px 14px;text-decoration:none;letter-spacing:.04em;">
+        👑 Premium Member
+      </a>`;
   } else {
     navAuth.innerHTML = `
       <button onclick="window.__dcNavSignIn()" style="display:flex;align-items:center;gap:8px;padding:7px 16px;background:white;border:none;border-radius:50px;font-family:Noto Sans,sans-serif;font-size:12px;color:#333;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);">

@@ -725,13 +725,13 @@
       <a href="lessons.html">Dharma Lessons</a>
       <a href="community.html">Community</a>
       <div class="d-sep"></div>
-      <a href="premium.html">Go Premium</a>
+      <a href="premium.html" id="navPremiumLink">Go Premium</a>
       <a href="privacy.html">Privacy Policy</a>
       <div class="d-sep"></div>
       <div id="drawer-auth-item" style="padding:4px 22px 12px;"></div>
     </div>
     <div class="d-foot">
-      <a class="d-cta" href="chat.html">Try DharmaChat Free</a>
+      <a class="d-cta" href="chat.html" id="heroCtaBtn">Try DharmaChat Free</a>
     </div>
   </div>
 </div>
@@ -827,7 +827,7 @@
       <h1>Grow Your <span>Dharma</span> Daily</h1>
       <p class="hero-sub">"यत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः" — Bhagavad Gita 18.78</p>
       <p class="hero-desc">Explore the Bhagavad Gita, Ramayana, Mahabharata, Upanishads, Vedas and more. Trained exclusively on sacred Hindu scriptures with guidance from learned pandits and acharyas. Available free on all devices.</p>
-      <div class="hero-btns">
+      <div class="hero-btns" id="heroBtns">
         <a class="btn-primary" href="chat.html">Try DharmaChat Free</a>
       </div>
       <div class="hero-stats">
@@ -1871,6 +1871,65 @@ if ('serviceWorker' in navigator) {
   // X dismiss buttons
   document.getElementById('pwa-dismiss-btn').addEventListener('click', function() { hideBanner(pwaBanner); });
   document.getElementById('ios-dismiss-btn').addEventListener('click', function() { hideBanner(iosBanner); });
+})();
+</script>
+<script>
+/* ── DharmaChat Premium Awareness — index.html ─────────────── */
+(function () {
+  'use strict';
+  var premium = null;
+  try {
+    var raw = localStorage.getItem('dc_premium');
+    if (raw) {
+      var d = JSON.parse(raw);
+      if (d && (!d.expiry || new Date(d.expiry) > new Date())) premium = d;
+    }
+  } catch (e) {}
+
+  if (!premium) return;
+
+  var plan = (premium.plan === 'yearly' || premium.plan === 'annual') ? 'Annual' : 'Monthly';
+
+  /* Hero buttons — replace "Try DharmaChat Free" with premium dashboard */
+  var heroBtns = document.getElementById('heroBtns');
+  if (heroBtns) {
+    heroBtns.innerHTML =
+      '<a class="btn-primary" href="bhagavad-gita-18-chapters.html">📖 Read Scriptures</a>' +
+      '<a href="chat.html" style="padding:14px 24px;border:1px solid rgba(212,160,23,0.4);border-radius:50px;font-family:Cinzel,serif;font-size:13px;color:#F0C040;text-decoration:none;letter-spacing:.05em;">🤖 Ask AI</a>';
+  }
+
+  /* "Go Premium" nav link → "👑 Premium Member" */
+  var navLink = document.getElementById('navPremiumLink');
+  if (navLink) {
+    navLink.textContent = '👑 Premium Member';
+    navLink.style.color = '#D4A017';
+    navLink.style.pointerEvents = 'none';
+    navLink.style.opacity = '.8';
+  }
+
+  /* Bottom CTA */
+  var ctaBtn = document.getElementById('heroCtaBtn');
+  if (ctaBtn) {
+    ctaBtn.textContent = '📖 Your Scriptures Are Unlocked';
+    ctaBtn.href = 'bhagavad-gita-18-chapters.html';
+  }
+
+  /* Premium welcome banner below hero */
+  var hero = document.querySelector('section.hero');
+  if (hero && !document.getElementById('dcPremiumWelcome')) {
+    var banner = document.createElement('div');
+    banner.id = 'dcPremiumWelcome';
+    banner.style.cssText =
+      'background:linear-gradient(135deg,#3E0000,#5A0A0A);' +
+      'border-top:1px solid rgba(212,160,23,0.2);border-bottom:1px solid rgba(212,160,23,0.2);' +
+      'padding:14px 24px;text-align:center;';
+    banner.innerHTML =
+      '<span style="font-family:Cinzel,serif;font-size:12px;color:#F0C040;letter-spacing:.06em;">' +
+      '👑 Welcome back, Premium Member (' + plan + ' Plan) — ' +
+      '<a href="bhagavad-gita-18-chapters.html" style="color:#F5832A;text-decoration:none;">All scriptures unlocked →</a>' +
+      '</span>';
+    hero.insertAdjacentElement('afterend', banner);
+  }
 })();
 </script>
 </body>
