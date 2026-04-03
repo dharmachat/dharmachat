@@ -361,6 +361,9 @@ function hideTryFreeIfPremium() {
       if (el.closest('.dc-drawer-cta')) return;
       // Never touch drawer nav links
       if (el.closest('.dc-drawer-nav')) return;
+       if (el.closest('.hero'))          return;
+      if (el.closest('#heroBtns'))      return;
+      if (el.closest('footer'))         return;
 
       const txt = el.textContent.trim().toLowerCase();
       if (
