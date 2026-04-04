@@ -131,7 +131,7 @@ footer a{color:var(--gold-lt);text-decoration:none}
       <li><a href="lessons.html">Lessons</a></li>
       <li><a href="community.html">Community</a></li>
     </ul>
-    <a class="btn-primary" href="chat.html">Try Free</a>
+    <div id="navAuth"></div><a class="btn-primary" href="chat.html">Try Free</a>
   </div>
 </nav>
 
@@ -255,5 +255,7 @@ footer a{color:var(--gold-lt);text-decoration:none}
 function copyS(btn,t){navigator.clipboard.writeText(t.replace(/<br>/g,'\n'));btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy Sanskrit'},2000)}
 function shareWA(d,e,s){var t='🕉️ Sacred Shloka\n\n'+d.replace(/<br>/g,'\n')+'\n\n'+e+'\n\n— '+s+'\n\nExplore more at dharmachat.in';window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
 </script>
+<script src="dc-premium-unlock.js?v=3"></script>
+<script type="module" src="nav.js"></script>
 </body>
 </html>

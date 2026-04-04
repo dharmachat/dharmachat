@@ -497,5 +497,7 @@ onAuthStateChanged(_auth,(user)=>{updateNav(user);});
 window.__si=async function(){try{await signInWithPopup(_auth,_provider);}catch(e){}};
 window.__so=async function(){await fbSignOut(_auth);localStorage.removeItem('dc_guest');location.reload();};
 </script>
+<script src="dc-premium-unlock.js?v=3"></script>
+<script type="module" src="nav.js"></script>
 </body>
 </html>
