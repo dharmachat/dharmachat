@@ -1,9 +1,5 @@
-// ── DharmaChat Shared Navigation v5.0 ────────────────────────
+// DharmaChat Shared Navigation v5.0
 // Cross-device premium sync via Firebase Firestore.
-// Premium status written to Firestore on purchase, read from
-// Firestore on every login — works on any device, any browser.
-// ─────────────────────────────────────────────────────────────
-
 import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut as fbSignOut }
   from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
@@ -24,13 +20,10 @@ const auth     = getAuth(app);
 const db       = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// ── Expose Firestore helpers globally so premium.html can use them ──
-// premium.html imports are separate — we bridge via window globals
 window.__dcFirestore = db;
 window.__dcSetDoc    = setDoc;
 window.__dcDoc       = doc;
 
-// ── Inject CSS ───────────────────────────────────────────────
 const style = document.createElement('style');
 style.textContent = `
 .dc-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;z-index:1001;}
@@ -73,7 +66,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ── Constants ────────────────────────────────────────────────
 const path     = window.location.pathname.split('/').pop() || 'index.html';
 const isActive = (href) => (path === href || path === href.replace('.html','')) ? 'active' : '';
 
@@ -92,7 +84,6 @@ const googleSVG = (w, h) => `<svg width="${w}" height="${h}" viewBox="0 0 24 24"
   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
 </svg>`;
 
-// ── Read premium from localStorage (local cache) ─────────────
 function readPremium() {
   try {
     const raw = localStorage.getItem('dc_premium');
@@ -107,59 +98,33 @@ function readPremium() {
   } catch(e) { return null; }
 }
 
-// ── THE CORE FIX: Sync premium from Firestore → localStorage ─
-// Called every time Firebase auth resolves with a logged-in user.
-// Reads the user's premium record from Firestore (server-side,
-// cross-device) and writes it to localStorage so dc-premium-unlock.js
-// and all page scripts can find it immediately.
 async function syncPremiumFromFirestore(user) {
   if (!user) return;
   try {
     const premiumRef = doc(db, 'users', user.uid, 'premium', 'status');
     const snap       = await getDoc(premiumRef);
-
-    if (!snap.exists()) {
-      // No Firestore record — this user hasn't purchased
-      // Leave localStorage as-is (don't wipe a valid local record)
-      return;
-    }
-
+    if (!snap.exists()) return;
     const data = snap.data();
-
-    // Check expiry
     if (data.expiry && new Date(data.expiry) <= new Date()) {
-      // Premium expired — clean up both stores
       try { localStorage.removeItem('dc_premium'); } catch(e) {}
       return;
     }
-
-    // ✅ Valid premium found in Firestore — write to localStorage
-    // This is the fix: mobile gets premium even though it never paid locally
     try {
       localStorage.setItem('dc_premium', JSON.stringify(data));
     } catch(e) {
-      // iOS private mode — use sessionStorage
       try { sessionStorage.setItem('dc_premium', JSON.stringify(data)); } catch(e2) {}
     }
-
-    // Refresh all UI now that premium is confirmed
     updateDrawerPremiumState();
     updateDesktopAuth(user);
     hideTryFreeIfPremium();
-
-    // Trigger dc-premium-unlock.js to re-run if already loaded
     if (window.__dcPremiumUnlock) window.__dcPremiumUnlock();
-
   } catch(err) {
-    // Network error or Firestore unavailable — fall back to localStorage silently
-    console.warn('[DharmaChat] Firestore premium sync failed, using local cache:', err.message);
+    console.warn('[DharmaChat] Firestore sync failed:', err.message);
   }
 }
 
-// ── Build drawer ─────────────────────────────────────────────
 function buildDrawer() {
   const premium = readPremium();
-
   const navHtml = navLinks.map(l => `
     <a href="${l.href}" class="${isActive(l.href)}">
       <span class="dc-nav-emoji">${l.emoji}</span>
@@ -178,7 +143,7 @@ function buildDrawer() {
       </a>`;
 
   const ctaBtnHtml = premium
-    ? `<a id="dcDrawerCta" href="bhagavad-gita.html" style="background:linear-gradient(135deg,#8B1A1A,#D4A017);">📖 Read Scriptures →</a>`
+    ? `<a id="dcDrawerCta" href="bhagavad-gita-18-chapters.html" style="background:linear-gradient(135deg,#8B1A1A,#D4A017);">📖 Read Scriptures</a>`
     : `<a id="dcDrawerCta" href="chat.html">Ask DharmaChat AI →</a>`;
 
   const drawerEl = document.createElement('div');
@@ -187,7 +152,7 @@ function buildDrawer() {
   drawerEl.innerHTML = `
     <div class="dc-drawer-head">
       <a class="dc-drawer-logo" href="index.html">
-        <img src="logo.jpeg" alt="DharmaChat"/>
+        <img src="logo.jpeg" alt="DharmaChat" loading="lazy"/>
         <span>DharmaChat</span>
       </a>
       <button class="dc-close" id="dcClose" aria-label="Close menu">✕</button>
@@ -210,89 +175,62 @@ function buildDrawer() {
   const overlayEl = document.createElement('div');
   overlayEl.id = 'dcOverlay';
   overlayEl.className = 'dc-overlay';
-
   document.body.appendChild(overlayEl);
   document.body.appendChild(drawerEl);
   return { drawerEl, overlayEl };
 }
 
-// ── Update drawer premium row + CTA after async auth ─────────
 function updateDrawerPremiumState() {
   const premium = readPremium();
-
   const premiumLink = document.getElementById('dcDrawerPremiumLink');
   if (premiumLink) {
     if (premium) {
       premiumLink.style.color = '#F0C040';
-      premiumLink.innerHTML = `
-        <span class="dc-nav-emoji">👑</span>Premium Member
-        <span class="dc-nav-badge" style="background:rgba(212,160,23,0.2);color:#F0C040;border-color:rgba(212,160,23,0.4);">ACTIVE</span>`;
+      premiumLink.innerHTML = `<span class="dc-nav-emoji">👑</span>Premium Member<span class="dc-nav-badge" style="background:rgba(212,160,23,0.2);color:#F0C040;border-color:rgba(212,160,23,0.4);">ACTIVE</span>`;
     } else {
       premiumLink.style.color = '';
-      premiumLink.innerHTML = `
-        <span class="dc-nav-emoji">👑</span>Premium Plan
-        <span class="dc-nav-badge">UPGRADE</span>`;
+      premiumLink.innerHTML = `<span class="dc-nav-emoji">👑</span>Premium Plan<span class="dc-nav-badge">UPGRADE</span>`;
     }
   }
-
   const ctaLink = document.getElementById('dcDrawerCta');
   if (ctaLink) {
     if (premium) {
-      ctaLink.href            = 'bhagavad-gita.html';
-      ctaLink.textContent     = '📖 Read Scriptures →';
+      ctaLink.href = 'bhagavad-gita-18-chapters.html';
+      ctaLink.textContent = '📖 Read Scriptures';
       ctaLink.style.background = 'linear-gradient(135deg,#8B1A1A,#D4A017)';
     } else {
-      ctaLink.href            = 'chat.html';
-      ctaLink.textContent     = 'Ask DharmaChat AI →';
+      ctaLink.href = 'chat.html';
+      ctaLink.textContent = 'Ask DharmaChat AI →';
       ctaLink.style.background = '';
     }
   }
 }
 
-// ── Build hamburger ──────────────────────────────────────────
 function buildBurger() {
   const burger = document.createElement('button');
   burger.id = 'dcBurger';
   burger.className = 'dc-burger';
   burger.setAttribute('aria-label', 'Open menu');
   burger.innerHTML = '<span></span><span></span><span></span>';
-
   const nav = document.querySelector('nav');
   if (!nav) return burger;
   const navRight = nav.querySelector('.nav-cta,.nav-right,.topbar-right,.nav-links');
   if (navRight) navRight.insertBefore(burger, navRight.firstChild);
-  else          nav.appendChild(burger);
+  else nav.appendChild(burger);
   return burger;
 }
 
-// ── Wire events ──────────────────────────────────────────────
 function wireEvents(burger, drawerEl, overlayEl) {
-  const open = () => {
-    drawerEl.classList.add('open');
-    overlayEl.classList.add('show');
-    burger.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = () => {
-    drawerEl.classList.remove('open');
-    overlayEl.classList.remove('show');
-    burger.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
+  const open = () => { drawerEl.classList.add('open'); overlayEl.classList.add('show'); burger.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const close = () => { drawerEl.classList.remove('open'); overlayEl.classList.remove('show'); burger.classList.remove('open'); document.body.style.overflow = ''; };
   burger.addEventListener('click', open);
   overlayEl.addEventListener('click', close);
   document.getElementById('dcClose')?.addEventListener('click', close);
   drawerEl.querySelectorAll('nav a').forEach(a => a.addEventListener('click', close));
-
   document.getElementById('dcDrawerSignIn')?.addEventListener('click', async () => {
     try { await signInWithPopup(auth, provider); }
-    catch(e) {
-      if (e.code !== 'auth/popup-closed-by-user' &&
-          e.code !== 'auth/cancelled-popup-request') console.error(e.code);
-    }
+    catch(e) { if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') console.error(e.code); }
   });
-
   document.getElementById('dcDrawerSignOut')?.addEventListener('click', async () => {
     await fbSignOut(auth);
     try { localStorage.removeItem('dc_guest'); } catch(e) {}
@@ -300,100 +238,62 @@ function wireEvents(burger, drawerEl, overlayEl) {
   });
 }
 
-// ── Update drawer user section ───────────────────────────────
 function updateDrawerUser(user) {
   const userSection = document.getElementById('dcDrawerUser');
   const signoutBtn  = document.getElementById('dcDrawerSignOut');
   if (!userSection) return;
-
   if (user) {
     const photo = user.photoURL || '';
     const name  = user.displayName?.split(' ')[0] || 'Devotee';
     const email = user.email || '';
-    userSection.innerHTML = `
-      <div class="dc-drawer-user-inner">
-        ${photo
-          ? `<img src="${photo}" class="dc-drawer-avatar" alt="${name}" onerror="this.style.display='none'"/>`
-          : `<div class="dc-drawer-avatar-placeholder">${name.charAt(0)}</div>`}
-        <div class="dc-drawer-user-info">
-          <div class="dc-drawer-user-name">${name}</div>
-          <div class="dc-drawer-user-sub">${email}</div>
-        </div>
-      </div>`;
+    userSection.innerHTML = `<div class="dc-drawer-user-inner">
+      ${photo ? `<img src="${photo}" class="dc-drawer-avatar" alt="${name}" loading="lazy" onerror="this.style.display='none'"/>` : `<div class="dc-drawer-avatar-placeholder">${name.charAt(0)}</div>`}
+      <div class="dc-drawer-user-info"><div class="dc-drawer-user-name">${name}</div><div class="dc-drawer-user-sub">${email}</div></div>
+    </div>`;
     if (signoutBtn) signoutBtn.style.display = 'block';
   } else {
     const guest = localStorage.getItem('dc_guest');
     if (guest) {
-      userSection.innerHTML = `
-        <div class="dc-drawer-user-inner">
-          <div class="dc-drawer-avatar-placeholder">${guest.charAt(0).toUpperCase()}</div>
-          <div class="dc-drawer-user-info">
-            <div class="dc-drawer-user-name">${guest}</div>
-            <div class="dc-drawer-user-sub">Guest Devotee</div>
-          </div>
-        </div>`;
+      userSection.innerHTML = `<div class="dc-drawer-user-inner">
+        <div class="dc-drawer-avatar-placeholder">${guest.charAt(0).toUpperCase()}</div>
+        <div class="dc-drawer-user-info"><div class="dc-drawer-user-name">${guest}</div><div class="dc-drawer-user-sub">Guest Devotee</div></div>
+      </div>`;
       if (signoutBtn) signoutBtn.style.display = 'block';
     } else {
-      userSection.innerHTML = `
-        <button class="dc-drawer-signin-btn" id="dcDrawerSignIn">
-          ${googleSVG(18,18)} Sign In with Google
-        </button>`;
-      document.getElementById('dcDrawerSignIn')?.addEventListener('click', async () => {
-        try { await signInWithPopup(auth, provider); } catch(e) {}
-      });
+      userSection.innerHTML = `<button class="dc-drawer-signin-btn" id="dcDrawerSignIn">${googleSVG(18,18)} Sign In with Google</button>`;
+      document.getElementById('dcDrawerSignIn')?.addEventListener('click', async () => { try { await signInWithPopup(auth, provider); } catch(e) {} });
     }
   }
 }
 
-// ── Update desktop navAuth ───────────────────────────────────
 function updateDesktopAuth(user) {
   const navAuth = document.getElementById('navAuth');
   if (!navAuth) return;
-
   const premium = readPremium();
-
   if (user) {
     const name  = user.displayName?.split(' ')[0] || 'Devotee';
     const photo = user.photoURL || '';
-    navAuth.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px;">
-        ${photo ? `<img src="${photo}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);" onerror="this.style.display='none'"/>` : ''}
-        <span style="font-family:Cinzel,serif;font-size:12px;color:rgba(240,192,64,0.9);">${name}</span>
-        ${premium ? `<span id="dcNavPremiumBadge" style="font-family:Cinzel,serif;font-size:10px;color:#F0C040;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);border-radius:20px;padding:3px 10px;letter-spacing:.04em;">👑 Premium</span>` : ''}
-        <button onclick="window.__dcNavSignOut()" style="font-family:Cinzel,serif;font-size:10px;color:rgba(255,255,255,0.4);background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;cursor:pointer;letter-spacing:.04em;">Sign Out</button>
-      </div>`;
+    navAuth.innerHTML = `<div style="display:flex;align-items:center;gap:10px;">
+      ${photo ? `<img src="${photo}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);" loading="lazy" onerror="this.style.display='none'"/>` : ''}
+      <span style="font-family:Cinzel,serif;font-size:12px;color:rgba(240,192,64,0.9);">${name}</span>
+      ${premium ? `<span id="dcNavPremiumBadge" style="font-family:Cinzel,serif;font-size:10px;color:#F0C040;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);border-radius:20px;padding:3px 10px;letter-spacing:.04em;">👑 Premium</span>` : ''}
+      <button onclick="window.__dcNavSignOut()" style="font-family:Cinzel,serif;font-size:10px;color:rgba(255,255,255,0.4);background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;cursor:pointer;letter-spacing:.04em;">Sign Out</button>
+    </div>`;
   } else if (premium) {
-    navAuth.innerHTML = `
-      <a id="dcNavPremiumBadge" href="premium.html" style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:11px;color:#F0C040;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:5px 14px;text-decoration:none;letter-spacing:.04em;">
-        👑 Premium Member
-      </a>`;
+    navAuth.innerHTML = `<a id="dcNavPremiumBadge" href="premium.html" style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:11px;color:#F0C040;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:5px 14px;text-decoration:none;letter-spacing:.04em;">👑 Premium Member</a>`;
   } else {
-    navAuth.innerHTML = `
-      <button onclick="window.__dcNavSignIn()" style="display:flex;align-items:center;gap:8px;padding:7px 16px;background:white;border:none;border-radius:50px;font-family:Noto Sans,sans-serif;font-size:12px;color:#333;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
-        ${googleSVG(14,14)} Sign In
-      </button>`;
+    navAuth.innerHTML = `<button onclick="window.__dcNavSignIn()" style="display:flex;align-items:center;gap:8px;padding:7px 16px;background:white;border:none;border-radius:50px;font-family:Noto Sans,sans-serif;font-size:12px;color:#333;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);">${googleSVG(14,14)} Sign In</button>`;
   }
-
   window.__dcNavSignIn  = async () => { try { await signInWithPopup(auth, provider); } catch(e) {} };
-  window.__dcNavSignOut = async () => {
-    await fbSignOut(auth);
-    try { localStorage.removeItem('dc_guest'); } catch(e) {}
-    location.reload();
-  };
+  window.__dcNavSignOut = async () => { await fbSignOut(auth); try { localStorage.removeItem('dc_guest'); } catch(e) {} location.reload(); };
 }
 
-// ── Hide Try Free / upgrade buttons for premium users ────────
 function hideTryFreeIfPremium() {
   if (!readPremium()) return;
-
   const PROTECTED = ['#navAuth','#dcNavPremiumBadge','#dcDrawer','#heroBtns','.hero','.hero-btns','footer'];
-
   document.querySelectorAll('a, button').forEach(function(el) {
-    for (let i = 0; i < PROTECTED.length; i++) {
-      if (el.closest(PROTECTED[i])) return;
-    }
+    for (let i = 0; i < PROTECTED.length; i++) { if (el.closest(PROTECTED[i])) return; }
     if (el.id === 'dcNavPremiumBadge') return;
-
     const txt = el.textContent.trim().toLowerCase();
     if (txt === 'try free' || txt === 'try dharmachat free' || txt.startsWith('try ') ||
         txt === 'go premium' || txt === '👑 go premium' ||
@@ -403,7 +303,6 @@ function hideTryFreeIfPremium() {
   });
 }
 
-// ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const { drawerEl, overlayEl } = buildDrawer();
   const burger = buildBurger();
@@ -412,22 +311,11 @@ document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
     updateDesktopAuth(user);
     updateDrawerUser(user);
-
-    if (user) {
-      // ✅ KEY FIX: Pull premium status from Firestore and sync to localStorage
-      // This makes premium work on every device the user signs into
-      await syncPremiumFromFirestore(user);
-    }
-
+    if (user) { await syncPremiumFromFirestore(user); }
     updateDrawerPremiumState();
     hideTryFreeIfPremium();
   });
 
-  if (!auth.currentUser) {
-    updateDrawerUser(null);
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(hideTryFreeIfPremium, 300);
-  });
+  if (!auth.currentUser) { updateDrawerUser(null); }
+  window.addEventListener('load', () => { setTimeout(hideTryFreeIfPremium, 300); });
 });
