@@ -160,7 +160,7 @@ nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.2);pad
 
 /* PAYWALL */
 .locked-chapter{position:relative}
-.locked-chapter .chapter-content{transition:filter .3s}
+.locked-chapter .chapter-content{filter:blur(5px);user-select:none;pointer-events:none;max-height:220px;overflow:hidden}
 .paywall-wrap{position:absolute;bottom:0;left:0;right:0;z-index:10;background:linear-gradient(to top,var(--cream) 55%,transparent 100%);padding:0 0 8px;text-align:center}
 .paywall-box{background:linear-gradient(135deg,var(--maroon-dk),var(--maroon-mid));border-radius:22px;padding:36px 32px;margin:0 auto;max-width:580px;border:1px solid rgba(212,160,23,0.3);box-shadow:0 8px 48px rgba(0,0,0,0.28)}
 .pw-icon{font-size:40px;margin-bottom:14px}

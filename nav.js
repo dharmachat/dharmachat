@@ -1,248 +1,433 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZTPFCMN2K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3ZTPFCMN2K');
-</script>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Morning Prayer Shlokas — DharmaChat Sacred Shlokas</title>
-<meta name="description" content="Starting the day with sacred shlokas is an ancient Hindu tradition that aligns the mind, body, and soul with dharma from the very first moment of waking. T..."/>
+// ── DharmaChat Shared Navigation v5.0 ────────────────────────
+// Cross-device premium sync via Firebase Firestore.
+// Premium status written to Firestore on purchase, read from
+// Firestore on every login — works on any device, any browser.
+// ─────────────────────────────────────────────────────────────
 
-<!-- SEO: Canonical -->
-<link rel="canonical" href="https://dharmachat.in/morning-prayer-shlokas.html"/>
+import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut as fbSignOut }
+  from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { getFirestore, doc, getDoc, setDoc }
+  from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-<!-- SEO: Open Graph -->
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="https://dharmachat.in/morning-prayer-shlokas.html"/>
-<meta property="og:title" content="Morning Prayer Shlokas — DharmaChat Sacred Shlokas"/>
-<meta property="og:description" content="Starting the day with sacred shlokas is an ancient Hindu tradition that aligns the mind, body, and soul with dharma from the very first moment of waking. T..."/>
-<meta property="og:image" content="https://dharmachat.in/logo.jpeg"/>
-<meta property="og:site_name" content="DharmaChat"/>
-<meta property="og:locale" content="en_IN"/>
+const firebaseConfig = {
+  apiKey:            "AIzaSyDvw26WTzNRsBBgjXG9At60pN8ApDvPB7o",
+  authDomain:        "dharmachat-cc71d.firebaseapp.com",
+  projectId:         "dharmachat-cc71d",
+  storageBucket:     "dharmachat-cc71d.firebasestorage.app",
+  messagingSenderId: "718284855701",
+  appId:             "1:718284855701:web:d7ef64292cd48ffdf13e9c"
+};
 
-<!-- SEO: Twitter Card -->
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Morning Prayer Shlokas — DharmaChat Sacred Shlokas"/>
-<meta name="twitter:description" content="Starting the day with sacred shlokas is an ancient Hindu tradition that aligns the mind, body, and soul with dharma from the very first moment of waking. T..."/>
-<meta name="twitter:image" content="https://dharmachat.in/logo.jpeg"/>
+const app      = initializeApp(firebaseConfig);
+const auth     = getAuth(app);
+const db       = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
-<!-- SEO: Additional -->
-<meta name="robots" content="index, follow"/>
-<meta name="author" content="DharmaChat"/>
-<meta name="keywords" content="morning prayer shlokas, prabhata shloka, karagre vasate lakshmi, daily hindu prayer"/>
+// ── Expose Firestore helpers globally so premium.html can use them ──
+// premium.html imports are separate — we bridge via window globals
+window.__dcFirestore = db;
+window.__dcSetDoc    = setDoc;
+window.__dcDoc       = doc;
 
-<!-- SEO: Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Morning Prayer Shlokas — DharmaChat Sacred Shlokas",
-  "description": "Starting the day with sacred shlokas is an ancient Hindu tradition that aligns the mind, body, and soul with dharma from the very first moment of waking. T...",
-  "url": "https://dharmachat.in/morning-prayer-shlokas.html",
-  "datePublished": "2026-03-26",
-  "dateModified": "2026-03-26",
-  "author": { "@type": "Organization", "name": "DharmaChat", "url": "https://dharmachat.in" },
-  "publisher": { "@type": "Organization", "name": "DharmaChat", "logo": { "@type": "ImageObject", "url": "https://dharmachat.in/logo.jpeg" } },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dharmachat.in/morning-prayer-shlokas.html" },
-  "image": "https://dharmachat.in/logo.jpeg",
-  "inLanguage": "en"
+// ── Inject CSS ───────────────────────────────────────────────
+const style = document.createElement('style');
+style.textContent = `
+.dc-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;z-index:1001;}
+.dc-burger span{display:block;width:24px;height:2px;background:rgba(240,192,64,0.8);border-radius:2px;transition:all .3s ease;}
+.dc-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.dc-burger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.dc-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.dc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;backdrop-filter:blur(2px);opacity:0;transition:opacity .3s ease;}
+.dc-overlay.show{display:block;opacity:1;}
+.dc-drawer{position:fixed;top:0;right:-320px;width:300px;height:100vh;background:linear-gradient(160deg,#3E0000 0%,#5A0A0A 100%);z-index:1000;transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,0.5);overflow-y:auto;}
+.dc-drawer.open{right:0;}
+.dc-drawer-head{padding:20px 24px;border-bottom:1px solid rgba(212,160,23,0.15);display:flex;align-items:center;justify-content:space-between;}
+.dc-drawer-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.dc-drawer-logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,160,23,0.4);}
+.dc-drawer-logo span{font-family:'Cinzel Decorative',serif;font-size:15px;color:#F0C040;}
+.dc-close{background:none;border:none;color:rgba(255,255,255,0.4);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;}
+.dc-close:hover{color:rgba(240,192,64,0.8);}
+.dc-drawer-user{padding:20px 24px;border-bottom:1px solid rgba(212,160,23,0.1);min-height:80px;display:flex;align-items:center;}
+.dc-drawer-user-inner{display:flex;align-items:center;gap:12px;width:100%;}
+.dc-drawer-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);flex-shrink:0;}
+.dc-drawer-avatar-placeholder{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#6B1A1A,#E8611A);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:16px;color:#F0C040;font-weight:700;flex-shrink:0;}
+.dc-drawer-user-info{flex:1;}
+.dc-drawer-user-name{font-family:'Cinzel',serif;font-size:13px;color:#F0C040;font-weight:700;margin-bottom:2px;}
+.dc-drawer-user-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:rgba(255,255,255,0.35);}
+.dc-drawer-signin-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;background:white;border:none;border-radius:50px;font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:500;color:#333;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);}
+.dc-drawer-signin-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.3);}
+.dc-drawer-nav{padding:16px 0;flex:1;}
+.dc-drawer-nav a{display:flex;align-items:center;gap:14px;padding:14px 24px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,0.65);text-decoration:none;transition:all .2s;border-left:3px solid transparent;}
+.dc-drawer-nav a:hover{color:#F0C040;background:rgba(212,160,23,0.05);border-left-color:rgba(212,160,23,0.4);}
+.dc-drawer-nav a.active{color:#F0C040;background:rgba(212,160,23,0.08);border-left-color:#D4A017;}
+.dc-drawer-nav .dc-nav-emoji{font-size:18px;width:24px;text-align:center;flex-shrink:0;}
+.dc-drawer-nav .dc-nav-badge{margin-left:auto;font-size:9px;background:rgba(232,97,26,0.2);color:#F5832A;border:1px solid rgba(232,97,26,0.3);border-radius:10px;padding:2px 8px;letter-spacing:.04em;}
+.dc-drawer-divider{height:1px;background:rgba(212,160,23,0.1);margin:8px 24px;}
+.dc-drawer-cta{padding:20px 24px 32px;border-top:1px solid rgba(212,160,23,0.1);}
+.dc-drawer-cta a{display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#E8611A,#D4A017);border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-decoration:none;box-shadow:0 4px 16px rgba(232,97,26,0.35);transition:all .2s;margin-bottom:10px;}
+.dc-drawer-cta a:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,97,26,0.45);}
+.dc-drawer-signout{width:100%;padding:10px;background:none;border:1px solid rgba(255,255,255,0.1);border-radius:50px;color:rgba(255,255,255,0.35);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;cursor:pointer;transition:all .2s;}
+.dc-drawer-signout:hover{border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);}
+@media(max-width:860px){.dc-burger{display:flex !important;}}
+`;
+document.head.appendChild(style);
+
+// ── Constants ────────────────────────────────────────────────
+const path     = window.location.pathname.split('/').pop() || 'index.html';
+const isActive = (href) => (path === href || path === href.replace('.html','')) ? 'active' : '';
+
+const navLinks = [
+  { href:'index.html',     emoji:'🏠', label:'Home' },
+  { href:'articles.html',  emoji:'📖', label:'Dharma Articles', badge:'2,000+' },
+  { href:'lessons.html',   emoji:'📚', label:'Learn' },
+  { href:'community.html', emoji:'🏛️', label:'Community' },
+  { href:'chat.html',      emoji:'🤖', label:'AI Chat' },
+];
+
+const googleSVG = (w, h) => `<svg width="${w}" height="${h}" viewBox="0 0 24 24">
+  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg>`;
+
+// ── Read premium from localStorage (local cache) ─────────────
+function readPremium() {
+  try {
+    const raw = localStorage.getItem('dc_premium');
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (!d) return null;
+    if (d.expiry && new Date(d.expiry) <= new Date()) {
+      try { localStorage.removeItem('dc_premium'); } catch(e) {}
+      return null;
+    }
+    return d;
+  } catch(e) { return null; }
 }
-</script>
-<link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-:root{--saffron:#E8611A;--saffron-lt:#F5832A;--gold:#D4A017;--gold-lt:#F0C040;--maroon:#6B1A1A;--maroon-dk:#3E0000;--cream:#FDF6E3;--cream-dk:#F5EDD0;--text-dark:#1E0A00;--text-mid:#5A3010;--text-light:#9A6835;--white:#FFFFFF}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans',sans-serif;background:var(--cream);color:var(--text-dark)}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(253,246,227,0.95);backdrop-filter:blur(12px);border-bottom:2px solid rgba(212,160,23,0.2);padding:0 24px}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cinzel Decorative',serif;font-weight:700;font-size:20px;color:var(--maroon);text-decoration:none}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--text-mid);text-decoration:none;letter-spacing:.04em;transition:color .2s}
-.nav-links a:hover{color:var(--saffron)}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--saffron),var(--gold));color:var(--white);font-family:'Cinzel',serif;font-weight:700;font-size:14px;letter-spacing:.04em;padding:12px 28px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(232,97,26,0.4);text-decoration:none;transition:transform .2s}
-.btn-primary:hover{transform:translateY(-2px)}
-@media(max-width:700px){.nav-links{display:none}}
+// ── THE CORE FIX: Sync premium from Firestore → localStorage ─
+// Called every time Firebase auth resolves with a logged-in user.
+// Reads the user's premium record from Firestore (server-side,
+// cross-device) and writes it to localStorage so dc-premium-unlock.js
+// and all page scripts can find it immediately.
+async function syncPremiumFromFirestore(user) {
+  if (!user) return;
+  try {
+    const premiumRef = doc(db, 'users', user.uid, 'premium', 'status');
+    const snap       = await getDoc(premiumRef);
 
-/* HERO */
-.hero{background:linear-gradient(160deg,var(--maroon-dk) 0%,var(--maroon) 50%,#8B2500 100%);padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
-.hero::after{content:'\0950';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:400px;color:rgba(212,160,23,0.04);font-family:'EB Garamond',serif;pointer-events:none}
-.hero-breadcrumb{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;margin-bottom:20px}
-.hero-breadcrumb a{color:rgba(212,160,23,0.5);text-decoration:none;transition:color .2s}
-.hero-breadcrumb a:hover{color:var(--gold-lt)}
-.hero-breadcrumb span{color:rgba(255,255,255,0.3)}
-.hero-emoji{font-size:56px;margin-bottom:16px;display:block}
-.hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(28px,4vw,44px);color:var(--gold-lt);line-height:1.25;margin-bottom:16px;position:relative;z-index:2}
-.hero-cat{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:4px 14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;color:var(--gold-lt);margin-bottom:20px}
-.hero p{font-family:'EB Garamond',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.7);line-height:1.8;max-width:750px;margin:0 auto;position:relative;z-index:2}
+    if (!snap.exists()) {
+      // No Firestore record — this user hasn't purchased
+      // Leave localStorage as-is (don't wipe a valid local record)
+      return;
+    }
 
-/* SHLOKAS */
-.shlokas-wrap{max-width:800px;margin:0 auto;padding:60px 24px}
-.shloka-card{background:var(--white);border-radius:20px;padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 24px rgba(107,26,26,0.08);border:1px solid rgba(212,160,23,0.12);transition:transform .2s}
-.shloka-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(107,26,26,0.12)}
-.shloka-num{font-family:'Cinzel Decorative',serif;font-size:36px;color:rgba(212,160,23,0.15);line-height:1;margin-bottom:16px}
-.shloka-sanskrit{font-family:'EB Garamond',serif;font-size:clamp(18px,2.5vw,24px);color:var(--gold);line-height:1.8;margin-bottom:12px;font-style:italic}
-.shloka-translit{font-family:'EB Garamond',serif;font-size:14px;color:var(--text-light);font-style:italic;line-height:1.7;margin-bottom:16px}
-.shloka-divider{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.shloka-divider::before,.shloka-divider::after{content:'';flex:1;height:1px;background:rgba(212,160,23,0.2)}
-.shloka-divider span{color:rgba(212,160,23,0.4);font-size:10px}
-.shloka-meaning{font-size:16px;color:var(--text-dark);line-height:1.8;margin-bottom:16px}
-.shloka-source{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.06em;color:var(--saffron);display:flex;align-items:center;gap:8px}
-.shloka-source::before{content:'';width:20px;height:2px;background:var(--gold);display:inline-block}
-.shloka-actions{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(212,160,23,0.1)}
-.shloka-actions button{background:rgba(232,97,26,0.06);border:1px solid rgba(212,160,23,0.15);border-radius:8px;padding:6px 14px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;color:var(--text-mid);cursor:pointer;transition:all .2s}
-.shloka-actions button:hover{background:rgba(232,97,26,0.15);border-color:var(--saffron);color:var(--saffron)}
+    const data = snap.data();
 
-/* CTA */
-.cta-section{background:linear-gradient(160deg,var(--maroon-dk),#4A0A00);padding:60px 24px;text-align:center}
-.cta-section h2{font-family:'Cinzel Decorative',serif;font-size:clamp(22px,3vw,32px);color:var(--gold-lt);margin-bottom:12px}
-.cta-section p{font-family:'EB Garamond',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto}
+    // Check expiry
+    if (data.expiry && new Date(data.expiry) <= new Date()) {
+      // Premium expired — clean up both stores
+      try { localStorage.removeItem('dc_premium'); } catch(e) {}
+      return;
+    }
 
-/* RELATED */
-.related{max-width:800px;margin:0 auto;padding:40px 24px 60px}
-.related h3{font-family:'Cinzel',serif;font-size:18px;color:var(--maroon);margin-bottom:20px}
-.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.related-link{display:block;background:var(--white);border:1px solid rgba(212,160,23,0.12);border-radius:12px;padding:16px;text-decoration:none;transition:all .2s;color:var(--saffron);font-family:'Cinzel',serif;font-size:13px;font-weight:600}
-.related-link:hover{background:rgba(232,97,26,0.06);border-color:var(--saffron);transform:translateY(-2px)}
+    // ✅ Valid premium found in Firestore — write to localStorage
+    // This is the fix: mobile gets premium even though it never paid locally
+    try {
+      localStorage.setItem('dc_premium', JSON.stringify(data));
+    } catch(e) {
+      // iOS private mode — use sessionStorage
+      try { sessionStorage.setItem('dc_premium', JSON.stringify(data)); } catch(e2) {}
+    }
 
-/* FOOTER */
-footer{background:var(--maroon-dk);color:rgba(255,255,255,0.5);padding:40px 24px;text-align:center;font-size:13px}
-footer a{color:var(--gold-lt);text-decoration:none}
-</style>
-</head>
-<body>
+    // Refresh all UI now that premium is confirmed
+    updateDrawerPremiumState();
+    updateDesktopAuth(user);
+    hideTryFreeIfPremium();
 
-<nav>
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html">
-      <img src="logo.jpeg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px rgba(212,160,23,0.5)" alt="DharmaChat"/>
-      DharmaChat
-    </a>
-    <ul class="nav-links">
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="lessons.html">Lessons</a></li>
-      <li><a href="community.html">Community</a></li>
-    </ul>
-    <div id="navAuth"></div><a class="btn-primary" href="chat.html">Try Free</a>
-  </div>
-</nav>
+    // Trigger dc-premium-unlock.js to re-run if already loaded
+    if (window.__dcPremiumUnlock) window.__dcPremiumUnlock();
 
-<section class="hero">
-  <div class="hero-breadcrumb"><a href="index.html">Home</a> <span>›</span> <a href="index.html#sacred-verses">Sacred Shlokas</a> <span>›</span> <a href="#">Morning Prayer Shlokas</a></div>
-  <span class="hero-emoji">🌅</span>
-  <div class="hero-cat">DEVOTION & PRAYER</div>
-  <h1>Morning Prayer Shlokas</h1>
-  <p>Starting the day with sacred shlokas is an ancient Hindu tradition that aligns the mind, body, and soul with dharma from the very first moment of waking. These morning prayers invoke divine blessings, express gratitude for a new day, and set an intention of righteousness. Recite these shlokas upon waking for a day filled with peace and purpose.</p>
-</section>
+  } catch(err) {
+    // Network error or Firestore unavailable — fall back to localStorage silently
+    console.warn('[DharmaChat] Firestore premium sync failed, using local cache:', err.message);
+  }
+}
 
-<div class="shlokas-wrap">
-  <div class="shloka-card">
-    <div class="shloka-num">01</div>
-    <div class="shloka-sanskrit">कराग्रे वसते लक्ष्मीः करमध्ये सरस्वती। करमूले तु गोविन्दः प्रभाते करदर्शनम्॥</div>
-    <div class="shloka-translit">Karagre vasate Lakshmih karamadhye Sarasvati, karamule tu Govindah prabhate karadarshanam</div>
-    <div class="shloka-divider"><span>✦</span></div>
-    <div class="shloka-meaning">At the tip of the fingers dwells Lakshmi, in the middle Saraswati, and at the base Govinda. Look at your hands upon waking each morning.</div>
-    <div class="shloka-source">Prabhata Shloka</div>
-    <div class="shloka-actions">
-      <button onclick="copyS(this,'कराग्रे वसते लक्ष्मीः करमध्ये सरस्वती। करमूले तु गोविन्दः प्रभाते करदर्शनम्॥')">Copy Sanskrit</button>
-      <button onclick="shareWA('कराग्रे वसते लक्ष्मीः करमध्ये सरस्वती। करमूले तु गोविन्दः प्रभाते करदर्शनम्॥','At the tip of the fingers dwells Lakshmi, in the middle Saraswati, and at the base Govinda. Look at your hands upon waking each morning.','Prabhata Shloka')">Share WhatsApp</button>
-      <button onclick="window.location.href='chat.html'">Ask AI About This</button>
+// ── Build drawer ─────────────────────────────────────────────
+function buildDrawer() {
+  const premium = readPremium();
+
+  const navHtml = navLinks.map(l => `
+    <a href="${l.href}" class="${isActive(l.href)}">
+      <span class="dc-nav-emoji">${l.emoji}</span>
+      ${l.label}
+      ${l.badge ? `<span class="dc-nav-badge">${l.badge}</span>` : ''}
+    </a>`).join('');
+
+  const premiumRowHtml = premium
+    ? `<a id="dcDrawerPremiumLink" href="premium.html" style="color:#F0C040;">
+        <span class="dc-nav-emoji">👑</span>Premium Member
+        <span class="dc-nav-badge" style="background:rgba(212,160,23,0.2);color:#F0C040;border-color:rgba(212,160,23,0.4);">ACTIVE</span>
+      </a>`
+    : `<a id="dcDrawerPremiumLink" href="premium.html">
+        <span class="dc-nav-emoji">👑</span>Premium Plan
+        <span class="dc-nav-badge">UPGRADE</span>
+      </a>`;
+
+  const ctaBtnHtml = premium
+    ? `<a id="dcDrawerCta" href="bhagavad-gita.html" style="background:linear-gradient(135deg,#8B1A1A,#D4A017);">📖 Read Scriptures →</a>`
+    : `<a id="dcDrawerCta" href="chat.html">Ask DharmaChat AI →</a>`;
+
+  const drawerEl = document.createElement('div');
+  drawerEl.id = 'dcDrawer';
+  drawerEl.className = 'dc-drawer';
+  drawerEl.innerHTML = `
+    <div class="dc-drawer-head">
+      <a class="dc-drawer-logo" href="index.html">
+        <img src="logo.jpeg" alt="DharmaChat"/>
+        <span>DharmaChat</span>
+      </a>
+      <button class="dc-close" id="dcClose" aria-label="Close menu">✕</button>
     </div>
-  </div>
-  <div class="shloka-card">
-    <div class="shloka-num">02</div>
-    <div class="shloka-sanskrit">समुद्रवसने देवि पर्वतस्तनमण्डले। विष्णुपत्नि नमस्तुभ्यं पादस्पर्शं क्षमस्व मे॥</div>
-    <div class="shloka-translit">Samudra vasane devi parvata stana mandale, Vishnupatni namastubhyam padasparshum kshamasva me</div>
-    <div class="shloka-divider"><span>✦</span></div>
-    <div class="shloka-meaning">O Mother Earth, who wears the ocean as her garment and mountains as her bosom — forgive me for touching you with my feet.</div>
-    <div class="shloka-source">Prabhata Shloka</div>
-    <div class="shloka-actions">
-      <button onclick="copyS(this,'समुद्रवसने देवि पर्वतस्तनमण्डले। विष्णुपत्नि नमस्तुभ्यं पादस्पर्शं क्षमस्व मे॥')">Copy Sanskrit</button>
-      <button onclick="shareWA('समुद्रवसने देवि पर्वतस्तनमण्डले। विष्णुपत्नि नमस्तुभ्यं पादस्पर्शं क्षमस्व मे॥','O Mother Earth, who wears the ocean as her garment and mountains as her bosom — forgive me for touching you with my feet.','Prabhata Shloka')">Share WhatsApp</button>
-      <button onclick="window.location.href='chat.html'">Ask AI About This</button>
+    <div class="dc-drawer-user" id="dcDrawerUser">
+      <button class="dc-drawer-signin-btn" id="dcDrawerSignIn">
+        ${googleSVG(18,18)} Sign In with Google
+      </button>
     </div>
-  </div>
-  <div class="shloka-card">
-    <div class="shloka-num">03</div>
-    <div class="shloka-sanskrit">वक्रतुण्ड महाकाय सूर्यकोटिसमप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</div>
-    <div class="shloka-translit">Vakratunda mahakaya suryakoti samaprabha, nirvighnam kuru me deva sarvakaryeshu sarvada</div>
-    <div class="shloka-divider"><span>✦</span></div>
-    <div class="shloka-meaning">O Lord Ganesha with the curved trunk and mighty body, brilliant as a million suns — remove all obstacles from my endeavors always.</div>
-    <div class="shloka-source">Ganesha Prarthana</div>
-    <div class="shloka-actions">
-      <button onclick="copyS(this,'वक्रतुण्ड महाकाय सूर्यकोटिसमप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥')">Copy Sanskrit</button>
-      <button onclick="shareWA('वक्रतुण्ड महाकाय सूर्यकोटिसमप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥','O Lord Ganesha with the curved trunk and mighty body, brilliant as a million suns — remove all obstacles from my endeavors always.','Ganesha Prarthana')">Share WhatsApp</button>
-      <button onclick="window.location.href='chat.html'">Ask AI About This</button>
-    </div>
-  </div>
-  <div class="shloka-card">
-    <div class="shloka-num">04</div>
-    <div class="shloka-sanskrit">गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः। गुरुः साक्षात् परं ब्रह्म तस्मै श्रीगुरवे नमः॥</div>
-    <div class="shloka-translit">Gurur Brahma gurur Vishnuh gurur devo Maheshwarah, guruh sakshat param Brahma tasmai shri gurave namah</div>
-    <div class="shloka-divider"><span>✦</span></div>
-    <div class="shloka-meaning">The guru is Brahma, Vishnu, and Shiva. The guru is the supreme Brahman. I bow to that divine guru.</div>
-    <div class="shloka-source">Guru Stotram</div>
-    <div class="shloka-actions">
-      <button onclick="copyS(this,'गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः। गुरुः साक्षात् परं ब्रह्म तस्मै श्रीगुरवे नमः॥')">Copy Sanskrit</button>
-      <button onclick="shareWA('गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः। गुरुः साक्षात् परं ब्रह्म तस्मै श्रीगुरवे नमः॥','The guru is Brahma, Vishnu, and Shiva. The guru is the supreme Brahman. I bow to that divine guru.','Guru Stotram')">Share WhatsApp</button>
-      <button onclick="window.location.href='chat.html'">Ask AI About This</button>
-    </div>
-  </div>
-  <div class="shloka-card">
-    <div class="shloka-num">05</div>
-    <div class="shloka-sanskrit">ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः। सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत्॥</div>
-    <div class="shloka-translit">Om sarve bhavantu sukhinah sarve santu niramayah, sarve bhadrani pashyantu ma kashchid duhkhabhag bhavet</div>
-    <div class="shloka-divider"><span>✦</span></div>
-    <div class="shloka-meaning">May all be happy. May all be free from disease. May all see goodness. May no one suffer. Begin your day by wishing well for all beings.</div>
-    <div class="shloka-source">Brihadaranyaka Upanishad</div>
-    <div class="shloka-actions">
-      <button onclick="copyS(this,'ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः। सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत्॥')">Copy Sanskrit</button>
-      <button onclick="shareWA('ॐ सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः। सर्वे भद्राणि पश्यन्तु मा कश्चिद्दुःखभाग्भवेत्॥','May all be happy. May all be free from disease. May all see goodness. May no one suffer. Begin your day by wishing well for all beings.','Brihadaranyaka Upanishad')">Share WhatsApp</button>
-      <button onclick="window.location.href='chat.html'">Ask AI About This</button>
-    </div>
-  </div>
+    <nav class="dc-drawer-nav">
+      ${navHtml}
+      <div class="dc-drawer-divider"></div>
+      ${premiumRowHtml}
+    </nav>
+    <div class="dc-drawer-cta">
+      ${ctaBtnHtml}
+      <button class="dc-drawer-signout" id="dcDrawerSignOut" style="display:none;">Sign Out</button>
+    </div>`;
 
-</div>
+  const overlayEl = document.createElement('div');
+  overlayEl.id = 'dcOverlay';
+  overlayEl.className = 'dc-overlay';
 
-<section class="cta-section">
-  <h2>Want to explore deeper?</h2>
-  <p>Ask DharmaChat AI any question about morning prayer shlokas and get answers grounded in sacred scripture.</p>
-  <a class="btn-primary" href="chat.html">Ask DharmaChat AI 🕉️</a>
-</section>
+  document.body.appendChild(overlayEl);
+  document.body.appendChild(drawerEl);
+  return { drawerEl, overlayEl };
+}
 
-<div class="related">
-  <h3>Explore More Sacred Shlokas</h3>
-  <div class="related-grid">
-    <a class="related-link" href="shlokas-about-love.html">❤️ Shlokas About Love & Devotion</a>
-    <a class="related-link" href="shlokas-about-marriage.html">💍 Shlokas About Marriage</a>
-    <a class="related-link" href="shlokas-about-friendship.html">🤝 Shlokas About Friendship</a>
-    <a class="related-link" href="shlokas-about-family.html">👨‍👩‍👧‍👦 Shlokas About Family</a>
-    <a class="related-link" href="shlokas-about-self-discipline.html">🧘 Shlokas About Self-Discipline</a>
-    <a class="related-link" href="shlokas-about-patience.html">🌱 Shlokas About Patience</a>
-    <a class="related-link" href="shlokas-about-knowledge.html">📚 Shlokas About Knowledge</a>
-    <a class="related-link" href="shlokas-about-courage.html">🦁 Shlokas About Courage</a>
-  </div>
-</div>
+// ── Update drawer premium row + CTA after async auth ─────────
+function updateDrawerPremiumState() {
+  const premium = readPremium();
 
-<footer>
-  <p>🕉️ DharmaChat — Built with reverence for Sanatana Dharma</p>
-  <p style="margin-top:8px"><a href="index.html">Home</a> · <a href="chat.html">AI Guide</a> · <a href="privacy.html">Privacy</a> · <a href="premium.html">Premium</a></p>
-  <p style="margin-top:12px;color:rgba(255,255,255,0.3)">© 2026 DharmaChat. All Rights Reserved.</p>
-</footer>
+  const premiumLink = document.getElementById('dcDrawerPremiumLink');
+  if (premiumLink) {
+    if (premium) {
+      premiumLink.style.color = '#F0C040';
+      premiumLink.innerHTML = `
+        <span class="dc-nav-emoji">👑</span>Premium Member
+        <span class="dc-nav-badge" style="background:rgba(212,160,23,0.2);color:#F0C040;border-color:rgba(212,160,23,0.4);">ACTIVE</span>`;
+    } else {
+      premiumLink.style.color = '';
+      premiumLink.innerHTML = `
+        <span class="dc-nav-emoji">👑</span>Premium Plan
+        <span class="dc-nav-badge">UPGRADE</span>`;
+    }
+  }
 
-<script>
-function copyS(btn,t){navigator.clipboard.writeText(t.replace(/<br>/g,'\n'));btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy Sanskrit'},2000)}
-function shareWA(d,e,s){var t='🕉️ Sacred Shloka\n\n'+d.replace(/<br>/g,'\n')+'\n\n'+e+'\n\n— '+s+'\n\nExplore more at dharmachat.in';window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
-</script>
-<script src="dc-premium-unlock.js?v=3"></script>
-<script type="module" src="nav.js"></script>
-</body>
-</html>
+  const ctaLink = document.getElementById('dcDrawerCta');
+  if (ctaLink) {
+    if (premium) {
+      ctaLink.href            = 'bhagavad-gita.html';
+      ctaLink.textContent     = '📖 Read Scriptures →';
+      ctaLink.style.background = 'linear-gradient(135deg,#8B1A1A,#D4A017)';
+    } else {
+      ctaLink.href            = 'chat.html';
+      ctaLink.textContent     = 'Ask DharmaChat AI →';
+      ctaLink.style.background = '';
+    }
+  }
+}
+
+// ── Build hamburger ──────────────────────────────────────────
+function buildBurger() {
+  const burger = document.createElement('button');
+  burger.id = 'dcBurger';
+  burger.className = 'dc-burger';
+  burger.setAttribute('aria-label', 'Open menu');
+  burger.innerHTML = '<span></span><span></span><span></span>';
+
+  const nav = document.querySelector('nav');
+  if (!nav) return burger;
+  const navRight = nav.querySelector('.nav-cta,.nav-right,.topbar-right,.nav-links');
+  if (navRight) navRight.insertBefore(burger, navRight.firstChild);
+  else          nav.appendChild(burger);
+  return burger;
+}
+
+// ── Wire events ──────────────────────────────────────────────
+function wireEvents(burger, drawerEl, overlayEl) {
+  const open = () => {
+    drawerEl.classList.add('open');
+    overlayEl.classList.add('show');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    drawerEl.classList.remove('open');
+    overlayEl.classList.remove('show');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  burger.addEventListener('click', open);
+  overlayEl.addEventListener('click', close);
+  document.getElementById('dcClose')?.addEventListener('click', close);
+  drawerEl.querySelectorAll('nav a').forEach(a => a.addEventListener('click', close));
+
+  document.getElementById('dcDrawerSignIn')?.addEventListener('click', async () => {
+    try { await signInWithPopup(auth, provider); }
+    catch(e) {
+      if (e.code !== 'auth/popup-closed-by-user' &&
+          e.code !== 'auth/cancelled-popup-request') console.error(e.code);
+    }
+  });
+
+  document.getElementById('dcDrawerSignOut')?.addEventListener('click', async () => {
+    await fbSignOut(auth);
+    try { localStorage.removeItem('dc_guest'); } catch(e) {}
+    location.reload();
+  });
+}
+
+// ── Update drawer user section ───────────────────────────────
+function updateDrawerUser(user) {
+  const userSection = document.getElementById('dcDrawerUser');
+  const signoutBtn  = document.getElementById('dcDrawerSignOut');
+  if (!userSection) return;
+
+  if (user) {
+    const photo = user.photoURL || '';
+    const name  = user.displayName?.split(' ')[0] || 'Devotee';
+    const email = user.email || '';
+    userSection.innerHTML = `
+      <div class="dc-drawer-user-inner">
+        ${photo
+          ? `<img src="${photo}" class="dc-drawer-avatar" alt="${name}" onerror="this.style.display='none'"/>`
+          : `<div class="dc-drawer-avatar-placeholder">${name.charAt(0)}</div>`}
+        <div class="dc-drawer-user-info">
+          <div class="dc-drawer-user-name">${name}</div>
+          <div class="dc-drawer-user-sub">${email}</div>
+        </div>
+      </div>`;
+    if (signoutBtn) signoutBtn.style.display = 'block';
+  } else {
+    const guest = localStorage.getItem('dc_guest');
+    if (guest) {
+      userSection.innerHTML = `
+        <div class="dc-drawer-user-inner">
+          <div class="dc-drawer-avatar-placeholder">${guest.charAt(0).toUpperCase()}</div>
+          <div class="dc-drawer-user-info">
+            <div class="dc-drawer-user-name">${guest}</div>
+            <div class="dc-drawer-user-sub">Guest Devotee</div>
+          </div>
+        </div>`;
+      if (signoutBtn) signoutBtn.style.display = 'block';
+    } else {
+      userSection.innerHTML = `
+        <button class="dc-drawer-signin-btn" id="dcDrawerSignIn">
+          ${googleSVG(18,18)} Sign In with Google
+        </button>`;
+      document.getElementById('dcDrawerSignIn')?.addEventListener('click', async () => {
+        try { await signInWithPopup(auth, provider); } catch(e) {}
+      });
+    }
+  }
+}
+
+// ── Update desktop navAuth ───────────────────────────────────
+function updateDesktopAuth(user) {
+  const navAuth = document.getElementById('navAuth');
+  if (!navAuth) return;
+
+  const premium = readPremium();
+
+  if (user) {
+    const name  = user.displayName?.split(' ')[0] || 'Devotee';
+    const photo = user.photoURL || '';
+    navAuth.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;">
+        ${photo ? `<img src="${photo}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.4);" onerror="this.style.display='none'"/>` : ''}
+        <span style="font-family:Cinzel,serif;font-size:12px;color:rgba(240,192,64,0.9);">${name}</span>
+        ${premium ? `<span id="dcNavPremiumBadge" style="font-family:Cinzel,serif;font-size:10px;color:#F0C040;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);border-radius:20px;padding:3px 10px;letter-spacing:.04em;">👑 Premium</span>` : ''}
+        <button onclick="window.__dcNavSignOut()" style="font-family:Cinzel,serif;font-size:10px;color:rgba(255,255,255,0.4);background:none;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;cursor:pointer;letter-spacing:.04em;">Sign Out</button>
+      </div>`;
+  } else if (premium) {
+    navAuth.innerHTML = `
+      <a id="dcNavPremiumBadge" href="premium.html" style="display:flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:11px;color:#F0C040;background:rgba(212,160,23,0.1);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:5px 14px;text-decoration:none;letter-spacing:.04em;">
+        👑 Premium Member
+      </a>`;
+  } else {
+    navAuth.innerHTML = `
+      <button onclick="window.__dcNavSignIn()" style="display:flex;align-items:center;gap:8px;padding:7px 16px;background:white;border:none;border-radius:50px;font-family:Noto Sans,sans-serif;font-size:12px;color:#333;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+        ${googleSVG(14,14)} Sign In
+      </button>`;
+  }
+
+  window.__dcNavSignIn  = async () => { try { await signInWithPopup(auth, provider); } catch(e) {} };
+  window.__dcNavSignOut = async () => {
+    await fbSignOut(auth);
+    try { localStorage.removeItem('dc_guest'); } catch(e) {}
+    location.reload();
+  };
+}
+
+// ── Hide Try Free / upgrade buttons for premium users ────────
+function hideTryFreeIfPremium() {
+  if (!readPremium()) return;
+
+  const PROTECTED = ['#navAuth','#dcNavPremiumBadge','#dcDrawer','#heroBtns','.hero','.hero-btns','footer'];
+
+  document.querySelectorAll('a, button').forEach(function(el) {
+    for (let i = 0; i < PROTECTED.length; i++) {
+      if (el.closest(PROTECTED[i])) return;
+    }
+    if (el.id === 'dcNavPremiumBadge') return;
+
+    const txt = el.textContent.trim().toLowerCase();
+    if (txt === 'try free' || txt === 'try dharmachat free' || txt.startsWith('try ') ||
+        txt === 'go premium' || txt === '👑 go premium' ||
+        txt.includes('upgrade') || txt.includes('subscribe')) {
+      el.style.setProperty('display', 'none', 'important');
+    }
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const { drawerEl, overlayEl } = buildDrawer();
+  const burger = buildBurger();
+  wireEvents(burger, drawerEl, overlayEl);
+
+  onAuthStateChanged(auth, async (user) => {
+    updateDesktopAuth(user);
+    updateDrawerUser(user);
+
+    if (user) {
+      // ✅ KEY FIX: Pull premium status from Firestore and sync to localStorage
+      // This makes premium work on every device the user signs into
+      await syncPremiumFromFirestore(user);
+    }
+
+    updateDrawerPremiumState();
+    hideTryFreeIfPremium();
+  });
+
+  if (!auth.currentUser) {
+    updateDrawerUser(null);
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(hideTryFreeIfPremium, 300);
+  });
+});

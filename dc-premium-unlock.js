@@ -153,10 +153,23 @@
       }
     });
 
-    /* ── 6. Hide "Go Premium" / "btn-upgrade" buttons for premium users ── */
-    /* nav.js already shows the premium badge — just hide the upgrade button */
-    document.querySelectorAll('a.btn-upgrade').forEach(function(a) {
-      a.style.setProperty('display', 'none', 'important');
+    /* ── 6. Update "Go Premium" / "btn-upgrade" links for premium users ── */
+    /* Any hardcoded "👑 Go Premium" nav button becomes "👑 Premium Member" */
+    document.querySelectorAll('a.btn-upgrade, a[href="premium.html"].btn-upgrade').forEach(function(a) {
+      a.textContent  = '👑 Premium Member';
+      a.href         = 'premium.html';
+      a.style.background = 'linear-gradient(135deg,#3E0000,#5A0A0A)';
+      a.style.border     = '1px solid rgba(212,160,23,0.4)';
+      a.style.cursor     = 'default';
+      a.style.pointerEvents = 'none';
+    });
+
+    /* Footer / inline "Go Premium" anchor links */
+    document.querySelectorAll('a[href="premium.html"]').forEach(function(a) {
+      if (a.textContent.trim() === 'Go Premium' || a.textContent.trim() === '👑 Go Premium') {
+        a.textContent = '👑 Premium';
+        a.style.opacity = '0.7';
+      }
     });
 
     console.log('[DharmaChat] ✅ Premium unlocked — all content accessible.');
