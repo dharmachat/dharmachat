@@ -1,1000 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZTPFCMN2K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3ZTPFCMN2K');
-</script>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dharma Sabha — DharmaChat Community</title>
-<meta name="description" content="Join the DharmaChat Dharma Sabha community. Discuss scriptures, share insights, and grow in dharma together with fellow devotees worldwide."/>
+/**
+ * dc-premium-unlock.js  v3.0
+ * DharmaChat — Universal Premium Unlock
+ *
+ * Fixes:
+ * v1: File didn't exist
+ * v2: CSS specificity too low (0,1,0) vs original lock rules (0,3,0)
+ * v3: Exact-match CSS selectors + cache-bust query string on all pages
+ */
+(function () {
+  'use strict';
 
-<!-- SEO: Canonical -->
-<link rel="canonical" href="https://dharmachat.in/community.html"/>
-
-<!-- SEO: Open Graph -->
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="https://dharmachat.in/community.html"/>
-<meta property="og:title" content="Dharma Sabha — DharmaChat Community"/>
-<meta property="og:description" content="Join the DharmaChat Dharma Sabha community. Discuss scriptures, share insights, and grow in dharma together with fellow devotees worldwide."/>
-<meta property="og:image" content="https://dharmachat.in/logo.jpeg"/>
-<meta property="og:site_name" content="DharmaChat"/>
-<meta property="og:locale" content="en_IN"/>
-
-<!-- SEO: Twitter Card -->
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Dharma Sabha — DharmaChat Community"/>
-<meta name="twitter:description" content="Join the DharmaChat Dharma Sabha community. Discuss scriptures, share insights, and grow in dharma together with fellow devotees worldwide."/>
-<meta name="twitter:image" content="https://dharmachat.in/logo.jpeg"/>
-
-<!-- SEO: Additional -->
-<meta name="robots" content="index, follow"/>
-<meta name="author" content="DharmaChat"/>
-<meta name="keywords" content="dharma community, hindu community, satsang online, dharma discussion, devotee forum"/>
-
-<!-- SEO: Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "headline": "Dharma Sabha — DharmaChat Community",
-  "description": "Join the DharmaChat Dharma Sabha community. Discuss scriptures, share insights, and grow in dharma together with fellow devotees worldwide.",
-  "url": "https://dharmachat.in/community.html",
-  "datePublished": "2026-03-26",
-  "dateModified": "2026-03-26",
-  "author": { "@type": "Organization", "name": "DharmaChat", "url": "https://dharmachat.in" },
-  "publisher": { "@type": "Organization", "name": "DharmaChat", "logo": { "@type": "ImageObject", "url": "https://dharmachat.in/logo.jpeg" } },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://dharmachat.in/community.html" },
-  "image": "https://dharmachat.in/logo.jpeg",
-  "inLanguage": "en"
-}
-</script>
-<link rel="icon" type="image/jpeg" href="favicon.jpeg"/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --saffron:#E8611A;--saffron-lt:#F5832A;
-  --gold:#D4A017;--gold-lt:#F0C040;--gold-dk:#A07800;
-  --maroon:#6B1A1A;--maroon-dk:#3E0000;--maroon-mid:#5A0A0A;
-  --cream:#FDF6E3;--cream-dk:#F5EDD0;
-  --white:#FFFFFF;--text-dark:#1E0A00;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans',sans-serif;background:var(--cream);color:var(--text-dark)}
-
-/* NAV */
-nav{background:var(--maroon-dk);border-bottom:1px solid rgba(212,160,23,0.25);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-wrap img{width:36px;height:36px;border-radius:50%;object-fit:cover}
-.logo-name{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-lt)}
-.nav-links{display:flex;align-items:center;gap:20px}
-.nav-link{font-family:'Cinzel',serif;font-size:12px;color:rgba(240,192,64,0.7);text-decoration:none;letter-spacing:.05em;transition:color .2s}
-.nav-link:hover{color:var(--gold-lt)}
-.nav-link.active{color:var(--gold-lt)}
-.btn-try{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;padding:8px 20px;border-radius:50px;text-decoration:none;letter-spacing:.05em}
-
-/* HERO */
-.hero{background:linear-gradient(160deg,var(--maroon-dk) 0%,var(--maroon-mid) 60%,#7A1A00 100%);padding:72px 24px 60px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'ॐ';position:absolute;font-size:500px;color:rgba(212,160,23,0.03);font-family:'EB Garamond',serif;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;line-height:1}
-.hero-tag{display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);color:var(--gold-lt);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;padding:5px 16px;border-radius:20px;margin-bottom:20px}
-.hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(28px,5vw,48px);color:var(--white);line-height:1.2;margin-bottom:14px}
-.hero h1 span{color:var(--gold-lt)}
-.hero p{font-family:'EB Garamond',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,0.65);max-width:580px;margin:0 auto 36px;line-height:1.7}
-.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat strong{display:block;font-family:'Cinzel Decorative',serif;font-size:26px;color:var(--gold-lt)}
-.hero-stat span{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.45)}
-
-/* LAYOUT */
-.main{max-width:1100px;margin:0 auto;padding:48px 24px;display:grid;grid-template-columns:1fr 340px;gap:32px}
-@media(max-width:900px){.main{grid-template-columns:1fr}}
-
-/* SECTION HEADERS */
-.section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;color:var(--saffron);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.section-label::after{content:'';flex:1;height:1px;background:rgba(107,26,26,0.15)}
-
-/* DAILY CHALLENGE */
-.challenge-card{background:linear-gradient(135deg,var(--maroon-dk),var(--maroon-mid));border-radius:20px;padding:32px;margin-bottom:32px;position:relative;overflow:hidden}
-.challenge-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(240,192,64,0.12),transparent);border-radius:50%;pointer-events:none}
-.challenge-tag{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;color:var(--gold-lt);background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.25);padding:3px 12px;border-radius:20px;display:inline-block;margin-bottom:14px}
-.challenge-card h3{font-family:'Cinzel',serif;font-size:18px;color:var(--white);margin-bottom:10px;font-weight:700;line-height:1.4}
-.challenge-card p{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:20px;line-height:1.6}
-.challenge-shloka{background:rgba(212,160,23,0.08);border-left:3px solid rgba(212,160,23,0.5);padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:20px}
-.challenge-shloka p{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--gold-lt);margin:0;line-height:1.6}
-.challenge-shloka cite{font-family:'Cinzel',serif;font-size:10px;color:rgba(212,160,23,0.6);letter-spacing:.06em;font-style:normal}
-.answer-input{width:100%;padding:14px 18px;background:rgba(255,255,255,0.07);border:1px solid rgba(212,160,23,0.25);border-radius:12px;color:white;font-family:'EB Garamond',serif;font-size:16px;font-style:italic;outline:none;resize:none;min-height:80px;transition:border-color .2s;margin-bottom:12px}
-.answer-input::placeholder{color:rgba(255,255,255,0.3)}
-.answer-input:focus{border-color:rgba(212,160,23,0.5)}
-.challenge-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.challenge-count{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.06em}
-.btn-submit{padding:11px 28px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,97,26,0.4)}
-
-/* DISCUSSION TABS */
-.tabs{display:flex;gap:4px;background:white;border:1px solid rgba(107,26,26,0.1);border-radius:12px;padding:4px;margin-bottom:24px;flex-wrap:wrap}
-.tab{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.06em;padding:8px 16px;border-radius:8px;border:none;background:transparent;color:#888;cursor:pointer;transition:all .2s;white-space:nowrap}
-.tab.active{background:var(--maroon-dk);color:var(--gold-lt)}
-.tab:hover:not(.active){background:rgba(107,26,26,0.05);color:var(--maroon)}
-
-/* POST CARDS */
-.post-card{background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);box-shadow:0 2px 12px rgba(107,26,26,0.05);padding:24px;margin-bottom:16px;transition:all .25s;cursor:pointer}
-.post-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(107,26,26,0.1);border-color:rgba(212,160,23,0.3)}
-.post-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.post-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--maroon),var(--saffron));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;color:white;font-weight:700;flex-shrink:0}
-.post-author{font-family:'Cinzel',serif;font-size:12px;color:var(--maroon-dk);font-weight:700}
-.post-rank{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.08em;padding:2px 8px;border-radius:10px;background:rgba(232,97,26,0.1);color:var(--saffron)}
-.post-time{font-size:11px;color:#aaa;margin-left:auto}
-.post-sabha{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;padding:2px 10px;border-radius:10px;border:1px solid rgba(107,26,26,0.15);color:#888}
-.post-title{font-family:'Cinzel',serif;font-size:15px;color:var(--maroon-dk);font-weight:700;margin-bottom:8px;line-height:1.4}
-.post-preview{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:#666;line-height:1.6;margin-bottom:14px}
-.post-shloka-inline{background:rgba(212,160,23,0.06);border-left:2px solid rgba(212,160,23,0.3);padding:8px 12px;border-radius:0 6px 6px 0;margin-bottom:12px;font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--maroon);line-height:1.5}
-.post-footer{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.post-action{display:flex;align-items:center;gap:5px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;color:#aaa;cursor:pointer;transition:color .2s;border:none;background:none;padding:0}
-.post-action:hover{color:var(--saffron)}
-.post-action.liked{color:var(--saffron)}
-.post-action svg{width:14px;height:14px}
-.post-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.08em;padding:2px 10px;border-radius:10px;background:rgba(212,160,23,0.1);color:var(--gold-dk);margin-left:auto}
-
-/* NEW POST */
-.new-post-card{background:white;border-radius:16px;border:2px dashed rgba(212,160,23,0.3);padding:20px;margin-bottom:24px;transition:border-color .2s}
-.new-post-card:hover{border-color:rgba(212,160,23,0.5)}
-.new-post-input{width:100%;padding:12px 16px;background:rgba(107,26,26,0.03);border:1px solid rgba(107,26,26,0.1);border-radius:10px;font-family:'EB Garamond',serif;font-size:16px;font-style:italic;color:var(--text-dark);outline:none;resize:none;min-height:60px;margin-bottom:12px;transition:border-color .2s}
-.new-post-input:focus{border-color:rgba(212,160,23,0.4)}
-.new-post-footer{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.sabha-select{font-family:'Cinzel',serif;font-size:11px;padding:8px 14px;border:1px solid rgba(107,26,26,0.15);border-radius:50px;color:var(--maroon);background:transparent;cursor:pointer;outline:none}
-.btn-post{padding:9px 24px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;margin-left:auto}
-.btn-post:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,97,26,0.3)}
-
-/* SIDEBAR */
-.sidebar{}
-.sidebar-card{background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);box-shadow:0 2px 12px rgba(107,26,26,0.05);padding:24px;margin-bottom:20px}
-.sidebar-card h3{font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;margin-bottom:16px;letter-spacing:.06em}
-
-/* RANKS */
-.rank-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(107,26,26,0.05)}
-.rank-item:last-child{border-bottom:none}
-.rank-num{font-family:'Cinzel Decorative',serif;font-size:16px;color:rgba(107,26,26,0.2);width:28px;text-align:center;flex-shrink:0}
-.rank-num.gold{color:var(--gold)}
-.rank-num.silver{color:#999}
-.rank-num.bronze{color:#CD7F32}
-.rank-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--maroon),var(--saffron));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;color:white;font-weight:700;flex-shrink:0}
-.rank-info{flex:1}
-.rank-name{font-family:'Cinzel',serif;font-size:12px;color:var(--maroon-dk);font-weight:700}
-.rank-title{font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#888}
-.rank-points{font-family:'Cinzel',serif;font-size:11px;color:var(--gold-dk);margin-left:auto}
-
-/* BADGES */
-.badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.badge-item{text-align:center;padding:10px 6px;background:rgba(107,26,26,0.03);border-radius:10px;border:1px solid rgba(107,26,26,0.07);cursor:pointer;transition:all .2s}
-.badge-item:hover{background:rgba(212,160,23,0.08);border-color:rgba(212,160,23,0.2)}
-.badge-icon{font-size:22px;margin-bottom:4px}
-.badge-name{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.04em;color:#888;line-height:1.3}
-.badge-item.earned .badge-name{color:var(--gold-dk)}
-.badge-item.locked{opacity:.4}
-
-/* SABHAS */
-.sabha-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(107,26,26,0.05);cursor:pointer;transition:all .2s}
-.sabha-item:last-child{border-bottom:none}
-.sabha-item:hover .sabha-name{color:var(--saffron)}
-.sabha-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.sabha-name{font-family:'Cinzel',serif;font-size:12px;color:var(--maroon-dk);font-weight:700}
-.sabha-count{font-family:'Cinzel',serif;font-size:10px;color:#aaa;margin-left:auto}
-
-/* RANK BADGE */
-.rank-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.06em;padding:3px 10px;border-radius:20px}
-.rank-jigyasu{background:rgba(107,26,26,0.08);color:var(--maroon)}
-.rank-shishya{background:rgba(232,97,26,0.1);color:var(--saffron)}
-.rank-sadhak{background:rgba(212,160,23,0.12);color:var(--gold-dk)}
-.rank-vidwan{background:rgba(62,0,0,0.1);color:var(--maroon-dk)}
-.rank-acharya{background:linear-gradient(135deg,rgba(232,97,26,0.15),rgba(212,160,23,0.15));color:var(--saffron)}
-
-/* STREAK */
-.streak-bar{display:flex;gap:4px;margin:12px 0}
-.streak-day{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:9px;border:1px solid rgba(107,26,26,0.1)}
-.streak-day.done{background:linear-gradient(135deg,var(--saffron),var(--gold));color:white;border-color:transparent}
-.streak-day.today{background:rgba(232,97,26,0.1);color:var(--saffron);border-color:var(--saffron)}
-.streak-day.missed{background:rgba(107,26,26,0.04);color:#ccc}
-
-/* NOTIFICATIONS */
-.notify-banner{background:linear-gradient(135deg,rgba(232,97,26,0.08),rgba(212,160,23,0.06));border:1px solid rgba(212,160,23,0.2);border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.notify-icon{font-size:20px;flex-shrink:0}
-.notify-text{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--maroon-dk);line-height:1.5}
-.notify-text strong{font-style:normal;font-family:'Cinzel',serif;font-size:11px}
-
-/* DISQUS SECTION */
-.disqus-section{background:white;border-radius:16px;border:1px solid rgba(107,26,26,0.08);box-shadow:0 2px 12px rgba(107,26,26,0.05);padding:32px;margin-top:16px}
-.disqus-header{font-family:'Cinzel',serif;font-size:14px;color:var(--maroon-dk);font-weight:700;margin-bottom:8px;letter-spacing:.06em}
-.disqus-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:#888;margin-bottom:24px}
-
-/* FOOTER */
-footer{background:var(--maroon-dk);padding:40px 24px;text-align:center;margin-top:60px}
-footer p{font-size:12px;color:rgba(255,255,255,0.4);font-family:'Cinzel',serif;letter-spacing:.05em}
-footer a{color:rgba(240,192,64,0.6);text-decoration:none;margin:0 12px}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(62,0,0,0.8);z-index:200;align-items:center;justify-content:center;padding:24px}
-.modal-overlay.show{display:flex}
-.modal{background:var(--cream);border-radius:20px;padding:32px;max-width:500px;width:100%;text-align:center;animation:modal-in .3s ease}
-@keyframes modal-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
-.modal h3{font-family:'Cinzel Decorative',serif;font-size:22px;color:var(--maroon-dk);margin-bottom:10px}
-.modal p{font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:#666;margin-bottom:20px;line-height:1.6}
-.modal-om{font-size:48px;color:var(--gold-lt);font-family:'EB Garamond',serif;margin-bottom:12px;text-shadow:0 0 20px rgba(240,192,64,0.4)}
-.modal-close{padding:11px 32px;background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:13px;font-weight:700;cursor:pointer}
-
-@media(max-width:600px){
-  nav .nav-links{display:none}
-  .hero h1{font-size:26px}
-  .badges-grid{grid-template-columns:repeat(3,1fr)}
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a class="logo-wrap" href="index.html">
-    <img src="logo.jpeg" alt="DharmaChat"/>
-    <span class="logo-name">DharmaChat</span>
-  </a>
-  <div class="nav-links" style="display:flex;align-items:center;gap:16px;">
-    <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link" href="lessons.html">Lessons</a>
-    <a class="nav-link active" href="community.html">Community</a>
-    <div id="navAuth"></div>
-    <a class="btn-try" href="chat.html">Ask AI →</a>
-  </div>
-</nav>
-
-<script type="module">
-import { initNavAuth } from './auth.js';
-initNavAuth();
-</script>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">✦ DHARMA SABHA</div>
-  <h1>A Sacred Community of<br><span>Dharmic Seekers</span></h1>
-  <p>Ask questions, share shlokas, discuss the epics and grow together on the dharmic path.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><strong id="memberCount">1</strong><span>DEVOTEES</span></div>
-    <div class="hero-stat"><strong id="postCount">0</strong><span>DISCUSSIONS</span></div>
-    <div class="hero-stat"><strong>18+</strong><span>SCRIPTURES</span></div>
-    <div class="hero-stat"><strong>🔥1</strong><span>DAY STREAK</span></div>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-  <!-- LEFT COLUMN -->
-  <div>
-
-    <!-- NOTIFICATION -->
-    <div class="notify-banner">
-      <div class="notify-icon">🕉️</div>
-      <div class="notify-text"><strong>WELCOME TO DHARMA SABHA</strong><br>Be among the first to join! Share your first reflection, ask a question, and earn the <strong>Founding Member</strong> badge — only for our first 1,000 devotees.</div>
-    </div>
-
-    <!-- DAILY CHALLENGE -->
-    <div class="section-label">✦ TODAY'S DHARMA CHALLENGE</div>
-    <div class="challenge-card">
-      <div class="challenge-tag">🔥 DAILY CHALLENGE · +40 PUNYA POINTS</div>
-      <h3 id="challengeTitle">Loading today's challenge...</h3>
-      <p id="challengeDesc">Share your reflection on today's teaching from Hindu scripture.</p>
-      <div class="challenge-shloka">
-        <p id="challengeShloka">ॐ</p>
-        <cite id="challengeSource">Loading...</cite>
-      </div>
-      <textarea class="answer-input" id="challengeAnswer" placeholder="Share your reflection here... How does this shloka apply to your life today?"></textarea>
-      <div class="challenge-footer">
-        <span class="challenge-count" id="challengeCount">0 devotees have reflected today</span>
-        <button class="btn-submit" onclick="submitChallenge()">Share Reflection ✦</button>
-      </div>
-    </div>
-
-    <!-- NEW POST -->
-    <div class="section-label">✦ START A DISCUSSION</div>
-    <div class="new-post-card">
-      <textarea class="new-post-input" id="newPostInput" placeholder="Ask a question about dharma, share a shloka, or start a discussion..." rows="3"></textarea>
-      <div class="new-post-footer">
-        <select class="sabha-select" id="sabhaSelect">
-          <option value="gita">🌸 Gita Sabha</option>
-          <option value="ramayana">🏹 Ramayana Sabha</option>
-          <option value="mahabharata">⚔️ Mahabharata Sabha</option>
-          <option value="upanishad">🌊 Upanishad Sabha</option>
-          <option value="life">🌿 Jeevan Dharma</option>
-          <option value="shloka">✨ Shloka Exchange</option>
-          <option value="beginner">🙏 Beginner's Corner</option>
-        <option value="general">💬 General Discussion</option>
-        </select>
-        <button class="btn-post" onclick="submitPost()">Post to Sabha →</button>
-      </div>
-    </div>
-
-    <!-- DISCUSSIONS TABS -->
-    <div class="section-label">✦ DISCUSSIONS</div>
-    <div class="tabs">
-      <button class="tab active" onclick="setTab('all',this)">All</button>
-      <button class="tab" onclick="setTab('gita',this)">Gita Sabha</button>
-      <button class="tab" onclick="setTab('ramayana',this)">Ramayana</button>
-      <button class="tab" onclick="setTab('mahabharata',this)">Mahabharata</button>
-      <button class="tab" onclick="setTab('upanishad',this)">Upanishads</button>
-      <button class="tab" onclick="setTab('life',this)">Daily Life</button>
-      <button class="tab" onclick="setTab('general',this)">General</button>
-    </div>
-
-    <!-- POSTS -->
-    <div id="postsContainer">
-      <!-- Seeded starter posts -->
-      <div class="post-card" data-sabha="gita">
-        <div class="post-meta">
-          <div class="post-avatar">S</div>
-          <div>
-            <div class="post-author">Sukhil Babu <span class="post-rank">🔱 Founder</span></div>
-            <div style="font-family:'Cinzel',serif;font-size:9px;color:#aaa;letter-spacing:.05em">Bengaluru · Just now</div>
-          </div>
-          <div class="post-time"><span class="post-sabha">Gita Sabha</span></div>
-        </div>
-        <div class="post-title">Welcome to Dharma Sabha — Our Sacred Community! 🙏</div>
-        <div class="post-preview">Namaste dear seekers! I created DharmaChat to make the wisdom of our scriptures accessible to everyone. This community is our Dharma Sabha — a space to ask questions, share shlokas, and grow together on the dharmic path. What question about dharma has been on your mind lately?</div>
-        <div class="post-shloka-inline">वसुधैव कुटुम्बकम् — The entire world is one family. Welcome, all seekers!</div>
-        <div class="post-footer">
-          <button class="post-action" onclick="likePost(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span>24</span>
-          </button>
-          <button class="post-action" onclick="openReply()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Reply</span>
-          </button>
-          <span class="post-tag">FOUNDING POST</span>
-        </div>
-      </div>
-
-      <div class="post-card" data-sabha="gita">
-        <div class="post-meta">
-          <div class="post-avatar" style="background:linear-gradient(135deg,#005040,#009060)">P</div>
-          <div>
-            <div class="post-author">Priya M. <span class="post-rank rank-shishya">Shishya</span></div>
-            <div style="font-family:'Cinzel',serif;font-size:9px;color:#aaa;letter-spacing:.05em">Chennai · 2 hours ago</div>
-          </div>
-          <div class="post-time"><span class="post-sabha">Gita Sabha</span></div>
-        </div>
-        <div class="post-title">Krishna says "do your duty without attachment to results" — but how do we stay motivated?</div>
-        <div class="post-preview">I've been reflecting on Gita 2.47 — karma without attachment to fruits. But in practical life, results matter — promotions, success, family wellbeing. How do you balance this teaching with real-world motivation?</div>
-        <div class="post-shloka-inline">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन — Bhagavad Gita 2.47</div>
-        <div class="post-footer">
-          <button class="post-action" onclick="likePost(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span>18</span>
-          </button>
-          <button class="post-action" onclick="openReply()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Reply</span>
-          </button>
-          <button class="post-action" onclick="askAI('What does the Bhagavad Gita say about doing duty without attachment to results')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Ask AI</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="post-card" data-sabha="ramayana">
-        <div class="post-meta">
-          <div class="post-avatar" style="background:linear-gradient(135deg,#3E1A00,#8B3A00)">R</div>
-          <div>
-            <div class="post-author">Rajan T. <span class="post-rank rank-sadhak">Sadhak</span></div>
-            <div style="font-family:'Cinzel',serif;font-size:9px;color:#aaa;letter-spacing:.05em">Coimbatore · 5 hours ago</div>
-          </div>
-          <div class="post-time"><span class="post-sabha">Ramayana Sabha</span></div>
-        </div>
-        <div class="post-title">What can modern families learn from the bond between Rama and Bharata?</div>
-        <div class="post-preview">Bharata refused to sit on the throne even when Rama was exiled. He placed Rama's padukas (sandals) on the throne and ruled as a regent. In a world where siblings fight over property and inheritance, this story moves me deeply. What does this teach us about family dharma?</div>
-        <div class="post-footer">
-          <button class="post-action" onclick="likePost(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span>31</span>
-          </button>
-          <button class="post-action" onclick="openReply()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Reply</span>
-          </button>
-          <button class="post-action" onclick="askAI('What does the Ramayana teach about family dharma through the bond of Rama and Bharata')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Ask AI</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="post-card" data-sabha="upanishad">
-        <div class="post-meta">
-          <div class="post-avatar" style="background:linear-gradient(135deg,#003040,#006080)">A</div>
-          <div>
-            <div class="post-author">Arjun M. <span class="post-rank rank-vidwan">Vidwan</span></div>
-            <div style="font-family:'Cinzel',serif;font-size:9px;color:#aaa;letter-spacing:.05em">Bengaluru · Yesterday</div>
-          </div>
-          <div class="post-time"><span class="post-sabha">Upanishad Sabha</span></div>
-        </div>
-        <div class="post-title">The Mandukya Upanishad and the 4 states of consciousness — AUM explained</div>
-        <div class="post-preview">The Mandukya is the shortest but perhaps the most profound Upanishad. It explains the 4 states: Jagrat (waking), Svapna (dreaming), Sushupti (deep sleep), and Turiya (pure consciousness). AUM represents all four. Has anyone explored this deeply?</div>
-        <div class="post-shloka-inline">ॐ इत्येतदक्षरमिदं सर्वम् — AUM, this syllable is all this. — Mandukya Upanishad 1.1</div>
-        <div class="post-footer">
-          <button class="post-action" onclick="likePost(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span>42</span>
-          </button>
-          <button class="post-action" onclick="openReply()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Reply</span>
-          </button>
-          <button class="post-action" onclick="askAI('Explain the Mandukya Upanishad and the 4 states of consciousness')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Ask AI</span>
-          </button>
-          <span class="post-tag">TRENDING</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- DISQUS -->
-    <div class="disqus-section">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:8px;">
-        <div class="disqus-header">💬 Community Reflections</div>
-        <span id="commentCountLabel" style="font-family:'Cinzel',serif;font-size:10px;color:#aaa;letter-spacing:.06em;">0 reflections shared</span>
-      </div>
-      <div class="disqus-sub">Sign in with Google and share your reflections, questions and shlokas with the community.</div>
-
-      <!-- Comment Input -->
-      <div id="commentInputArea" style="margin-bottom:24px;"></div>
-
-      <!-- Comments List -->
-      <div id="commentsList">
-        <div style="text-align:center;padding:32px;font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:#aaa;">Loading reflections... 🙏</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <!-- MY DHARMA PROFILE -->
-    <div class="sidebar-card" style="background:linear-gradient(160deg,var(--maroon-dk),var(--maroon-mid));color:white;">
-      <div style="text-align:center;margin-bottom:16px;">
-        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:24px;color:white;margin:0 auto 10px;box-shadow:0 0 20px rgba(232,97,26,0.4)">🕉️</div>
-        <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold-lt);font-weight:700" id="profileName">Dharma Seeker</div>
-        <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:.06em;margin-top:2px" id="profileCity">Join to see your profile</div>
-        <div style="margin-top:8px;display:inline-block;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.3);border-radius:20px;padding:3px 12px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold-lt);letter-spacing:.06em">🌱 Jigyasu (Seeker)</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
-        <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:8px;padding:8px;">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--gold-lt)" id="punyaPoints">0</div>
-          <div style="font-family:'Cinzel',serif;font-size:8px;color:rgba(255,255,255,0.4);letter-spacing:.06em">PUNYA</div>
-        </div>
-        <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:8px;padding:8px;">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--saffron-lt)" id="streakDays">1</div>
-          <div style="font-family:'Cinzel',serif;font-size:8px;color:rgba(255,255,255,0.4);letter-spacing:.06em">STREAK</div>
-        </div>
-        <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:8px;padding:8px;">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:16px;color:white" id="postsMade">0</div>
-          <div style="font-family:'Cinzel',serif;font-size:8px;color:rgba(255,255,255,0.4);letter-spacing:.06em">POSTS</div>
-        </div>
-      </div>
-      <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:.06em;margin-bottom:8px">THIS WEEK'S STREAK</div>
-      <div class="streak-bar" id="streakBar"></div>
-      <a href="chat.html" style="display:block;text-align:center;margin-top:16px;padding:10px;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:50px;font-family:'Cinzel',serif;font-size:12px;font-weight:700;color:white;text-decoration:none;letter-spacing:.05em">Ask the AI Guru →</a>
-    </div>
-
-    <!-- WEEKLY LEADERBOARD -->
-    <div class="sidebar-card">
-      <h3>🏆 Dharma Champions</h3>
-      <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa;margin-bottom:14px;">Weekly leaderboard — resets every Sunday</div>
-      <div class="rank-item">
-        <div class="rank-num gold">1</div>
-        <div class="rank-avatar" style="background:linear-gradient(135deg,#005040,#009060)">A</div>
-        <div class="rank-info">
-          <div class="rank-name">Arjun M.</div>
-          <div class="rank-title">Vidwan · Bengaluru</div>
-        </div>
-        <div class="rank-points">2,840 ✨</div>
-      </div>
-      <div class="rank-item">
-        <div class="rank-num silver">2</div>
-        <div class="rank-avatar" style="background:linear-gradient(135deg,#3E1A00,#8B3A00)">R</div>
-        <div class="rank-info">
-          <div class="rank-name">Rajan T.</div>
-          <div class="rank-title">Sadhak · Coimbatore</div>
-        </div>
-        <div class="rank-points">1,920 ✨</div>
-      </div>
-      <div class="rank-item">
-        <div class="rank-num bronze">3</div>
-        <div class="rank-avatar" style="background:linear-gradient(135deg,#1A003E,#4A0060)">P</div>
-        <div class="rank-info">
-          <div class="rank-name">Priya M.</div>
-          <div class="rank-title">Shishya · Chennai</div>
-        </div>
-        <div class="rank-points">1,440 ✨</div>
-      </div>
-      <div class="rank-item">
-        <div class="rank-num">4</div>
-        <div class="rank-avatar" style="background:linear-gradient(135deg,var(--maroon),var(--saffron))">D</div>
-        <div class="rank-info">
-          <div class="rank-name">Deepa K.</div>
-          <div class="rank-title">Shishya · Mysuru</div>
-        </div>
-        <div class="rank-points">980 ✨</div>
-      </div>
-      <div class="rank-item">
-        <div class="rank-num">5</div>
-        <div class="rank-avatar" style="background:linear-gradient(135deg,#003040,#006080)">L</div>
-        <div class="rank-info">
-          <div class="rank-name">Lakshmi R.</div>
-          <div class="rank-title">Jigyasu · Hyderabad</div>
-        </div>
-        <div class="rank-points">720 ✨</div>
-      </div>
-    </div>
-
-    <!-- BADGES -->
-    <div class="sidebar-card">
-      <h3>🎖️ Sacred Badges</h3>
-      <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa;margin-bottom:14px;">Earn badges by participating in the community</div>
-      <div class="badges-grid">
-        <div class="badge-item earned" title="Join the community">
-          <div class="badge-icon">🕉️</div>
-          <div class="badge-name">Om Seeker</div>
-        </div>
-        <div class="badge-item locked" title="Post 10 questions">
-          <div class="badge-icon">📖</div>
-          <div class="badge-name">Gita Premi</div>
-        </div>
-        <div class="badge-item locked" title="Answer 50 questions">
-          <div class="badge-icon">🏹</div>
-          <div class="badge-name">Arjuna</div>
-        </div>
-        <div class="badge-item locked" title="30 day streak">
-          <div class="badge-icon">🔥</div>
-          <div class="badge-name">Nityabhakta</div>
-        </div>
-        <div class="badge-item locked" title="Share 20 shlokas">
-          <div class="badge-icon">🌸</div>
-          <div class="badge-name">Bhakta</div>
-        </div>
-        <div class="badge-item earned" title="First 1000 members">
-          <div class="badge-icon">⭐</div>
-          <div class="badge-name">Founding Member</div>
-        </div>
-        <div class="badge-item locked" title="Get 100 upvotes">
-          <div class="badge-icon">🌟</div>
-          <div class="badge-name">Jnani</div>
-        </div>
-        <div class="badge-item locked" title="Premium member">
-          <div class="badge-icon">👑</div>
-          <div class="badge-name">Premium Devotee</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SABHAS -->
-    <div class="sidebar-card">
-      <h3>🏛️ Dharma Sabhas</h3>
-      <div class="sabha-item" onclick="setTab('gita', document.querySelector('.tab'))">
-        <div class="sabha-icon" style="background:rgba(212,160,23,0.1)">🌸</div>
-        <div><div class="sabha-name">Gita Sabha</div><div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa">Bhagavad Gita discussions</div></div>
-        <div class="sabha-count">2 posts</div>
-      </div>
-      <div class="sabha-item">
-        <div class="sabha-icon" style="background:rgba(107,26,26,0.08)">🏹</div>
-        <div><div class="sabha-name">Ramayana Sabha</div><div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa">Rama, Hanuman, Sita</div></div>
-        <div class="sabha-count">1 post</div>
-      </div>
-      <div class="sabha-item">
-        <div class="sabha-icon" style="background:rgba(62,0,0,0.06)">⚔️</div>
-        <div><div class="sabha-name">Mahabharata Sabha</div><div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa">Epic characters & dharma</div></div>
-        <div class="sabha-count">0 posts</div>
-      </div>
-      <div class="sabha-item">
-        <div class="sabha-icon" style="background:rgba(0,48,64,0.06)">🌊</div>
-        <div><div class="sabha-name">Upanishad Sabha</div><div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa">Philosophy & consciousness</div></div>
-        <div class="sabha-count">1 post</div>
-      </div>
-      <div class="sabha-item">
-        <div class="sabha-icon" style="background:rgba(0,80,40,0.06)">🌿</div>
-        <div><div class="sabha-name">Jeevan Dharma</div><div style="font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:#aaa">Daily life & relationships</div></div>
-        <div class="sabha-count">0 posts</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- SUCCESS MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-om">ॐ</div>
-    <h3 id="modalTitle">Reflection Shared!</h3>
-    <p id="modalMsg">Your dharmic reflection has been shared with the community. You have earned Punya Points! 🙏</p>
-    <button class="modal-close" onclick="closeModal()">Continue →</button>
-  </div>
-</div>
-
-<!-- Firebase Comments -->
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDvw26WTzNRsBBgjXG9At60pN8ApDvPB7o",
-  authDomain: "dharmachat-cc71d.firebaseapp.com",
-  projectId: "dharmachat-cc71d",
-  storageBucket: "dharmachat-cc71d.firebasestorage.app",
-  messagingSenderId: "718284855701",
-  appId: "1:718284855701:web:d7ef64292cd48ffdf13e9c"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
-let currentUser = null;
-
-// Auth state
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-  renderCommentBox();
-});
-
-// Sign in
-window.signInForComments = async function() {
+  /* ── 1. Read premium from localStorage ───────────────────── */
+  var premium = null;
   try {
-    await signInWithPopup(auth, provider);
-  } catch(e) {
-    console.error(e);
-  }
-};
-
-// Sign out
-window.signOutComments = async function() {
-  await signOut(auth);
-};
-
-// Render comment input box
-function renderCommentBox() {
-  const box = document.getElementById('commentInputArea');
-  if (!box) return;
-  if (currentUser) {
-    box.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-        <img src="${currentUser.photoURL || ''}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.3);" onerror="this.style.display='none'"/>
-        <div>
-          <div style="font-family:'Cinzel',serif;font-size:12px;color:var(--maroon-dk);font-weight:700;">${currentUser.displayName || 'Devotee'}</div>
-          <button onclick="signOutComments()" style="font-family:'Cinzel',serif;font-size:10px;color:#aaa;background:none;border:none;cursor:pointer;padding:0;letter-spacing:.04em;">Sign out</button>
-        </div>
-      </div>
-      <textarea id="commentText" placeholder="Share your dharmic reflection, question or shloka..." style="width:100%;padding:14px 16px;border:1px solid rgba(107,26,26,0.15);border-radius:12px;font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:var(--text-dark);outline:none;resize:none;min-height:80px;margin-bottom:10px;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(212,160,23,0.5)'" onblur="this.style.borderColor='rgba(107,26,26,0.15)'"></textarea>
-      <div style="display:flex;justify-content:flex-end;">
-        <button onclick="submitComment()" style="padding:10px 28px;background:linear-gradient(135deg,#E8611A,#D4A017);border:none;border-radius:50px;color:white;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">Post Comment 🙏</button>
-      </div>`;
-  } else {
-    box.innerHTML = `
-      <div style="text-align:center;padding:24px;background:rgba(107,26,26,0.03);border-radius:12px;border:1px dashed rgba(107,26,26,0.15);">
-        <div style="font-size:32px;margin-bottom:10px;">🕉️</div>
-        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--maroon-dk);font-weight:700;margin-bottom:6px;">Join the Dharma Sabha</div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:#888;margin-bottom:16px;">Sign in with Google to share your reflections</div>
-        <button onclick="signInForComments()" style="display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:white;border:1px solid rgba(107,26,26,0.15);border-radius:50px;font-family:'Noto Sans',sans-serif;font-size:14px;color:#333;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.1);transition:all .2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Continue with Google
-        </button>
-      </div>`;
-  }
-}
-
-// Submit comment
-window.submitComment = async function() {
-  if (!currentUser) return;
-  const text = document.getElementById('commentText')?.value.trim();
-  if (!text || text.length < 3) return;
-  try {
-    await addDoc(collection(db, 'community_comments'), {
-      text: text,
-      uid: currentUser.uid,
-      name: currentUser.displayName || 'Devotee',
-      photo: currentUser.photoURL || '',
-      createdAt: serverTimestamp(),
-      page: 'community'
-    });
-    document.getElementById('commentText').value = '';
-    addPunya(15);
-  } catch(e) {
-    console.error('Error posting comment:', e);
-  }
-};
-
-// Load comments in real time
-const q = query(collection(db, 'community_comments'), orderBy('createdAt', 'desc'), limit(50));
-onSnapshot(q, (snapshot) => {
-  const container = document.getElementById('commentsList');
-  if (!container) return;
-  if (snapshot.empty) {
-    container.innerHTML = '<div style="text-align:center;padding:32px;font-family:EB Garamond,serif;font-style:italic;font-size:16px;color:#aaa;">Be the first to share a reflection! 🙏</div>';
-    return;
-  }
-  container.innerHTML = '';
-  snapshot.forEach(doc => {
-    const d = doc.data();
-    const time = d.createdAt ? new Date(d.createdAt.seconds * 1000).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'}) : 'Just now';
-    const div = document.createElement('div');
-    div.style.cssText = 'display:flex;gap:12px;padding:16px 0;border-bottom:1px solid rgba(107,26,26,0.06);';
-    div.innerHTML = `
-      <img src="${d.photo}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,160,23,0.25);flex-shrink:0;" onerror="this.src='';this.style.background='linear-gradient(135deg,#6B1A1A,#E8611A)';this.style.display='flex';"/>
-      <div style="flex:1;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
-          <span style="font-family:'Cinzel',serif;font-size:12px;color:var(--maroon-dk);font-weight:700;">${d.name}</span>
-          <span style="font-family:'Cinzel',serif;font-size:9px;background:rgba(232,97,26,0.1);color:#E8611A;padding:2px 8px;border-radius:10px;letter-spacing:.06em;">Devotee</span>
-          <span style="font-family:'Cinzel',serif;font-size:10px;color:#bbb;margin-left:auto;">${time}</span>
-        </div>
-        <div style="font-family:'EB Garamond',serif;font-style:italic;font-size:16px;color:#444;line-height:1.7;">${d.text}</div>
-      </div>`;
-    container.appendChild(div);
-  });
-  document.getElementById('commentCountLabel').textContent = snapshot.size + ' reflections shared';
-});
-</script>
-
-<script>
-// Daily challenges
-const challenges = [
-  {
-    title: "How has the Bhagavad Gita changed your perspective on duty?",
-    desc: "Share a personal experience where the Gita's teaching on karma helped you make a difficult decision.",
-    shloka: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन — You have the right to action, not to its fruits.",
-    source: "Bhagavad Gita · 2.47"
-  },
-  {
-    title: "What does Rama's 14-year exile teach us about accepting hardship?",
-    desc: "Reflect on how Lord Rama accepted exile with grace. How can we apply this in our own life's challenges?",
-    shloka: "रामो विग्रहवान् धर्मः — Rama is dharma in human form.",
-    source: "Valmiki Ramayana · 3.37.13"
-  },
-  {
-    title: "If Hanuman could find Sita against all odds, what 'impossible' task are you pursuing?",
-    desc: "Hanuman crossed the ocean out of pure devotion. Share what devotion means to you in your daily life.",
-    shloka: "भक्त्या त्वनन्यया शक्य — Through undivided devotion, I can be known.",
-    source: "Bhagavad Gita · 11.54"
-  },
-  {
-    title: "What does Vasudhaiva Kutumbakam mean to you in today's divided world?",
-    desc: "The Upanishads proclaim the entire world is one family. How do you live this teaching?",
-    shloka: "वसुधैव कुटुम्बकम् — The entire world is one family.",
-    source: "Maha Upanishad · 6.71"
-  },
-  {
-    title: "Karna was loyal to Duryodhana despite knowing he was wrong. Is loyalty always dharmic?",
-    desc: "This is one of the great dharmic dilemmas of the Mahabharata. What do you think — where does loyalty end and dharma begin?",
-    shloka: "धर्मो रक्षति रक्षितः — Dharma protects those who protect dharma.",
-    source: "Mahabharata · Vana Parva"
-  },
-  {
-    title: "The Upanishads say Aham Brahmasmi — I am Brahman. How does this change how you see yourself?",
-    desc: "If you truly believed you are an expression of the divine, how would your daily life change?",
-    shloka: "अहं ब्रह्मास्मि — I am Brahman.",
-    source: "Brihadaranyaka Upanishad · 1.4.10"
-  },
-  {
-    title: "What shloka has given you the most comfort in a difficult time?",
-    desc: "Share a verse from any Hindu scripture that has helped you through hardship — and explain why it matters to you.",
-    shloka: "सर्वे भवन्तु सुखिनः — May all beings be happy. May all be free from suffering.",
-    source: "Brihadaranyaka Upanishad"
-  }
-];
-
-// Load today's challenge
-function loadChallenge() {
-  const today = new Date();
-  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-  const c = challenges[dayOfYear % challenges.length];
-  document.getElementById('challengeTitle').textContent = c.title;
-  document.getElementById('challengeDesc').textContent = c.desc;
-  document.getElementById('challengeShloka').textContent = c.shloka;
-  document.getElementById('challengeSource').textContent = c.source;
-  
-  const count = parseInt(localStorage.getItem('dc_challenge_count') || '0');
-  document.getElementById('challengeCount').textContent = count + ' devotees have reflected today';
-}
-
-// Build streak bar
-function buildStreakBar() {
-  const bar = document.getElementById('streakBar');
-  const days = ['M','T','W','T','F','S','S'];
-  const today = new Date().getDay();
-  days.forEach((d, i) => {
-    const div = document.createElement('div');
-    div.className = 'streak-day';
-    const dayIdx = i === 6 ? 0 : i + 1;
-    if (dayIdx < today) div.classList.add('done');
-    else if (dayIdx === today) div.classList.add('today');
-    else div.classList.add('missed');
-    div.textContent = d;
-    bar.appendChild(div);
-  });
-}
-
-// Load profile from localStorage
-function loadProfile() {
-  const name = localStorage.getItem('dc_guest') || localStorage.getItem('dc_user_name');
-  if (name) {
-    document.getElementById('profileName').textContent = name;
-    document.getElementById('profileCity').textContent = 'Dharma Seeker · Community Member';
-  }
-  const punya = parseInt(localStorage.getItem('dc_punya') || '10');
-  document.getElementById('punyaPoints').textContent = punya;
-  
-  // Award 10 Punya just for visiting
-  if (!localStorage.getItem('dc_community_visited')) {
-    localStorage.setItem('dc_punya', punya + 10);
-    localStorage.setItem('dc_community_visited', 'true');
-    document.getElementById('punyaPoints').textContent = punya + 10;
-  }
-  
-  const posts = parseInt(localStorage.getItem('dc_posts_made') || '0');
-  document.getElementById('postsMade').textContent = posts;
-  
-  // Update hero stats
-  const members = parseInt(localStorage.getItem('dc_member_count') || '1');
-  document.getElementById('memberCount').textContent = members;
-  const postCount = parseInt(localStorage.getItem('dc_total_posts') || '4');
-  document.getElementById('postCount').textContent = postCount;
-}
-
-// Filter tabs
-let activeTab = 'all';
-function setTab(tab, btn) {
-  activeTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.post-card').forEach(card => {
-    if (tab === 'all' || card.dataset.sabha === tab) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
+    var raw = localStorage.getItem('dc_premium');
+    if (raw) {
+      var d = JSON.parse(raw);
+      if (d) {
+        /* Accept if: has valid unexpired expiry, OR no expiry at all (legacy) */
+        if (!d.expiry || new Date(d.expiry) > new Date()) {
+          premium = d;
+        } else {
+          localStorage.removeItem('dc_premium');
+        }
+      }
     }
+  } catch (e) { /* silent */ }
+
+  if (!premium) return; /* Not premium — leave paywalls in place */
+
+  /* ── 2. CSS injection — EXACT same selectors as original locking rules ──
+   *
+   * Each page locks content with a 3-class selector (specificity 0,3,0):
+   *   .parva.locked-parva .parva-content { filter:blur(5px); ... }
+   *
+   * We override with THE SAME selector + !important, guaranteeing a win.
+   * ──────────────────────────────────────────────────────────────────── */
+  var unlockCSS =
+    /* bhagavad-gita-18-chapters.html */
+    '.chapter.locked-chapter .chapter-content,' +
+    /* bhagavad-gita.html */
+    '.chapter.locked-ch .chapter-content,' +
+    /* mahabharata.html */
+    '.parva.locked-parva .parva-content,' +
+    /* ramayana.html */
+    '.kanda.locked-k .kanda-content,' +
+    /* upanishads.html */
+    '.upanishad.locked-up .up-content,' +
+    /* vedas.html */
+    '.veda.locked-veda .veda-content,' +
+    /* puranas.html */
+    '.purana.locked-purana .purana-content' +
+    '{filter:none!important;max-height:none!important;' +
+    'overflow:visible!important;user-select:auto!important;' +
+    'pointer-events:auto!important;}' +
+    /* Hide ALL paywall overlays on premium pages */
+    '.paywall-overlay{display:none!important;}';
+
+  var styleEl = document.createElement('style');
+  styleEl.id  = 'dc-premium-unlock-v3';
+  styleEl.textContent = unlockCSS;
+  /* Append to <head> — works even before DOMContentLoaded */
+  (document.head || document.documentElement).appendChild(styleEl);
+
+  /* ── 3. DOM manipulation — belt AND suspenders ───────────── */
+  function unlockDOM() {
+    /* Single selector covering all 7 locked wrapper classes */
+    var wrappers = document.querySelectorAll(
+      '.locked-chapter,.locked-ch,.locked-parva,.locked-k,' +
+      '.locked-up,.locked-veda,.locked-purana'
+    );
+
+    wrappers.forEach(function (wrapper) {
+      /* Un-blur the content div (whichever type it is) */
+      var contentDiv = wrapper.querySelector(
+        '.chapter-content,.parva-content,.kanda-content,' +
+        '.up-content,.veda-content,.purana-content'
+      );
+      if (contentDiv) {
+        /* Inline style beats ALL stylesheet rules — highest priority */
+        contentDiv.style.setProperty('filter',        'none',     'important');
+        contentDiv.style.setProperty('max-height',    'none',     'important');
+        contentDiv.style.setProperty('overflow',      'visible',  'important');
+        contentDiv.style.setProperty('user-select',   'auto',     'important');
+        contentDiv.style.setProperty('pointer-events','auto',     'important');
+      }
+
+      /* Hide the paywall overlay */
+      var overlay = wrapper.querySelector('.paywall-overlay');
+      if (overlay) {
+        overlay.style.setProperty('display', 'none', 'important');
+      }
+    });
+
+    /* Catch any standalone paywall overlays not inside a wrapper */
+    document.querySelectorAll('.paywall-overlay').forEach(function (el) {
+      el.style.setProperty('display', 'none', 'important');
+    });
+
+    /* Fix Ramayana progress dots (built by inline JS, redirect to premium.html) */
+    document.querySelectorAll('.progress-k').forEach(function (dot) {
+      var name = dot.getAttribute('data-name') || '';
+      var m    = name.match(/\d+/);
+      if (!m) return;
+      var idx = parseInt(m[0], 10);
+      var nd  = dot.cloneNode(false);
+      nd.className = dot.className.replace(/(?:^|\s)(?!free-k)\S+/g, '').trim() + ' progress-k free-k';
+      nd.setAttribute('data-name', name);
+      nd.style.background = 'linear-gradient(90deg,#E8611A,#D4A017)';
+      nd.style.cursor     = 'pointer';
+      nd.onclick = function () {
+        var t = document.getElementById('k-' + idx);
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      };
+      if (dot.parentNode) dot.parentNode.replaceChild(nd, dot);
+    });
+
+    /* Fix Mahabharata progress dots */
+    document.querySelectorAll('.progress-parva.locked').forEach(function (dot) {
+      var name = dot.getAttribute('data-name') || '';
+      var m    = name.match(/^(\d+)/);
+      if (!m) return;
+      var num = parseInt(m[1], 10);
+      var nd  = dot.cloneNode(false);
+      nd.className = 'progress-parva free';
+      nd.setAttribute('data-name', name);
+      nd.style.background = 'linear-gradient(90deg,#E8611A,#D4A017)';
+      nd.style.cursor     = 'pointer';
+      nd.onclick = function () {
+        var t = document.getElementById('parva-' + num);
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      };
+      if (dot.parentNode) dot.parentNode.replaceChild(nd, dot);
+    });
+
+    /* Fix nav links that redirect to premium.html */
+    document.querySelectorAll(
+      '.parva-nav-item,.k-nav-item,.up-nav-item,.veda-nav-item,.purana-nav-item'
+    ).forEach(function (a) {
+      if ((a.getAttribute('href') || '').indexOf('premium') !== -1) {
+        a.innerHTML = a.innerHTML.replace('🔒', '📖');
+        var m = a.textContent.match(/\d+/);
+        if (m) {
+          var n   = parseInt(m[0], 10);
+          var ids = ['parva-','k-','up-','v-','p-','ch-'];
+          for (var i = 0; i < ids.length; i++) {
+            var t = document.getElementById(ids[i] + n);
+            if (t) { a.setAttribute('href', '#' + t.id); break; }
+          }
+        }
+        a.classList.remove('locked-item');
+      }
+    });
+
+    /* ── 6. Hide "Go Premium" / "btn-upgrade" buttons for premium users ── */
+    /* nav.js already shows the premium badge — just hide the upgrade button */
+    document.querySelectorAll('a.btn-upgrade').forEach(function(a) {
+      a.style.setProperty('display', 'none', 'important');
+    });
+
+    console.log('[DharmaChat] ✅ Premium unlocked — all content accessible.');
+  }
+
+  /* ── 4. Timing — run on DOMContentLoaded AND window.load ─── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', unlockDOM);
+  } else {
+    unlockDOM(); /* DOM already ready */
+  }
+  /* Second pass on window.load — catches any dynamically added elements */
+  window.addEventListener('load', unlockDOM);
+
+  /* ── 5. Premium status banner ───────────────────────────── */
+  window.addEventListener('load', function () {
+    if (sessionStorage.getItem('dc_unlock_v3')) return;
+    sessionStorage.setItem('dc_unlock_v3', '1');
+
+    var expiry  = premium.expiry ? new Date(premium.expiry) : null;
+    var dateStr = expiry
+      ? expiry.toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' })
+      : 'Active';
+    var plan = (premium.plan === 'yearly' || premium.plan === 'annual') ? 'Annual' : 'Monthly';
+
+    var b = document.createElement('div');
+    b.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(130%);' +
+      'z-index:99999;background:linear-gradient(135deg,#3E0000,#5A0A0A);' +
+      'border:1px solid rgba(212,160,23,0.5);border-radius:20px;padding:14px 20px;' +
+      'display:flex;align-items:center;gap:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5);' +
+      'max-width:380px;width:calc(100% - 48px);' +
+      'transition:transform .5s cubic-bezier(0.34,1.56,0.64,1);';
+    b.innerHTML =
+      '<div style="font-size:20px;flex-shrink:0;">👑</div>' +
+      '<div style="flex:1;min-width:0;">' +
+        '<div style="font-family:Cinzel,serif;font-size:12px;color:#F0C040;font-weight:700;margin-bottom:2px;">' +
+          'Premium Active — ' + plan + ' Plan</div>' +
+        '<div style="font-size:10px;color:rgba(255,255,255,0.55);">' +
+          'Full access · Valid until ' + dateStr + '</div></div>' +
+      '<button id="dcUnlockX" style="background:rgba(255,255,255,0.1);border:none;border-radius:50%;' +
+        'width:22px;height:22px;color:rgba(255,255,255,0.7);font-size:14px;cursor:pointer;flex-shrink:0;">×</button>';
+
+    document.body.appendChild(b);
+    setTimeout(function () { b.style.transform = 'translateX(-50%) translateY(0)'; }, 700);
+
+    function dismiss() {
+      b.style.transform = 'translateX(-50%) translateY(160%)';
+      setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 500);
+    }
+    var t = setTimeout(dismiss, 4500);
+    document.getElementById('dcUnlockX').addEventListener('click', function () {
+      clearTimeout(t); dismiss();
+    });
   });
-}
 
-// Like post
-function likePost(btn) {
-  btn.classList.toggle('liked');
-  const span = btn.querySelector('span');
-  const count = parseInt(span.textContent);
-  span.textContent = btn.classList.contains('liked') ? count + 1 : count - 1;
-  if (btn.classList.contains('liked')) {
-    addPunya(5);
-  }
-}
-
-// Submit challenge
-function submitChallenge() {
-  const answer = document.getElementById('challengeAnswer').value.trim();
-  if (!answer || answer.length < 20) {
-    document.getElementById('challengeAnswer').style.borderColor = 'rgba(232,97,26,0.6)';
-    document.getElementById('challengeAnswer').placeholder = 'Please write at least 20 characters to share your reflection...';
-    return;
-  }
-  const count = parseInt(localStorage.getItem('dc_challenge_count') || '0') + 1;
-  localStorage.setItem('dc_challenge_count', count);
-  document.getElementById('challengeCount').textContent = count + ' devotees have reflected today';
-  document.getElementById('challengeAnswer').value = '';
-  addPunya(40);
-  showModal('Reflection Shared! 🙏', 'Your dharmic reflection has been shared. You earned +40 Punya Points! Keep your streak alive by returning tomorrow.');
-}
-
-// Submit new post
-function submitPost() {
-  const text = document.getElementById('newPostInput').value.trim();
-  if (!text || text.length < 10) {
-    document.getElementById('newPostInput').style.borderColor = 'rgba(232,97,26,0.4)';
-    return;
-  }
-  const sabha = document.getElementById('sabhaSelect').value;
-  const name = localStorage.getItem('dc_guest') || 'Devotee';
-  
-  const container = document.getElementById('postsContainer');
-  const card = document.createElement('div');
-  card.className = 'post-card';
-  card.dataset.sabha = sabha;
-  card.innerHTML = `
-    <div class="post-meta">
-      <div class="post-avatar">${name.charAt(0).toUpperCase()}</div>
-      <div>
-        <div class="post-author">${name} <span class="post-rank rank-jigyasu">Jigyasu</span></div>
-        <div style="font-family:'Cinzel',serif;font-size:9px;color:#aaa;letter-spacing:.05em">Just now</div>
-      </div>
-      <div class="post-time"><span class="post-sabha">${document.getElementById('sabhaSelect').options[document.getElementById('sabhaSelect').selectedIndex].text}</span></div>
-    </div>
-    <div class="post-preview">${text}</div>
-    <div class="post-footer">
-      <button class="post-action" onclick="likePost(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span>0</span>
-      </button>
-      <button class="post-action" onclick="openReply()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Reply</span>
-      </button>
-    </div>`;
-  container.insertBefore(card, container.firstChild);
-  document.getElementById('newPostInput').value = '';
-  
-  const posts = parseInt(localStorage.getItem('dc_posts_made') || '0') + 1;
-  localStorage.setItem('dc_posts_made', posts);
-  document.getElementById('postsMade').textContent = posts;
-  
-  const total = parseInt(localStorage.getItem('dc_total_posts') || '4') + 1;
-  localStorage.setItem('dc_total_posts', total);
-  document.getElementById('postCount').textContent = total;
-  
-  addPunya(20);
-  showModal('Discussion Posted! ✦', 'Your question has been posted to the ' + document.getElementById('sabhaSelect').options[document.getElementById('sabhaSelect').selectedIndex].text + '. You earned +20 Punya Points!');
-}
-
-// Add Punya Points
-function addPunya(pts) {
-  const current = parseInt(localStorage.getItem('dc_punya') || '10');
-  const newTotal = current + pts;
-  localStorage.setItem('dc_punya', newTotal);
-  document.getElementById('punyaPoints').textContent = newTotal;
-}
-
-// Ask AI
-function askAI(q) {
-  window.location.href = 'chat.html?q=' + encodeURIComponent(q);
-}
-
-// Reply 
-function openReply() {
-  document.getElementById('newPostInput').focus();
-  document.getElementById('newPostInput').placeholder = 'Write your reply or response...';
-  document.getElementById('newPostInput').scrollIntoView({behavior:'smooth', block:'center'});
-}
-
-// Modal
-function showModal(title, msg) {
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalMsg').textContent = msg;
-  document.getElementById('modalOverlay').classList.add('show');
-}
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('show');
-}
-
-// Init
-loadChallenge();
-buildStreakBar();
-loadProfile();
-</script>
-
-<footer>
-  <p>
-    <a href="index.html">Home</a>
-    <a href="lessons.html">Lessons</a>
-    <a href="community.html">Community</a>
-    <a href="chat.html">DharmaChat AI</a>
-    <a href="privacy.html">Privacy</a>
-  </p>
-  <p style="margin-top:12px">© 2026 DharmaChat · Built with reverence for Sanatana Dharma 🕉️</p>
-  <p style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.3);">Founded & built by Sukhil Babu · Bengaluru, India</p>
-</footer>
-
-<script src="dc-premium-unlock.js?v=3"></script>
-<script type="module" src="nav.js"></script>
-</body>
-</html>
+})();
