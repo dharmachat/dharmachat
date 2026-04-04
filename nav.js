@@ -297,7 +297,7 @@ function hideTryFreeIfPremium() {
     const txt = el.textContent.trim().toLowerCase();
     if (txt === 'try free' || txt === 'try dharmachat free' || txt.startsWith('try ') ||
         txt === 'go premium' || txt === '👑 go premium' ||
-        txt.includes('upgrade') {
+        txt.includes('upgrade')) {
       el.style.setProperty('display', 'none', 'important');
     }
   });
