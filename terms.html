@@ -47,7 +47,7 @@
   a { color:var(--saffron); text-decoration:none; }
   a:hover { text-decoration:underline; }
 
-  nav { position:sticky; top:0; z-index:100; background:rgba(253,246,227,0.95); backdrop-filter:blur(12px); border-bottom:2px solid rgba(212,160,23,0.2); padding:0 24px; }
+  nav { background:rgba(253,246,227,0.95); border-bottom:2px solid rgba(212,160,23,0.2); padding:0 24px; }
   .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:68px; }
   .nav-logo { display:flex; align-items:center; gap:10px; font-family:'Cinzel Decorative',serif; font-weight:700; font-size:20px; color:var(--maroon); text-decoration:none; }
   .nav-logo img { width:38px; height:38px; border-radius:50%; }
@@ -66,13 +66,17 @@
   .legal-card { background:var(--white); border:1px solid rgba(212,160,23,0.25); border-radius:var(--radius); padding:40px 44px; box-shadow:0 4px 24px rgba(62,0,0,0.05); }
   @media (max-width:700px){ .legal-card { padding:28px 22px; } }
 
-  .toc { background:var(--cream); border-left:3px solid var(--gold); border-radius:8px; padding:18px 22px; margin-bottom:32px; }
-  .toc h3 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:.1em; color:var(--maroon); margin-bottom:10px; text-transform:uppercase; }
-  .toc ol { list-style:decimal inside; font-size:13.5px; color:var(--text-mid); columns:2; column-gap:24px; }
-  .toc ol li { padding:3px 0; break-inside:avoid; }
-  .toc ol li a { color:var(--text-mid); }
-  .toc ol li a:hover { color:var(--saffron); }
-  @media (max-width:600px){ .toc ol { columns:1; } }
+  .toc-collapse { margin-bottom:32px; background:var(--cream); border-left:3px solid var(--gold); border-radius:8px; overflow:hidden; }
+  .toc-collapse summary { cursor:pointer; padding:14px 22px; font-family:'Cinzel',serif; font-size:13px; letter-spacing:.1em; color:var(--maroon); text-transform:uppercase; user-select:none; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  .toc-collapse summary::-webkit-details-marker { display:none; }
+  .toc-collapse summary::after { content:'▾'; font-size:14px; color:var(--gold); transition:transform .2s; }
+  .toc-collapse[open] summary::after { transform:rotate(180deg); }
+  .toc-collapse summary:hover { background:var(--cream-dk); }
+  .toc-list { padding:4px 22px 18px; list-style:decimal inside; font-size:13.5px; color:var(--text-mid); columns:2; column-gap:24px; margin:0; }
+  .toc-list li { padding:3px 0; break-inside:avoid; }
+  .toc-list li a { color:var(--text-mid); }
+  .toc-list li a:hover { color:var(--saffron); }
+  @media (max-width:600px){ .toc-list { columns:1; } }
 
   h2 { font-family:'Cinzel',serif; font-size:22px; color:var(--maroon-dk); margin-top:36px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(212,160,23,0.3); scroll-margin-top:80px; }
   h2 .num { color:var(--gold); margin-right:8px; font-weight:600; }
@@ -143,9 +147,9 @@
       <p>These Terms are the contract between you and DharmaChat. By using the Service you agree to them. The points that matter most: DharmaAI is a guide, not a substitute for a real guru, doctor, or lawyer; you must be at least 13 years old; you own the content you post but grant us a licence to display it; auto-renewing subscriptions can be cancelled at any time; you cannot post hateful, illegal, or harmful content; disputes are resolved by arbitration in Bengaluru under Indian law. Read the rest before you sign up — we wrote it in plain English on purpose.</p>
     </div>
 
-    <nav class="toc" aria-label="Contents">
-      <h3>Contents</h3>
-      <ol>
+    <details class="toc-collapse">
+      <summary>Jump to section</summary>
+      <ol class="toc-list">
         <li><a href="#acceptance">Acceptance of these Terms</a></li>
         <li><a href="#eligibility">Eligibility &amp; Age</a></li>
         <li><a href="#account">Your Account</a></li>
@@ -170,7 +174,7 @@
         <li><a href="#apple">Apple App Store Additional Terms</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ol>
-    </nav>
+    </details>
 
     <h2 id="acceptance"><span class="num">1.</span>Acceptance of these Terms</h2>
     <p>These Terms of Service ("<strong>Terms</strong>") are a binding legal agreement between you ("<strong>you</strong>") and Sukhil Babu, a sole proprietor based in Bengaluru, Karnataka, India, trading as "<strong>DharmaChat</strong>" ("<strong>DharmaChat</strong>", "<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>").</p>
