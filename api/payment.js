@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   if (!keyId || !keySecret) return res.status(500).json({ error: 'Payment not configured' });
 
-  const { amount, currency, receipt, plan } = req.body;
+  const { amount, currency, receipt, plan, uid } = req.body;
 
   try {
     const credentials = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         amount: amount,
         currency: currency || 'INR',
         receipt: receipt || 'dharmachat_' + Date.now(),
-        notes: { plan: plan || 'monthly' }
+        notes: { plan: plan || 'monthly', uid: uid || '' }
       })
     });
 

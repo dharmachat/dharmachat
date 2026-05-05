@@ -1,7 +1,41 @@
-// Only DharmaChat origins can call this endpoint. The previous `*`
-// allowlist meant any website on the internet could iframe a script
-// that hammered /api/chat and burned through our Anthropic credits.
+import admin from 'firebase-admin';
+
+if (!admin.apps.length) {
+  const privateKey = (process.env.FIREBASE_ADMIN_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId:   process.env.FIREBASE_ADMIN_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+      privateKey,
+    }),
+  });
+}
+
 const ALLOWED_ORIGINS = ['https://dharmachat.in', 'https://www.dharmachat.in'];
+
+// 3 requests per 60-second sliding window per Firebase UID.
+const RATE_LIMIT = 3;
+const WINDOW_MS  = 60 * 1000;
+
+async function checkRateLimit(uid) {
+  const db  = admin.firestore();
+  const ref = db.collection('ratelimits').doc(uid);
+  const now = Date.now();
+
+  return db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const data = snap.exists ? snap.data() : { requests: [] };
+
+    // Drop timestamps outside the current window.
+    const window = (data.requests || []).filter(t => now - t < WINDOW_MS);
+
+    if (window.length >= RATE_LIMIT) return false;
+
+    window.push(now);
+    tx.set(ref, { requests: window });
+    return true;
+  });
+}
 
 export default async function handler(req, res) {
   const origin = req.headers.origin;
@@ -10,31 +44,44 @@ export default async function handler(req, res) {
     res.setHeader('Vary', 'Origin');
   }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
+
+  // Require Firebase ID token.
+  const authHeader = req.headers.authorization || '';
+  const idToken    = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+  if (!idToken) return res.status(401).json({ error: 'Authentication required' });
+
+  let uid;
+  try {
+    const decoded = await admin.auth().verifyIdToken(idToken);
+    uid = decoded.uid;
+  } catch {
+    return res.status(401).json({ error: 'Invalid auth token' });
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  // Rate limit check.
+  let allowed;
+  try {
+    allowed = await checkRateLimit(uid);
+  } catch {
+    // If Firestore is unreachable, fail open so users aren't blocked by infra issues.
+    allowed = true;
+  }
+  if (!allowed) {
+    return res.status(429).json({ error: 'Rate limit exceeded. Please wait a minute.' });
   }
 
   const { messages } = req.body;
-
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'Messages array is required' });
   }
 
-  // Your API key is stored safely in Vercel environment variables
-  // NEVER put your actual key in this file
   const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
-  if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured' });
-  }
-
-  // The system prompt — this tells Claude to be a Hindu scripture expert
   const systemPrompt = `You are DharmaChat, a deeply knowledgeable and reverential guide to Sanatana Dharma and Hindu scriptures. You are trained on the Bhagavad Gita, Mahabharata, Ramayana, all 108 Upanishads, the four Vedas (Rigveda, Yajurveda, Samaveda, Atharvaveda), and the 18 Mahapuranas.
 
 Your purpose is to help devotees understand Hindu philosophy, find relevant shlokas, understand epic characters, and apply ancient wisdom to modern life.
@@ -63,8 +110,8 @@ Guidelines:
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1024,
         system: systemPrompt,
-        messages: messages
-      })
+        messages,
+      }),
     });
 
     if (!response.ok) {
