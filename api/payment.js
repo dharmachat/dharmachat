@@ -1,5 +1,14 @@
+// Only DharmaChat origins can create Razorpay orders here. Wildcard
+// CORS would have let any third-party site spam this endpoint and
+// drive up Razorpay request volume / open-orders backlog.
+const ALLOWED_ORIGINS = ['https://dharmachat.in', 'https://www.dharmachat.in'];
+
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();

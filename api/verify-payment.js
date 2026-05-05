@@ -1,0 +1,172 @@
+/**
+ * /api/verify-payment — server-trusted Razorpay payment verification.
+ *
+ * Replaces the previous client-side savePremium() flow which trusted
+ * whatever the browser claimed. Now:
+ *
+ *   1. Browser POSTs { razorpay_payment_id, razorpay_order_id,
+ *      razorpay_signature?, plan, idToken } after Razorpay completes.
+ *   2. We verify the user identity (Firebase ID token).
+ *   3. We HMAC-verify the Razorpay signature when present (desktop popup).
+ *   4. We ALSO call Razorpay's payment-fetch API to confirm the payment
+ *      is actually `captured` and the order_id matches. This is what
+ *      makes the mobile redirect path safe — Razorpay does not append
+ *      a signature on redirect, so the signature alone is not enough.
+ *   5. We write `users/{uid}/premium/status` to Firestore via the
+ *      Firebase Admin SDK. The matching firestore.rules disallow client
+ *      writes to that path, so this server is the ONLY thing that can
+ *      grant premium.
+ *
+ * Required env vars (set in Vercel project settings):
+ *   RAZORPAY_KEY_ID
+ *   RAZORPAY_KEY_SECRET
+ *   FIREBASE_ADMIN_PROJECT_ID
+ *   FIREBASE_ADMIN_CLIENT_EMAIL
+ *   FIREBASE_ADMIN_PRIVATE_KEY   (paste the FULL key including BEGIN/END
+ *                                  lines; literal \n in the env value
+ *                                  is auto-converted to real newlines)
+ */
+import crypto from 'crypto';
+import admin from 'firebase-admin';
+
+// Initialize the Admin SDK exactly once across cold starts.
+if (!admin.apps.length) {
+  const privateKey = (process.env.FIREBASE_ADMIN_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId:   process.env.FIREBASE_ADMIN_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+      privateKey,
+    }),
+  });
+}
+
+const ALLOWED_ORIGINS = ['https://dharmachat.in', 'https://www.dharmachat.in'];
+
+function setCors(req, res) {
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+const PLAN_DURATIONS_MS = {
+  monthly: 30 * 24 * 60 * 60 * 1000,
+  yearly: 365 * 24 * 60 * 60 * 1000,
+};
+
+export default async function handler(req, res) {
+  setCors(req, res);
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const {
+    razorpay_payment_id,
+    razorpay_order_id,
+    razorpay_signature,
+    plan,
+    idToken,
+  } = req.body || {};
+
+  if (!razorpay_payment_id || !razorpay_order_id || !plan || !idToken) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  if (!PLAN_DURATIONS_MS[plan]) {
+    return res.status(400).json({ error: 'Invalid plan' });
+  }
+
+  // 1. Verify Firebase ID token. Whatever uid the token resolves to is
+  //    the only user we'll ever grant premium to in this request — the
+  //    browser cannot lie about who they are.
+  let decoded;
+  try {
+    decoded = await admin.auth().verifyIdToken(idToken);
+  } catch (e) {
+    return res.status(401).json({ error: 'Invalid auth token' });
+  }
+  const uid = decoded.uid;
+
+  const keyId     = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  if (!keyId || !keySecret) {
+    return res.status(500).json({ error: 'Payment not configured' });
+  }
+
+  // 2. HMAC verify the Razorpay signature when the desktop popup path
+  //    provided it. Mobile redirects don't include the signature, so we
+  //    skip this check there and rely on step 3 instead.
+  if (razorpay_signature) {
+    const expected = crypto
+      .createHmac('sha256', keySecret)
+      .update(`${razorpay_order_id}|${razorpay_payment_id}`)
+      .digest('hex');
+    // Use timing-safe compare so a malicious caller can't probe for
+    // partial-match hints via response timing.
+    const a = Buffer.from(expected, 'utf8');
+    const b = Buffer.from(razorpay_signature, 'utf8');
+    if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
+      return res.status(400).json({ error: 'Invalid payment signature' });
+    }
+  }
+
+  // 3. Authoritative check — ask Razorpay directly whether this payment
+  //    actually exists, is captured/authorized, and belongs to the
+  //    order_id the browser claims.
+  const credentials = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
+  let paymentDetails;
+  try {
+    const r = await fetch(
+      `https://api.razorpay.com/v1/payments/${encodeURIComponent(razorpay_payment_id)}`,
+      { headers: { Authorization: `Basic ${credentials}` } },
+    );
+    if (!r.ok) {
+      return res.status(400).json({ error: 'Payment not found at Razorpay' });
+    }
+    paymentDetails = await r.json();
+  } catch (e) {
+    return res.status(502).json({ error: 'Could not reach Razorpay' });
+  }
+
+  if (paymentDetails.order_id !== razorpay_order_id) {
+    return res.status(400).json({ error: 'Order/payment mismatch' });
+  }
+  // `captured` = money settled. `authorized` = held but not yet settled
+  // (auto-capture is on for our orders, so we should rarely hit this).
+  if (paymentDetails.status !== 'captured' && paymentDetails.status !== 'authorized') {
+    return res.status(400).json({ error: `Payment status is ${paymentDetails.status}` });
+  }
+
+  // 4. Write premium to Firestore. Only the Admin SDK can write to this
+  //    path; the matching client-side rule denies all writes.
+  const now = new Date();
+  const expiry = new Date(now.getTime() + PLAN_DURATIONS_MS[plan]);
+  const premiumDoc = {
+    plan,
+    paymentId:  razorpay_payment_id,
+    orderId:    razorpay_order_id,
+    amountPaise: paymentDetails.amount,
+    currency:    paymentDetails.currency,
+    date:        now.toISOString(),
+    expiry:      expiry.toISOString(),
+    verifiedAt:  admin.firestore.FieldValue.serverTimestamp(),
+  };
+
+  try {
+    const db = admin.firestore();
+    await db
+      .collection('users').doc(uid)
+      .collection('premium').doc('status')
+      .set(premiumDoc);
+  } catch (e) {
+    return res.status(500).json({ error: 'Could not record premium' });
+  }
+
+  return res.status(200).json({
+    success: true,
+    plan,
+    expiry: expiry.toISOString(),
+  });
+}

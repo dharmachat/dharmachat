@@ -98,17 +98,43 @@ function readPremium() {
   } catch(e) { return null; }
 }
 
+// Firestore is the AUTHORITATIVE source of premium status. The
+// matching firestore.rules deny client writes to users/{uid}/premium,
+// so the only way a doc can be there is if /api/verify-payment wrote
+// it after a Razorpay-verified purchase. This function makes sure
+// localStorage cannot drift from Firestore — if Firestore says no
+// premium (or expired), we wipe the local copy. This is what defeats
+// the "set localStorage from devtools" bypass on any signed-in device.
 async function syncPremiumFromFirestore(user) {
   if (!user) return;
   try {
     const premiumRef = doc(db, 'users', user.uid, 'premium', 'status');
     const snap       = await getDoc(premiumRef);
-    if (!snap.exists()) return;
-    const data = snap.data();
-    if (data.expiry && new Date(data.expiry) <= new Date()) {
+
+    // No server-side premium doc → user is NOT premium. Wipe any
+    // local copy that might have been set manually or left over from
+    // a previous account on this device.
+    if (!snap.exists()) {
       try { localStorage.removeItem('dc_premium'); } catch(e) {}
+      try { sessionStorage.removeItem('dc_premium'); } catch(e) {}
+      updateDrawerPremiumState();
+      updateDesktopAuth(user);
       return;
     }
+
+    const data = snap.data();
+    // Expired premium → also wipe the local copy.
+    if (data.expiry && new Date(data.expiry) <= new Date()) {
+      try { localStorage.removeItem('dc_premium'); } catch(e) {}
+      try { sessionStorage.removeItem('dc_premium'); } catch(e) {}
+      updateDrawerPremiumState();
+      updateDesktopAuth(user);
+      return;
+    }
+
+    // Active premium → mirror Firestore into local storage so the
+    // synchronous readers (dc-premium-unlock.js, the rest of nav.js)
+    // see it instantly without waiting for another async round trip.
     try {
       localStorage.setItem('dc_premium', JSON.stringify(data));
     } catch(e) {

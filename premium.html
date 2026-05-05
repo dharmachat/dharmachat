@@ -270,8 +270,7 @@
 <script type="module">
   // ── Import Firestore to save premium cross-device ──────────
   import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth }        from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-  import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+  import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
   const _app  = initializeApp({
     apiKey:            "AIzaSyDvw26WTzNRsBBgjXG9At60pN8ApDvPB7o",
@@ -282,69 +281,107 @@
     appId:             "1:718284855701:web:d7ef64292cd48ffdf13e9c"
   });
   const _auth = getAuth(_app);
-  const _db   = getFirestore(_app);
 
-  // ── Save premium to BOTH localStorage AND Firestore ────────
-  // localStorage  → instant local unlock on this device
-  // Firestore     → cross-device sync (mobile, tablet, new browser)
-  async function savePremium(plan, paymentId, orderId) {
-    const premiumData = {
-      plan:      plan,
-      paymentId: paymentId,
-      orderId:   orderId,
-      date:      new Date().toISOString(),
-      expiry:    plan === 'monthly'
-        ? new Date(Date.now() + 30*24*60*60*1000).toISOString()
-        : new Date(Date.now() + 365*24*60*60*1000).toISOString()
-    };
+  // Wait for Firebase Auth to finish hydrating from IndexedDB before we
+  // try to verify a payment — `_auth.currentUser` is null on first paint
+  // even when the user IS signed in. Without this, mobile-redirect users
+  // would land back on the page before Auth restored and silently fail.
+  function waitForUser(timeoutMs) {
+    return new Promise(resolve => {
+      if (_auth.currentUser) return resolve(_auth.currentUser);
+      const stop = onAuthStateChanged(_auth, u => { stop(); resolve(u || null); });
+      if (timeoutMs) setTimeout(() => { stop(); resolve(_auth.currentUser || null); }, timeoutMs);
+    });
+  }
 
-    // 1. Save to localStorage (instant unlock on this device)
+  // ── Server-verified premium grant ──────────────────────────
+  // The browser cannot grant premium any more. It hands the Razorpay
+  // proof-of-payment to /api/verify-payment which:
+  //   1. Verifies the user's Firebase ID token (server-trusted uid)
+  //   2. HMAC-verifies the Razorpay signature when present
+  //   3. Calls Razorpay's API to confirm the payment is captured AND
+  //      that order_id matches the claim
+  //   4. Writes users/{uid}/premium/status via the Admin SDK
+  // The matching firestore.rules deny all client writes to that path,
+  // so this endpoint is the ONLY way to grant premium.
+  async function verifyAndUnlock(plan, paymentId, orderId, signature) {
+    const user = await waitForUser(4000);
+    if (!user) {
+      alert('Please sign in to complete your purchase. Your payment is safe — once you sign in, your premium will activate automatically.');
+      return false;
+    }
+    let idToken;
     try {
-      localStorage.setItem('dc_premium', JSON.stringify(premiumData));
-    } catch(e) {
-      try { sessionStorage.setItem('dc_premium', JSON.stringify(premiumData)); } catch(e2) {}
+      idToken = await user.getIdToken(true);
+    } catch (e) {
+      alert('Could not confirm your identity. Please sign out and sign in again.');
+      return false;
     }
 
-    // 2. Save to Firestore (cross-device sync — THIS is what fixes mobile)
-    // When the user logs in on mobile, nav.js reads this and unlocks everything
-    const user = _auth.currentUser;
-    if (user) {
-      try {
-        const premiumRef = doc(_db, 'users', user.uid, 'premium', 'status');
-        await setDoc(premiumRef, premiumData);
-        console.log('[DharmaChat] ✅ Premium saved to Firestore for', user.uid);
-      } catch(firestoreErr) {
-        // Firestore write failed — local save still worked, user can still use premium
-        // on this device. They just won't get cross-device sync until next purchase.
-        console.warn('[DharmaChat] Firestore write failed:', firestoreErr.message);
-      }
-    } else {
-      // Not logged in — store UID placeholder so we can sync later
-      console.warn('[DharmaChat] No user logged in at purchase time — premium saved locally only');
+    let res;
+    try {
+      res = await fetch('/api/verify-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          razorpay_payment_id: paymentId,
+          razorpay_order_id:   orderId,
+          razorpay_signature:  signature || undefined,
+          plan,
+          idToken,
+        }),
+      });
+    } catch (e) {
+      alert('Network error verifying payment. Please refresh — if the payment went through, it will activate within a minute.');
+      return false;
     }
 
+    if (!res.ok) {
+      let msg = 'Payment verification failed';
+      try { const j = await res.json(); if (j && j.error) msg = j.error; } catch (_) {}
+      alert('Could not verify payment: ' + msg + '\n\nIf money was deducted, contact support@dharmachat.in with your payment ID: ' + paymentId);
+      return false;
+    }
+
+    const data = await res.json();
+    // Cache the verified result locally so the rest of the page reflects
+    // the unlock immediately. nav.js + dc-premium-unlock.js both read
+    // localStorage; on next page load nav.js will re-sync from Firestore
+    // (which is now the authoritative source).
+    const localCopy = {
+      plan:      data.plan,
+      paymentId, orderId,
+      date:      new Date().toISOString(),
+      expiry:    data.expiry,
+    };
+    try { localStorage.setItem('dc_premium', JSON.stringify(localCopy)); } catch(e) {
+      try { sessionStorage.setItem('dc_premium', JSON.stringify(localCopy)); } catch(e2) {}
+    }
     return true;
   }
 
   // ── Check URL params on load — handles Razorpay redirect-mode callback ──
   // On mobile, Razorpay uses redirect instead of popup. It appends
   // razorpay_payment_id + razorpay_order_id to the URL on success.
-  (function checkPaymentReturn() {
+  // Razorpay does NOT include the signature on redirect, so the server
+  // verifies via the Razorpay payment-fetch API instead.
+  (async function checkPaymentReturn() {
     const params = new URLSearchParams(window.location.search);
     const paymentId = params.get('razorpay_payment_id');
     const orderId   = params.get('razorpay_order_id');
+    const signature = params.get('razorpay_signature');
     const plan      = params.get('plan') || localStorage.getItem('dc_pending_plan') || 'monthly';
 
-    if (paymentId && orderId) {
-      savePremium(plan, paymentId, orderId);
-      try { localStorage.removeItem('dc_pending_plan'); } catch(e) {}
-      // Clean URL without reloading
-      window.history.replaceState({}, '', 'premium.html');
-      // Show success screen
-      document.addEventListener('DOMContentLoaded', function() {
-        var overlay = document.getElementById('successOverlay');
-        if (overlay) overlay.classList.add('show');
-      });
+    if (!paymentId || !orderId) return;
+
+    // Clean URL immediately so a refresh doesn't re-verify the same params.
+    window.history.replaceState({}, '', 'premium.html');
+
+    const ok = await verifyAndUnlock(plan, paymentId, orderId, signature);
+    try { localStorage.removeItem('dc_pending_plan'); } catch(e) {}
+    if (ok) {
+      const overlay = document.getElementById('successOverlay');
+      if (overlay) overlay.classList.add('show');
     }
   })();
 
@@ -389,10 +426,17 @@
         redirect: true,
 
         // ── Popup handler for desktop ─────────────────────────
-        handler: function(response) {
-          savePremium(plan, response.razorpay_payment_id, response.razorpay_order_id);
+        // Razorpay gives us the signature here, which the server uses
+        // for HMAC verification before granting premium.
+        handler: async function(response) {
+          const ok = await verifyAndUnlock(
+            plan,
+            response.razorpay_payment_id,
+            response.razorpay_order_id,
+            response.razorpay_signature
+          );
           try { localStorage.removeItem('dc_pending_plan'); } catch(e) {}
-          document.getElementById('successOverlay').classList.add('show');
+          if (ok) document.getElementById('successOverlay').classList.add('show');
         },
 
         prefill: { name: '', email: '', contact: '' },
