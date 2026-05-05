@@ -1,0 +1,35 @@
+rules_version = '2';
+
+// DharmaChat Firestore security rules.
+//
+// Premium status is server-only. The `/api/verify-payment` endpoint
+// uses the Firebase Admin SDK (which bypasses these rules) to write
+// `users/{uid}/premium/status` after Razorpay payment is verified.
+// Clients can READ their own premium doc — that's how cross-device
+// sync works in nav.js — but they CANNOT write it. This is what
+// stops "give myself premium with one console command" attacks.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Premium status: read-own, server-only writes.
+    match /users/{uid}/premium/{doc} {
+      allow read:  if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // Anything else under /users/{uid} that the app legitimately needs
+    // the client to write (preferences, etc.). Add explicit rules here
+    // when you introduce them — do NOT broaden to a wildcard.
+    //
+    // Example template (uncomment + adapt as needed):
+    // match /users/{uid}/preferences/{doc} {
+    //   allow read, write: if request.auth != null && request.auth.uid == uid;
+    // }
+
+    // Default-deny everything else. Better to break a feature loudly
+    // than leak data silently.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
