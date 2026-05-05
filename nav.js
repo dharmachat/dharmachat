@@ -73,7 +73,6 @@ const navLinks = [
   { href:'index.html',     emoji:'🏠', label:'Home' },
   { href:'articles.html',  emoji:'📖', label:'Dharma Articles', badge:'2,000+' },
   { href:'lessons.html',   emoji:'📚', label:'Learn' },
-  { href:'community.html', emoji:'🏛️', label:'Community' },
   { href:'chat.html',      emoji:'🤖', label:'AI Chat' },
 ];
 
