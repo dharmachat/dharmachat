@@ -388,6 +388,7 @@
   window.startPayment = async function startPayment(plan, amount) {
     document.getElementById('loadingOverlay').classList.add('show');
     try {
+      const currentUid = (await waitForUser(2000))?.uid || '';
       const response = await fetch('https://dharmachat-github-io.vercel.app/api/payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -395,7 +396,8 @@
           amount: amount,
           currency: 'INR',
           receipt: 'dharmachat_' + plan + '_' + Date.now(),
-          plan: plan
+          plan: plan,
+          uid: currentUid
         })
       });
 

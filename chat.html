@@ -239,7 +239,7 @@
 
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut as fbSignOut }
+  import { getAuth, signInWithPopup, GoogleAuthProvider, signInAnonymously, onAuthStateChanged, signOut as fbSignOut }
     from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
   const firebaseConfig = {
@@ -292,22 +292,26 @@
 
   // Firebase auth state
   onAuthStateChanged(auth, (user) => {
-     document.getElementById('loginScreen').style.display = user ? 'none' : 'flex';
+    document.getElementById('loginScreen').style.display = user ? 'none' : 'flex';
     if (user) {
-      isGoogleUser = true;
       currentUser = user;
+      if (user.isAnonymous) {
+        // Guest signed in anonymously — UI already shown by signInAsGuest or load listener.
+        // Just keep currentUser so sendMessage can call getIdToken().
+        return;
+      }
+      isGoogleUser = true;
       localStorage.removeItem('dc_guest');
       const firstName = user.displayName?.split(' ')[0] || 'Devotee';
       const loginScreen = document.getElementById('loginScreen');
       const banner = document.getElementById('welcomeBanner');
-      // If login screen is still visible, show welcome banner then enter chat
       if (loginScreen && !loginScreen.classList.contains('hidden') && banner) {
         banner.style.display = 'flex';
         document.getElementById('welcomeBannerName').textContent = 'Namaste, ' + firstName + '!';
         document.getElementById('welcomeBannerSub').textContent = 'Welcome back to DharmaChat';
         setTimeout(function() {
           banner.style.display = 'none';
-            document.getElementById('chatWrap').style.visibility = 'visible';
+          document.getElementById('chatWrap').style.visibility = 'visible';
           showChatUI(firstName, user.photoURL, true);
           autoAskFromURL();
         }, 2500);
@@ -357,6 +361,8 @@
     localStorage.setItem('dc_guest', name);
     showChatUI(name, null, false);
     autoAskFromURL();
+    // Sign in anonymously so the guest gets a real Firebase UID for rate limiting.
+    signInAnonymously(auth).catch(() => {/* non-critical — chat works without it */});
   };
 
   function showChatUI(name, photoURL, isGoogle) {
@@ -392,7 +398,7 @@
 
   // Sign out
   window.signOutUser = async function() {
-    if (isGoogleUser) await fbSignOut(auth);
+    await fbSignOut(auth).catch(() => {});
     localStorage.removeItem('dc_guest');
     localStorage.removeItem('dc_usage');
     conversationHistory = [];
@@ -460,9 +466,13 @@
     showTyping();
     setLoading(true);
     try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (currentUser && typeof currentUser.getIdToken === 'function') {
+        try { headers['Authorization'] = 'Bearer ' + await currentUser.getIdToken(); } catch (_) {}
+      }
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ messages: conversationHistory })
       });
       if (!response.ok) { const err = await response.json().catch(() => ({})); throw new Error(err.error || 'Something went wrong.'); }
