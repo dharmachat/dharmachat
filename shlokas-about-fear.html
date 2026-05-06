@@ -114,8 +114,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,246,227,0.95);backdrop
 .related-link:hover{background:rgba(232,97,26,0.06);border-color:var(--saffron);transform:translateY(-2px)}
 
 /* FOOTER */
-footer{background:var(--maroon-dk);color:rgba(255,255,255,0.5);padding:40px 24px;text-align:center;font-size:13px}
+footer{background:var(--maroon-dk);color:rgba(255,255,255,0.5);padding:48px 24px 32px;font-size:13px}
 footer a{color:var(--gold-lt);text-decoration:none}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
+.footer-brand p{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;margin-top:10px;max-width:260px}
+.footer-col h4{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;color:var(--gold-lt);margin-bottom:14px;font-weight:700}
+.footer-col a{display:block;font-family:'EB Garamond',serif;font-size:14px;color:rgba(255,255,255,0.38);text-decoration:none;margin-bottom:7px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.75)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.22);letter-spacing:.04em}
 </style>
 </head>
 <body>
@@ -233,9 +242,21 @@ footer a{color:var(--gold-lt);text-decoration:none}
 </div>
 
 <footer>
-  <p>🕉️ DharmaChat — Built with reverence for Sanatana Dharma</p>
-  <p style="margin-top:8px"><a href="index.html">Home</a> · <a href="chat.html">AI Guide</a> · <a href="privacy.html">Privacy</a> · <a href="premium.html">Premium</a></p>
-  <p style="margin-top:12px;color:rgba(255,255,255,0.3)">© 2026 DharmaChat. All Rights Reserved.</p>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><img src="logo.jpeg" alt="DharmaChat" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" loading="lazy"><span style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-lt);">DharmaChat</span></a>
+        <p>AI-powered dharmic wisdom rooted in authentic Hindu scripture.</p>
+      </div>
+      <div class="footer-col"><h4>DHARMA ARTICLES</h4><a href="articles.html?filter=gita">Bhagavad Gita</a><a href="articles.html?filter=ramayana">Ramayana</a><a href="articles.html?filter=mahabharata">Mahabharata</a><a href="articles.html?filter=upanishad">Upanishads</a><a href="articles.html?filter=deities">Hindu Deities</a></div>
+      <div class="footer-col"><h4>EXPLORE</h4><a href="chat.html">DharmaChat AI</a><a href="lessons.html">Lessons</a><a href="premium.html">Premium</a></div>
+      <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DharmaChat · Built with reverence for Sanatana Dharma 🕉️</p>
+      <p>Founded &amp; built by Sukhil Babu · Bengaluru, India</p>
+    </div>
+  </div>
 </footer>
 
 <script>

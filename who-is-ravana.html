@@ -174,7 +174,7 @@ footer{background:var(--maroon-dk);padding:48px 24px 32px;margin-top:80px}
   <a class="logo-wrap" href="index.html"><img src="logo.jpeg" alt="DharmaChat" loading="lazy"><span class="logo-name">DharmaChat</span></a>
   <div class="nav-links">
     <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link" href="articles.html">Dharma Lessons</a>
+    <a class="nav-link" href="articles.html">Dharma Articles</a>
     
   </div>
   <div class="nav-cta">
@@ -187,7 +187,7 @@ footer{background:var(--maroon-dk);padding:48px 24px 32px;margin-top:80px}
   <main>
     <div class="breadcrumb">
       <a href="index.html">DharmaChat</a> /
-      <a href="articles.html">Dharma Lessons</a> /
+      <a href="articles.html">Dharma Articles</a> /
       <a href="articles.html?filter=ramayana">Ramayana</a> /
       <span style="color:#aaa;">Who is Ravana? The Brilliant Brahmin Who Chose Adharma</span>
     </div>
@@ -333,55 +333,6 @@ footer{background:var(--maroon-dk);padding:48px 24px 32px;margin-top:80px}
 
     </div>
 
-    <div class="related-section">
-      <h2>Discover More Dharma Lessons</h2>
-      <div class="related-grid">
-<a href="who-is-hanuman.html" class="related-card">
-<div class="related-thumb">🐒</div>
-<div class="related-body">
-  <div class="related-cat">RAMAYANA</div>
-  <div class="related-title">Who is Hanuman?</div>
-</div>
-</a>
-<a href="who-is-karna.html" class="related-card">
-<div class="related-thumb">⚔️</div>
-<div class="related-body">
-  <div class="related-cat">MAHABHARATA</div>
-  <div class="related-title">Who is Karna?</div>
-</div>
-</a>
-<a href="who-is-arjuna.html" class="related-card">
-<div class="related-thumb">🏹</div>
-<div class="related-body">
-  <div class="related-cat">MAHABHARATA</div>
-  <div class="related-title">Who is Arjuna?</div>
-</div>
-</a>
-<a href="who-is-lord-krishna.html" class="related-card">
-<div class="related-thumb">🦚</div>
-<div class="related-body">
-  <div class="related-cat">BHAGAVAD GITA</div>
-  <div class="related-title">Who is Lord Krishna?</div>
-</div>
-</a>
-<a href="who-is-lord-shiva.html" class="related-card">
-<div class="related-thumb">🔱</div>
-<div class="related-body">
-  <div class="related-cat">SHIVA PURANA</div>
-  <div class="related-title">Who is Lord Shiva?</div>
-</div>
-</a>
-<a href="what-is-dharma.html" class="related-card">
-<div class="related-thumb">✨</div>
-<div class="related-body">
-  <div class="related-cat">PHILOSOPHY</div>
-  <div class="related-title">What is Dharma?</div>
-</div>
-</a>
-
-      </div>
-    </div>
-
     <div class="newsletter-box">
       <h3>Dharmic Wisdom, Straight to Your Inbox</h3>
       <p>Daily shlokas, new lessons and dharmic guidance — in your language.</p>
@@ -475,9 +426,9 @@ footer{background:var(--maroon-dk);padding:48px 24px 32px;margin-top:80px}
         <a class="logo-wrap" href="index.html"><img src="logo.jpeg" alt="DharmaChat" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" loading="lazy"><span style="font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--gold-lt);">DharmaChat</span></a>
         <p>AI-powered dharmic wisdom rooted in authentic Hindu scripture. Explore the Gita, Ramayana, Mahabharata, Upanishads and all 18 Puranas.</p>
       </div>
-      <div class="footer-col"><h4>DHARMA LESSONS</h4><a href="articles.html?filter=gita">Bhagavad Gita</a><a href="articles.html?filter=ramayana">Ramayana</a><a href="articles.html?filter=mahabharata">Mahabharata</a><a href="articles.html?filter=upanishad">Upanishads</a><a href="articles.html?filter=deities">Hindu Deities</a></div>
+      <div class="footer-col"><h4>DHARMA ARTICLES</h4><a href="articles.html?filter=gita">Bhagavad Gita</a><a href="articles.html?filter=ramayana">Ramayana</a><a href="articles.html?filter=mahabharata">Mahabharata</a><a href="articles.html?filter=upanishad">Upanishads</a><a href="articles.html?filter=deities">Hindu Deities</a></div>
       <div class="footer-col"><h4>EXPLORE</h4><a href="chat.html">DharmaChat AI</a><a href="lessons.html">Lessons</a><a href="premium.html">Premium</a></div>
-      <div class="footer-col"><h4>DHARMACHAT</h4><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a></div>
+      <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 DharmaChat · Built with reverence for Sanatana Dharma 🕉️</p>
@@ -506,6 +457,7 @@ function copyLink(){
 function nlSub(){
   const e = document.getElementById('nlEmail');
   if(!e.value||!e.value.includes('@')){e.style.borderColor='rgba(232,97,26,0.6)';return;}
+  window.location.href='mailto:support@dharmachat.in?subject=Subscribe&body=Please%20add%20me%20to%20your%20mailing%20list.%20My%20email%3A%20'+encodeURIComponent(e.value);
   e.style.borderColor='rgba(212,160,23,0.5)';
   e.value='';
   e.placeholder='Thank you! 🙏 Dharmic wisdom is on its way.';

@@ -343,4 +343,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!auth.currentUser) { updateDrawerUser(null); }
   window.addEventListener('load', () => { setTimeout(hideTryFreeIfPremium, 300); });
+
+  // Sidebar: make MORE LESSONS scrollable + swap emoji thumbs for real article images
+  const thumbMap = {
+    'who-is-hanuman': 'hanuman2.png',
+    'who-is-lord-rama': 'article-rama.jpg',
+    'who-is-sita': 'article-sita.jpg',
+    'who-is-ravana': 'article-ravana.jpg',
+    'who-is-lord-krishna': 'krishna.png',
+    'who-is-lord-shiva': 'shiva.png',
+    'who-is-arjuna': 'article-arjuna.jpg',
+    'who-is-karna': 'article-karna.jpg',
+    'who-is-bhishma': 'article-bhishma.jpg',
+    'who-is-goddess-durga': 'article-durga.jpg',
+    'what-is-dharma': 'article-dharma.jpg',
+    'what-is-karma': 'article-karma.jpg',
+    'what-is-moksha': 'moksha.png',
+    'what-are-the-4-vedas': 'article-vedas.jpg',
+    'vedas': 'article-vedas.jpg',
+    'what-happens-after-death': 'afterdeath.png',
+    'four-purusharthas': 'article-purusharthas.jpg',
+    'how-to-find-inner-peace': 'article-innerpeace.jpg',
+    'is-ahimsa-absolute': 'article-ahimsa.jpg',
+    'ramayana': 'article-rama.jpg',
+    'bhagavad-gita-18-chapters': 'gita.png',
+    'bhagavad-gita': 'gita.png',
+  };
+  document.querySelectorAll('.sidebar-card').forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (!h3 || !h3.textContent.includes('MORE')) return;
+    const nav = card.querySelector('.sidebar-nav');
+    if (nav) { nav.style.maxHeight = '360px'; nav.style.overflowY = 'auto'; nav.style.paddingRight = '4px'; }
+    card.querySelectorAll('.related-card').forEach(rc => {
+      const href = rc.getAttribute('href') || '';
+      const key = Object.keys(thumbMap).find(k => href.includes(k));
+      const thumb = rc.querySelector('.related-thumb');
+      if (key && thumb) {
+        thumb.innerHTML = `<img src="${thumbMap[key]}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+        thumb.style.cssText = 'height:100px;overflow:hidden;font-size:0;padding:0;';
+      }
+    });
+  });
 });
